@@ -9,7 +9,6 @@ export default function Hud(): React.ReactNode {
   const screenSpaceAimPosition: Vector2Int = useReactiveValue(
     globals.screenSpaceAimPosition
   );
-  console.log(screenSpaceAimPosition.x);
 
   return (
     <view className="hud">

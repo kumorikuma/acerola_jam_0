@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 /*Simple player movement controller, based on character controller component,
@@ -42,8 +44,14 @@ public class PlayerController : MonoBehaviour {
 
     // Lockon
     private Transform _lockedOnTarget;
+    public event EventHandler<Transform> OnLockedOnTargetChanged;
+
+    private CinemachineBrain _cinemachineBrain;
+    private Transform _previousActiveVirtualCamera;
+    private Vector3 _previousInputMoveVector = Vector3.zero;
 
     private void Awake() {
+        _cinemachineBrain = GetComponentInChildren<CinemachineBrain>();
         characterController = GetComponent<CharacterController>();
         _velocity.y = -2f;
     }
@@ -59,14 +67,14 @@ public class PlayerController : MonoBehaviour {
 
     public void OnLockOn() {
         if (_lockedOnTarget != null) {
-            _lockedOnTarget = null;
+            SetLockOnTarget(null);
             return;
         }
 
         // Find closest target to lock on to
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Targetable");
         foreach (GameObject enemy in enemies) {
-            _lockedOnTarget = enemy.transform;
+            SetLockOnTarget(enemy.transform);
             break;
         }
     }
@@ -78,6 +86,9 @@ public class PlayerController : MonoBehaviour {
 
     private void Update() {
         Movement();
+    }
+
+    private void LateUpdate() {
         UpdateUI();
     }
 
@@ -94,9 +105,22 @@ public class PlayerController : MonoBehaviour {
         bool isWalking = isWalkKeyHeld || inputMoveVector.magnitude < 0.5f;
         float moveSpeed = isWalking ? WalkSpeed : RunSpeed;
 
+        // Don't check for the active virtual camera every frame, but only do this when the player lets go of the input.
+        // So we'll cache this, and then only check it if the cache wasn't set or if the previous inputMoveVector was 0.
+        Transform activeVirtualCameraTransform =
+            _cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.transform;
+        CinemachineClearShot cmClearShot = _cinemachineBrain.ActiveVirtualCamera as CinemachineClearShot;
+        if (cmClearShot != null) {
+            // If the active camera is a clearshot camera, then we should use the live child instead of the actual camera.
+            activeVirtualCameraTransform = cmClearShot.LiveChild.VirtualCameraGameObject.transform;
+        }
+
+        // Apply the camera's rotation to the input move vector
+        Quaternion activeCameraRotation = activeVirtualCameraTransform.transform.rotation;
+
         // Character should move in the direction of the camera
         Vector3 desiredMoveDirection =
-            PlayerManager.Instance.CameraController.Pivot.transform.rotation * inputMoveVector;
+            activeCameraRotation * inputMoveVector;
         // Y component should be 0
         desiredMoveDirection.y = 0;
         desiredMoveDirection = desiredMoveDirection.normalized;
@@ -153,12 +177,17 @@ public class PlayerController : MonoBehaviour {
             if (screenPosition.x < 0 || screenPosition.x > Screen.width || screenPosition.y < 0 ||
                 screenPosition.y > Screen.height || screenPosition.z < 0) {
                 // The target is outside of the screen
-                _lockedOnTarget = null;
+                SetLockOnTarget(null);
             } else {
                 screenSpaceAimPosition = new((int)screenPosition.x, (int)screenPosition.y);
             }
         }
 
         ReactUnityBridge.Instance.UpdateScreenSpaceAimPosition(screenSpaceAimPosition);
+    }
+
+    private void SetLockOnTarget(Transform lockedOnTarget) {
+        _lockedOnTarget = lockedOnTarget;
+        OnLockedOnTargetChanged?.Invoke(this, _lockedOnTarget);
     }
 }

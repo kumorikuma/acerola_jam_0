@@ -12,9 +12,65 @@ public class CameraController : MonoBehaviour {
 
     public bool InvertLookDirection = false;
     public float LookSpeed = 0.5f;
+    private int _defaultCameraPriority = 10;
+    private int _boostedCameraPriority = 100;
+
+    [NonNullField] public CinemachineVirtualCamera MainCamera;
+    [NonNullField] public CinemachineVirtualCamera LeftShoulderCamera;
+    [NonNullField] public CinemachineVirtualCamera RightShoulderCamera;
+    [NonNullField] public CinemachineTargetGroup TargetGroup;
 
     public void OnLook(Vector2 lookVector) {
         inputLookDirection = lookVector * LookSpeed;
+    }
+
+    private void Start() {
+        PlayerManager.Instance.PlayerController.OnLockedOnTargetChanged += OnLockedOnTargetChanged;
+    }
+
+    private void OnLockedOnTargetChanged(object sender, Transform lockedOnTarget) {
+        if (lockedOnTarget == null) {
+            // ResetCameraPriorities();
+            // TargetGroup.RemoveMember(lockedOnTarget);
+            return;
+        }
+
+        // TargetGroup.AddMember(lockedOnTarget, 1, 1);
+
+        // Switch to the left or right camera depending on which side of the player the target is on.
+        Camera mainCamera = Camera.main;
+        Vector3 targetScreenPosition = mainCamera.WorldToScreenPoint(lockedOnTarget.transform.position);
+        Vector3 playerScreenPosition =
+            mainCamera.WorldToScreenPoint(PlayerManager.Instance.PlayerController.PlayerModel.transform.position);
+        // MainCamera.LookAt = lockedOnTarget;
+        if (targetScreenPosition.x < playerScreenPosition.x) {
+            // BoostLeftShoulderCamera();
+            // LeftShoulderCamera.LookAt = lockedOnTarget;
+            // Pivot.transform.localPosition = new(-5, 2, 0);
+        } else {
+            // BoostRightShoulderCamera();
+            // RightShoulderCamera.LookAt = lockedOnTarget;
+            // Pivot.transform.localPosition = new(5, 2, 0);
+        }
+    }
+
+    private void BoostLeftShoulderCamera() {
+        ResetCameraPriorities();
+        LeftShoulderCamera.Priority = _boostedCameraPriority;
+    }
+
+    private void BoostRightShoulderCamera() {
+        ResetCameraPriorities();
+        RightShoulderCamera.Priority = _boostedCameraPriority;
+    }
+
+    private void ResetCameraPriorities() {
+        Pivot.transform.localPosition = new(0, 2, 0);
+        // LeftShoulderCamera.Priority = _defaultCameraPriority;
+        // RightShoulderCamera.Priority = _defaultCameraPriority;
+        MainCamera.LookAt = null;
+        // LeftShoulderCamera.LookAt = null;
+        // RightShoulderCamera.LookAt = null;
     }
 
     private void Update() {
@@ -36,6 +92,7 @@ public class CameraController : MonoBehaviour {
         verticalRotation = Mathf.Clamp(verticalRotation, MinVerticalRotation, MaxVerticalRotation);
         Pivot.transform.localRotation = Quaternion.Euler(verticalRotation, horizontalRotation, localEulerRotation.z);
 
+        // TODO:
         // If the Pivot is under the map, then move it closer to the camera.
         // If the vertical rotation is negative over a threshold, start moving it closer to the 
     }

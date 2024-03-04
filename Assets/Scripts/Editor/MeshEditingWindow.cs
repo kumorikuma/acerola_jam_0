@@ -9,6 +9,9 @@ using UnityEditor;
 public class MeshEditingWindow : EditorWindow {
     MeshFilter SourceMesh; // Mesh to edit and perform changes onto
     MeshFilter TargetMesh; // Mesh to use as data
+    GameObject PalmTreePrefab;
+    float xOffset = 15;
+    float gap = 25;
 
     [MenuItem("Custom/Mesh Editing")]
     public static void OpenWindow() {
@@ -17,6 +20,7 @@ public class MeshEditingWindow : EditorWindow {
 
     void OnGUI() {
         SourceMesh = EditorGUILayout.ObjectField("Mesh", SourceMesh, typeof(MeshFilter), true) as MeshFilter;
+
         GUILayout.BeginVertical("HelpBox");
         GUILayout.Label("Blendshape");
         GUILayout.BeginVertical("GroupBox");
@@ -26,6 +30,95 @@ public class MeshEditingWindow : EditorWindow {
         }
         GUILayout.EndVertical();
         GUILayout.EndVertical();
+
+        GUILayout.BeginVertical("HelpBox");
+        GUILayout.Label("Mesh Properties");
+        GUILayout.BeginVertical("GroupBox");
+        if (GUILayout.Button("Recompute Normals")) {
+            this.StartCoroutine(RecalculateNormals(SourceMesh));
+        }
+        if (GUILayout.Button("Add barycentric coords to verts")) {
+            this.StartCoroutine(GenerateBarycentricCoordinates(SourceMesh));
+        }
+        GUILayout.EndVertical();
+        GUILayout.EndVertical();
+
+        GUILayout.BeginVertical("HelpBox");
+        GUILayout.Label("Level Gen");
+        PalmTreePrefab = EditorGUILayout.ObjectField("Palm Tree", PalmTreePrefab, typeof(GameObject), true) as GameObject;
+        xOffset = EditorGUILayout.Slider("X Offset", xOffset, 0, 50);
+        gap = EditorGUILayout.Slider("Gap", gap, 0, 100);
+        GUILayout.BeginVertical("GroupBox");
+        if (GUILayout.Button("Plant Trees")) {
+            this.StartCoroutine(PlantPalmTrees());
+        }
+        GUILayout.EndVertical();
+        GUILayout.EndVertical();
+    }
+
+    IEnumerator RecalculateNormals(MeshFilter sourceMesh) {
+        sourceMesh.sharedMesh.RecalculateNormals();
+        yield return null;
+    }
+
+    // For each triangle, generates duplicates vertices that have barycentric coordinates set
+    // as vertex attributes for interpolation in shader.
+    IEnumerator GenerateBarycentricCoordinates(MeshFilter sourceMesh) {
+        Vector3[] sourceVerts = sourceMesh.sharedMesh.vertices;
+        Vector2[] sourceUvs = sourceMesh.sharedMesh.uv;
+        int[] sourceTriangles = sourceMesh.sharedMesh.triangles;
+
+        Debug.Log($"UVS {sourceUvs.Length}");
+        Debug.Log($"Verts {sourceVerts.Length}");
+
+        Vector3[] newVerts = new Vector3[sourceVerts.Length * 3];
+        Vector3[] newUvs = new Vector3[sourceVerts.Length * 3];
+        Vector3[] barycentricCoordinates = new Vector3[sourceVerts.Length * 3];
+        int[] newTriangles = new int[sourceTriangles.Length];
+
+        int vertIdx = 0;
+        int triIdx = 0;
+        // For each triangle, generate three vertices
+        for (int i = 0; i < sourceTriangles.Length; i += 3) {
+            int vertA = sourceTriangles[i];
+            int vertB = sourceTriangles[i + 1];
+            int vertC = sourceTriangles[i + 2];
+
+            newTriangles[triIdx++] = vertIdx;
+            newVerts[vertIdx] = sourceVerts[vertA];
+            if (sourceUvs.Length > 0) {
+                newUvs[vertIdx] = sourceUvs[vertA];
+            }
+            barycentricCoordinates[vertIdx] = new Vector3(1, 0, 0);
+            vertIdx++;
+
+            newTriangles[triIdx++] = vertIdx;
+            newVerts[vertIdx] = sourceVerts[vertB];
+            if (sourceUvs.Length > 0) {
+                newUvs[vertIdx] = sourceUvs[vertB];
+            }
+            barycentricCoordinates[vertIdx] = new Vector3(0, 1, 0);
+            vertIdx++;
+
+            newTriangles[triIdx++] = vertIdx;
+            newVerts[vertIdx] = sourceVerts[vertC];
+            if (sourceUvs.Length > 0) {
+                newUvs[vertIdx] = sourceUvs[vertC];
+            }
+            barycentricCoordinates[vertIdx] = new Vector3(0, 0, 1);
+            vertIdx++;
+        }
+
+        sourceMesh.sharedMesh.vertices = newVerts;
+        if (sourceUvs.Length > 0) {
+            sourceMesh.sharedMesh.SetUVs(0, newUvs);
+        }
+        sourceMesh.sharedMesh.SetUVs(1, barycentricCoordinates);
+        sourceMesh.sharedMesh.triangles = newTriangles;
+        sourceMesh.sharedMesh.RecalculateNormals();
+        sourceMesh.sharedMesh.RecalculateBounds();
+
+        yield return null;
     }
 
     // Adds the selected mesh as a blendshape to the source mesh.
@@ -48,6 +141,22 @@ public class MeshEditingWindow : EditorWindow {
         // See: https://forum.unity.com/threads/adding-new-blendshape-from-script-buggy-deformation-result-fixed.827187/ 
         targetMesh.mesh.RecalculateNormals();
         targetMesh.mesh.RecalculateTangents();
+        yield return null;
+    }
+
+    IEnumerator PlantPalmTrees() {
+        int numTrees = (int)(400.0f / gap) - 1;
+        for (int i = 0; i < numTrees; i++) {
+            float yOffset = i * gap + gap;
+            Vector3 position = new Vector3(xOffset, 0, yOffset);
+            GameObject tree = Instantiate(PalmTreePrefab, position, Quaternion.identity);
+            tree.transform.SetParent(SourceMesh.gameObject.transform);
+
+            position = new Vector3(-xOffset, 0, yOffset);
+            tree = Instantiate(PalmTreePrefab, position, Quaternion.identity);
+            tree.transform.localScale = new Vector3(-1, 1, 1);
+            tree.transform.SetParent(SourceMesh.gameObject.transform);
+        }
         yield return null;
     }
 }

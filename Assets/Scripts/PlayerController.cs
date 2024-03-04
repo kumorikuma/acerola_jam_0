@@ -127,6 +127,8 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+        Animator.SetBool("IsRunning", isMoving);
+
         // Turn the player incrementally towards the direction of movement
         PlayerModel.transform.rotation = Quaternion.RotateTowards(PlayerModel.transform.rotation,
             targetRotation,

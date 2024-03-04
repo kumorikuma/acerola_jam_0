@@ -9,6 +9,9 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
         GameOver,
     }
 
+    public bool Debug_IsDebugModeEnabled = false;
+    public GameState Debug_StartingGameState = GameState.GameStarted;
+
     public event EventHandler<GameState> OnGameStateUpdated;
     private GameState _currentGameState = GameState.MainMenu;
 
@@ -17,6 +20,15 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
     }
 
     void Start() {
+        // Disable Debug Mode in production
+#if !UNITY_EDITOR
+        Debug_IsDebugModeEnabled = false;
+#endif
+
+        if (Debug_IsDebugModeEnabled) {
+            _currentGameState = Debug_StartingGameState;
+        }
+
         SwitchGameState(_currentGameState);
     }
 

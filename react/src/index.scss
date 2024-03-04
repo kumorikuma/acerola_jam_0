@@ -12,6 +12,15 @@
   flex-direction: $direction;
 }
 
+/* ===== Variables ===== */
+
+$crosshair-color-faint: rgba(255, 255, 255, 0.1);
+$crosshair-color: rgba(255, 255, 255, 0.5);
+$crosshair-width: 4px;
+$crosshair-length: 20px;
+$crosshair-length-horizontal: 28px;
+$crosshair-center-offset: 62px;
+
 /* ===== Common ===== */
 
 * {
@@ -145,8 +154,98 @@
 }
 
 .hud {
-  .score {
-    font-size: 36px;
+  height: 100%;
+
+  .fullscreen-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    .reticle {
+      position: absolute;
+      left: 960px;
+
+      .decoration {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        .circle-outer {
+          position: absolute;
+          width: 320px;
+          height: 320px;
+          border: 4px solid $crosshair-color-faint;
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+    
+        .circle-outer-2 {
+          position: absolute;
+          width: 304px;
+          height: 304px;
+          border: 2px solid $crosshair-color-faint;
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+    
+        .circle-inner {
+          position: absolute;
+          width: 24px;
+          height: 24px;
+          border: 2px solid rgba(255, 255, 255, 0.1);
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      .crosshair {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+  
+        .crosshair-top {
+          position: absolute;
+          width: $crosshair-width;
+          height: $crosshair-length;
+          background-color: $crosshair-color;
+          transform: translate(-50%, -50%);
+          top: -$crosshair-center-offset;
+        }
+  
+        .crosshair-down {
+          position: absolute;
+          width: $crosshair-width;
+          height: $crosshair-length;
+          background-color: $crosshair-color;
+          transform: translate(-50%, -50%);
+          top: $crosshair-center-offset;
+        }
+  
+        .crosshair-right {
+          position: absolute;
+          width: $crosshair-length-horizontal;
+          height: $crosshair-width;
+          background-color: $crosshair-color;
+          transform: translate(-50%, -50%);
+          left: $crosshair-center-offset;
+        }
+  
+        .crosshair-left {
+          position: absolute;
+          width: $crosshair-length-horizontal;
+          height: $crosshair-width;
+          background-color: $crosshair-color;
+          transform: translate(-50%, -50%);
+          left: -$crosshair-center-offset;
+        }
+      }
+    }
   }
 }
 

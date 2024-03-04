@@ -32,6 +32,10 @@ public class InputManager : MonoBehaviour {
         PlayerManager.Instance.CameraController.OnLook(value.Get<Vector2>() * MouseLookSensitivity);
     }
 
+    void OnLockOn() {
+        PlayerManager.Instance.PlayerController.OnLockOn();
+    }
+
     void OnPause() {
         GameLifecycleManager.Instance.PauseGame();
     }

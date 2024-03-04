@@ -2,19 +2,24 @@ using System;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 /*Simple player movement controller, based on character controller component,
 with footstep system based on check the current texture of the component*/
+[RequireComponent(typeof(EntityStats))]
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour {
     [NonNullField] public Animator Animator;
 
-    //Variables for footstep system list
-    [System.Serializable]
-    public class GroundLayer {
-        public string layerName;
-        public Texture2D[] groundTextures;
-        public AudioClip[] footstepSounds;
-    }
+    [NonNullField] public Transform PrimaryWeaponMountPoint;
+    [NonNullField] public Transform SecondaryWeaponMountPoint;
+
+    public float ProjectileVelocity = 1.0f;
+    public float PrimaryFireCooldown = 1.0f;
+    private float _primaryFireCooldownCountdown = 0.0f;
+
+    public float SecondaryFireCooldown = 0.3f;
+    private float _secondaryFireCooldownCountdown = 0.0f;
 
     [Header("Movement")] [Tooltip("Walking controller speed")] [SerializeField]
     private float WalkSpeed = 1.0f;
@@ -31,11 +36,14 @@ public class PlayerController : MonoBehaviour {
     [Tooltip("Gravity, pushing down controller when it jumping")] [SerializeField]
     private float gravity = -9.81f;
 
-    public GameObject PlayerModel;
+    [NonNullField] public GameObject PlayerModel;
 
     //Private movement variables
     private Vector3 inputMoveVector;
     private bool inputJumpOnNextFrame = false;
+    private bool inputDashOnNextFrame = false;
+    private bool inputPrimaryFireOnNextFrame = false;
+    private bool inputSecondaryFireHeld = false;
     private Vector3 _velocity; // Used for handling jumping
     private CharacterController characterController;
     private bool isWalkKeyHeld = false;
@@ -50,9 +58,12 @@ public class PlayerController : MonoBehaviour {
     private Transform _previousActiveVirtualCamera;
     private Vector3 _previousInputMoveVector = Vector3.zero;
 
+    private EntityStats _entityStats;
+
     private void Awake() {
         _cinemachineBrain = GetComponentInChildren<CinemachineBrain>();
         characterController = GetComponent<CharacterController>();
+        _entityStats = GetComponent<EntityStats>();
         _velocity.y = -2f;
     }
 
@@ -79,13 +90,31 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    // Using KBM controls, there's a specific button to walk.
-    public void OnWalk(bool isWalking) {
-        isWalkKeyHeld = isWalking;
+    public void OnDash() {
+        inputDashOnNextFrame = true;
+    }
+
+    public void OnPrimaryFire() {
+        inputPrimaryFireOnNextFrame = true;
+    }
+
+    public void OnSecondaryFire(bool value) {
+        inputSecondaryFireHeld = value;
     }
 
     private void Update() {
-        Movement();
+        HandleMovement();
+        HandleAttack();
+    }
+
+    private void FixedUpdate() {
+        if (_primaryFireCooldownCountdown > 0.0f) {
+            _primaryFireCooldownCountdown -= Time.fixedDeltaTime;
+        }
+
+        if (_secondaryFireCooldownCountdown > 0.0f) {
+            _secondaryFireCooldownCountdown -= Time.fixedDeltaTime;
+        }
     }
 
     private void LateUpdate() {
@@ -93,7 +122,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     //Character controller movement
-    private void Movement() {
+    private void HandleMovement() {
         if (inputJumpOnNextFrame && characterController.isGrounded) {
             _velocity.y = Mathf.Sqrt(JumpForce * -2f * gravity);
         }
@@ -170,6 +199,58 @@ public class PlayerController : MonoBehaviour {
         _velocity.y += gravity * Time.deltaTime;
     }
 
+    private void HandleAttack() {
+        if (inputPrimaryFireOnNextFrame) {
+            inputPrimaryFireOnNextFrame = false;
+
+            if (_primaryFireCooldownCountdown <= 0.0f) {
+                FirePrimaryWeapon();
+            }
+        }
+
+        if (inputSecondaryFireHeld && _secondaryFireCooldownCountdown <= 0.0f) {
+            FireSecondaryWeapon();
+        }
+    }
+
+    private void FirePrimaryWeapon() {
+        _primaryFireCooldownCountdown = PrimaryFireCooldown;
+
+        Vector3 initialVelocity = PlayerModel.transform.forward * ProjectileVelocity;
+        if (_lockedOnTarget != null) {
+            initialVelocity = (_lockedOnTarget.position - PrimaryWeaponMountPoint.position).normalized *
+                              ProjectileVelocity;
+
+            // Rotate the player to turn towards the target
+            targetRotation = Quaternion.Euler(0,
+                Mathf.Atan2(initialVelocity.x, initialVelocity.z) * Mathf.Rad2Deg, 0);
+            PlayerModel.transform.rotation = targetRotation;
+        }
+
+        ProjectileController.Instance.SpawnProjectile(ProjectileController.Owner.Player,
+            PrimaryWeaponMountPoint.position, Quaternion.identity,
+            initialVelocity);
+    }
+
+    private void FireSecondaryWeapon() {
+        _secondaryFireCooldownCountdown = SecondaryFireCooldown;
+
+        Vector3 initialVelocity = PlayerModel.transform.forward * ProjectileVelocity;
+        if (_lockedOnTarget != null) {
+            initialVelocity = (_lockedOnTarget.position - SecondaryWeaponMountPoint.position).normalized *
+                              ProjectileVelocity;
+
+            // Rotate the player to turn towards the target
+            targetRotation = Quaternion.Euler(0,
+                Mathf.Atan2(initialVelocity.x, initialVelocity.z) * Mathf.Rad2Deg, 0);
+            PlayerModel.transform.rotation = targetRotation;
+        }
+
+        ProjectileController.Instance.SpawnProjectile(ProjectileController.Owner.Player,
+            SecondaryWeaponMountPoint.position, Quaternion.identity,
+            initialVelocity);
+    }
+
     private void UpdateUI() {
         Vector2Int screenSpaceAimPosition = new(Screen.width / 2, Screen.height / 2);
         if (_lockedOnTarget != null) {
@@ -184,6 +265,10 @@ public class PlayerController : MonoBehaviour {
         }
 
         ReactUnityBridge.Instance.UpdateScreenSpaceAimPosition(screenSpaceAimPosition);
+
+        ReactUnityBridge.Instance.UpdatePrimaryFireCooldown(1 - (_primaryFireCooldownCountdown / PrimaryFireCooldown));
+        ReactUnityBridge.Instance.UpdateSecondaryFireCooldown(1 - (_secondaryFireCooldownCountdown /
+                                                                   SecondaryFireCooldown));
     }
 
     private void SetLockOnTarget(Transform lockedOnTarget) {

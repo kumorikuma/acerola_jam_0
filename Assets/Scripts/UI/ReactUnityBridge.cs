@@ -3,11 +3,17 @@ using ReactUnity.Reactive;
 using UnityEngine;
 
 public class ReactUnityBridge : Singleton<ReactUnityBridge> {
-    public ReactiveValue<string> route = new();
-    public ReactiveValue<bool> debugModeEnabled = new();
-    public ReactiveValue<string> debugGameState = new();
-    public ReactiveValue<Leaderboards.LeaderboardScores> leaderboardScores = new();
-    public ReactiveValue<Vector2Int> screenSpaceAimPosition = new();
+    private ReactiveValue<string> route = new();
+    private ReactiveValue<bool> debugModeEnabled = new();
+    private ReactiveValue<string> debugGameState = new();
+    private ReactiveValue<Leaderboards.LeaderboardScores> leaderboardScores = new();
+    private ReactiveValue<Vector2Int> screenSpaceAimPosition = new();
+
+    // Stats. All values [0, 1].
+    private ReactiveValue<float> targetHealth = new();
+    private ReactiveValue<float> playerHealth = new();
+    private ReactiveValue<float> playerPrimaryFireCooldown = new();
+    private ReactiveValue<float> playerSecondaryFireCooldown = new();
 
     private ReactRendererBase reactRenderer;
 
@@ -27,6 +33,10 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
 
         // Hud
         reactRenderer.Globals["screenSpaceAimPosition"] = screenSpaceAimPosition;
+        reactRenderer.Globals["targetHealth"] = targetHealth;
+        reactRenderer.Globals["playerHealth"] = playerHealth;
+        reactRenderer.Globals["playerPrimaryFireCooldown"] = playerPrimaryFireCooldown;
+        reactRenderer.Globals["playerSecondaryFireCooldown"] = playerSecondaryFireCooldown;
 
         // Enable Debug Mode when in Unity Editor
         debugModeEnabled.Value = false;
@@ -58,9 +68,27 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
         debugGameState.Value = data.ToString();
     }
 
+    private void OnTargetHealthUpdated(float value) {
+    }
+
+    private void OnPlayerHealthUpdated(float value) {
+    }
+
     public void UpdateScreenSpaceAimPosition(Vector2Int aimPosition) {
         if (screenSpaceAimPosition.Value != aimPosition) {
             screenSpaceAimPosition.Value = aimPosition;
+        }
+    }
+
+    public void UpdatePrimaryFireCooldown(float value) {
+        if (playerPrimaryFireCooldown.Value != value) {
+            playerPrimaryFireCooldown.Value = value;
+        }
+    }
+
+    public void UpdateSecondaryFireCooldown(float value) {
+        if (playerSecondaryFireCooldown.Value != value) {
+            playerSecondaryFireCooldown.Value = value;
         }
     }
 }

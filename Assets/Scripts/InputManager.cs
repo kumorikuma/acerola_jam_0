@@ -16,8 +16,8 @@ public class InputManager : MonoBehaviour {
         PlayerManager.Instance.PlayerController.OnJump();
     }
 
-    void OnWalk(InputValue value) {
-        PlayerManager.Instance.PlayerController.OnWalk(value.isPressed);
+    void OnDash() {
+        PlayerManager.Instance.PlayerController.OnDash();
     }
 
     void OnJoystickLook(InputValue value) {
@@ -34,6 +34,14 @@ public class InputManager : MonoBehaviour {
 
     void OnLockOn() {
         PlayerManager.Instance.PlayerController.OnLockOn();
+    }
+
+    void OnPrimaryFire() {
+        PlayerManager.Instance.PlayerController.OnPrimaryFire();
+    }
+
+    void OnSecondaryFire(InputValue value) {
+        PlayerManager.Instance.PlayerController.OnSecondaryFire(value.isPressed);
     }
 
     void OnPause() {

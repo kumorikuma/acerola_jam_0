@@ -1,3 +1,4 @@
+import { useGlobals, useReactiveValue } from "@reactunity/renderer";
 import "./index.scss";
 
 type ReticleProps = {
@@ -5,12 +6,38 @@ type ReticleProps = {
   posY: number;
 };
 
+function lerp(a, b, alpha) {
+  return a + alpha * (b - a);
+}
+
 export default function Reticle({ posX, posY }: ReticleProps): React.ReactNode {
+  const globals = useGlobals();
+  const playerPrimaryFireCooldown = useReactiveValue(
+    globals.playerPrimaryFireCooldown
+  );
+  const playerSecondaryFireCooldown = useReactiveValue(
+    globals.playerSecondaryFireCooldown
+  );
+  const primaryFireCooldownPercent = lerp(22, 40, playerPrimaryFireCooldown);
+  const secondaryFireCooldownPercent = lerp(
+    60,
+    78,
+    playerSecondaryFireCooldown
+  );
+
   return (
     <view
       className="reticle"
       style={{ bottom: `${posY}px`, left: `${posX}px` }}
     >
+      <view className="cooldowns-container">
+        <view
+          className="cooldowns"
+          style={{
+            background: `conic-gradient(transparent 0, transparent 22%, white 22%, white ${primaryFireCooldownPercent}%, transparent ${primaryFireCooldownPercent}%, transparent 60%, white 60%, white ${secondaryFireCooldownPercent}%, transparent ${secondaryFireCooldownPercent}%)`,
+          }}
+        />
+      </view>
       <view className="decoration">
         <view className="circle-outer"></view>
         <view className="circle-outer-2"></view>

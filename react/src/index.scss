@@ -165,6 +165,24 @@ $crosshair-center-offset: 62px;
       position: absolute;
       left: 960px;
 
+      .cooldowns-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        .cooldowns {
+          position: relative;
+          transform: translate(-50%, -50%);
+          width: 350px;
+          height: 350px;
+          border-radius: 50%;
+          overflow: hidden;
+
+          background: conic-gradient(transparent 0, transparent 22%, white 22%, white 40%, transparent 40%, transparent 60%, white 60%, white 78%, transparent 78%);
+          mask: radial-gradient(circle, transparent 68%, black 100%);
+        }
+      }
+
       .decoration {
         position: absolute;
         top: 50%;

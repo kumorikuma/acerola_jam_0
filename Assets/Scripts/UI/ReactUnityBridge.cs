@@ -1,8 +1,11 @@
+using System;
 using ReactUnity;
 using ReactUnity.Reactive;
 using UnityEngine;
 
 public class ReactUnityBridge : Singleton<ReactUnityBridge> {
+    private const float FP_EPSILON = 0.01f;
+
     private ReactiveValue<string> route = new();
     private ReactiveValue<bool> debugModeEnabled = new();
     private ReactiveValue<string> debugGameState = new();
@@ -12,6 +15,9 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
     // Stats. All values [0, 1].
     private ReactiveValue<float> targetHealth = new();
     private ReactiveValue<float> playerHealth = new();
+    private ReactiveValue<int> playerLives = new();
+    private ReactiveValue<float> bossHealth = new();
+    private ReactiveValue<int> bossLives = new();
     private ReactiveValue<float> playerPrimaryFireCooldown = new();
     private ReactiveValue<float> playerSecondaryFireCooldown = new();
 
@@ -35,6 +41,11 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
         reactRenderer.Globals["screenSpaceAimPosition"] = screenSpaceAimPosition;
         reactRenderer.Globals["targetHealth"] = targetHealth;
         reactRenderer.Globals["playerHealth"] = playerHealth;
+        reactRenderer.Globals["playerLives"] = playerLives;
+        reactRenderer.Globals["maxPlayerLives"] = PlayerManager.Instance.PlayerController.MaxPlayerLives;
+        reactRenderer.Globals["bossHealth"] = bossHealth;
+        reactRenderer.Globals["bossLives"] = bossLives;
+        reactRenderer.Globals["maxBossLives"] = BossController.Instance.MaxBossLives;
         reactRenderer.Globals["playerPrimaryFireCooldown"] = playerPrimaryFireCooldown;
         reactRenderer.Globals["playerSecondaryFireCooldown"] = playerSecondaryFireCooldown;
 
@@ -52,6 +63,11 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
             // To enable leaderboards, need to connect to a Unity Project and add the Leaderboards singleton to the game.
         }
 
+        PlayerManager.Instance.PlayerController.Stats.OnHealthChanged += OnPlayerHealthUpdated;
+        PlayerManager.Instance.PlayerController.OnPlayerLivesChanged += OnPlayerLivesUpdated;
+        BossController.Instance.Stats.OnHealthChanged += OnBossHealthUpdated;
+        BossController.Instance.OnBossLivesChanged += OnBossLivesUpdated;
+
         // Game System References   
         reactRenderer.Globals["gameLifecycleManager"] = GameLifecycleManager.Instance;
     }
@@ -68,10 +84,34 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
         debugGameState.Value = data.ToString();
     }
 
-    private void OnTargetHealthUpdated(float value) {
+    private void OnPlayerHealthUpdated(object sender, float value) {
+        if (Math.Abs(playerHealth.Value - value) > FP_EPSILON) {
+            playerHealth.Value = value;
+        }
     }
 
-    private void OnPlayerHealthUpdated(float value) {
+    private void OnPlayerLivesUpdated(object sender, int value) {
+        if (playerLives.Value != value) {
+            playerLives.Value = value;
+        }
+    }
+
+    private void OnBossHealthUpdated(object sender, float value) {
+        if (Math.Abs(bossHealth.Value - value) > FP_EPSILON) {
+            bossHealth.Value = value;
+        }
+    }
+
+    private void OnBossLivesUpdated(object sender, int value) {
+        if (bossLives.Value != value) {
+            bossLives.Value = value;
+        }
+    }
+
+    public void UpdateTargetHealth(float value) {
+        if (Math.Abs(targetHealth.Value - value) > FP_EPSILON) {
+            targetHealth.Value = value;
+        }
     }
 
     public void UpdateScreenSpaceAimPosition(Vector2Int aimPosition) {
@@ -81,13 +121,13 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
     }
 
     public void UpdatePrimaryFireCooldown(float value) {
-        if (playerPrimaryFireCooldown.Value != value) {
+        if (Math.Abs(playerPrimaryFireCooldown.Value - value) > FP_EPSILON) {
             playerPrimaryFireCooldown.Value = value;
         }
     }
 
     public void UpdateSecondaryFireCooldown(float value) {
-        if (playerSecondaryFireCooldown.Value != value) {
+        if (Math.Abs(playerSecondaryFireCooldown.Value - value) > FP_EPSILON) {
             playerSecondaryFireCooldown.Value = value;
         }
     }

@@ -21,6 +21,9 @@ $crosshair-length: 20px;
 $crosshair-length-horizontal: 28px;
 $crosshair-center-offset: 62px;
 
+$hp-color-faint: rgba(255, 255, 255, 0.1);
+$hp-color: white;
+
 /* ===== Common ===== */
 
 * {
@@ -153,7 +156,48 @@ $crosshair-center-offset: 62px;
   }
 }
 
+.player-healthbar {
+  width: 400px;
+  height: 20px;
+  background: linear-gradient(90deg, white 80%, $hp-color-faint 80%, $hp-color-faint 100%);
+}
+
+.boss-healthbar {
+  width: 400px;
+  height: 20px;
+  background: linear-gradient(90deg, white 80%, $hp-color-faint 80%, $hp-color-faint 100%);
+}
+
+.lives {
+  margin-top: 8px;
+
+  .segments-container {
+    width: 100px;
+    height: 20px;
+
+    .segments {
+      width: 100%;
+      height: 20px;
+      display: flex;
+      flex-direction: row;
+      box-sizing: border-box;
+
+      .segment {
+          flex: 1; /* This makes each child flex and take equal space */
+          background-color: white;
+          
+      }
+    }
+
+    // Workaround for lack of "gap" support
+    .segments > *:not(:first-child) {
+      margin-left: 8px;
+    }
+  }
+}
+
 .hud {
+  @include flex-layout(column);
   height: 100%;
 
   .fullscreen-overlay {
@@ -265,6 +309,10 @@ $crosshair-center-offset: 62px;
       }
     }
   }
+}
+
+.boss-stats {
+  align-items: flex-end;
 }
 
 .pause-menu {

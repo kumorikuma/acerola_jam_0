@@ -53,6 +53,8 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 break;
             case GameState.GameOver:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.GameOver);
+                PlayerManager.Instance.SwitchActionMaps("menu");
+                ToggleCursor(true);
                 break;
         }
 

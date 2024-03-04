@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour {
     [NonNullField] public CinemachineVirtualCamera MainCamera;
     [NonNullField] public CinemachineVirtualCamera LeftShoulderCamera;
     [NonNullField] public CinemachineVirtualCamera RightShoulderCamera;
-    [NonNullField] public CinemachineTargetGroup TargetGroup;
+    // [NonNullField] public CinemachineTargetGroup TargetGroup;
 
     public void OnLook(Vector2 lookVector) {
         inputLookDirection = lookVector * LookSpeed;

@@ -7,6 +7,38 @@ function lerp(a, b, alpha) {
   return a + alpha * (b - a);
 }
 
+type LivesDisplayProps = {
+  numLives: number;
+  maxNumLives: number;
+  reversedDirection?: boolean;
+};
+
+function LivesDisplay({
+  numLives,
+  maxNumLives,
+  reversedDirection = false,
+}: LivesDisplayProps): React.ReactNode {
+  const maxNumSegments = maxNumLives - 1;
+  const numSegments = numLives - 1;
+  console.log(reversedDirection);
+  const segments = Array.from({ length: maxNumSegments }, (_, i) => {
+    var activeClassName = i < numSegments ? "active" : "";
+    if (reversedDirection) {
+      activeClassName = maxNumSegments - i <= numSegments ? "active" : "";
+    }
+
+    return <view key={i} className={`segment ${activeClassName}`} />;
+  });
+
+  return (
+    <view className="lives">
+      <view className="segments-container">
+        <view className="segments">{segments}</view>
+      </view>
+    </view>
+  );
+}
+
 export default function Hud(): React.ReactNode {
   const globals = useGlobals();
   const playerHealth: number = useReactiveValue(globals.playerHealth);
@@ -23,11 +55,6 @@ export default function Hud(): React.ReactNode {
   const playerHealthColorBackground = "rgba(255, 255, 255, 0.1)";
   const bossHealthColorBackground = "rgba(255, 255, 255, 0.1)";
 
-  const numSegments = maxPlayerLives - 1;
-  const segments = Array.from({ length: numSegments }, (_, i) => (
-    <view key={i} className="segment"></view>
-  ));
-
   return (
     <view className="hud">
       <view className="flex-row padding-md">
@@ -38,11 +65,7 @@ export default function Hud(): React.ReactNode {
               background: `linear-gradient(90deg, white ${playerHealthPercent}%, ${playerHealthColorBackground} ${playerHealthPercent}%, ${playerHealthColorBackground} 100%)`,
             }}
           />
-          <view className="lives">
-            <view className="segments-container">
-              <view className="segments">{segments}</view>
-            </view>
-          </view>
+          <LivesDisplay numLives={playerLives} maxNumLives={maxPlayerLives} />
         </view>
         <view className="spacer" />
         <view className="boss-stats">
@@ -52,11 +75,11 @@ export default function Hud(): React.ReactNode {
               background: `linear-gradient(90deg, ${bossHealthColorBackground} ${bossHealthPercent}%, white ${bossHealthPercent}%, white 100%)`,
             }}
           />
-          <view className="lives">
-            <view className="segments-container">
-              <view className="segments">{segments}</view>
-            </view>
-          </view>
+          <LivesDisplay
+            numLives={bossLives}
+            maxNumLives={maxBossLives}
+            reversedDirection={true}
+          />
         </view>
       </view>
       <WorldSpaceUi />

@@ -184,8 +184,11 @@ $hp-color: white;
 
       .segment {
           flex: 1; /* This makes each child flex and take equal space */
-          background-color: white;
+          background-color: $hp-color-faint;
           
+          &.active {
+            background-color: $hp-color;
+          }
       }
     }
 

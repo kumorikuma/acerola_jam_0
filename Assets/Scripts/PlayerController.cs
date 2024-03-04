@@ -104,6 +104,12 @@ public class PlayerController : MonoBehaviour {
     private void Start() {
         Stats.NotifyHealthChanged();
         Stats.OnHealthChanged += OnHealthChanged;
+        Reset();
+    }
+
+    public void Reset() {
+        SetPlayerLives(MaxPlayerLives);
+        Stats.Reset();
     }
 
     private void OnHealthChanged(object sender, float health) {
@@ -178,7 +184,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     //Character controller movement
-    private void HandleMovement() { 
+    private void HandleMovement() {
         if (inputJumpOnNextFrame && characterController.isGrounded) {
             _velocity.y = Mathf.Sqrt(JumpForce * -2f * gravity);
         }

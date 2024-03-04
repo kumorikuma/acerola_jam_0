@@ -36,4 +36,8 @@ public class EntityStats : MonoBehaviour {
         CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
         OnHealthChanged?.Invoke(this, GetHealthPercentage());
     }
+
+    public void Reset() {
+        SetHealthToPercentage(1);
+    }
 }

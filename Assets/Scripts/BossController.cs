@@ -15,6 +15,12 @@ public class BossController : Singleton<BossController> {
     private void Start() {
         Stats.NotifyHealthChanged();
         Stats.OnHealthChanged += OnHealthChanged;
+        Reset();
+    }
+
+    public void Reset() {
+        SetBossLives(MaxBossLives);
+        Stats.Reset();
     }
 
     private void OnHealthChanged(object sender, float health) {

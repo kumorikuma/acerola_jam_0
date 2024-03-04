@@ -43,6 +43,9 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 Time.timeScale = 1;
                 PlayerManager.Instance.SwitchActionMaps("gameplay");
                 ToggleCursor(false);
+                // Reset game
+                PlayerManager.Instance.PlayerController.Reset();
+                BossController.Instance.Reset();
                 break;
             case GameState.GamePaused:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.PauseMenu);

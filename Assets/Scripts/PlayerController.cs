@@ -143,9 +143,14 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
-        // Find closest target to lock on to
+        // Find closest target to the center of the screen to lock on to.
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Targetable");
         foreach (GameObject enemy in enemies) {
+            Vector3 screenPosition = Camera.main.WorldToScreenPoint(enemy.transform.position);
+            if (IsScreenPositionOutOfBounds(screenPosition)) {
+                continue;
+            }
+
             SetLockOnTarget(enemy.transform);
             break;
         }
@@ -293,7 +298,6 @@ public class PlayerController : MonoBehaviour {
         if (isStrafing) {
             // If we're strafing, then just move the player model in the desired direction
             absoluteMoveVector = desiredMoveDirection * (moveSpeed * Time.deltaTime);
-            Debug.Log("IS STRAFING");
         } else {
             // Otherwise, the player should always move in the direction the player model is facing.
             absoluteMoveVector = PlayerModel.transform.forward *
@@ -394,9 +398,9 @@ public class PlayerController : MonoBehaviour {
                               ProjectileVelocity;
 
             // Rotate the player to turn towards the target
-            targetRotation = Quaternion.Euler(0,
-                Mathf.Atan2(initialVelocity.x, initialVelocity.z) * Mathf.Rad2Deg, 0);
-            PlayerModel.transform.rotation = targetRotation;
+            // targetRotation = Quaternion.Euler(0,
+            //     Mathf.Atan2(initialVelocity.x, initialVelocity.z) * Mathf.Rad2Deg, 0);
+            // PlayerModel.transform.rotation = targetRotation;
         }
 
         ProjectileController.Instance.SpawnProjectile(ProjectileController.Owner.Player,
@@ -413,9 +417,9 @@ public class PlayerController : MonoBehaviour {
                               ProjectileVelocity;
 
             // Rotate the player to turn towards the target
-            targetRotation = Quaternion.Euler(0,
-                Mathf.Atan2(initialVelocity.x, initialVelocity.z) * Mathf.Rad2Deg, 0);
-            PlayerModel.transform.rotation = targetRotation;
+            // targetRotation = Quaternion.Euler(0,
+            //     Mathf.Atan2(initialVelocity.x, initialVelocity.z) * Mathf.Rad2Deg, 0);
+            // PlayerModel.transform.rotation = targetRotation;
         }
 
         ProjectileController.Instance.SpawnProjectile(ProjectileController.Owner.Player,
@@ -427,12 +431,10 @@ public class PlayerController : MonoBehaviour {
         Vector2Int screenSpaceAimPosition = new(Screen.width / 2, Screen.height / 2);
         if (_lockedOnTarget != null) {
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(_lockedOnTarget.transform.position);
-            if (screenPosition.x < 0 || screenPosition.x > Screen.width || screenPosition.y < 0 ||
-                screenPosition.y > Screen.height || screenPosition.z < 0) {
-                // The target is outside of the screen
+            if (IsScreenPositionOutOfBounds(screenPosition)) {
                 SetLockOnTarget(null);
             } else {
-                screenSpaceAimPosition = new((int)screenPosition.x, (int)screenPosition.y);
+                screenSpaceAimPosition = new(Mathf.RoundToInt(screenPosition.x), Mathf.RoundToInt(screenPosition.y));
             }
         }
 
@@ -452,6 +454,11 @@ public class PlayerController : MonoBehaviour {
         } else {
             ReactUnityBridge.Instance.UpdateTargetHealth(0);
         }
+    }
+
+    private bool IsScreenPositionOutOfBounds(Vector3 screenPosition) {
+        return screenPosition.x < 0 || screenPosition.x > Screen.width || screenPosition.y < 0 ||
+               screenPosition.y > Screen.height || screenPosition.z < 0;
     }
 
     private void SetLockOnTarget(Transform lockedOnTarget) {

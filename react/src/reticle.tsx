@@ -34,7 +34,7 @@ export default function Reticle({ posX, posY }: ReticleProps): React.ReactNode {
         <view
           className="cooldowns"
           style={{
-            background: `conic-gradient(transparent 0, transparent 22%, white 22%, white ${primaryFireCooldownPercent}%, transparent ${primaryFireCooldownPercent}%, transparent 60%, white 60%, white ${secondaryFireCooldownPercent}%, transparent ${secondaryFireCooldownPercent}%)`,
+            background: `conic-gradient(transparent 0, transparent 22%, white 22%, white ${secondaryFireCooldownPercent}%, transparent ${secondaryFireCooldownPercent}%, transparent 60%, white 60%, white ${primaryFireCooldownPercent}%, transparent ${primaryFireCooldownPercent}%)`,
           }}
         />
       </view>

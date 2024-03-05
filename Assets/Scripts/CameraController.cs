@@ -20,6 +20,8 @@ public class CameraController : MonoBehaviour {
     [NonNullField] public CinemachineVirtualCamera RightShoulderCamera;
     // [NonNullField] public CinemachineTargetGroup TargetGroup;
 
+    private Transform _lockedOnTarget = null;
+
     public void OnLook(Vector2 lookVector) {
         inputLookDirection = lookVector * LookSpeed;
     }
@@ -29,6 +31,7 @@ public class CameraController : MonoBehaviour {
     }
 
     private void OnLockedOnTargetChanged(object sender, Transform lockedOnTarget) {
+        _lockedOnTarget = lockedOnTarget;
         if (lockedOnTarget == null) {
             ResetCameraPriorities();
             // TargetGroup.RemoveMember(lockedOnTarget);
@@ -68,32 +71,41 @@ public class CameraController : MonoBehaviour {
         // Pivot.transform.localPosition = new(0, 2, 0);
         // LeftShoulderCamera.Priority = _defaultCameraPriority;
         // RightShoulderCamera.Priority = _defaultCameraPriority;
-        MainCamera.LookAt = null;
+        // MainCamera.LookAt = null;
         // LeftShoulderCamera.LookAt = null;
         // RightShoulderCamera.LookAt = null;
     }
 
     private void Update() {
-        // Update camera transform
-        Vector3 localEulerRotation = Pivot.transform.localRotation.eulerAngles;
-        float horizontalRotation = localEulerRotation.y;
-        horizontalRotation += inputLookDirection.x;
-        float verticalRotation = localEulerRotation.x;
-        // Fixes an issue where we might read values like 350deg, and then it'd get clamped down to 40, when it should've been -10.
-        if (verticalRotation > 180) {
-            verticalRotation -= 360;
+        if (_lockedOnTarget == null) {
+            // Let the user control the camera
+
+            // Update camera transform
+            Vector3 localEulerRotation = Pivot.transform.localRotation.eulerAngles;
+            float horizontalRotation = localEulerRotation.y;
+            horizontalRotation += inputLookDirection.x;
+            float verticalRotation = localEulerRotation.x;
+            // Fixes an issue where we might read values like 350deg, and then it'd get clamped down to 40, when it should've been -10.
+            if (verticalRotation > 180) {
+                verticalRotation -= 360;
+            }
+
+            if (InvertLookDirection) {
+                inputLookDirection.y = -inputLookDirection.y;
+            }
+
+            verticalRotation += -inputLookDirection.y;
+            verticalRotation = Mathf.Clamp(verticalRotation, MinVerticalRotation, MaxVerticalRotation);
+            Pivot.transform.localRotation =
+                Quaternion.Euler(verticalRotation, horizontalRotation, localEulerRotation.z);
+
+            // TODO:
+            // If the Pivot is under the map, then move it closer to the camera.
+            // If the vertical rotation is negative over a threshold, start moving it closer to the 
+        } else {
+            // The camera should remain static behind the player.
+            // When the player is rotated, the camera needs to be rotated too.
+            Pivot.transform.rotation = PlayerManager.Instance.PlayerController.PlayerModel.transform.rotation;
         }
-
-        if (InvertLookDirection) {
-            inputLookDirection.y = -inputLookDirection.y;
-        }
-
-        verticalRotation += -inputLookDirection.y;
-        verticalRotation = Mathf.Clamp(verticalRotation, MinVerticalRotation, MaxVerticalRotation);
-        Pivot.transform.localRotation = Quaternion.Euler(verticalRotation, horizontalRotation, localEulerRotation.z);
-
-        // TODO:
-        // If the Pivot is under the map, then move it closer to the camera.
-        // If the vertical rotation is negative over a threshold, start moving it closer to the 
     }
 }

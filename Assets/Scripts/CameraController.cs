@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour {
 
     private void OnLockedOnTargetChanged(object sender, Transform lockedOnTarget) {
         if (lockedOnTarget == null) {
-            // ResetCameraPriorities();
+            ResetCameraPriorities();
             // TargetGroup.RemoveMember(lockedOnTarget);
             return;
         }
@@ -65,7 +65,7 @@ public class CameraController : MonoBehaviour {
     }
 
     private void ResetCameraPriorities() {
-        Pivot.transform.localPosition = new(0, 2, 0);
+        // Pivot.transform.localPosition = new(0, 2, 0);
         // LeftShoulderCamera.Priority = _defaultCameraPriority;
         // RightShoulderCamera.Priority = _defaultCameraPriority;
         MainCamera.LookAt = null;

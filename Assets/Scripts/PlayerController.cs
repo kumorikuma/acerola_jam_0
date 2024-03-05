@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour {
     [NonNullField] public Transform SecondaryWeaponMountPoint;
     [NonNullField] public Transform EnemyAimTargetLocation;
 
+    public enum AimMode {
+        NoTargetLock,
+        TargetLock,
+    }
+
     public float ProjectileVelocity = 1.0f;
     public float PrimaryFireCooldown = 1.0f;
     private float _primaryFireCooldownCountdown = 0.0f;
@@ -67,6 +72,7 @@ public class PlayerController : MonoBehaviour {
 
     // Lockon
     private Transform _lockedOnTarget;
+    private AimMode _currentAimMode;
     public event EventHandler<Transform> OnLockedOnTargetChanged;
 
     private CinemachineBrain _cinemachineBrain;
@@ -206,10 +212,12 @@ public class PlayerController : MonoBehaviour {
             _dashCooldownCountDown = DashCooldown;
         }
 
+        // ==== COMPUTE MOVEMENT SPEED MODIFIER =====
         // Using KBM controls, there's a specific button to walk.
         // Otherwise, use the amount that user is pushing stick.
         bool isWalking = isWalkKeyHeld || inputMoveVector.magnitude < 0.5f;
         float moveSpeed = isWalking ? WalkSpeed : RunSpeed;
+        bool isMoving = inputMoveVector.magnitude > 0;
 
         // Boost the move speed if we're dashing.
         if (_isExecutingDash) {
@@ -218,6 +226,8 @@ public class PlayerController : MonoBehaviour {
             moveSpeed = dashSpeed * RunSpeed;
         }
 
+        // ==== DETERMINE MOVEMENT DIRECTION =====
+        bool isStrafing = _lockedOnTarget != null;
         // Character should move in the direction of the camera.
         // If dashing, we just use the same one from last time.
         Vector3 desiredMoveDirection = _previousDesiredMoveDirection;
@@ -225,86 +235,139 @@ public class PlayerController : MonoBehaviour {
             desiredMoveDirection = GetDesiredMoveDirection();
         }
 
-        // If we're not doing a fast turn, then calculate the direction that the target should be facing.
+        // ==== DETERMINE TARGET ROTATION =====
         float finalTurnSpeed = TurnSpeed;
-        bool isMoving = desiredMoveDirection.magnitude > 0;
-        if (!_isExecutingFastTurn) {
-            if (isMoving) {
-                // Face the character in the direction of movement
-                targetRotation = Quaternion.Euler(0,
-                    Mathf.Atan2(desiredMoveDirection.x, desiredMoveDirection.z) * Mathf.Rad2Deg, 0);
-
-                // If the target rotation is too far away (180 degrees), we do a fast turn
-                float angleDifferenceDegrees = Quaternion.Angle(PlayerModel.transform.rotation, targetRotation);
-                if (angleDifferenceDegrees > 175) {
-                    _isExecutingFastTurn = true;
-                }
-            }
+        // If we're in target lock mode, keep the player facing the enemy. We will always move to the left/right.
+        if (_lockedOnTarget != null) {
+            Vector3 playerToTargetVector = _lockedOnTarget.position - PlayerModel.transform.position;
+            playerToTargetVector.y = 0;
+            playerToTargetVector = playerToTargetVector.normalized;
+            // TODO: Instead of making the facing instantaneous, we could try doing a fast turn.
+            targetRotation = Quaternion.LookRotation(playerToTargetVector, Vector3.up);
         } else {
-            // Otherwise we keep the target rotation the same but accelerate the turn speed.
-            finalTurnSpeed = 3 * TurnSpeed;
+            // If we're not doing a fast turn, then calculate the direction that the target should be facing.
+            if (!_isExecutingFastTurn) {
+                if (isMoving) {
+                    // Face the character in the direction of movement
+                    targetRotation = Quaternion.Euler(0,
+                        Mathf.Atan2(desiredMoveDirection.x, desiredMoveDirection.z) * Mathf.Rad2Deg, 0);
 
-            // If the target rotation is reached, the fast turn is done.
-            float angleDifferenceDegrees = Quaternion.Angle(PlayerModel.transform.rotation, targetRotation);
-            if (angleDifferenceDegrees < 0.1f) {
-                _isExecutingFastTurn = false;
+                    // If the target rotation is too far away (180 degrees), we do a fast turn
+                    float angleDifferenceDegrees = Quaternion.Angle(PlayerModel.transform.rotation, targetRotation);
+                    if (angleDifferenceDegrees > 175) {
+                        _isExecutingFastTurn = true;
+                    }
+                }
+            } else {
+                // Otherwise we keep the target rotation the same but accelerate the turn speed.
+                finalTurnSpeed = 3 * TurnSpeed;
+
+                // If the target rotation is reached, the fast turn is done.
+                float angleDifferenceDegrees = Quaternion.Angle(PlayerModel.transform.rotation, targetRotation);
+                if (angleDifferenceDegrees < 0.1f) {
+                    _isExecutingFastTurn = false;
+                }
             }
         }
 
         // TODO: When dashing while locked on, we strafe instead of turn?
 
         Animator.SetBool("IsRunning", isMoving);
-        Animator.SetBool("IsDashing", _isExecutingDash);
+        // Animator.SetBool("IsDashing", _isExecutingDash);
 
-        // Turn the player incrementally towards the direction of movement
-        if (!_isExecutingDash) {
+        // ==== PERFORM ROTATION =====
+        if (_isExecutingDash || _lockedOnTarget != null) {
+            // Complete the turn immediately when:
+            // - Dashing
+            // - Target locked.
+            PlayerModel.transform.rotation = targetRotation;
+        } else {
+            // Turn the player incrementally towards the direction of movement otherwise.
             PlayerModel.transform.rotation = Quaternion.RotateTowards(PlayerModel.transform.rotation,
                 targetRotation,
                 finalTurnSpeed * Time.deltaTime);
-        } else {
-            // Complete the turn immediately
-            PlayerModel.transform.rotation = targetRotation;
         }
 
-        // The player should always move in the direction the player model is facing.
-        Vector3 absoluteMoveVector = PlayerModel.transform.forward *
-                                     (desiredMoveDirection.magnitude * (moveSpeed * Time.deltaTime));
+        // ==== PERFORM MOVEMENT =====
+        Vector3 absoluteMoveVector = Vector3.zero;
+        if (isStrafing) {
+            // If we're strafing, then just move the player model in the desired direction
+            absoluteMoveVector = desiredMoveDirection * (moveSpeed * Time.deltaTime);
+            Debug.Log("IS STRAFING");
+        } else {
+            // Otherwise, the player should always move in the direction the player model is facing.
+            absoluteMoveVector = PlayerModel.transform.forward *
+                                 (desiredMoveDirection.magnitude * (moveSpeed * Time.deltaTime));
+        }
 
         // CharacterController.Move should only be called once, see:
         // https://forum.unity.com/threads/charactercontroller-isgrounded-unreliable-or-bad-code.373492/
         characterController.Move(_velocity * Time.deltaTime + absoluteMoveVector);
-
         // Update velocity from gravity
         _velocity.y += gravity * Time.deltaTime;
 
+        // ==== UPDATE STATE =====
         _previousInputMoveVector = inputMoveVector;
         _previousDesiredMoveDirection = desiredMoveDirection;
     }
 
-    // Based on the players input and the camera direction.
-    // Such that:
-    // - "Down" moves towards the camera
-    // - "Right" moves to the right of the camera
+    // Transforms the player's InputMoveVector to a desired move direction.
+    // Depends on Camera's position, target's position. Whether or not we're target locked.
     private Vector3 GetDesiredMoveDirection() {
-        // Don't check for the active virtual camera every frame, but only do this when the player lets go of the input.
-        // So we'll cache this, and then only check it if the cache wasn't set or if the previous inputMoveVector was 0.
-        Transform activeVirtualCameraTransform =
-            _cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.transform;
-        CinemachineClearShot cmClearShot = _cinemachineBrain.ActiveVirtualCamera as CinemachineClearShot;
-        if (cmClearShot != null) {
-            // If the active camera is a clearshot camera, then we should use the live child instead of the actual camera.
-            activeVirtualCameraTransform = cmClearShot.LiveChild.VirtualCameraGameObject.transform;
+        Vector3 desiredMoveDirection = Vector3.zero;
+        if (inputMoveVector == Vector3.zero) {
+            return desiredMoveDirection;
         }
 
-        // Apply the camera's rotation to the input move vector
-        Quaternion activeCameraRotation = activeVirtualCameraTransform.transform.rotation;
+        if (_lockedOnTarget != null) {
+            // "Down" moves away from the target. "Up" moves towards the target.
+            // "Right" moves to the right of the target. "Left" moves to the left of the target.
+            // To achieve this, we need to convert the InputMoveVector from WorldSpace to a space that is oriented
+            // towards the target. The transformation is just whatever the rotation is that would cause the player
+            // to be pointed towards the target.
+            Vector3 playerToTargetVector = _lockedOnTarget.position - PlayerModel.transform.position;
+            playerToTargetVector.y = 0;
+            playerToTargetVector = playerToTargetVector.normalized;
 
-        // Character should move in the direction of the camera
-        Vector3 desiredMoveDirection =
-            activeCameraRotation * inputMoveVector;
-        // Y component should be 0
-        desiredMoveDirection.y = 0;
-        desiredMoveDirection = desiredMoveDirection.normalized;
+            // Use Atan2 instead of Acos because Acos only outputs to range [0, PI] instead which leads to ambiguities.
+            float forwardAngleRadians = Mathf.Atan2(Vector3.forward.z, Vector3.forward.x);
+            float playerToTargetAngleRadians = Mathf.Atan2(playerToTargetVector.z, playerToTargetVector.x);
+            // Subtract playerToTargetAngleRadians from forwardAngleRadians to get angle from forwardVector to playerToTargetVector.
+            float angleDeltaDegrees = (forwardAngleRadians - playerToTargetAngleRadians) * Mathf.Rad2Deg;
+            // Apply the rotation to the input
+            Quaternion rotation = Quaternion.Euler(0, angleDeltaDegrees, 0);
+            desiredMoveDirection = rotation * inputMoveVector;
+
+            // Vector3 playerPos = PlayerModel.transform.position;
+            // VectorDebug.Instance.DrawDebugVector("Forward", Vector3.forward, playerPos, Color.magenta);
+            // VectorDebug.Instance.DrawDebugVector("PlayerToTarget", playerToTargetVector, playerPos, Color.magenta);
+            // VectorDebug.Instance.DrawDebugVector("InputMoveVector", inputMoveVector, playerPos, Color.green);
+            // VectorDebug.Instance.DrawDebugVector("DesiredMoveDirection", desiredMoveDirection, playerPos, Color.green);
+        } else {
+            // "Down" moves towards the camera. "Up" moves away from the camera.
+            // "Right" moves to the right of the camera. "Left" moves to the left of the camera.
+
+            // Don't check for the active virtual camera every frame, but only do this when the player lets go of the input.
+            // So we'll cache this, and then only check it if the cache wasn't set or if the previous inputMoveVector was 0.
+            Transform activeVirtualCameraTransform =
+                _cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.transform;
+            CinemachineClearShot cmClearShot = _cinemachineBrain.ActiveVirtualCamera as CinemachineClearShot;
+            if (cmClearShot != null) {
+                // If the active camera is a clearshot camera, then we should use the live child instead of the actual camera.
+                activeVirtualCameraTransform = cmClearShot.LiveChild.VirtualCameraGameObject.transform;
+            }
+
+            // Apply the camera's rotation to the input move vector
+            Quaternion activeCameraRotation = activeVirtualCameraTransform.transform.rotation;
+
+            // Character should move in the direction of the camera
+            desiredMoveDirection =
+                activeCameraRotation * inputMoveVector;
+            // Y component should be 0
+            desiredMoveDirection.y = 0;
+            desiredMoveDirection = desiredMoveDirection.normalized;
+        }
+
         return desiredMoveDirection;
     }
 

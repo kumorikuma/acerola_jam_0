@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class BossController : Singleton<BossController> {
@@ -9,7 +8,6 @@ public class BossController : Singleton<BossController> {
     public int CurrentBossLives = 3;
     public event EventHandler<int> OnBossLivesChanged;
 
-    [Button("Fire Missiles (F1)")]
     public void FireMissiles() {
         Quaternion verticalRotation = Quaternion.LookRotation(this.transform.up, -this.transform.forward);
         Projectile missile = ProjectileController.Instance.SpawnMissile(ProjectileController.Owner.Enemy,

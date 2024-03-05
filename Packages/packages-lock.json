@@ -17,6 +17,12 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.tripolygon.umodeler-x": {
+      "version": "file:com.tripolygon.umodeler-x-0.19.3/com.tripolygon.umodeler-x-0.19.3.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {}
+    },
     "com.unity.ai.navigation": {
       "version": "1.1.5",
       "depth": 0,

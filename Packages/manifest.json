@@ -2,6 +2,7 @@
   "dependencies": {
     "com.reactunity.core": "https://github.com/ReactUnity/core.git#latest",
     "com.reactunity.quickjs": "0.15.0",
+    "com.tripolygon.umodeler-x": "file:com.tripolygon.umodeler-x-0.19.3/com.tripolygon.umodeler-x-0.19.3.tgz",
     "com.unity.ai.navigation": "1.1.5",
     "com.unity.cinemachine": "2.9.7",
     "com.unity.collab-proxy": "2.2.0",

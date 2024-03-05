@@ -76,7 +76,7 @@ public class CameraController : MonoBehaviour {
         RightShoulderCamera.LookAt = null;
     }
 
-    private void Update() {
+    public void UpdateCamera() {
         if (_lockedOnTarget == null) {
             // Let the user control the camera
 

@@ -8,6 +8,7 @@ Shader "Custom/DeliveryLocationShader" {
     SubShader {
         Tags { "Queue"="Transparent" "RenderType"="Transparent" }
         LOD 100
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {

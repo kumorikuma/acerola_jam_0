@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,6 +35,10 @@ public class InputManager : MonoBehaviour {
 
     void OnLockOn() {
         PlayerManager.Instance.PlayerController.OnLockOn();
+    }
+
+    void OnBlock(InputValue value) {
+        PlayerManager.Instance.PlayerController.OnBlock(value.isPressed);
     }
 
     void OnPrimaryFire() {

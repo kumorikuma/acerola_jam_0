@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -217,6 +218,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!43 &709643126
 Mesh:
   m_ObjectHideFlags: 0
@@ -797,14 +821,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1348098564201815736, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
-      propertyPath: DashDuration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1348098564201815736, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
-      propertyPath: DashVelocityCurve.m_Curve.Array.data[2].value
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4267602099373056639, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: m_Name
       value: Player
@@ -848,30 +864,6 @@ PrefabInstance:
     - target: {fileID: 5113024889617206450, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208666251180329028, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.092541374
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208666251180329028, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.000000004283136
-      objectReference: {fileID: 0}
-    - target: {fileID: 5208666251180329028, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 3.9807543e-10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634369460929556427, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.092541374
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634369460929556427, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.000000004283136
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634369460929556427, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 3.9807543e-10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -34,9 +34,6 @@ public class PlayerController : MonoBehaviour {
     private float _dashDurationCountDown = 0.0f;
     private float _dashCooldownCountDown = 0.0f;
 
-
-    public float BlockDuration = 1.0f;
-
     // Should there be a dash cooldown and also a dash duration?
     // How would we handle windup and winddown?
 
@@ -86,6 +83,15 @@ public class PlayerController : MonoBehaviour {
     public int CurrentPlayerLives = 3;
     public event EventHandler<int> OnPlayerLivesChanged;
 
+    // Shield
+    private ShieldController _shieldController;
+    public float BlockDuration = 1.0f;
+    public float BlockCooldown = 0.5f;
+    private float _blockDurationCountDown = 0.0f;
+    private float _blockCooldownCountDown = 0.0f;
+    private bool _inputBlockHeld = false;
+    private bool _isBlocking = false;
+
     private void SetPlayerLives(int playerLives) {
         CurrentPlayerLives = Mathf.Clamp(playerLives, 0, MaxPlayerLives);
         OnPlayerLivesChanged?.Invoke(this, CurrentPlayerLives);
@@ -104,6 +110,7 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         _cinemachineBrain = GetComponentInChildren<CinemachineBrain>();
         characterController = GetComponent<CharacterController>();
+        _shieldController = GetComponentInChildren<ShieldController>();
         Stats = GetComponent<EntityStats>();
         _velocity.y = -2f;
     }
@@ -117,6 +124,7 @@ public class PlayerController : MonoBehaviour {
     public void Reset() {
         SetPlayerLives(MaxPlayerLives);
         Stats.Reset();
+        _shieldController.DeactivateShield();
     }
 
     private void OnHealthChanged(object sender, float health) {
@@ -152,12 +160,17 @@ public class PlayerController : MonoBehaviour {
             }
 
             SetLockOnTarget(enemy.transform);
+            PlayerManager.Instance.CameraController.UpdateCamera();
             break;
         }
     }
 
     public void OnDash() {
         inputDashOnNextFrame = true;
+    }
+
+    public void OnBlock(bool value) {
+        _inputBlockHeld = value;
     }
 
     public void OnPrimaryFire() {
@@ -171,6 +184,7 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         HandleMovement();
         HandleAttack();
+        PlayerManager.Instance.CameraController.UpdateCamera();
     }
 
     private void FixedUpdate() {
@@ -188,6 +202,14 @@ public class PlayerController : MonoBehaviour {
 
         if (_dashCooldownCountDown > 0.0f) {
             _dashCooldownCountDown -= Time.fixedDeltaTime;
+        }
+
+        if (_blockCooldownCountDown > 0.0f) {
+            _blockCooldownCountDown -= Time.fixedDeltaTime;
+        }
+
+        if (_blockDurationCountDown > 0.0f) {
+            _blockDurationCountDown -= Time.fixedDeltaTime;
         }
     }
 
@@ -381,6 +403,28 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void HandleAttack() {
+        if (_inputBlockHeld) {
+            if (!_isBlocking && _blockCooldownCountDown <= 0.0f) {
+                _isBlocking = true;
+                _blockDurationCountDown = BlockDuration;
+                _shieldController.ActivateShield();
+            }
+        }
+
+        // Shield is brought down if duration ran out or let go of input
+        if (!_inputBlockHeld || _blockDurationCountDown <= 0.0f) {
+            if (_isBlocking) {
+                _isBlocking = false;
+                _blockCooldownCountDown = BlockCooldown;
+                _shieldController.DeactivateShield();
+            }
+        }
+
+        // Can't attack while blocking
+        if (_inputBlockHeld) {
+            return;
+        }
+
         if (inputPrimaryFireOnNextFrame) {
             inputPrimaryFireOnNextFrame = false;
 

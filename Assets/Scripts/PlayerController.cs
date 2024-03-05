@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 
     [NonNullField] public Transform PrimaryWeaponMountPoint;
     [NonNullField] public Transform SecondaryWeaponMountPoint;
+    [NonNullField] public Transform EnemyAimTargetLocation;
 
     public float ProjectileVelocity = 1.0f;
     public float PrimaryFireCooldown = 1.0f;

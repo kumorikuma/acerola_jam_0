@@ -14,6 +14,11 @@ public class Projectile : MonoBehaviour {
     // Some kind of timeline for the behavior...
     // Follows a certain trajectory for a certain amount of time.
     // Then trajectory changes.
+    public Transform TrackedTarget;
+    public float Acceleration = 0.1f;
+    public float TurningSpeed = 20.0f;
+
+    // Maybe there's a delay before the "boosters" turn on and it accelerates towards the target.
 
     private void OnTriggerEnter(Collider other) {
         if (ProjectileOwner == ProjectileController.Owner.Player && other.CompareTag("Targetable")) {
@@ -22,6 +27,15 @@ public class Projectile : MonoBehaviour {
                 Debug.LogError("[Projectile] Collided object does not have stats component!");
             } else {
                 stats.ApplyDamage(5);
+            }
+
+            ProjectileController.Instance.DestroyProjectile(this);
+        } else if (ProjectileOwner == ProjectileController.Owner.Enemy && other.CompareTag("Player")) {
+            EntityStats stats = other.GetComponent<EntityStats>();
+            if (stats == null) {
+                Debug.LogError("[Projectile] Collided object does not have stats component!");
+            } else {
+                stats.ApplyDamage(10);
             }
 
             ProjectileController.Instance.DestroyProjectile(this);

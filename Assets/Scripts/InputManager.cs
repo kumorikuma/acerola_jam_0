@@ -48,6 +48,10 @@ public class InputManager : MonoBehaviour {
         GameLifecycleManager.Instance.PauseGame();
     }
 
+    void OnDebugAction1() {
+        BossController.Instance.FireMissiles();
+    }
+
     // [Menu]
     void OnUnpause() {
         GameLifecycleManager.Instance.UnpauseGame();

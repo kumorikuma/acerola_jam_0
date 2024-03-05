@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class BossController : Singleton<BossController> {
@@ -6,6 +8,26 @@ public class BossController : Singleton<BossController> {
     public int MaxBossLives = 3;
     public int CurrentBossLives = 3;
     public event EventHandler<int> OnBossLivesChanged;
+
+    [Button("Fire Missiles (F1)")]
+    public void FireMissiles() {
+        Quaternion verticalRotation = Quaternion.LookRotation(this.transform.up, -this.transform.forward);
+        Projectile missile = ProjectileController.Instance.SpawnMissile(ProjectileController.Owner.Enemy,
+            this.transform.position,
+            verticalRotation, 5.0f);
+
+        // TODO: Do some smarter logic with the targeting.
+        // The targeting system should aim towards the player's movement based on how fast the character is moving.
+        StartCoroutine(MissileSecondStage(missile, PlayerManager.Instance.PlayerController.PlayerModel.transform));
+    }
+
+    IEnumerator MissileSecondStage(Projectile missile, Transform trackedTarget) {
+        yield return new WaitForSeconds(1.0f);
+
+        missile.TrackedTarget = trackedTarget;
+        // missile.velocity = missile.velocity * 5;
+        missile.Acceleration = 2.0f;
+    }
 
     protected override void Awake() {
         base.Awake();

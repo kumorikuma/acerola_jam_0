@@ -20,7 +20,6 @@ function LivesDisplay({
 }: LivesDisplayProps): React.ReactNode {
   const maxNumSegments = maxNumLives - 1;
   const numSegments = numLives - 1;
-  console.log(reversedDirection);
   const segments = Array.from({ length: maxNumSegments }, (_, i) => {
     var activeClassName = i < numSegments ? "active" : "";
     if (reversedDirection) {

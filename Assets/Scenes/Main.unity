@@ -334,6 +334,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86c8ff127a523f498e654a93bd0ccca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &977040586 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5201363075112918825, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
+  m_PrefabInstance: {fileID: 7368135700737001046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1049410177 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1348098564201815736, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
@@ -535,6 +540,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 574328378996826085, guid: b5065c6254e03c44e82d39507f5d9dee, type: 3}
+      propertyPath: MissilePrefab
+      value: 
+      objectReference: {fileID: 818933650719752028, guid: e7d1aceb466cae54e81cfa5c8c255641, type: 3}
     - target: {fileID: 1174744085608083493, guid: b5065c6254e03c44e82d39507f5d9dee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -604,6 +613,10 @@ PrefabInstance:
       propertyPath: RunSpeed
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 1348098564201815736, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
+      propertyPath: EnemyAimTargetLocation
+      value: 
+      objectReference: {fileID: 977040586}
     - target: {fileID: 1348098564201815736, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: DashVelocityCurve.m_Curve.Array.size
       value: 3
@@ -684,6 +697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4267602099373056639, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5113024889617206450, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -739,6 +756,10 @@ PrefabInstance:
     - target: {fileID: 5927346812717365055, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: TargetGroup
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034942239565502693, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
+      propertyPath: m_Name
+      value: EnemyAimTarget
       objectReference: {fileID: 0}
     - target: {fileID: 6634369460929556427, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: m_LocalRotation.x

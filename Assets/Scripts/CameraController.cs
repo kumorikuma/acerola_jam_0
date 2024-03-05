@@ -47,12 +47,12 @@ public class CameraController : MonoBehaviour {
             mainCamera.WorldToScreenPoint(PlayerManager.Instance.PlayerController.PlayerModel.transform.position);
         // MainCamera.LookAt = lockedOnTarget;
         if (targetScreenPosition.x < playerScreenPosition.x) {
-            // BoostLeftShoulderCamera();
-            // LeftShoulderCamera.LookAt = lockedOnTarget;
+            BoostLeftShoulderCamera();
+            LeftShoulderCamera.LookAt = lockedOnTarget;
             // Pivot.transform.localPosition = new(-5, 2, 0);
         } else {
-            // BoostRightShoulderCamera();
-            // RightShoulderCamera.LookAt = lockedOnTarget;
+            BoostRightShoulderCamera();
+            RightShoulderCamera.LookAt = lockedOnTarget;
             // Pivot.transform.localPosition = new(5, 2, 0);
         }
     }
@@ -69,11 +69,11 @@ public class CameraController : MonoBehaviour {
 
     private void ResetCameraPriorities() {
         // Pivot.transform.localPosition = new(0, 2, 0);
-        // LeftShoulderCamera.Priority = _defaultCameraPriority;
-        // RightShoulderCamera.Priority = _defaultCameraPriority;
+        LeftShoulderCamera.Priority = _defaultCameraPriority;
+        RightShoulderCamera.Priority = _defaultCameraPriority;
         // MainCamera.LookAt = null;
-        // LeftShoulderCamera.LookAt = null;
-        // RightShoulderCamera.LookAt = null;
+        LeftShoulderCamera.LookAt = null;
+        RightShoulderCamera.LookAt = null;
     }
 
     private void Update() {

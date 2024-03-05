@@ -233,12 +233,7 @@ public class PlayerController : MonoBehaviour {
 
         // ==== DETERMINE MOVEMENT DIRECTION =====
         bool isStrafing = _lockedOnTarget != null;
-        // Character should move in the direction of the camera.
-        // If dashing, we just use the same one from last time.
-        Vector3 desiredMoveDirection = _previousDesiredMoveDirection;
-        if (!_isExecutingDash) {
-            desiredMoveDirection = GetDesiredMoveDirection();
-        }
+        Vector3 desiredMoveDirection = GetDesiredMoveDirection(_isExecutingDash, isStrafing);
 
         // ==== DETERMINE TARGET ROTATION =====
         float finalTurnSpeed = TurnSpeed;
@@ -317,9 +312,19 @@ public class PlayerController : MonoBehaviour {
 
     // Transforms the player's InputMoveVector to a desired move direction.
     // Depends on Camera's position, target's position. Whether or not we're target locked.
-    private Vector3 GetDesiredMoveDirection() {
+    private Vector3 GetDesiredMoveDirection(bool isDashing, bool isStrafing) {
         Vector3 desiredMoveDirection = Vector3.zero;
-        if (inputMoveVector == Vector3.zero) {
+        Vector3 inputMoveVectorModified = inputMoveVector;
+        // If we're dashing with a locked camera, then use the previous input vector.
+        if (isDashing && isStrafing) {
+            inputMoveVectorModified = _previousInputMoveVector;
+        } else if (isDashing) {
+            // If we're dashing without locked camera, then just use the previous direction.
+            return _previousDesiredMoveDirection;
+        }
+
+        // Stop here if we don't need to any more calculations (user is not moving).
+        if (inputMoveVectorModified.magnitude <= 0.0f) {
             return desiredMoveDirection;
         }
 
@@ -340,7 +345,7 @@ public class PlayerController : MonoBehaviour {
             float angleDeltaDegrees = (forwardAngleRadians - playerToTargetAngleRadians) * Mathf.Rad2Deg;
             // Apply the rotation to the input
             Quaternion rotation = Quaternion.Euler(0, angleDeltaDegrees, 0);
-            desiredMoveDirection = rotation * inputMoveVector;
+            desiredMoveDirection = rotation * inputMoveVectorModified;
 
             // Vector3 playerPos = PlayerModel.transform.position;
             // VectorDebug.Instance.DrawDebugVector("Forward", Vector3.forward, playerPos, Color.magenta);
@@ -366,7 +371,7 @@ public class PlayerController : MonoBehaviour {
 
             // Character should move in the direction of the camera
             desiredMoveDirection =
-                activeCameraRotation * inputMoveVector;
+                activeCameraRotation * inputMoveVectorModified;
             // Y component should be 0
             desiredMoveDirection.y = 0;
             desiredMoveDirection = desiredMoveDirection.normalized;

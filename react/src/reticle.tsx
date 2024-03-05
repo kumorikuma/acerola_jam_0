@@ -18,10 +18,10 @@ export default function Reticle({ posX, posY }: ReticleProps): React.ReactNode {
   const playerSecondaryFireCooldown = useReactiveValue(
     globals.playerSecondaryFireCooldown
   );
-  const primaryFireCooldownPercent = lerp(22, 40, playerPrimaryFireCooldown);
+  const primaryFireCooldownPercent = lerp(60, 78, playerPrimaryFireCooldown);
   const secondaryFireCooldownPercent = lerp(
-    60,
-    78,
+    22,
+    40,
     playerSecondaryFireCooldown
   );
 

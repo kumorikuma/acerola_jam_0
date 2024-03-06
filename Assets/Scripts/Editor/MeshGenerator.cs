@@ -26,6 +26,10 @@ public class MeshGenerator {
         public Setting<bool> RandomizeStarRotation;
         public Setting<bool> FaceStarTowardsOrigin;
 
+        public Setting<GameObject> PanelsContainer;
+        public Setting<GameObject> PanelPrefab;
+        public Setting<float> PanelSize;
+        public Setting<int> PanelsPerSide;
 
         public static Settings DefaultSettings() {
             Settings defaultSettings = new Settings();
@@ -46,6 +50,10 @@ public class MeshGenerator {
             defaultSettings.RandomizeStarRotation = new Setting<bool>(false, "Randomize star's rotation");
             defaultSettings.FaceStarTowardsOrigin = new Setting<bool>(false, "Face the star towards the origin");
 
+            defaultSettings.PanelsContainer = new Setting<GameObject>(null, "Container to put generated Panels in");
+            defaultSettings.PanelPrefab = new Setting<GameObject>(null, "Panel Prefab");
+            defaultSettings.PanelSize = new Setting<float>(4, "Length of a panel's side");
+            defaultSettings.PanelsPerSide = new Setting<int>(100, "How many panels to spawn per side");
 
             return defaultSettings;
         }
@@ -261,6 +269,37 @@ public class MeshGenerator {
 
             starObj.transform.rotation = rotation;
             starObj.layer = LayerMask.NameToLayer("Background");
+        }
+    }
+
+    public static void GeneratePanels(Settings settings) {
+        Transform container = settings.PanelsContainer.value.transform;
+        float panelSize = settings.PanelSize.value;
+        int panelsPerSide = settings.PanelsPerSide.value;
+        float lengthPerSide = panelSize * panelsPerSide;
+        float halfLengthPerSide = lengthPerSide / 2.0f;
+
+        float offsetX = panelSize / 2.0f;
+        float offsetZ = panelSize / 2.0f;
+
+        Vector3 panelPosition = container.transform.position +
+                                new Vector3(-halfLengthPerSide + offsetX, 0, -halfLengthPerSide + offsetZ);
+        Vector3 panelOffsetX = new Vector3(panelSize, 0, 0);
+        Vector3 panelOffsetY = new Vector3(0, 0, panelSize);
+        for (int row = 0; row < panelsPerSide; row++) {
+            for (int col = 0; col < panelsPerSide; col++) {
+                // Spawn the Panel
+                GameObject panelObj =
+                    PrefabUtility.InstantiatePrefab(settings.PanelPrefab.value, container) as
+                        GameObject;
+                panelObj.transform.position = panelPosition;
+                panelObj.layer = LayerMask.NameToLayer("Panels");
+
+                panelPosition += panelOffsetX;
+            }
+
+            panelPosition.x = -halfLengthPerSide + offsetX;
+            panelPosition += panelOffsetY;
         }
     }
 }

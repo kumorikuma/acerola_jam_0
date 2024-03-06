@@ -81,6 +81,33 @@ public class MeshGeneration : EditorWindow {
         }
 
         GUILayout.EndVertical();
+
+
+        GUILayout.BeginVertical("HelpBox");
+        GUILayout.Label("Panels Container Settings");
+        GUILayout.BeginVertical("GroupBox");
+        settings.PanelsContainer.value =
+            EditorGUILayout.ObjectField(new GUIContent("Panels Container", settings.PanelsContainer.tooltip),
+                settings.PanelsContainer.value, typeof(GameObject), true) as GameObject;
+        settings.PanelPrefab.value =
+            EditorGUILayout.ObjectField(new GUIContent("Panel Prefab", settings.PanelPrefab.tooltip),
+                settings.PanelPrefab.value, typeof(GameObject), false) as GameObject;
+        settings.PanelSize.value = EditorGUILayout.Slider(
+            new GUIContent("Panel Size", settings.PanelSize.tooltip), settings.PanelSize.value, 0,
+            100);
+        settings.PanelsPerSide.value = EditorGUILayout.IntSlider(
+            new GUIContent("Panels Per Side", settings.PanelsPerSide.tooltip), settings.PanelsPerSide.value, 2, 1000);
+
+        GUILayout.EndVertical();
+        if (GUILayout.Button("Generate Panels")) {
+            this.StartCoroutine(GeneratePanels());
+        }
+
+        if (GUILayout.Button("Clear Panels Container")) {
+            this.StartCoroutine(ClearPanelsContainer());
+        }
+
+        GUILayout.EndVertical();
     }
 
     // Generates a plane with certain density.
@@ -99,7 +126,6 @@ public class MeshGeneration : EditorWindow {
         yield return null;
     }
 
-    // Generates stars.
     IEnumerator GenerateStars() {
         MeshGenerator.GenerateStars(settings);
         yield return null;
@@ -107,6 +133,16 @@ public class MeshGeneration : EditorWindow {
 
     IEnumerator ClearStarsContainer() {
         settings.StarsContainer.value.DestroyChildrenImmediate();
+        yield return null;
+    }
+
+    IEnumerator GeneratePanels() {
+        MeshGenerator.GeneratePanels(settings);
+        yield return null;
+    }
+
+    IEnumerator ClearPanelsContainer() {
+        settings.PanelsContainer.value.DestroyChildrenImmediate();
         yield return null;
     }
 }

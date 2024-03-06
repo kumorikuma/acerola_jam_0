@@ -829,6 +829,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PanelsContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 7292838751403577581, guid: 382f571cdd3c5dd4e921364ca38e786b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8175371691127743266, guid: 382f571cdd3c5dd4e921364ca38e786b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.5
@@ -884,7 +888,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColliderTerrain: {fileID: 1177569570}
   LowerColliderTerrain: {fileID: 1167412867}
-  PanelsPerSide: 100
+  PanelProjectilesContainer: {fileID: 0}
+  DummyProjectilesContainer: {fileID: 0}
+  PanelProjectilePrefab: {fileID: 0}
+  DummyPanelPrefab: {fileID: 0}
+  TerrainSize: 640
   PanelSize: 5
   PanelsPerCell: 2
 --- !u!1001 &2358994202285150237

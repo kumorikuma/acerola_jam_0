@@ -114,6 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6054367884981813011}
+  - component: {fileID: 5867744476544287006}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -138,8 +139,31 @@ Transform:
   - {fileID: 8478975627344130985}
   - {fileID: 7138411119054849315}
   - {fileID: 8653035497370202279}
+  - {fileID: 6393803491922298462}
+  - {fileID: 3367509445541033152}
   m_Father: {fileID: 4382269551249527705}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5867744476544287006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094322537638837405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9ffb18fbcde2cd4fa16ecdfa0413e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColliderTerrain: {fileID: 1174144730580100608}
+  LowerColliderTerrain: {fileID: 5519491868243478735}
+  PanelProjectilesContainer: {fileID: 6228042227271278019}
+  DummyProjectilesContainer: {fileID: 5656113694943333497}
+  PanelProjectilePrefab: {fileID: 6010104169875866818, guid: 4b70bc9cb6f43524899faa02d97dce5c, type: 3}
+  DummyPanelPrefab: {fileID: 2718974637293151363, guid: 1b452d693444a084eb8b581c310c536c, type: 3}
+  TerrainSize: 640
+  PanelSize: 5
+  PanelsPerCell: 2
 --- !u!1 &1248720176020286134
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +325,7 @@ GameObject:
   - component: {fileID: 8634940935487989251}
   - component: {fileID: 1174144730580100608}
   - component: {fileID: 98782207703925363}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: UpperTerrainLayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +341,7 @@ Transform:
   m_GameObject: {fileID: 4663345173928084411}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -150, y: 0, z: -150}
+  m_LocalPosition: {x: -320, y: 0, z: -320}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -349,7 +373,7 @@ Terrain:
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 0eb7b663262f94846bf307e220e29685, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -409,7 +433,7 @@ Transform:
   m_GameObject: {fileID: 5431644886064338164}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -150, y: -0.5, z: -150}
+  m_LocalPosition: {x: -320, y: -0.5, z: -320}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -474,6 +498,68 @@ TerrainCollider:
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: 1177c3e9a86e3bb4f8f2d7f7bb56d3d4, type: 2}
   m_EnableTreeColliders: 1
+--- !u!1 &5656113694943333497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3367509445541033152}
+  m_Layer: 0
+  m_Name: DummyPanels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3367509445541033152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5656113694943333497}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6054367884981813011}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6228042227271278019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6393803491922298462}
+  m_Layer: 0
+  m_Name: PanelsContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6393803491922298462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228042227271278019}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6054367884981813011}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6963163340177553925
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +585,7 @@ Transform:
   m_GameObject: {fileID: 6963163340177553925}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.499, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

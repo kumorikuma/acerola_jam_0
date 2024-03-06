@@ -5,28 +5,45 @@ using UnityEngine;
 public class PanelsController : Singleton<PanelsController> {
     [NonNullField] public Terrain ColliderTerrain;
     [NonNullField] public Terrain LowerColliderTerrain;
-    
-    public int PanelsPerSide = 100;
+
+    [NonNullField] public GameObject PanelProjectilesContainer;
+    [NonNullField] public GameObject DummyProjectilesContainer;
+    [NonNullField] public GameObject PanelProjectilePrefab;
+    [NonNullField] public GameObject DummyPanelPrefab;
+
+    public float TerrainSize = 640.0f;
     public float PanelSize = 5.0f;
     public int PanelsPerCell = 2;
 
     // Size of all the panels one side combined.
+    private int _panelsPerSide;
     private Vector3 _worldSpaceToPanelSpaceOffset;
+    private Vector3 _panelSizeOffset;
     private float _panelsContainerSize;
     private float _cellSize;
     private int _cellSizeTexels;
-    bool[,] _holePunchData;
+    private bool[,] _holePunchData;
 
     // A Cell is composed of N=2 panels.
-    
-    // TODO: Iterate over all the panels and build a 2D array of them.
+    private GameObject[,] _panelProjectileObjects;
+    private GameObject[,] _dummyPanelObjects;
 
     protected override void Awake() {
         base.Awake();
 
+        _panelsPerSide = Mathf.RoundToInt(TerrainSize / PanelSize);
         _cellSize = PanelSize * PanelsPerCell;
-        _panelsContainerSize = PanelsPerSide * PanelSize;
+        _panelsContainerSize = _panelsPerSide * PanelSize;
         _worldSpaceToPanelSpaceOffset = new Vector3(_panelsContainerSize / 2.0f, 0, _panelsContainerSize / 2.0f);
+        _panelSizeOffset = new Vector3(PanelSize / 2.0f, -0.5f, PanelSize / 2.0f);
+        _panelProjectileObjects = new GameObject[_panelsPerSide, _panelsPerSide];
+        _dummyPanelObjects = new GameObject[_panelsPerSide, _panelsPerSide];
+        for (int row = 0; row < _panelsPerSide; row++) {
+            for (int col = 0; col < _panelsPerSide; col++) {
+                _panelProjectileObjects[row, col] = null;
+                _dummyPanelObjects[row, col] = null;
+            }
+        }
 
         // Measure how many terrain texels are in this size.
         Vector3 pos1 = Vector3.zero;
@@ -34,7 +51,6 @@ public class PanelsController : Singleton<PanelsController> {
         int pos1Col = ConvertToAlphamapCoordinates(pos1).x;
         int pos2Col = ConvertToAlphamapCoordinates(pos2).x;
         _cellSizeTexels = pos2Col - pos1Col;
-        Debug.Log("Cell Size in Texels: " + _cellSizeTexels);
 
         _holePunchData = new bool[_cellSizeTexels, _cellSizeTexels];
         for (int row = 0; row < _cellSizeTexels; row++) {
@@ -59,21 +75,82 @@ public class PanelsController : Singleton<PanelsController> {
     }
 
 
-    public void PunchHoleInTerrain(Vector3 worldPosition) {
+    public void DestroyCellAt(Vector3 worldPosition) {
         Vector2Int cellCoordinates = WorldPositionToCellCoordinates(worldPosition);
-        Debug.Log("World Pos: " + worldPosition);
-        Debug.Log("Cell Coordinates: " + cellCoordinates);
-        PunchHoleInTerrainAtCellCoordinates(cellCoordinates.x, cellCoordinates.y);
+        DestroyCell(cellCoordinates.x, cellCoordinates.y);
     }
 
-    public void PunchHoleInTerrainAtCellCoordinates(int col, int row) {
+    public void DestroyCell(int cellCol, int cellRow) {
+        // Firstly, punch a hole in the terrain.
         // Coordinates are in panel space, need to convert back to world space.
-        float x = col * _cellSize;
-        float y = row * _cellSize;
-        Vector3 panelSpaceCoordinates = new Vector3(x, 0, y);
+        Vector3 panelSpaceCoordinates = new Vector3(cellCol * _cellSize, 0, cellRow * _cellSize);
         Debug.Log("panelSpaceCoordinates: " + panelSpaceCoordinates);
         Vector3 worldSpacePosition = panelSpaceCoordinates - _worldSpaceToPanelSpaceOffset;
         _PunchHoleInTerrain(worldSpacePosition);
+
+        // Next, handle the panels. This affects all panels that are in this cell.
+        int panelRow, panelCol;
+        for (int j = 0; j < PanelsPerCell; j++) {
+            for (int i = 0; i < PanelsPerCell; i++) {
+                panelRow = cellRow * PanelsPerCell + j;
+                panelCol = cellCol * PanelsPerCell + i;
+
+                // Detect if there's a dummy panel spawned for that location and destroy it if there is.
+                GameObject dummyPanel = _dummyPanelObjects[panelRow, panelCol];
+                if (dummyPanel != null) {
+                    Object.Destroy(dummyPanel);
+                }
+
+                // Spawn in a new projectile panel
+                panelSpaceCoordinates = new Vector3(panelCol * PanelSize, 0, panelRow * PanelSize) + _panelSizeOffset;
+                worldSpacePosition = panelSpaceCoordinates - _worldSpaceToPanelSpaceOffset;
+                GameObject projectilePanel = Instantiate(PanelProjectilePrefab, worldSpacePosition,
+                    Quaternion.identity, PanelProjectilesContainer.transform);
+                _panelProjectileObjects[panelRow, panelCol] = projectilePanel;
+
+                // TODO: Then we enable the destruction sequence for those panels.
+            }
+        }
+
+        // Finally, spawn in dummy panels around the hole (no need for diagonals).
+        panelRow = cellRow * PanelsPerCell - 1;
+        for (int i = 0; i < PanelsPerCell; i++) {
+            panelCol = cellCol * PanelsPerCell + i;
+            SpawnDummyPanelAt(panelCol, panelRow);
+        }
+
+        panelRow = cellRow * PanelsPerCell + PanelsPerCell;
+        for (int i = 0; i < PanelsPerCell; i++) {
+            panelCol = cellCol * PanelsPerCell + i;
+            SpawnDummyPanelAt(panelCol, panelRow);
+        }
+
+        panelCol = cellCol * PanelsPerCell - 1;
+        for (int j = 0; j < PanelsPerCell; j++) {
+            panelRow = cellRow * PanelsPerCell + j;
+            SpawnDummyPanelAt(panelCol, panelRow);
+        }
+
+        panelCol = cellCol * PanelsPerCell + PanelsPerCell;
+        for (int j = 0; j < PanelsPerCell; j++) {
+            panelRow = cellRow * PanelsPerCell + j;
+            SpawnDummyPanelAt(panelCol, panelRow);
+        }
+    }
+
+    private void SpawnDummyPanelAt(int panelCol, int panelRow) {
+        GameObject dummyPanel = _dummyPanelObjects[panelRow, panelCol];
+        GameObject projectilePanel = _panelProjectileObjects[panelRow, panelCol];
+        if (dummyPanel != null || projectilePanel != null) {
+            return;
+        }
+
+        // Spawn in a new dummy panel
+        Vector3 panelSpaceCoordinates = new Vector3(panelCol * PanelSize, 0, panelRow * PanelSize) + _panelSizeOffset;
+        Vector3 worldSpacePosition = panelSpaceCoordinates - _worldSpaceToPanelSpaceOffset;
+        dummyPanel = Instantiate(DummyPanelPrefab, worldSpacePosition,
+            Quaternion.identity, DummyProjectilesContainer.transform);
+        _dummyPanelObjects[panelRow, panelCol] = dummyPanel;
     }
 
     public Vector2Int WorldPositionToCellCoordinates(Vector3 worldPosition) {
@@ -85,12 +162,12 @@ public class PanelsController : Singleton<PanelsController> {
     }
 
     private void _PunchHoleInTerrain(Vector3 worldPosition) {
-        Debug.Log("PunchHoleInTerrain World Pos: " + worldPosition);
         // The size of the hole we need to punch is PanelSize * PanelsPerCell by PanelSize * PanelsPerCell.
         // Then we need to pass in the Row/Col of where to punch it.
         Vector2Int coordinates = ConvertToAlphamapCoordinates(worldPosition);
         ColliderTerrain.terrainData.SetHoles(coordinates.x, coordinates.y, _holePunchData);
     }
+
 
     Vector2Int ConvertToAlphamapCoordinates(Vector3 worldPosition) {
         Vector3 terrainPos = ColliderTerrain.transform.position;
@@ -105,8 +182,8 @@ public class PanelsController : Singleton<PanelsController> {
         float v = zPosTerrainSpace / terrainData.size.z;
 
         // Convert to XY terrain coordinates [0, alphamapWidth/alphamapHeight - 1]
-        int terrainX = Mathf.RoundToInt(u * (terrainData.alphamapWidth - 1));
-        int terrainY = Mathf.RoundToInt(v * (terrainData.alphamapHeight - 1));
+        int terrainX = (int)(u * (terrainData.alphamapWidth - 1)) + 1;
+        int terrainY = (int)(v * (terrainData.alphamapHeight - 1)) + 1;
 
         // Clamp the values to make sure this is never invalid.
         return new Vector2Int(Mathf.Clamp(terrainX, 0, terrainData.alphamapWidth - 1),

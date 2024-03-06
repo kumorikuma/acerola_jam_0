@@ -9,6 +9,7 @@ using UnityEditor;
 // Accessed from toolbar: Custom -> Mesh Editing
 public class MeshEditingWindow : EditorWindow {
     private Mesh SourceMesh_;
+    GameObject SourceObject;
     MeshFilter SourceMesh; // Mesh to edit and perform changes onto
     MeshFilter TargetMesh; // Mesh to use as data
     GameObject PalmTreePrefab;
@@ -21,6 +22,7 @@ public class MeshEditingWindow : EditorWindow {
     }
 
     void OnGUI() {
+        SourceObject = EditorGUILayout.ObjectField("Game Object", SourceObject, typeof(GameObject), true) as GameObject;
         SourceMesh = EditorGUILayout.ObjectField("Mesh", SourceMesh, typeof(MeshFilter), true) as MeshFilter;
         SourceMesh_ = EditorGUILayout.ObjectField("Mesh (actual mesh)", SourceMesh_, typeof(Mesh), true) as Mesh;
 
@@ -44,6 +46,10 @@ public class MeshEditingWindow : EditorWindow {
 
         if (GUILayout.Button("Add barycentric coords to verts")) {
             this.StartCoroutine(GenerateBarycentricCoordinates(SourceMesh));
+        }
+
+        if (GUILayout.Button("Combine Meshes")) {
+            this.StartCoroutine(CombineMeshes());
         }
 
         if (GUILayout.Button("Save Mesh to Disk")) {
@@ -205,6 +211,23 @@ public class MeshEditingWindow : EditorWindow {
         AssetDatabase.CreateAsset(mesh, "Assets/Mesh.asset");
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
+        yield return null;
+    }
+
+    IEnumerator CombineMeshes() {
+        MeshFilter[] meshFilters = SourceObject.GetComponentsInChildren<MeshFilter>();
+        CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+
+        int i = 0;
+        while (i < meshFilters.Length) {
+            combine[i].mesh = meshFilters[i].sharedMesh;
+            combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
+            i++;
+        }
+
+        Mesh mesh = new Mesh();
+        mesh.CombineMeshes(combine);
+        this.StartCoroutine(SaveMeshToDisk(mesh));
         yield return null;
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.EditorCoroutines.Editor;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEditor;
 
@@ -28,6 +29,7 @@ public class MeshEditingWindow : EditorWindow {
         if (GUILayout.Button("Add target mesh as blendshape")) {
             this.StartCoroutine(AddMeshAsBlendshape(TargetMesh, SourceMesh));
         }
+
         GUILayout.EndVertical();
         GUILayout.EndVertical();
 
@@ -37,21 +39,29 @@ public class MeshEditingWindow : EditorWindow {
         if (GUILayout.Button("Recompute Normals")) {
             this.StartCoroutine(RecalculateNormals(SourceMesh));
         }
+
         if (GUILayout.Button("Add barycentric coords to verts")) {
             this.StartCoroutine(GenerateBarycentricCoordinates(SourceMesh));
         }
+
+        if (GUILayout.Button("Save Mesh to Disk")) {
+            this.StartCoroutine(SaveMeshToDisk(SourceMesh.mesh));
+        }
+
         GUILayout.EndVertical();
         GUILayout.EndVertical();
 
         GUILayout.BeginVertical("HelpBox");
         GUILayout.Label("Level Gen");
-        PalmTreePrefab = EditorGUILayout.ObjectField("Palm Tree", PalmTreePrefab, typeof(GameObject), true) as GameObject;
+        PalmTreePrefab =
+            EditorGUILayout.ObjectField("Palm Tree", PalmTreePrefab, typeof(GameObject), true) as GameObject;
         xOffset = EditorGUILayout.Slider("X Offset", xOffset, 0, 50);
         gap = EditorGUILayout.Slider("Gap", gap, 0, 100);
         GUILayout.BeginVertical("GroupBox");
         if (GUILayout.Button("Plant Trees")) {
             this.StartCoroutine(PlantPalmTrees());
         }
+
         GUILayout.EndVertical();
         GUILayout.EndVertical();
     }
@@ -84,12 +94,25 @@ public class MeshEditingWindow : EditorWindow {
             int vertB = sourceTriangles[i + 1];
             int vertC = sourceTriangles[i + 2];
 
+            float edgeLengthAB = (sourceVerts[vertA] - sourceVerts[vertB]).magnitude;
+            float edgeLengthAC = (sourceVerts[vertA] - sourceVerts[vertC]).magnitude;
+            float edgeLengthBC = (sourceVerts[vertB] - sourceVerts[vertC]).magnitude;
+            Vector3 modifier = Vector3.zero;
+            if (edgeLengthAB > edgeLengthAC && edgeLengthAB > edgeLengthBC) {
+                modifier = new Vector3(0, 0, 1);
+            } else if (edgeLengthAC > edgeLengthAB && edgeLengthAC > edgeLengthBC) {
+                modifier = new Vector3(0, 1, 0);
+            } else if (edgeLengthBC > edgeLengthAB && edgeLengthBC > edgeLengthAC) {
+                modifier = new Vector3(1, 0, 0);
+            }
+
             newTriangles[triIdx++] = vertIdx;
             newVerts[vertIdx] = sourceVerts[vertA];
             if (sourceUvs.Length > 0) {
                 newUvs[vertIdx] = sourceUvs[vertA];
             }
-            barycentricCoordinates[vertIdx] = new Vector3(1, 0, 0);
+
+            barycentricCoordinates[vertIdx] = new Vector3(1, 0, 0) + modifier;
             vertIdx++;
 
             newTriangles[triIdx++] = vertIdx;
@@ -97,7 +120,8 @@ public class MeshEditingWindow : EditorWindow {
             if (sourceUvs.Length > 0) {
                 newUvs[vertIdx] = sourceUvs[vertB];
             }
-            barycentricCoordinates[vertIdx] = new Vector3(0, 1, 0);
+
+            barycentricCoordinates[vertIdx] = new Vector3(0, 1, 0) + modifier;
             vertIdx++;
 
             newTriangles[triIdx++] = vertIdx;
@@ -105,7 +129,8 @@ public class MeshEditingWindow : EditorWindow {
             if (sourceUvs.Length > 0) {
                 newUvs[vertIdx] = sourceUvs[vertC];
             }
-            barycentricCoordinates[vertIdx] = new Vector3(0, 0, 1);
+
+            barycentricCoordinates[vertIdx] = new Vector3(0, 0, 1) + modifier;
             vertIdx++;
         }
 
@@ -113,6 +138,7 @@ public class MeshEditingWindow : EditorWindow {
         if (sourceUvs.Length > 0) {
             sourceMesh.sharedMesh.SetUVs(0, newUvs);
         }
+
         sourceMesh.sharedMesh.SetUVs(1, barycentricCoordinates);
         sourceMesh.sharedMesh.triangles = newTriangles;
         sourceMesh.sharedMesh.RecalculateNormals();
@@ -136,11 +162,19 @@ public class MeshEditingWindow : EditorWindow {
         for (int i = 0; i < deltaVertices.Length; i++) {
             deltaVertices[i] = sourceVerts[i] - targetVerts[i];
         }
+
         targetMesh.mesh.AddBlendShapeFrame("Blendshape", 100, deltaVertices, null, null);
         // Need to do this after adding blendshape.
         // See: https://forum.unity.com/threads/adding-new-blendshape-from-script-buggy-deformation-result-fixed.827187/ 
         targetMesh.mesh.RecalculateNormals();
         targetMesh.mesh.RecalculateTangents();
+        yield return null;
+    }
+
+    IEnumerator SaveMeshToDisk(Mesh mesh) {
+        AssetDatabase.CreateAsset(mesh, "Assets/Mesh.asset");
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
         yield return null;
     }
 
@@ -157,6 +191,7 @@ public class MeshEditingWindow : EditorWindow {
             tree.transform.localScale = new Vector3(-1, 1, 1);
             tree.transform.SetParent(SourceMesh.gameObject.transform);
         }
+
         yield return null;
     }
 }

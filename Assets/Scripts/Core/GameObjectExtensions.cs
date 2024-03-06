@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class GameObjectExtensions {
@@ -9,8 +10,14 @@ public static class GameObjectExtensions {
     }
 
     public static void DestroyChildrenImmediate(this GameObject obj) {
+        List<GameObject> destroyList = new();
+
         foreach (Transform child in obj.transform) {
-            UnityEngine.Object.DestroyImmediate(child.gameObject);
+            destroyList.Add(child.gameObject);
+        }
+
+        foreach (GameObject objPendingDestroy in destroyList) {
+            UnityEngine.Object.DestroyImmediate(objPendingDestroy);
         }
     }
 

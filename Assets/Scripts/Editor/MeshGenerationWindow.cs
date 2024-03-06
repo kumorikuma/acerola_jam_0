@@ -5,7 +5,7 @@ using Unity.EditorCoroutines.Editor;
 
 // Access from toolbar: Custom -> Mesh Generation
 public class MeshGeneration : EditorWindow {
-    MeshGenerator.Settings settings = MeshGenerator.Settings.DefaultSettings();
+    [SerializeField] MeshGenerator.Settings settings = MeshGenerator.Settings.DefaultSettings();
 
     [MenuItem("Custom/Mesh Generation")]
     public static void OpenWindow() {
@@ -46,6 +46,41 @@ public class MeshGeneration : EditorWindow {
         }
 
         GUILayout.EndVertical();
+
+        GUILayout.BeginVertical("HelpBox");
+        GUILayout.Label("Stars Box Settings");
+        GUILayout.BeginVertical("GroupBox");
+        settings.StarsContainer.value =
+            EditorGUILayout.ObjectField(new GUIContent("Stars Container", settings.StarsContainer.tooltip),
+                settings.StarsContainer.value, typeof(GameObject), true) as GameObject;
+        settings.StarsPrefab.value =
+            EditorGUILayout.ObjectField(new GUIContent("Star Prefab", settings.StarsPrefab.tooltip),
+                settings.StarsPrefab.value, typeof(GameObject), false) as GameObject;
+        settings.StarsCount.value = EditorGUILayout.IntSlider(
+            new GUIContent("Number of Stars", settings.StarsCount.tooltip), settings.StarsCount.value, 1, 1000);
+        settings.StarsMinDistance.value = EditorGUILayout.Slider(
+            new GUIContent("Min Distance", settings.StarsMinDistance.tooltip), settings.StarsMinDistance.value, 0,
+            1000);
+        settings.StarsMaxDistance.value = EditorGUILayout.Slider(
+            new GUIContent("Max Distance", settings.StarsMaxDistance.tooltip), settings.StarsMaxDistance.value, 0,
+            1000);
+        settings.PerturbScale.value = EditorGUILayout.Toggle(
+            new GUIContent("Perturb Scale", settings.PerturbScale.tooltip), settings.PerturbScale.value);
+        settings.RandomizeStarRotation.value = EditorGUILayout.Toggle(
+            new GUIContent("Randomize Rotation", settings.RandomizeStarRotation.tooltip),
+            settings.RandomizeStarRotation.value);
+        settings.FaceStarTowardsOrigin.value = EditorGUILayout.Toggle(
+            new GUIContent("Billboard", settings.FaceStarTowardsOrigin.tooltip), settings.FaceStarTowardsOrigin.value);
+        GUILayout.EndVertical();
+        if (GUILayout.Button("Generate Stars")) {
+            this.StartCoroutine(GenerateStars());
+        }
+
+        if (GUILayout.Button("Clear Stars Container")) {
+            this.StartCoroutine(ClearStarsContainer());
+        }
+
+        GUILayout.EndVertical();
     }
 
     // Generates a plane with certain density.
@@ -61,6 +96,17 @@ public class MeshGeneration : EditorWindow {
     // Generates a sphere using Rounded Cube method.
     IEnumerator GenerateSphereMesh() {
         MeshGenerator.GenerateSphereMesh(settings);
+        yield return null;
+    }
+
+    // Generates stars.
+    IEnumerator GenerateStars() {
+        MeshGenerator.GenerateStars(settings);
+        yield return null;
+    }
+
+    IEnumerator ClearStarsContainer() {
+        settings.StarsContainer.value.DestroyChildrenImmediate();
         yield return null;
     }
 }

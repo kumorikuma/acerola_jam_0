@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEditor;
 
+[Serializable]
 public struct Setting<ValueType> {
     public ValueType value;
     public string tooltip;
@@ -15,7 +17,8 @@ public struct Setting<ValueType> {
 // Misc utility functions
 public class Utilities {
     // Creates a mesh from mesh data, and spawns it in the world
-    public static GameObject SpawnMesh(string name, Vector3[] vertices, Vector2[] uvs, int[] triangles, Transform parent = null, Material material = null) {
+    public static GameObject SpawnMesh(string name, Vector3[] vertices, Vector2[] uvs, int[] triangles,
+        Transform parent = null, Material material = null) {
         GameObject meshObject = new GameObject(name);
         MeshFilter meshFilter = meshObject.AddComponent<MeshFilter>() as MeshFilter;
         MeshRenderer meshRenderer = meshObject.AddComponent<MeshRenderer>() as MeshRenderer;

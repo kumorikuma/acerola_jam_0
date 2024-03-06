@@ -4,8 +4,11 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
+using Random = UnityEngine.Random;
 
 public class MeshGenerator {
+    [Serializable]
     public struct Settings {
         public Setting<int> WidthMeters;
         public Setting<int> LengthMeters;
@@ -13,6 +16,16 @@ public class MeshGenerator {
         public Setting<Material> GroundMaterial;
 
         public Setting<int> SphereSubdivs;
+
+        public Setting<GameObject> StarsContainer;
+        public Setting<GameObject> StarsPrefab;
+        public Setting<int> StarsCount;
+        public Setting<float> StarsMinDistance;
+        public Setting<float> StarsMaxDistance;
+        public Setting<bool> PerturbScale;
+        public Setting<bool> RandomizeStarRotation;
+        public Setting<bool> FaceStarTowardsOrigin;
+
 
         public static Settings DefaultSettings() {
             Settings defaultSettings = new Settings();
@@ -23,6 +36,16 @@ public class MeshGenerator {
             defaultSettings.GroundMaterial = new Setting<Material>(null, "Material of ground plane");
 
             defaultSettings.SphereSubdivs = new Setting<int>(20, "Number of divisions in sphere");
+
+            defaultSettings.StarsContainer = new Setting<GameObject>(null, "Container to put generated Stars in");
+            defaultSettings.StarsPrefab = new Setting<GameObject>(null, "Star Prefab");
+            defaultSettings.StarsMinDistance = new Setting<float>(300, "Minimum Distance from center");
+            defaultSettings.StarsMaxDistance = new Setting<float>(500, "Maximum Distance from center");
+
+            defaultSettings.PerturbScale = new Setting<bool>(false, "Randomize XY scale");
+            defaultSettings.RandomizeStarRotation = new Setting<bool>(false, "Randomize star's rotation");
+            defaultSettings.FaceStarTowardsOrigin = new Setting<bool>(false, "Face the star towards the origin");
+
 
             return defaultSettings;
         }
@@ -190,5 +213,54 @@ public class MeshGenerator {
 
         cache[edgeKey] = midpointIndex;
         return midpointIndex;
+    }
+
+    public static void GenerateStars(Settings settings) {
+        for (int i = 0; i < settings.StarsCount.value; i++) {
+            // Compute Random Spherical Coordinates
+            // float polarAngleRad = UnityEngine.Random.Range(-Mathf.PI / 2.0f, Mathf.PI / 2.0f); // theta
+            // float azimuthalAngleRad = UnityEngine.Random.Range(-Mathf.PI, Mathf.PI); // phi
+            float radialDistance =
+                UnityEngine.Random.Range(settings.StarsMinDistance.value, settings.StarsMaxDistance.value);
+            //
+            // Debug.Log("Radial Distance: " + radialDistance);
+            Vector3 randomPointOnSphere = UnityEngine.Random.insideUnitSphere.normalized;
+
+            // Convert to Cartesian Coordinates
+            // float x = radialDistance * Mathf.Cos(azimuthalAngleRad) * Mathf.Sin(polarAngleRad);
+            // float y = radialDistance * Mathf.Sin(azimuthalAngleRad) * Mathf.Cos(polarAngleRad);
+            // float z = radialDistance * Mathf.Cos(polarAngleRad);
+            Vector3 randomPoint = randomPointOnSphere * radialDistance;
+
+            // Spawn the star
+            GameObject starObj =
+                PrefabUtility.InstantiatePrefab(settings.StarsPrefab.value, settings.StarsContainer.value.transform) as
+                    GameObject;
+            Vector3 originPosition = settings.StarsContainer.value.transform.position;
+            starObj.transform.position = originPosition + randomPoint;
+            Vector3 starToOrigin = originPosition - starObj.transform.position;
+            Debug.Log(starToOrigin);
+
+
+            // Randomize Rotation if desired
+            Quaternion rotation = Quaternion.identity;
+            if (settings.RandomizeStarRotation.value) {
+                float randomAngleXDeg = Random.Range(0, 360);
+                float randomAngleYDeg = Random.Range(0, 360);
+                float randomAngleZDeg = Random.Range(0, 360);
+                rotation = Quaternion.Euler(randomAngleXDeg, randomAngleYDeg, randomAngleZDeg);
+            }
+
+            // Point the star at the origin if desired
+            if (settings.FaceStarTowardsOrigin.value) {
+                rotation *= Quaternion.LookRotation(starToOrigin);
+            }
+
+            // TODO: Perturb the scale
+            // if (settings.PerturbScale.value) {
+
+            starObj.transform.rotation = rotation;
+            starObj.layer = LayerMask.NameToLayer("Background");
+        }
     }
 }

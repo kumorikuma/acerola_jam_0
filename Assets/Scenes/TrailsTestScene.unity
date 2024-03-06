@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 769653301}
   - component: {fileID: 769653300}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: TrailTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 889870692}
   - component: {fileID: 889870691}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -290,7 +290,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 3f4e4cd1ed9257b4e8a4a39b4f6442af, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -600,7 +600,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8517405739254639125, guid: 19436a2a7bf32f64a855a4b28eee8a09, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.34
+      value: 0.459
       objectReference: {fileID: 0}
     - target: {fileID: 8517405739254639125, guid: 19436a2a7bf32f64a855a4b28eee8a09, type: 3}
       propertyPath: m_LocalPosition.y
@@ -608,7 +608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8517405739254639125, guid: 19436a2a7bf32f64a855a4b28eee8a09, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.85
+      value: -6.299
       objectReference: {fileID: 0}
     - target: {fileID: 8517405739254639125, guid: 19436a2a7bf32f64a855a4b28eee8a09, type: 3}
       propertyPath: m_LocalRotation.w

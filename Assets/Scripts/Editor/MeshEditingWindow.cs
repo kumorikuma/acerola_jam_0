@@ -8,6 +8,7 @@ using UnityEditor;
 // UnityEditor window with options for editing mesh.
 // Accessed from toolbar: Custom -> Mesh Editing
 public class MeshEditingWindow : EditorWindow {
+    private Mesh SourceMesh_;
     MeshFilter SourceMesh; // Mesh to edit and perform changes onto
     MeshFilter TargetMesh; // Mesh to use as data
     GameObject PalmTreePrefab;
@@ -21,6 +22,7 @@ public class MeshEditingWindow : EditorWindow {
 
     void OnGUI() {
         SourceMesh = EditorGUILayout.ObjectField("Mesh", SourceMesh, typeof(MeshFilter), true) as MeshFilter;
+        SourceMesh_ = EditorGUILayout.ObjectField("Mesh (actual mesh)", SourceMesh_, typeof(Mesh), true) as Mesh;
 
         GUILayout.BeginVertical("HelpBox");
         GUILayout.Label("Blendshape");
@@ -45,7 +47,11 @@ public class MeshEditingWindow : EditorWindow {
         }
 
         if (GUILayout.Button("Save Mesh to Disk")) {
-            this.StartCoroutine(SaveMeshToDisk(SourceMesh.mesh));
+            if (SourceMesh_ != null) {
+                this.StartCoroutine(SaveMeshToDisk(SourceMesh_));
+            } else {
+                this.StartCoroutine(SaveMeshToDisk(SourceMesh.mesh));
+            }
         }
 
         GUILayout.EndVertical();
@@ -74,9 +80,20 @@ public class MeshEditingWindow : EditorWindow {
     // For each triangle, generates duplicates vertices that have barycentric coordinates set
     // as vertex attributes for interpolation in shader.
     IEnumerator GenerateBarycentricCoordinates(MeshFilter sourceMesh) {
-        Vector3[] sourceVerts = sourceMesh.sharedMesh.vertices;
-        Vector2[] sourceUvs = sourceMesh.sharedMesh.uv;
-        int[] sourceTriangles = sourceMesh.sharedMesh.triangles;
+        Vector3[] sourceVerts;
+        Vector2[] sourceUvs;
+        int[] sourceTriangles;
+
+        if (SourceMesh_ != null) {
+            sourceVerts = SourceMesh_.vertices;
+            sourceUvs = SourceMesh_.uv;
+            sourceTriangles = SourceMesh_.triangles;
+        } else {
+            sourceVerts = sourceMesh.sharedMesh.vertices;
+            sourceUvs = sourceMesh.sharedMesh.uv;
+            sourceTriangles = sourceMesh.sharedMesh.triangles;
+        }
+
 
         Debug.Log($"UVS {sourceUvs.Length}");
         Debug.Log($"Verts {sourceVerts.Length}");
@@ -134,15 +151,28 @@ public class MeshEditingWindow : EditorWindow {
             vertIdx++;
         }
 
-        sourceMesh.sharedMesh.vertices = newVerts;
-        if (sourceUvs.Length > 0) {
-            sourceMesh.sharedMesh.SetUVs(0, newUvs);
-        }
 
-        sourceMesh.sharedMesh.SetUVs(1, barycentricCoordinates);
-        sourceMesh.sharedMesh.triangles = newTriangles;
-        sourceMesh.sharedMesh.RecalculateNormals();
-        sourceMesh.sharedMesh.RecalculateBounds();
+        if (SourceMesh_ != null) {
+            SourceMesh_.vertices = newVerts;
+            if (sourceUvs.Length > 0) {
+                SourceMesh_.SetUVs(0, newUvs);
+            }
+
+            SourceMesh_.SetUVs(1, barycentricCoordinates);
+            SourceMesh_.triangles = newTriangles;
+            SourceMesh_.RecalculateNormals();
+            SourceMesh_.RecalculateBounds();
+        } else {
+            sourceMesh.sharedMesh.vertices = newVerts;
+            if (sourceUvs.Length > 0) {
+                sourceMesh.sharedMesh.SetUVs(0, newUvs);
+            }
+
+            sourceMesh.sharedMesh.SetUVs(1, barycentricCoordinates);
+            sourceMesh.sharedMesh.triangles = newTriangles;
+            sourceMesh.sharedMesh.RecalculateNormals();
+            sourceMesh.sharedMesh.RecalculateBounds();
+        }
 
         yield return null;
     }

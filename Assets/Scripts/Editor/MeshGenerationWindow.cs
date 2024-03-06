@@ -13,21 +13,38 @@ public class MeshGeneration : EditorWindow {
     }
 
     void OnEnable() {
-
     }
 
     void OnGUI() {
         GUILayout.BeginVertical("HelpBox");
         GUILayout.Label("Tile Mesh Settings");
         GUILayout.BeginVertical("GroupBox");
-        settings.WidthMeters.value = EditorGUILayout.IntSlider(new GUIContent("Width of tile (m)", settings.WidthMeters.tooltip), settings.WidthMeters.value, 10, 2000);
-        settings.LengthMeters.value = EditorGUILayout.IntSlider(new GUIContent("Length of tile (m)", settings.LengthMeters.tooltip), settings.LengthMeters.value, 10, 2000);
-        settings.QuadsPerMeter.value = EditorGUILayout.IntSlider(new GUIContent("Quads per Meter", settings.QuadsPerMeter.tooltip), settings.QuadsPerMeter.value, 1, 4);
-        settings.GroundMaterial.value = EditorGUILayout.ObjectField(new GUIContent("Ground Material", settings.GroundMaterial.tooltip), settings.GroundMaterial.value, typeof(Material), true) as Material;
+        settings.WidthMeters.value = EditorGUILayout.IntSlider(
+            new GUIContent("Width of tile (m)", settings.WidthMeters.tooltip), settings.WidthMeters.value, 10, 2000);
+        settings.LengthMeters.value = EditorGUILayout.IntSlider(
+            new GUIContent("Length of tile (m)", settings.LengthMeters.tooltip), settings.LengthMeters.value, 10, 2000);
+        settings.QuadsPerMeter.value = EditorGUILayout.IntSlider(
+            new GUIContent("Quads per Meter", settings.QuadsPerMeter.tooltip), settings.QuadsPerMeter.value, 1, 4);
+        settings.GroundMaterial.value =
+            EditorGUILayout.ObjectField(new GUIContent("Ground Material", settings.GroundMaterial.tooltip),
+                settings.GroundMaterial.value, typeof(Material), true) as Material;
         GUILayout.EndVertical();
         if (GUILayout.Button("Generate Ground Mesh")) {
             this.StartCoroutine(GenerateGroundMesh());
         }
+
+        GUILayout.EndVertical();
+
+        GUILayout.BeginVertical("HelpBox");
+        GUILayout.Label("Sphere Mesh Settings");
+        GUILayout.BeginVertical("GroupBox");
+        settings.SphereSubdivs.value = EditorGUILayout.IntSlider(
+            new GUIContent("Subdivisions", settings.SphereSubdivs.tooltip), settings.SphereSubdivs.value, 2, 10);
+        GUILayout.EndVertical();
+        if (GUILayout.Button("Generate Sphere Mesh")) {
+            this.StartCoroutine(GenerateSphereMesh());
+        }
+
         GUILayout.EndVertical();
     }
 
@@ -38,6 +55,12 @@ public class MeshGeneration : EditorWindow {
     // - Density: Quads per m^2. Specified as quads per meter. i.e. 2 becomes 4.
     IEnumerator GenerateGroundMesh() {
         MeshGenerator.GenerateGroundMesh(settings);
+        yield return null;
+    }
+
+    // Generates a sphere using Rounded Cube method.
+    IEnumerator GenerateSphereMesh() {
+        MeshGenerator.GenerateSphereMesh(settings);
         yield return null;
     }
 }

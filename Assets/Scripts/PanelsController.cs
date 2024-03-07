@@ -6,9 +6,8 @@ public class PanelsController : Singleton<PanelsController> {
     [NonNullField] public Terrain ColliderTerrain;
     [NonNullField] public Terrain LowerColliderTerrain;
 
-    [NonNullField] public GameObject PanelProjectilesContainer;
+    [NonNullField] public Transform BlackHoleObject;
     [NonNullField] public GameObject DummyProjectilesContainer;
-    [NonNullField] public GameObject PanelProjectilePrefab;
     [NonNullField] public GameObject DummyPanelPrefab;
 
     public float TerrainSize = 640.0f;
@@ -25,8 +24,19 @@ public class PanelsController : Singleton<PanelsController> {
     private bool[,] _holePunchData;
 
     // A Cell is composed of N=2 panels.
-    private GameObject[,] _panelProjectileObjects;
+    private bool[,] _panelProjectileSpawned;
     private GameObject[,] _dummyPanelObjects;
+
+    public float PanelInitialSpeed = 1.0f;
+    public float PanelSpeedRandomOffsetFactor = 1.0f;
+    public float PanelAcceleration = 0.5f;
+    public float PanelTurningSpeed = 1.0f;
+    public Vector3 PanelInitialAngleVelocity = new Vector3(0, 0, 1.0f);
+    public float PanelAngularVelocityDecay = 1.0f;
+    public Vector3 PanelVelocityOffset = Vector3.zero;
+    public float PanelAccelerationRandomOffsetFactor = 1.0f;
+    public float PanelTurningSpeedRandomOffsetFactor = 1.0f;
+    public float PanelTurnTowardsTargetSpeed = 1.0f;
 
     protected override void Awake() {
         base.Awake();
@@ -36,11 +46,11 @@ public class PanelsController : Singleton<PanelsController> {
         _panelsContainerSize = _panelsPerSide * PanelSize;
         _worldSpaceToPanelSpaceOffset = new Vector3(_panelsContainerSize / 2.0f, 0, _panelsContainerSize / 2.0f);
         _panelSizeOffset = new Vector3(PanelSize / 2.0f, -0.5f, PanelSize / 2.0f);
-        _panelProjectileObjects = new GameObject[_panelsPerSide, _panelsPerSide];
+        _panelProjectileSpawned = new bool[_panelsPerSide, _panelsPerSide];
         _dummyPanelObjects = new GameObject[_panelsPerSide, _panelsPerSide];
         for (int row = 0; row < _panelsPerSide; row++) {
             for (int col = 0; col < _panelsPerSide; col++) {
-                _panelProjectileObjects[row, col] = null;
+                _panelProjectileSpawned[row, col] = false;
                 _dummyPanelObjects[row, col] = null;
             }
         }
@@ -88,6 +98,9 @@ public class PanelsController : Singleton<PanelsController> {
         Vector3 worldSpacePosition = panelSpaceCoordinates - _worldSpaceToPanelSpaceOffset;
         _PunchHoleInTerrain(worldSpacePosition);
 
+        Vector3 cellCenterWorldSpace = panelSpaceCoordinates + new Vector3(_cellSize / 2.0f, 0, _cellSize / 2.0f) -
+                                       _worldSpaceToPanelSpaceOffset;
+
         // Next, handle the panels. This affects all panels that are in this cell.
         int panelRow, panelCol;
         for (int j = 0; j < PanelsPerCell; j++) {
@@ -104,11 +117,24 @@ public class PanelsController : Singleton<PanelsController> {
                 // Spawn in a new projectile panel
                 panelSpaceCoordinates = new Vector3(panelCol * PanelSize, 0, panelRow * PanelSize) + _panelSizeOffset;
                 worldSpacePosition = panelSpaceCoordinates - _worldSpaceToPanelSpaceOffset;
-                GameObject projectilePanel = Instantiate(PanelProjectilePrefab, worldSpacePosition,
-                    Quaternion.identity, PanelProjectilesContainer.transform);
-                _panelProjectileObjects[panelRow, panelCol] = projectilePanel;
+                float randomSpeedOffset = Random.value * PanelSpeedRandomOffsetFactor;
+                // Vector from center of 
+                Vector3 centerToSpawn = worldSpacePosition - cellCenterWorldSpace;
+                Quaternion rotation = Quaternion.Euler(0,
+                    Mathf.Atan2(centerToSpawn.x, centerToSpawn.z) * Mathf.Rad2Deg, 0);
+                Vector3 angularVelocity = rotation * PanelInitialAngleVelocity;
+                // VectorDebug.Instance.DrawDebugVector($"{panelCol}, {panelRow}", centerToSpawn, cellCenterWorldSpace,
+                //     Color.red);
+                // VectorDebug.Instance.DrawDebugVector($"Rotation", rotation * Vector3.forward, cellCenterWorldSpace,
+                //     Color.green);
+                GameObject projectilePanel = ProjectileController.Instance
+                    .SpawnPanel(worldSpacePosition, PanelInitialSpeed + randomSpeedOffset,
+                        angularVelocity, PanelAngularVelocityDecay, rotation * PanelVelocityOffset).gameObject;
+                _panelProjectileSpawned[panelRow, panelCol] = true;
 
-                // TODO: Then we enable the destruction sequence for those panels.
+                // Change the behavior after a delay
+                StartCoroutine(PanelProjectileSecondStage(projectilePanel.GetComponent<Projectile>(),
+                    BlackHoleObject));
             }
         }
 
@@ -138,10 +164,19 @@ public class PanelsController : Singleton<PanelsController> {
         }
     }
 
+    IEnumerator PanelProjectileSecondStage(Projectile panel, Transform trackedTarget) {
+        yield return new WaitForSeconds(2.0f);
+
+        panel.TrackedTarget = trackedTarget;
+        panel.Acceleration = PanelAcceleration + Random.value * PanelAccelerationRandomOffsetFactor;
+        panel.TurningSpeed = PanelTurningSpeed + Random.value * PanelTurningSpeedRandomOffsetFactor;
+        panel.TurnTowardsTarget = true;
+        panel.TurnTowardsTargetSpeed = PanelTurnTowardsTargetSpeed;
+    }
+
     private void SpawnDummyPanelAt(int panelCol, int panelRow) {
         GameObject dummyPanel = _dummyPanelObjects[panelRow, panelCol];
-        GameObject projectilePanel = _panelProjectileObjects[panelRow, panelCol];
-        if (dummyPanel != null || projectilePanel != null) {
+        if (dummyPanel != null || _panelProjectileSpawned[panelRow, panelCol]) {
             return;
         }
 

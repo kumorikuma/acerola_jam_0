@@ -17,6 +17,13 @@ public class Projectile : MonoBehaviour {
     public Transform TrackedTarget;
     public float Acceleration = 0.1f;
     public float TurningSpeed = 20.0f;
+    public Vector3 AngularVelocity = Vector3.zero;
+    public float AngularVelocityDecay = 0f;
+    public bool FaceForward = true;
+    public float MaxSpeed = -1.0f;
+    public Vector3 AdditionalVelocityOffset = Vector3.zero;
+    public bool TurnTowardsTarget = false;
+    public float TurnTowardsTargetSpeed = 5.0f;
 
     // Maybe there's a delay before the "boosters" turn on and it accelerates towards the target.
 

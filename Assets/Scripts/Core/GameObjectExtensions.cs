@@ -38,4 +38,11 @@ public static class GameObjectExtensions {
         // If not found in this branch, return null
         return null;
     }
+
+    public static void SetLayerAllChildren(this GameObject obj, int layer) {
+        var children = obj.GetComponentsInChildren<Transform>(includeInactive: true);
+        foreach (var child in children) {
+            child.gameObject.layer = layer;
+        }
+    }
 }

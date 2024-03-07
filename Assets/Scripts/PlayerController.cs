@@ -92,6 +92,12 @@ public class PlayerController : MonoBehaviour {
     private bool _inputBlockHeld = false;
     private bool _isBlocking = false;
 
+    // Status Effects
+    public float PlanetDamagePositionThreshold = -1.5f;
+    public float PlanetDamageCooldown = 1.0f;
+    public int PlanetTickDamage = 20;
+    private float _planetDamageCooldownCountdown = 0.0f;
+
     private void SetPlayerLives(int playerLives) {
         CurrentPlayerLives = Mathf.Clamp(playerLives, 0, MaxPlayerLives);
         OnPlayerLivesChanged?.Invoke(this, CurrentPlayerLives);
@@ -184,6 +190,7 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         HandleMovement();
         HandleAttack();
+        HandleStatusEffects();
         PlayerManager.Instance.CameraController.UpdateCamera();
     }
 
@@ -210,6 +217,10 @@ public class PlayerController : MonoBehaviour {
 
         if (_blockDurationCountDown > 0.0f) {
             _blockDurationCountDown -= Time.fixedDeltaTime;
+        }
+
+        if (_planetDamageCooldownCountdown > 0.0f) {
+            _planetDamageCooldownCountdown -= Time.fixedDeltaTime;
         }
     }
 
@@ -440,6 +451,17 @@ public class PlayerController : MonoBehaviour {
 
         if (inputSecondaryFireHeld && _secondaryFireCooldownCountdown <= 0.0f) {
             FireSecondaryWeapon();
+        }
+    }
+
+    private void HandleStatusEffects() {
+        // If the player's feet are touching the inner planet, the player will periodically take damage (every second?).
+        // To cheaply check this, we'll take advantage of the fact that ground level == 0, and that if the player's feet 
+        // are below -1.5, then they're considered to be in the "damage" zone.
+        // TODO: We will need to not do this when in transitioning to the second stage.
+        if (transform.position.y <= PlanetDamagePositionThreshold && _planetDamageCooldownCountdown <= 0.0f) {
+            _planetDamageCooldownCountdown = PlanetDamageCooldown;
+            Stats.ApplyDamage(PlanetTickDamage);
         }
     }
 

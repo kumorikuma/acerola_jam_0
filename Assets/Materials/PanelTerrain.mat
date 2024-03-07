@@ -111,7 +111,7 @@ Material:
     - _BackgroundColor: {r: 0.20392157, g: 0.5254902, b: 0.57254905, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LineColor: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
+    - _LineColor: {r: 1.6415094, g: 1.6415094, b: 1.6415094, a: 1}
     - _PanelColor: {r: 0.5294118, g: 0.7137255, b: 0.6745098, a: 0}
     - _PanelColor1: {r: 0.5333333, g: 0.7137255, b: 0.6627451, a: 1}
     - _PanelColor2: {r: 1, g: 0, b: 0.09661579, a: 1}

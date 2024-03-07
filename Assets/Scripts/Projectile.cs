@@ -23,8 +23,14 @@ public class Projectile : MonoBehaviour {
     public float MaxSpeed = -1.0f;
     public Vector3 AdditionalVelocityOffset = Vector3.zero;
     public bool TurnTowardsTarget = false;
+
     public float TurnTowardsTargetSpeed = 5.0f;
-    public bool BackGrounded = false;
+
+    // This projectile should be moved to the background layer after it reaches a certain height
+    public bool ShouldBackgroundWhenHigh = false;
+
+    // Has a collider that needs to be removed when it's too far from the player
+    public bool ShouldRemoveCollider = false;
 
     // Maybe there's a delay before the "boosters" turn on and it accelerates towards the target.
 

@@ -23,6 +23,7 @@ public class ProjectileController : Singleton<ProjectileController> {
         Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
         projectileComponent.ProjectileOwner = owner;
         projectileComponent.velocity = velocity;
+        projectileComponent.ShouldBackgroundWhenHigh = false;
         _projectiles.Add(newProjectile.GetInstanceID(), projectileComponent);
         return projectileComponent;
     }
@@ -32,6 +33,7 @@ public class ProjectileController : Singleton<ProjectileController> {
         Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
         projectileComponent.ProjectileOwner = owner;
         projectileComponent.velocity = rotation * Vector3.forward * speed;
+        projectileComponent.ShouldBackgroundWhenHigh = false;
         _projectiles.Add(newProjectile.GetInstanceID(), projectileComponent);
         return projectileComponent;
     }
@@ -47,7 +49,22 @@ public class ProjectileController : Singleton<ProjectileController> {
         projectileComponent.AngularVelocity = angularVelocity;
         projectileComponent.FaceForward = false;
         projectileComponent.AngularVelocityDecay = angularVelocityDecay;
+        projectileComponent.ShouldBackgroundWhenHigh = true;
+        projectileComponent.ShouldRemoveCollider = true;
         _projectiles.Add(newProjectile.GetInstanceID(), projectileComponent);
+
+        // We can spawn it without the collider if it's really far away from the player
+        float projectileDistanceToPlayer =
+            (PlayerManager.Instance.PlayerController.transform.position - origin).magnitude;
+        if (projectileDistanceToPlayer > 20) {
+            BoxCollider colliderComponent = newProjectile.GetComponentInChildren<BoxCollider>();
+            if (colliderComponent != null) {
+                Destroy(colliderComponent);
+            }
+
+            projectileComponent.ShouldRemoveCollider = false;
+        }
+
         return projectileComponent;
     }
 
@@ -105,14 +122,22 @@ public class ProjectileController : Singleton<ProjectileController> {
             // }
 
             Vector3 position = projectile.transform.position;
-            float projectileDistanceToPlayer =
-                (PlayerManager.Instance.PlayerController.transform.position - position).magnitude;
-            if (!projectile.BackGrounded && projectileDistanceToPlayer > 50) {
-                projectile.BackGrounded = true;
+
+            if (projectile.ShouldBackgroundWhenHigh && position.y > 10) {
+                projectile.ShouldBackgroundWhenHigh = false;
                 projectile.gameObject.SetLayerAllChildren(LayerMask.NameToLayer("Background"));
-                Collider colliderComponent = projectile.GetComponent<Collider>();
-                if (colliderComponent != null) {
-                    Destroy(colliderComponent);
+            }
+
+            if (projectile.ShouldRemoveCollider) {
+                float projectileDistanceToPlayer =
+                    (PlayerManager.Instance.PlayerController.transform.position - position).magnitude;
+                if (projectileDistanceToPlayer > 25) {
+                    BoxCollider colliderComponent = projectile.GetComponentInChildren<BoxCollider>();
+                    if (colliderComponent != null) {
+                        Destroy(colliderComponent);
+                    }
+
+                    projectile.ShouldRemoveCollider = false;
                 }
             }
 

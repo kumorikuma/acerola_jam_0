@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 public class PanelsController : Singleton<PanelsController> {
     [NonNullField] public Terrain ColliderTerrain;
@@ -16,6 +20,7 @@ public class PanelsController : Singleton<PanelsController> {
 
     // Size of all the panels one side combined.
     private int _panelsPerSide;
+    private int _cellsPerSide;
     private Vector3 _worldSpaceToPanelSpaceOffset;
     private Vector3 _panelSizeOffset;
     private float _panelsContainerSize;
@@ -27,6 +32,15 @@ public class PanelsController : Singleton<PanelsController> {
     private bool[,] _panelProjectileSpawned;
     private GameObject[,] _dummyPanelObjects;
 
+    // Panel Destruction Settings
+    public float CellDestructionCooldown = 3.0f;
+    public int CellsDestroyed = 5;
+    public int SectorsPerSide = 4;
+    private bool _isDestroyingLevel = false;
+    private List<List<int>> _sectors = new();
+    private float _CellDestructionCooldownCountdown = 0.0f;
+
+    // Panel Projectile Settings
     public float PanelInitialSpeed = 1.0f;
     public float PanelSpeedRandomOffsetFactor = 1.0f;
     public float PanelAcceleration = 0.5f;
@@ -43,8 +57,12 @@ public class PanelsController : Singleton<PanelsController> {
 
         _panelsPerSide = Mathf.RoundToInt(TerrainSize / PanelSize);
         _cellSize = PanelSize * PanelsPerCell;
+        _cellsPerSide = Mathf.RoundToInt(TerrainSize / _cellSize);
         _panelsContainerSize = _panelsPerSide * PanelSize;
         _worldSpaceToPanelSpaceOffset = new Vector3(_panelsContainerSize / 2.0f, 0, _panelsContainerSize / 2.0f);
+        // Debug.Log($"[PanelsController] PanelsPerSide: " + _panelsPerSide);
+        // Debug.Log($"[PanelsController] _panelsContainerSize: " + _panelsContainerSize);
+        // Debug.Log($"[PanelsController] _worldSpaceToPanelSpaceOffset: " + _worldSpaceToPanelSpaceOffset);
         _panelSizeOffset = new Vector3(PanelSize / 2.0f, -0.5f, PanelSize / 2.0f);
         _panelProjectileSpawned = new bool[_panelsPerSide, _panelsPerSide];
         _dummyPanelObjects = new GameObject[_panelsPerSide, _panelsPerSide];
@@ -77,13 +95,78 @@ public class PanelsController : Singleton<PanelsController> {
         // Set the lower collider terrain as well
         LowerColliderTerrain.terrainData = ColliderTerrain.terrainData;
         LowerColliderTerrain.GetComponent<TerrainCollider>().terrainData = LowerColliderTerrain.terrainData;
+
+        // Iterate through all the indices and all them to the appropriate sector.
+        for (int sector = 0; sector < SectorsPerSide * SectorsPerSide; sector++) {
+            _sectors.Add(new List<int>());
+        }
+
+        int cellsPerSector = _cellsPerSide / SectorsPerSide;
+        for (int row = 0; row < _cellsPerSide; row++) {
+            int sectorRow = (int)(row / (float)cellsPerSector);
+            for (int col = 0; col < _cellsPerSide; col++) {
+                int sectorCol = (int)(col / (float)cellsPerSector);
+                int sector = SectorFromCoordinates(sectorCol, sectorRow);
+                int cellIdx = CellIndexFromCoordinates(col, row);
+                _sectors[sector].Add(cellIdx);
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update() {
-        // Periodically, pick a random group of four cells to destroy
+    private int CellIndexFromCoordinates(int cellCol, int cellRow) {
+        return cellCol + cellRow * _cellsPerSide;
     }
 
+    private Vector2Int CellCoordinatesFromIndex(int cellIdx) {
+        int cellRow = cellIdx / _cellsPerSide;
+        int cellCol = cellIdx % _cellsPerSide;
+        return new Vector2Int(cellCol, cellRow);
+    }
+
+    private int SectorFromCoordinates(int sectorCol, int sectorRow) {
+        return sectorCol + sectorRow * SectorsPerSide;
+    }
+
+    public void StartDestroyingLevel() {
+        _isDestroyingLevel = true;
+    }
+
+    void FixedUpdate() {
+        if (!_isDestroyingLevel) {
+            return;
+        }
+
+        if (_CellDestructionCooldownCountdown > 0.0f) {
+            _CellDestructionCooldownCountdown -= Time.fixedDeltaTime;
+        }
+
+        if (_CellDestructionCooldownCountdown <= 0.0f) {
+            _CellDestructionCooldownCountdown = CellDestructionCooldown;
+            DestroyRandomCellInEachSector();
+        }
+    }
+
+    public void DestroyRandomCellInEachSector() {
+        // Maybe we divide up into sectors (4).
+        // Within each sector, we have a list of all the indices in there.
+        // We will pick a random index from the list everytime.
+        Debug.Log($"Sectors: {_sectors.Count}");
+        for (int sector = 0; sector < _sectors.Count; sector++) {
+            List<int> cellList = _sectors[sector];
+            Debug.Log($"Sector {sector} Cell Count: {cellList.Count}");
+            if (cellList.Count == 0) {
+                continue;
+            }
+
+            // Pick a random cell
+            int cellIdx = Random.Range(0, cellList.Count);
+            Vector2Int cellCoordinates = CellCoordinatesFromIndex(cellList[cellIdx]);
+            DestroyCell(cellCoordinates.x, cellCoordinates.y);
+
+            // Remove it so it's not picked again
+            cellList.RemoveAt(cellIdx);
+        }
+    }
 
     public void DestroyCellAt(Vector3 worldPosition) {
         Vector2Int cellCoordinates = WorldPositionToCellCoordinates(worldPosition);
@@ -91,10 +174,14 @@ public class PanelsController : Singleton<PanelsController> {
     }
 
     public void DestroyCell(int cellCol, int cellRow) {
+        if (cellCol < 0 || cellCol >= _cellsPerSide || cellRow < 0 || cellRow >= _cellsPerSide) {
+            Debug.LogError($"[PanelsController] Destroy Cell out of bounds: {cellCol}, {cellRow}");
+            return;
+        }
+
         // Firstly, punch a hole in the terrain.
         // Coordinates are in panel space, need to convert back to world space.
         Vector3 panelSpaceCoordinates = new Vector3(cellCol * _cellSize, 0, cellRow * _cellSize);
-        Debug.Log("panelSpaceCoordinates: " + panelSpaceCoordinates);
         Vector3 worldSpacePosition = panelSpaceCoordinates - _worldSpaceToPanelSpaceOffset;
         _PunchHoleInTerrain(worldSpacePosition);
 
@@ -107,6 +194,11 @@ public class PanelsController : Singleton<PanelsController> {
             for (int i = 0; i < PanelsPerCell; i++) {
                 panelRow = cellRow * PanelsPerCell + j;
                 panelCol = cellCol * PanelsPerCell + i;
+
+                // Ignore this if it's out of bounds.
+                if (panelCol < 0 || panelCol >= _panelsPerSide || panelRow < 0 || panelRow >= _panelsPerSide) {
+                    continue;
+                }
 
                 // Detect if there's a dummy panel spawned for that location and destroy it if there is.
                 GameObject dummyPanel = _dummyPanelObjects[panelRow, panelCol];
@@ -175,6 +267,11 @@ public class PanelsController : Singleton<PanelsController> {
     }
 
     private void SpawnDummyPanelAt(int panelCol, int panelRow) {
+        // Ignore this if it's out of bounds.
+        if (panelCol < 0 || panelCol >= _panelsPerSide || panelRow < 0 || panelRow >= _panelsPerSide) {
+            return;
+        }
+
         GameObject dummyPanel = _dummyPanelObjects[panelRow, panelCol];
         if (dummyPanel != null || _panelProjectileSpawned[panelRow, panelCol]) {
             return;
@@ -200,7 +297,15 @@ public class PanelsController : Singleton<PanelsController> {
         // The size of the hole we need to punch is PanelSize * PanelsPerCell by PanelSize * PanelsPerCell.
         // Then we need to pass in the Row/Col of where to punch it.
         Vector2Int coordinates = ConvertToAlphamapCoordinates(worldPosition);
-        ColliderTerrain.terrainData.SetHoles(coordinates.x, coordinates.y, _holePunchData);
+        try {
+            ColliderTerrain.terrainData.SetHoles(coordinates.x, coordinates.y, _holePunchData);
+        } catch (Exception e) {
+            Debug.LogError(
+                $"[PanelsController] Error Destroying at Coordinates: {coordinates}. World Pos: {worldPosition}");
+            Debug.Log(
+                $"AlphaMap Width: {ColliderTerrain.terrainData.alphamapWidth}. Height: {ColliderTerrain.terrainData.alphamapWidth}");
+            throw;
+        }
     }
 
 

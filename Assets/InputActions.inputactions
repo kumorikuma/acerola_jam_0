@@ -96,6 +96,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "DebugAction2",
+                    "type": "Button",
+                    "id": "541fb0da-e789-402f-8c9e-55217af0dbb2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DebugAction3",
+                    "type": "Button",
+                    "id": "bc758ad2-95c4-4d6b-9428-ec8962adc4ad",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Block",
                     "type": "Value",
                     "id": "f4fb9917-c6c9-4150-bf2e-4acb754f2d91",
@@ -301,6 +319,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cd51d4e6-6f82-46f9-8239-acc084878897",
+                    "path": "<Keyboard>/f2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugAction2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "99365c98-f35f-4fc4-bbb3-eaa9c3b7df1c",
+                    "path": "<Keyboard>/f3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugAction3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

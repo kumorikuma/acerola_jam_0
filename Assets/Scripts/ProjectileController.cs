@@ -107,8 +107,13 @@ public class ProjectileController : Singleton<ProjectileController> {
             Vector3 position = projectile.transform.position;
             float projectileDistanceToPlayer =
                 (PlayerManager.Instance.PlayerController.transform.position - position).magnitude;
-            if (projectileDistanceToPlayer > 100) {
+            if (!projectile.BackGrounded && projectileDistanceToPlayer > 50) {
+                projectile.BackGrounded = true;
                 projectile.gameObject.SetLayerAllChildren(LayerMask.NameToLayer("Background"));
+                Collider colliderComponent = projectile.GetComponent<Collider>();
+                if (colliderComponent != null) {
+                    Destroy(colliderComponent);
+                }
             }
 
             // Destroy the projectile if it's out of bounds.

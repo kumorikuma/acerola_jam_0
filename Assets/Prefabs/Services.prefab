@@ -170,7 +170,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 5484960389197615220, guid: dedbcadf1902d3d41a73b3f6d040a054, type: 3}
   MissilePrefab: {fileID: 818933650719752028, guid: e7d1aceb466cae54e81cfa5c8c255641, type: 3}
-  WorldMaxBoundary: 100
+  PanelPrefab: {fileID: 6373620529923547855, guid: c9d6825d1fad6a94ea06a7587666078f, type: 3}
+  WorldMaxBoundary: 500
 --- !u!1 &2160876769579675912
 GameObject:
   m_ObjectHideFlags: 0

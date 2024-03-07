@@ -54,9 +54,16 @@ public class InputManager : MonoBehaviour {
     }
 
     void OnDebugAction1() {
-        // BossController.Instance.FireMissiles();
+        BossController.Instance.FireMissiles();
+    }
+
+    void OnDebugAction2() {
         Vector3 pos = PlayerManager.Instance.PlayerController.transform.position;
         PanelsController.Instance.DestroyCellAt(pos);
+    }
+
+    void OnDebugAction3() {
+        PanelsController.Instance.StartDestroyingLevel();
     }
 
     // [Menu]

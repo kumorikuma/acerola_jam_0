@@ -321,6 +321,11 @@ public class PlayerController : MonoBehaviour {
                                  (desiredMoveDirection.magnitude * (moveSpeed * Time.deltaTime));
         }
 
+        // Gravity doesn't affect us while dashing
+        if (_isExecutingDash) {
+            _velocity.y = 0;
+        }
+
         // CharacterController.Move should only be called once, see:
         // https://forum.unity.com/threads/charactercontroller-isgrounded-unreliable-or-bad-code.373492/
         characterController.Move(_velocity * Time.deltaTime + absoluteMoveVector);

@@ -24,6 +24,7 @@ public class Projectile : MonoBehaviour {
     public Vector3 AdditionalVelocityOffset = Vector3.zero;
     public bool TurnTowardsTarget = false;
     public float TurnTowardsTargetSpeed = 5.0f;
+    public bool BackGrounded = false;
 
     // Maybe there's a delay before the "boosters" turn on and it accelerates towards the target.
 

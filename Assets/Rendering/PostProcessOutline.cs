@@ -79,6 +79,10 @@ public class PostProcessOutline : ScriptableRendererFeature {
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData) {
+            if (postProcessOutlineMaterial == null) {
+                return;
+            }
+
             CommandBuffer cmd = CommandBufferPool.Get("Post Process Outline Pass");
 
             using (new ProfilingScope(cmd, new ProfilingSampler("Post Process Outline Pass"))) {

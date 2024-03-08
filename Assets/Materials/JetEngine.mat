@@ -55,14 +55,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _BorderHorizontal: 1
-    - _BorderIntensity: 30
+    - _BorderIntensity: 35
     - _BorderSmoothness: 20
     - _BorderThreshold: 1
     - _GlobalSpeed: 3
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 4.2370944, g: 1.531582, b: 0.5253998, a: 0}
+    - _Color: {r: 1.3821988, g: 5.6125636, b: 8, a: 0}
     - _EmissionColor: {r: 2, g: 2, b: 2, a: 0}
     - _NoiseScrollSpeed1: {r: 0.5, g: 0.1, b: 0, a: 0}
     - _NoiseScrollSpeed2: {r: 0.3, g: -0.1, b: 0, a: 0}

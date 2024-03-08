@@ -19,7 +19,7 @@ MonoBehaviour:
     CreaseAngleThresholdDeg: 45
     DepthThreshold: 0
     ShaderName: CustomURP/PostProcessOutline
-    renderPassEvent: 300
+    renderPassEvent: 1000
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

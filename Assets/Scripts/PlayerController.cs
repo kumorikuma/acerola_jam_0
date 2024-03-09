@@ -81,6 +81,9 @@ public class PlayerController : MonoBehaviour {
     private Vector3 _previousDesiredMoveDirection = Vector3.zero;
     private bool _previousIsExecutingDash = false;
 
+    private AnimationEvents _animationEvents;
+    private RootMotionTransfer _rootMotionTransfer;
+
     // Stats
     [NonSerialized] public EntityStats Stats;
     public int MaxPlayerLives = 3;
@@ -102,6 +105,13 @@ public class PlayerController : MonoBehaviour {
     public int PlanetTickDamage = 20;
     private float _planetDamageCooldownCountdown = 0.0f;
 
+    // Melee Attacks
+    public int SlashAttack1Damage = 20;
+
+    // Don't want to worry about Z motion in animation
+    public AnimationCurve SlashAttack1DashZPositionCurve;
+    private bool _isMeleeAttacking = false;
+
     private void SetPlayerLives(int playerLives) {
         CurrentPlayerLives = Mathf.Clamp(playerLives, 0, MaxPlayerLives);
         OnPlayerLivesChanged?.Invoke(this, CurrentPlayerLives);
@@ -121,6 +131,8 @@ public class PlayerController : MonoBehaviour {
         _cinemachineBrain = GetComponentInChildren<CinemachineBrain>();
         characterController = GetComponent<CharacterController>();
         _shieldController = GetComponentInChildren<ShieldController>();
+        _animationEvents = GetComponentInChildren<AnimationEvents>();
+        _rootMotionTransfer = GetComponentInChildren<RootMotionTransfer>();
         Stats = GetComponent<EntityStats>();
         _velocity.y = -2f;
     }
@@ -128,6 +140,8 @@ public class PlayerController : MonoBehaviour {
     private void Start() {
         Stats.NotifyHealthChanged();
         Stats.OnHealthChanged += OnHealthChanged;
+        _animationEvents.OnSlashAttack1Ended += OnSlashAttack1Ended;
+        _animationEvents.OnSlashAttack1Hit += OnSlashAttack1Hit;
         Reset();
     }
 
@@ -238,6 +252,12 @@ public class PlayerController : MonoBehaviour {
 
     //Character controller movement
     private void HandleMovement() {
+        // If we're attacking, don't do anything
+        if (_isMeleeAttacking) {
+            Animator.SetBool("IsMeleeAttacking", true);
+            return;
+        }
+
         if (characterController.isGrounded && _velocity.y < 0) {
             // IsGrounded check becomes false if velocity is set to 0.
             // See: https://forum.unity.com/threads/charactercontroller-isgrounded-unreliable-or-bad-code.373492/
@@ -372,6 +392,7 @@ public class PlayerController : MonoBehaviour {
         Animator.SetBool("IsMovingBackward", inputMoveVector.z < 0);
         Animator.SetBool("IsDashing", _isExecutingDash);
         Animator.SetFloat("DashBlend", 1 - dashT);
+        Animator.SetBool("IsMeleeAttacking", false);
 
         // Gravity doesn't affect us while dashing
         if (_isExecutingDash) {
@@ -516,20 +537,11 @@ public class PlayerController : MonoBehaviour {
     private void FirePrimaryWeapon() {
         _primaryFireCooldownCountdown = PrimaryFireCooldown;
 
-        Vector3 initialVelocity = PlayerModel.transform.forward * ProjectileVelocity;
-        if (_lockedOnTarget != null) {
-            initialVelocity = (_lockedOnTarget.position - PrimaryWeaponMountPoint.position).normalized *
-                              ProjectileVelocity;
+        Animator.SetTrigger("SlashAttack");
+        _isMeleeAttacking = true;
+        _rootMotionTransfer.SetApplyRootMotion(true);
 
-            // Rotate the player to turn towards the target
-            // targetRotation = Quaternion.Euler(0,
-            //     Mathf.Atan2(initialVelocity.x, initialVelocity.z) * Mathf.Rad2Deg, 0);
-            // PlayerModel.transform.rotation = targetRotation;
-        }
-
-        ProjectileController.Instance.SpawnProjectile(ProjectileController.Owner.Player,
-            PrimaryWeaponMountPoint.position, Quaternion.identity,
-            initialVelocity);
+        // TODO: Handle combo attacks
     }
 
     private void FireSecondaryWeapon() {
@@ -588,5 +600,17 @@ public class PlayerController : MonoBehaviour {
     private void SetLockOnTarget(Transform lockedOnTarget) {
         _lockedOnTarget = lockedOnTarget;
         OnLockedOnTargetChanged?.Invoke(this, _lockedOnTarget);
+    }
+
+    // ====== Animation Event Handlers =====
+    private void OnSlashAttack1Hit() {
+        // TODO: Do a hit check and apply damage.
+        Debug.Log("[PlayerController] OnSlashAttack1Hit");
+    }
+
+    private void OnSlashAttack1Ended() {
+        _isMeleeAttacking = false;
+        _rootMotionTransfer.SetApplyRootMotion(false);
+        Debug.Log("[PlayerController] OnSlashAttack1Ended");
     }
 }

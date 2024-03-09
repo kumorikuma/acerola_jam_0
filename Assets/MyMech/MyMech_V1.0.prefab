@@ -88,7 +88,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_6c9e7c4f-7732-4dfa-ae3f-9cc9853ebfd9
+    name: UM_OperatedMesh_845ce8bf-ce4d-4a71-9d83-8a5ff32a44b1
     skinnedMesh: 0
     sharedMesh: {fileID: 8503282840515981426}
     buidVersion:
@@ -103,7 +103,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 6c9e7c4f-7732-4dfa-ae3f-9cc9853ebfd9
+  sourceMeshRendererGUID: 845ce8bf-ce4d-4a71-9d83-8a5ff32a44b1
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_8db4d8f2-8266-4bba-8e6d-81f98776566b
+    name: UM_OperatedMesh_928d1826-08e4-46c0-8118-8c52e2062335
     skinnedMesh: 0
     sharedMesh: {fileID: -7260857681886250210}
     buidVersion:
@@ -235,7 +235,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 8db4d8f2-8266-4bba-8e6d-81f98776566b
+  sourceMeshRendererGUID: 928d1826-08e4-46c0-8118-8c52e2062335
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -352,7 +352,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_228c5cdc-ed0d-4ee7-9aa8-ba8781e33b51
+    name: UM_OperatedMesh_7479b47a-52ad-4913-ab0b-9f1d22fca6d3
     skinnedMesh: 0
     sharedMesh: {fileID: 7154967548044210994}
     buidVersion:
@@ -367,7 +367,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 228c5cdc-ed0d-4ee7-9aa8-ba8781e33b51
+  sourceMeshRendererGUID: 7479b47a-52ad-4913-ab0b-9f1d22fca6d3
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_446d80e0-73d5-44a8-9583-73f265b0df5d
+    name: UM_OperatedMesh_f5650911-1a2d-48f4-a2b6-31f91715015e
     skinnedMesh: 0
     sharedMesh: {fileID: -4295314987380264592}
     buidVersion:
@@ -499,7 +499,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 446d80e0-73d5-44a8-9583-73f265b0df5d
+  sourceMeshRendererGUID: f5650911-1a2d-48f4-a2b6-31f91715015e
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -616,7 +616,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_91beb0cb-0d25-42ee-97f7-6e7b480ddf4e
+    name: UM_OperatedMesh_397eddb5-d107-4479-b731-c87d09d81517
     skinnedMesh: 0
     sharedMesh: {fileID: -60672796249829177}
     buidVersion:
@@ -631,7 +631,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 91beb0cb-0d25-42ee-97f7-6e7b480ddf4e
+  sourceMeshRendererGUID: 397eddb5-d107-4479-b731-c87d09d81517
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -750,7 +750,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_be3280a2-c5a3-4640-942c-0768c663b7f6
+    name: UM_OperatedMesh_cce34e2b-b8e9-4335-ad75-713a0750fb26
     skinnedMesh: 0
     sharedMesh: {fileID: -2269909996112527858}
     buidVersion:
@@ -765,7 +765,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: be3280a2-c5a3-4640-942c-0768c663b7f6
+  sourceMeshRendererGUID: cce34e2b-b8e9-4335-ad75-713a0750fb26
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -860,6 +860,8 @@ Transform:
   m_Children:
   - {fileID: 4551712070088083507}
   - {fileID: 4041674920149386242}
+  - {fileID: 7079647779121040583}
+  - {fileID: 9010743647286148390}
   m_Father: {fileID: 76067746593666557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549614329068032196
@@ -917,7 +919,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_2274c5ef-46dd-4cab-adf7-c815fd5076e8
+    name: UM_OperatedMesh_e537000a-ca06-4782-a563-a6682dea82a2
     skinnedMesh: 0
     sharedMesh: {fileID: -8093899378608889325}
     buidVersion:
@@ -932,7 +934,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 2274c5ef-46dd-4cab-adf7-c815fd5076e8
+  sourceMeshRendererGUID: e537000a-ca06-4782-a563-a6682dea82a2
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -1051,7 +1053,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Accent.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_fe357d11-3950-4941-9c66-613db2c5af41
+    name: UM_OperatedMesh_5f801708-044f-42d6-ae0e-759e58ae98f5
     skinnedMesh: 0
     sharedMesh: {fileID: -276964697799014631}
     buidVersion:
@@ -1066,7 +1068,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: fe357d11-3950-4941-9c66-613db2c5af41
+  sourceMeshRendererGUID: 5f801708-044f-42d6-ae0e-759e58ae98f5
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -1185,7 +1187,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_7bcc0099-a5de-459f-a83e-ffda593c482c
+    name: UM_OperatedMesh_a22aca69-4f35-41e3-a3ac-a49164fe5bd3
     skinnedMesh: 0
     sharedMesh: {fileID: 2237316687946815618}
     buidVersion:
@@ -1200,7 +1202,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 7bcc0099-a5de-459f-a83e-ffda593c482c
+  sourceMeshRendererGUID: a22aca69-4f35-41e3-a3ac-a49164fe5bd3
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -1317,7 +1319,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_38fe1f07-87b7-44fd-9597-afc36854a4cf
+    name: UM_OperatedMesh_e430b18f-75f5-448c-b039-6a143f55b540
     skinnedMesh: 0
     sharedMesh: {fileID: -7316592035334897816}
     buidVersion:
@@ -1332,7 +1334,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 38fe1f07-87b7-44fd-9597-afc36854a4cf
+  sourceMeshRendererGUID: e430b18f-75f5-448c-b039-6a143f55b540
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -1449,7 +1451,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_c55e3948-ec18-43ad-90f2-c8f8db0461d3
+    name: UM_OperatedMesh_4731571f-a374-4239-88e7-68733a5614f6
     skinnedMesh: 0
     sharedMesh: {fileID: 2220338075064207962}
     buidVersion:
@@ -1464,7 +1466,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: c55e3948-ec18-43ad-90f2-c8f8db0461d3
+  sourceMeshRendererGUID: 4731571f-a374-4239-88e7-68733a5614f6
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -1581,7 +1583,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_871cddfd-1f7e-4552-b859-d8fc75557960
+    name: UM_OperatedMesh_52483424-771c-4e84-b5cf-a3651407a663
     skinnedMesh: 0
     sharedMesh: {fileID: -9022129344885391774}
     buidVersion:
@@ -1596,7 +1598,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 871cddfd-1f7e-4552-b859-d8fc75557960
+  sourceMeshRendererGUID: 52483424-771c-4e84-b5cf-a3651407a663
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -1682,7 +1684,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866639974381561886}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.015260054, y: 0.010987888, z: 0.6325177, w: 0.7743177}
   m_LocalPosition: {x: -0.09189999, y: 0.0041999817, z: 0.0306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1691,7 +1693,7 @@ Transform:
   - {fileID: 6413496099488035489}
   - {fileID: 5862241053344157820}
   m_Father: {fileID: 7083021550871476778}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.151, y: -0.131, z: 78.491}
 --- !u!1 &903775355687692256
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,7 +1751,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_6c5e0e5a-b303-4289-80f4-23a67e621954
+    name: UM_OperatedMesh_bf975e40-bafe-47b8-bee7-27350de93283
     skinnedMesh: 0
     sharedMesh: {fileID: -1517177878566121080}
     buidVersion:
@@ -1764,7 +1766,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 6c5e0e5a-b303-4289-80f4-23a67e621954
+  sourceMeshRendererGUID: bf975e40-bafe-47b8-bee7-27350de93283
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -1883,7 +1885,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_9e75958e-4aa3-467f-8e46-e85b44acf822
+    name: UM_OperatedMesh_c66e6e60-0d58-427b-913b-8095f389701a
     skinnedMesh: 0
     sharedMesh: {fileID: -4169681217959334884}
     buidVersion:
@@ -1898,7 +1900,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 9e75958e-4aa3-467f-8e46-e85b44acf822
+  sourceMeshRendererGUID: c66e6e60-0d58-427b-913b-8095f389701a
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -1995,6 +1997,38 @@ Transform:
   - {fileID: 3240562524914939399}
   m_Father: {fileID: 5942487886020844809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1040975152728954642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8152179198780226264}
+  m_Layer: 9
+  m_Name: SwordAttachPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8152179198780226264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040975152728954642}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.5735764, w: 0.8191521}
+  m_LocalPosition: {x: -0.051539864, y: -0.026336925, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4831943228195555093}
+  m_Father: {fileID: 7083021550871476778}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -70}
 --- !u!1 &1155012416904817737
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,7 +2053,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155012416904817737}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.6137543, w: 0.78949714}
   m_LocalPosition: {x: -0.09189999, y: 0.0041999817, z: -0.0069000013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2028,7 +2062,7 @@ Transform:
   - {fileID: 935324156821081722}
   - {fileID: 5289104653623469770}
   m_Father: {fileID: 7083021550871476778}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 75.723}
 --- !u!1 &1258740167800729129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,7 +2151,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_53fff28a-59d1-4f71-b60d-128bdd740d22
+    name: UM_OperatedMesh_492f78eb-d296-4de1-96fe-f24efe282a15
     skinnedMesh: 0
     sharedMesh: {fileID: 8891404476131534767}
     buidVersion:
@@ -2132,7 +2166,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 53fff28a-59d1-4f71-b60d-128bdd740d22
+  sourceMeshRendererGUID: 492f78eb-d296-4de1-96fe-f24efe282a15
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -2218,7 +2252,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365529106595465167}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.45480493, w: 0.89059114}
   m_LocalPosition: {x: -0.0255, y: -0.0019, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2227,7 +2261,7 @@ Transform:
   - {fileID: 6156283673114839201}
   - {fileID: 3842392772937528523}
   m_Father: {fileID: 6610720112141018603}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 54.105}
 --- !u!1 &1368496160128535035
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,7 +2351,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_978b15c1-b95d-4e39-a2e5-22dd6aefeab9
+    name: UM_OperatedMesh_9db3b28e-4e96-4605-9d5a-23a60ac40e1b
     skinnedMesh: 0
     sharedMesh: {fileID: 4627422694038683322}
     buidVersion:
@@ -2332,7 +2366,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 978b15c1-b95d-4e39-a2e5-22dd6aefeab9
+  sourceMeshRendererGUID: 9db3b28e-4e96-4605-9d5a-23a60ac40e1b
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -2451,7 +2485,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_c300287b-827c-4535-b6c7-e86a4f56d304
+    name: UM_OperatedMesh_98d635d1-a611-44f8-9ac5-6bcc73697e7f
     skinnedMesh: 0
     sharedMesh: {fileID: -720006045216272825}
     buidVersion:
@@ -2466,7 +2500,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: c300287b-827c-4535-b6c7-e86a4f56d304
+  sourceMeshRendererGUID: 98d635d1-a611-44f8-9ac5-6bcc73697e7f
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -2585,7 +2619,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Accent_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_44392c9e-2f12-4048-bfc0-ebe59849318f
+    name: UM_OperatedMesh_6912b166-fd57-4818-b895-7beeda61bebb
     skinnedMesh: 0
     sharedMesh: {fileID: -6289316548498661692}
     buidVersion:
@@ -2600,7 +2634,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 44392c9e-2f12-4048-bfc0-ebe59849318f
+  sourceMeshRendererGUID: 6912b166-fd57-4818-b895-7beeda61bebb
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -2719,7 +2753,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_9a8d4214-f863-481c-83e9-e6b2f0938811
+    name: UM_OperatedMesh_652738a2-da60-47ec-ac55-adfc95bdf271
     skinnedMesh: 0
     sharedMesh: {fileID: -7756573911543443254}
     buidVersion:
@@ -2734,7 +2768,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 9a8d4214-f863-481c-83e9-e6b2f0938811
+  sourceMeshRendererGUID: 652738a2-da60-47ec-ac55-adfc95bdf271
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -2853,7 +2887,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_a1646eba-e2a7-4b27-a854-9c618bf61364
+    name: UM_OperatedMesh_56102d55-6fd9-4543-803d-0cc883c3925a
     skinnedMesh: 0
     sharedMesh: {fileID: -4406922023185375270}
     buidVersion:
@@ -2868,7 +2902,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: a1646eba-e2a7-4b27-a854-9c618bf61364
+  sourceMeshRendererGUID: 56102d55-6fd9-4543-803d-0cc883c3925a
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -2956,7 +2990,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744024921551290913}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.48217857, y: 0.40130773, z: 0.264134, w: 0.73259073}
   m_LocalPosition: {x: -0.014400005, y: 0, z: 0.0381}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2965,7 +2999,7 @@ Transform:
   - {fileID: 633437892386663628}
   - {fileID: 2803452319815102925}
   m_Father: {fileID: 7083021550871476778}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 29.636, y: 75.821, z: 62.936}
 --- !u!1 &1830594354617848721
 GameObject:
   m_ObjectHideFlags: 0
@@ -3021,7 +3055,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_9b29da32-083d-4299-9e36-11f6b16118fe
+    name: UM_OperatedMesh_dfb9fe78-8d3a-4d09-b761-83da437ff8dc
     skinnedMesh: 0
     sharedMesh: {fileID: -4392286325831164629}
     buidVersion:
@@ -3036,7 +3070,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 9b29da32-083d-4299-9e36-11f6b16118fe
+  sourceMeshRendererGUID: dfb9fe78-8d3a-4d09-b761-83da437ff8dc
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -3190,7 +3224,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_1b45a337-a1fb-4cf3-a7bc-640caef897c7
+    name: UM_OperatedMesh_1e6bf213-67bc-48d1-9bc7-a30af137d230
     skinnedMesh: 0
     sharedMesh: {fileID: -1276195337224612401}
     buidVersion:
@@ -3205,7 +3239,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 1b45a337-a1fb-4cf3-a7bc-640caef897c7
+  sourceMeshRendererGUID: 1e6bf213-67bc-48d1-9bc7-a30af137d230
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -3324,7 +3358,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_3ddf8bc8-6211-484c-8062-bbf377c00b20
+    name: UM_OperatedMesh_7c73b245-ce52-4a55-ad71-f9957607a7c4
     skinnedMesh: 0
     sharedMesh: {fileID: 6752961671304061325}
     buidVersion:
@@ -3339,7 +3373,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 3ddf8bc8-6211-484c-8062-bbf377c00b20
+  sourceMeshRendererGUID: 7c73b245-ce52-4a55-ad71-f9957607a7c4
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -3458,7 +3492,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2240513574980404893}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.018132197, y: -0.004858531, z: 0.49887097, w: 0.866473}
   m_LocalPosition: {x: -0.0255, y: -0.0019, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3467,7 +3501,7 @@ Transform:
   - {fileID: 354410530860288821}
   - {fileID: 8168742082406359562}
   m_Father: {fileID: 7208968588932792979}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.523, y: -1.52, z: 59.882}
 --- !u!1 &2336973484961928379
 GameObject:
   m_ObjectHideFlags: 0
@@ -3525,7 +3559,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_eeff2c40-95bc-42da-812e-b26575fc49da
+    name: UM_OperatedMesh_23c9a890-fabe-4369-a38d-6d502a5f1bc7
     skinnedMesh: 0
     sharedMesh: {fileID: 534425337018816396}
     buidVersion:
@@ -3540,7 +3574,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: eeff2c40-95bc-42da-812e-b26575fc49da
+  sourceMeshRendererGUID: 23c9a890-fabe-4369-a38d-6d502a5f1bc7
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -3659,7 +3693,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_83aeae64-943c-4adc-ae14-a6a2a565d70a
+    name: UM_OperatedMesh_7889fd65-053a-4881-b6f4-6b3431f40955
     skinnedMesh: 0
     sharedMesh: {fileID: -821272840657299782}
     buidVersion:
@@ -3674,7 +3708,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 83aeae64-943c-4adc-ae14-a6a2a565d70a
+  sourceMeshRendererGUID: 7889fd65-053a-4881-b6f4-6b3431f40955
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -3791,7 +3825,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_4812e3b5-fd06-44e2-9921-2db7174b5245
+    name: UM_OperatedMesh_d6047d4b-b6d4-44ad-85dc-82e818ef89aa
     skinnedMesh: 0
     sharedMesh: {fileID: -416229492404235031}
     buidVersion:
@@ -3806,7 +3840,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 4812e3b5-fd06-44e2-9921-2db7174b5245
+  sourceMeshRendererGUID: d6047d4b-b6d4-44ad-85dc-82e818ef89aa
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -3925,7 +3959,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_45641f18-dcf5-4e0f-8c34-4f725c3f9597
+    name: UM_OperatedMesh_e9087510-75ec-44b1-b33e-e951128b0a06
     skinnedMesh: 0
     sharedMesh: {fileID: 8909717812196220643}
     buidVersion:
@@ -3940,7 +3974,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 45641f18-dcf5-4e0f-8c34-4f725c3f9597
+  sourceMeshRendererGUID: e9087510-75ec-44b1-b33e-e951128b0a06
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -4059,7 +4093,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_6ca11ef3-3c2b-494b-908f-d5d52658c471
+    name: UM_OperatedMesh_960be5ef-1198-4e3c-a7f6-9075db885e0b
     skinnedMesh: 0
     sharedMesh: {fileID: 4422184878856993008}
     buidVersion:
@@ -4074,7 +4108,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 6ca11ef3-3c2b-494b-908f-d5d52658c471
+  sourceMeshRendererGUID: 960be5ef-1198-4e3c-a7f6-9075db885e0b
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -4160,7 +4194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2703667110787838523}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.64299506, w: 0.7658704}
   m_LocalPosition: {x: -0.09189999, y: 0.0041999817, z: 0.0123}
   m_LocalScale: {x: 1.05, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4169,7 +4203,7 @@ Transform:
   - {fileID: 7187108414317291269}
   - {fileID: 1852401980797943897}
   m_Father: {fileID: 7083021550871476778}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 80.031}
 --- !u!1 &2741055386904160056
 GameObject:
   m_ObjectHideFlags: 0
@@ -4227,7 +4261,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_d0200742-ecfe-4288-bdf9-91d6a965ef34
+    name: UM_OperatedMesh_6006231b-bdaf-47e3-9642-d7c021d590ee
     skinnedMesh: 0
     sharedMesh: {fileID: 6099790396754624173}
     buidVersion:
@@ -4242,7 +4276,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: d0200742-ecfe-4288-bdf9-91d6a965ef34
+  sourceMeshRendererGUID: 6006231b-bdaf-47e3-9642-d7c021d590ee
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -4363,7 +4397,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Accent_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_f75ff026-cb29-4abf-a2be-07c33735451d
+    name: UM_OperatedMesh_9177d807-f914-4333-894d-3639f7de837c
     skinnedMesh: 0
     sharedMesh: {fileID: 3238202913800039347}
     buidVersion:
@@ -4378,7 +4412,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: f75ff026-cb29-4abf-a2be-07c33735451d
+  sourceMeshRendererGUID: 9177d807-f914-4333-894d-3639f7de837c
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -4497,7 +4531,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_28c0ddee-79a4-4727-bcd8-bd89bcc5f3d7
+    name: UM_OperatedMesh_280ce20e-4169-43a1-acb1-660c20327180
     skinnedMesh: 0
     sharedMesh: {fileID: -1463216862552675267}
     buidVersion:
@@ -4512,7 +4546,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 28c0ddee-79a4-4727-bcd8-bd89bcc5f3d7
+  sourceMeshRendererGUID: 280ce20e-4169-43a1-acb1-660c20327180
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -4629,7 +4663,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_e7a5e485-730c-4898-a939-02c1e0db2418
+    name: UM_OperatedMesh_c6e8d74a-8951-4087-9854-e44c88a14b16
     skinnedMesh: 0
     sharedMesh: {fileID: -6043306308253297323}
     buidVersion:
@@ -4644,7 +4678,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: e7a5e485-730c-4898-a939-02c1e0db2418
+  sourceMeshRendererGUID: c6e8d74a-8951-4087-9854-e44c88a14b16
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -4761,7 +4795,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_874813c8-169f-48e1-b2c0-f7fb856bcea2
+    name: UM_OperatedMesh_0edf1e04-2b24-4e9c-9301-1281539125fd
     skinnedMesh: 0
     sharedMesh: {fileID: 4747337712933161573}
     buidVersion:
@@ -4776,7 +4810,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 874813c8-169f-48e1-b2c0-f7fb856bcea2
+  sourceMeshRendererGUID: 0edf1e04-2b24-4e9c-9301-1281539125fd
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -4893,7 +4927,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_5819cb13-fe33-4b9b-98d5-6a45b2049c44
+    name: UM_OperatedMesh_993b351a-2ff3-4f93-af99-fc6bea8f0602
     skinnedMesh: 0
     sharedMesh: {fileID: 3743190740624842168}
     buidVersion:
@@ -4908,7 +4942,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 5819cb13-fe33-4b9b-98d5-6a45b2049c44
+  sourceMeshRendererGUID: 993b351a-2ff3-4f93-af99-fc6bea8f0602
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -5025,7 +5059,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_4be19218-f179-4982-875c-8c1c7d7570c8
+    name: UM_OperatedMesh_e36dfe6b-cf62-46b4-a74a-b1db98e2e7e2
     skinnedMesh: 0
     sharedMesh: {fileID: -8148064374040046053}
     buidVersion:
@@ -5040,7 +5074,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 4be19218-f179-4982-875c-8c1c7d7570c8
+  sourceMeshRendererGUID: e36dfe6b-cf62-46b4-a74a-b1db98e2e7e2
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -5159,7 +5193,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_fbdbf2ac-f5f3-40b2-8f8c-f7eab372431f
+    name: UM_OperatedMesh_0524693b-6619-4b67-aa88-64a713cf7cf9
     skinnedMesh: 0
     sharedMesh: {fileID: -2339866975753910436}
     buidVersion:
@@ -5174,7 +5208,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: fbdbf2ac-f5f3-40b2-8f8c-f7eab372431f
+  sourceMeshRendererGUID: 0524693b-6619-4b67-aa88-64a713cf7cf9
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -5335,7 +5369,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Accent.mat
   currentMaterialIndex: 3
   renderableMesh:
-    name: UM_OperatedMesh_021d9800-3995-41e0-8082-2db77f1f9e98
+    name: UM_OperatedMesh_b1386021-e440-439d-bbc2-eceb2cd2cc48
     skinnedMesh: 0
     sharedMesh: {fileID: -8200976307299891393}
     buidVersion:
@@ -5350,7 +5384,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 021d9800-3995-41e0-8082-2db77f1f9e98
+  sourceMeshRendererGUID: b1386021-e440-439d-bbc2-eceb2cd2cc48
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -5449,6 +5483,8 @@ Transform:
   m_Children:
   - {fileID: 8184682785245748304}
   - {fileID: 3222370175521315027}
+  - {fileID: 6757439284605143292}
+  - {fileID: 5132397782537914297}
   m_Father: {fileID: 76067746593666557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3509102313206098895
@@ -5506,7 +5542,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_310bb2ff-359a-4cc3-87d9-040f077bdfc9
+    name: UM_OperatedMesh_a1d02888-892b-471f-b36e-9989162e5cbc
     skinnedMesh: 0
     sharedMesh: {fileID: -4888220397176949110}
     buidVersion:
@@ -5521,7 +5557,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 310bb2ff-359a-4cc3-87d9-040f077bdfc9
+  sourceMeshRendererGUID: a1d02888-892b-471f-b36e-9989162e5cbc
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -5638,7 +5674,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_a674dd42-4795-4fd6-a35c-02e03b9ba05a
+    name: UM_OperatedMesh_1521a46d-58f7-43de-b9b8-9872b3ab7d79
     skinnedMesh: 0
     sharedMesh: {fileID: -7915081192705427523}
     buidVersion:
@@ -5653,7 +5689,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: a674dd42-4795-4fd6-a35c-02e03b9ba05a
+  sourceMeshRendererGUID: 1521a46d-58f7-43de-b9b8-9872b3ab7d79
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -5739,7 +5775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3611180784299627578}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.00866298, y: -0.002321218, z: 0.23834331, w: 0.9711396}
   m_LocalPosition: {x: -0.030899785, y: 0.0018599965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5747,7 +5783,7 @@ Transform:
   - {fileID: 7210161012425696380}
   - {fileID: 879045057391309901}
   m_Father: {fileID: 8693185621131488926}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.901, y: -0.495, z: 27.583}
 --- !u!1 &3624317416064507509
 GameObject:
   m_ObjectHideFlags: 0
@@ -5803,7 +5839,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_e04e8d04-9f09-4530-afcd-491f80f6d73b
+    name: UM_OperatedMesh_85af552f-3fbc-446b-ac12-c634f8fa086d
     skinnedMesh: 0
     sharedMesh: {fileID: -5568985698148213642}
     buidVersion:
@@ -5818,7 +5854,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: e04e8d04-9f09-4530-afcd-491f80f6d73b
+  sourceMeshRendererGUID: 85af552f-3fbc-446b-ac12-c634f8fa086d
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -5904,7 +5940,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3671631301907149314}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.00000008940694, y: -0.020573013, z: -0.000000059604623, w: 0.99978834}
   m_LocalPosition: {x: -0.0177, y: 0.0027, z: 0.0173}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5913,7 +5949,7 @@ Transform:
   - {fileID: 5967022004383108955}
   - {fileID: 2124457929040452665}
   m_Father: {fileID: 3827214012967498365}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -2.358, z: 0}
 --- !u!1 &3784515506452504926
 GameObject:
   m_ObjectHideFlags: 0
@@ -5944,6 +5980,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2833322299725346864}
+  - {fileID: 898396601667452495}
   - {fileID: 9000260995437043221}
   m_Father: {fileID: 8049768365102251389}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6002,7 +6039,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_1d4b6bc3-a597-4cc5-9918-321ec46673b1
+    name: UM_OperatedMesh_874019ca-f619-48c8-b509-4035ea8423e4
     skinnedMesh: 0
     sharedMesh: {fileID: -2411532947332965989}
     buidVersion:
@@ -6017,7 +6054,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 1d4b6bc3-a597-4cc5-9918-321ec46673b1
+  sourceMeshRendererGUID: 874019ca-f619-48c8-b509-4035ea8423e4
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -6134,7 +6171,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_afde4a93-2718-4d63-bf8b-6eb0eb5e8be7
+    name: UM_OperatedMesh_f6bcaac7-6624-45b7-bf42-6397dc552e47
     skinnedMesh: 0
     sharedMesh: {fileID: -8423252942963923945}
     buidVersion:
@@ -6149,7 +6186,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: afde4a93-2718-4d63-bf8b-6eb0eb5e8be7
+  sourceMeshRendererGUID: f6bcaac7-6624-45b7-bf42-6397dc552e47
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -6298,7 +6335,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_305b5866-a31b-4723-a8d7-8c5726a63b35
+    name: UM_OperatedMesh_778c1734-32e7-437e-8dbe-5b61e06035a2
     skinnedMesh: 0
     sharedMesh: {fileID: -4984689038013880305}
     buidVersion:
@@ -6313,7 +6350,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 305b5866-a31b-4723-a8d7-8c5726a63b35
+  sourceMeshRendererGUID: 778c1734-32e7-437e-8dbe-5b61e06035a2
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -6430,7 +6467,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_8eace159-0e93-4783-a494-0d0d8da3a9a2
+    name: UM_OperatedMesh_170a0489-13cd-4eb8-ab0a-b9c97fcf134e
     skinnedMesh: 0
     sharedMesh: {fileID: 3721352198980099495}
     buidVersion:
@@ -6445,7 +6482,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 8eace159-0e93-4783-a494-0d0d8da3a9a2
+  sourceMeshRendererGUID: 170a0489-13cd-4eb8-ab0a-b9c97fcf134e
   guid: 19a25945-26d7-48c8-a7fa-cf7626e240f7
   localOptions:
     RecalculateTangents: 0
@@ -6562,7 +6599,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_831767b7-edc1-49ca-be10-b67bd24a630c
+    name: UM_OperatedMesh_7f397de3-9fa3-4edc-96c8-7bafdde9f8ce
     skinnedMesh: 0
     sharedMesh: {fileID: -5698218098866321306}
     buidVersion:
@@ -6577,7 +6614,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 831767b7-edc1-49ca-be10-b67bd24a630c
+  sourceMeshRendererGUID: 7f397de3-9fa3-4edc-96c8-7bafdde9f8ce
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -6669,6 +6706,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6698104746266962871}
+  - {fileID: 2969435311019737097}
   - {fileID: 3957104637669140283}
   m_Father: {fileID: 9000574196122170917}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6729,7 +6767,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_e1ee5b4b-5707-411b-ab9e-5d510b172cd5
+    name: UM_OperatedMesh_953f8bb1-20c5-4161-92a4-f5de39a9aa71
     skinnedMesh: 0
     sharedMesh: {fileID: -6792394596582667468}
     buidVersion:
@@ -6744,7 +6782,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: e1ee5b4b-5707-411b-ab9e-5d510b172cd5
+  sourceMeshRendererGUID: 953f8bb1-20c5-4161-92a4-f5de39a9aa71
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -6863,7 +6901,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_f3114c9f-55f0-4693-90f4-ba12829236b9
+    name: UM_OperatedMesh_6454126a-412f-4fc8-8a00-77757417d3b0
     skinnedMesh: 0
     sharedMesh: {fileID: 405765615549452284}
     buidVersion:
@@ -6878,7 +6916,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: f3114c9f-55f0-4693-90f4-ba12829236b9
+  sourceMeshRendererGUID: 6454126a-412f-4fc8-8a00-77757417d3b0
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -6970,6 +7008,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4843160811534313549}
+  - {fileID: 8334575409199118644}
   - {fileID: 8109938531202199670}
   m_Father: {fileID: 3649643966300203371}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7032,7 +7071,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4548407832001128704}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.17154078, w: 0.9851771}
   m_LocalPosition: {x: -0.030899785, y: 0.0018599965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7040,7 +7079,7 @@ Transform:
   - {fileID: 7783755770689813517}
   - {fileID: 5429463845470385394}
   m_Father: {fileID: 747601263804243494}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 19.755}
 --- !u!1 &4668669135332880439
 GameObject:
   m_ObjectHideFlags: 0
@@ -7098,7 +7137,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_493c81a1-a7bc-4d51-b3da-e3b999134613
+    name: UM_OperatedMesh_d538eb95-cb42-40db-a885-1a2ec843c5fa
     skinnedMesh: 0
     sharedMesh: {fileID: -4612706555423423474}
     buidVersion:
@@ -7113,7 +7152,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 493c81a1-a7bc-4d51-b3da-e3b999134613
+  sourceMeshRendererGUID: d538eb95-cb42-40db-a885-1a2ec843c5fa
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -7234,7 +7273,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_f2eb64f9-7382-46b4-b0ea-a1537c51e475
+    name: UM_OperatedMesh_3859bc71-9bae-4587-a27c-f1fa7c79b578
     skinnedMesh: 0
     sharedMesh: {fileID: 8059745704083780342}
     buidVersion:
@@ -7249,7 +7288,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: f2eb64f9-7382-46b4-b0ea-a1537c51e475
+  sourceMeshRendererGUID: 3859bc71-9bae-4587-a27c-f1fa7c79b578
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -7368,7 +7407,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_dd63545a-9e07-435a-8495-136d271f2ccb
+    name: UM_OperatedMesh_d05ae80f-d4d1-44fa-b8a8-656ae9d980b7
     skinnedMesh: 0
     sharedMesh: {fileID: 2996064931164762695}
     buidVersion:
@@ -7383,7 +7422,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: dd63545a-9e07-435a-8495-136d271f2ccb
+  sourceMeshRendererGUID: d05ae80f-d4d1-44fa-b8a8-656ae9d980b7
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -7500,7 +7539,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_0ecde2e1-8289-45d8-b25b-3dcb4222440d
+    name: UM_OperatedMesh_75d227b6-ffe6-4467-a21d-6817c7760e33
     skinnedMesh: 0
     sharedMesh: {fileID: -1947159431444057309}
     buidVersion:
@@ -7515,7 +7554,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 0ecde2e1-8289-45d8-b25b-3dcb4222440d
+  sourceMeshRendererGUID: 75d227b6-ffe6-4467-a21d-6817c7760e33
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -7632,7 +7671,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_23adbcd6-0841-45e4-99b6-47d0a2fbac6b
+    name: UM_OperatedMesh_0cb87575-1c2c-4506-8173-de45cf0d23f3
     skinnedMesh: 0
     sharedMesh: {fileID: 2894873504844705061}
     buidVersion:
@@ -7647,7 +7686,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 23adbcd6-0841-45e4-99b6-47d0a2fbac6b
+  sourceMeshRendererGUID: 0cb87575-1c2c-4506-8173-de45cf0d23f3
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -7764,7 +7803,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_5f8007d5-80db-49c5-99bb-a2d4bab86a41
+    name: UM_OperatedMesh_4d5e6108-ca2f-4b55-9e2a-da0a294718c6
     skinnedMesh: 0
     sharedMesh: {fileID: -1736771007398279174}
     buidVersion:
@@ -7779,7 +7818,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 5f8007d5-80db-49c5-99bb-a2d4bab86a41
+  sourceMeshRendererGUID: 4d5e6108-ca2f-4b55-9e2a-da0a294718c6
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -7965,7 +8004,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Accent.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_f123a510-0f36-4112-9e72-911487591f85
+    name: UM_OperatedMesh_7fb2f765-c687-4b59-93ec-0711796770a3
     skinnedMesh: 0
     sharedMesh: {fileID: -4717687299398690416}
     buidVersion:
@@ -7980,7 +8019,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: f123a510-0f36-4112-9e72-911487591f85
+  sourceMeshRendererGUID: 7fb2f765-c687-4b59-93ec-0711796770a3
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -8099,7 +8138,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_041651f9-d97e-43b4-a724-3abc932de6c9
+    name: UM_OperatedMesh_cec6f011-dd7f-470c-8e9a-b04b7ce95477
     skinnedMesh: 0
     sharedMesh: {fileID: 8769222371509463482}
     buidVersion:
@@ -8114,7 +8153,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 041651f9-d97e-43b4-a724-3abc932de6c9
+  sourceMeshRendererGUID: cec6f011-dd7f-470c-8e9a-b04b7ce95477
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -8231,7 +8270,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_b8e08265-c91a-43ca-bc6f-6ba1fad11461
+    name: UM_OperatedMesh_3aae3bcb-c3d9-4a4e-a52d-7a113a0ebd6a
     skinnedMesh: 0
     sharedMesh: {fileID: -5741665838162974161}
     buidVersion:
@@ -8246,7 +8285,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: b8e08265-c91a-43ca-bc6f-6ba1fad11461
+  sourceMeshRendererGUID: 3aae3bcb-c3d9-4a4e-a52d-7a113a0ebd6a
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -8363,7 +8402,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_2c108cf7-2565-4c31-8efc-74c67e0eba2e
+    name: UM_OperatedMesh_041e0c6a-3bf4-429b-ab7b-89d1e23aca97
     skinnedMesh: 0
     sharedMesh: {fileID: 8880838230678035779}
     buidVersion:
@@ -8378,7 +8417,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 2c108cf7-2565-4c31-8efc-74c67e0eba2e
+  sourceMeshRendererGUID: 041e0c6a-3bf4-429b-ab7b-89d1e23aca97
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -8495,7 +8534,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_78c08057-4da0-4c56-8209-b71d65e2ad3d
+    name: UM_OperatedMesh_98e0e1a3-0cec-4e39-97aa-60c609fe2f9d
     skinnedMesh: 0
     sharedMesh: {fileID: 9011895529312573072}
     buidVersion:
@@ -8510,7 +8549,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 78c08057-4da0-4c56-8209-b71d65e2ad3d
+  sourceMeshRendererGUID: 98e0e1a3-0cec-4e39-97aa-60c609fe2f9d
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -8627,7 +8666,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_92c04e0e-17c2-4a2d-9775-33526a18f200
+    name: UM_OperatedMesh_0ee03f70-f94f-404e-b5a2-ec3c1eb73e59
     skinnedMesh: 0
     sharedMesh: {fileID: -6422339523114800212}
     buidVersion:
@@ -8642,7 +8681,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 92c04e0e-17c2-4a2d-9775-33526a18f200
+  sourceMeshRendererGUID: 0ee03f70-f94f-404e-b5a2-ec3c1eb73e59
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -8759,7 +8798,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_f76023a8-5177-4563-8f5d-c5cc98812102
+    name: UM_OperatedMesh_8c111db6-1d03-4e4c-a42e-427c934f454e
     skinnedMesh: 0
     sharedMesh: {fileID: -8564231482105301428}
     buidVersion:
@@ -8774,7 +8813,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: f76023a8-5177-4563-8f5d-c5cc98812102
+  sourceMeshRendererGUID: 8c111db6-1d03-4e4c-a42e-427c934f454e
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -8860,7 +8899,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5760421738139167366}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.21280383, w: 0.977095}
   m_LocalPosition: {x: -0.030899785, y: 0.0018599965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8868,7 +8907,7 @@ Transform:
   - {fileID: 7497798732948472046}
   - {fileID: 7423375282727522162}
   m_Father: {fileID: 1391684469196849265}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 24.573}
 --- !u!1 &5760872010813727115
 GameObject:
   m_ObjectHideFlags: 0
@@ -8893,7 +8932,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5760872010813727115}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.30926105, w: 0.9509772}
   m_LocalPosition: {x: -0.030899785, y: 0.0018599965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8901,7 +8940,7 @@ Transform:
   - {fileID: 1743628116482534697}
   - {fileID: 7238998772414781580}
   m_Father: {fileID: 7307857484316624274}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 36.029}
 --- !u!1 &5831195807501081362
 GameObject:
   m_ObjectHideFlags: 0
@@ -8957,7 +8996,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_6576d790-ba90-4ca5-8384-4d7220952e60
+    name: UM_OperatedMesh_0ffa8505-732b-4d93-9378-0578e4ccedb7
     skinnedMesh: 0
     sharedMesh: {fileID: -7809201395610639927}
     buidVersion:
@@ -8972,7 +9011,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 6576d790-ba90-4ca5-8384-4d7220952e60
+  sourceMeshRendererGUID: 0ffa8505-732b-4d93-9378-0578e4ccedb7
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -9089,7 +9128,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_ab68c858-694c-40ca-9e4b-4bea36a170d5
+    name: UM_OperatedMesh_bef3be59-120e-4cf1-a7ef-5b6483b11d25
     skinnedMesh: 0
     sharedMesh: {fileID: -962586471309488258}
     buidVersion:
@@ -9104,7 +9143,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: ab68c858-694c-40ca-9e4b-4bea36a170d5
+  sourceMeshRendererGUID: bef3be59-120e-4cf1-a7ef-5b6483b11d25
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -9221,7 +9260,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_dd645f11-dd13-4023-b04e-8805e789732c
+    name: UM_OperatedMesh_39771a74-aaed-4499-94fe-182caa1fa09f
     skinnedMesh: 0
     sharedMesh: {fileID: -528989967364664618}
     buidVersion:
@@ -9236,7 +9275,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: dd645f11-dd13-4023-b04e-8805e789732c
+  sourceMeshRendererGUID: 39771a74-aaed-4499-94fe-182caa1fa09f
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -9387,7 +9426,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_0b3c1662-a501-40b9-ad62-27023656422d
+    name: UM_OperatedMesh_15601e4a-baa3-46e7-a670-af5541e5b454
     skinnedMesh: 0
     sharedMesh: {fileID: 28079223611592195}
     buidVersion:
@@ -9402,7 +9441,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 0b3c1662-a501-40b9-ad62-27023656422d
+  sourceMeshRendererGUID: 15601e4a-baa3-46e7-a670-af5541e5b454
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -9519,7 +9558,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_9fc54de6-3d89-40fa-b696-bb3164506425
+    name: UM_OperatedMesh_27f53731-c1cc-491a-b7b6-5491b837fe52
     skinnedMesh: 0
     sharedMesh: {fileID: -947200911835794849}
     buidVersion:
@@ -9534,7 +9573,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 9fc54de6-3d89-40fa-b696-bb3164506425
+  sourceMeshRendererGUID: 27f53731-c1cc-491a-b7b6-5491b837fe52
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -9620,7 +9659,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6085541289191065509}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
   m_LocalPosition: {x: -0.120599985, y: -0.042700052, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9628,7 +9667,7 @@ Transform:
   - {fileID: 8611627445137822620}
   - {fileID: 5650400904024343542}
   m_Father: {fileID: 5942487886020844809}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
 --- !u!1 &6128061749884569373
 GameObject:
   m_ObjectHideFlags: 0
@@ -9716,7 +9755,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_2b33f31c-b5d6-437c-87c5-6d15ef1baaac
+    name: UM_OperatedMesh_7455da66-6062-4ee7-a692-beff3e6e6967
     skinnedMesh: 0
     sharedMesh: {fileID: 2117749412386239208}
     buidVersion:
@@ -9731,7 +9770,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 2b33f31c-b5d6-437c-87c5-6d15ef1baaac
+  sourceMeshRendererGUID: 7455da66-6062-4ee7-a692-beff3e6e6967
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -9918,7 +9957,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_37bfbfd7-e364-4f03-9f7c-9fe51aa65b61
+    name: UM_OperatedMesh_de9b15da-7fe5-4645-ab9f-b737772242dd
     skinnedMesh: 0
     sharedMesh: {fileID: 2240420434828554760}
     buidVersion:
@@ -9933,7 +9972,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 37bfbfd7-e364-4f03-9f7c-9fe51aa65b61
+  sourceMeshRendererGUID: de9b15da-7fe5-4645-ab9f-b737772242dd
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -10132,7 +10171,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_b3f63acf-9db7-4966-aef3-0b928e73399d
+    name: UM_OperatedMesh_07011391-a358-4508-879e-8095cdcc18ea
     skinnedMesh: 0
     sharedMesh: {fileID: -2390606580826775371}
     buidVersion:
@@ -10147,7 +10186,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: b3f63acf-9db7-4966-aef3-0b928e73399d
+  sourceMeshRendererGUID: 07011391-a358-4508-879e-8095cdcc18ea
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -10266,7 +10305,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_d927e778-ffb9-4483-9a14-13ec6e363184
+    name: UM_OperatedMesh_d57fa96a-c0f6-4056-b124-fd06b74fa0ab
     skinnedMesh: 0
     sharedMesh: {fileID: -9201043939942044356}
     buidVersion:
@@ -10281,7 +10320,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: d927e778-ffb9-4483-9a14-13ec6e363184
+  sourceMeshRendererGUID: d57fa96a-c0f6-4056-b124-fd06b74fa0ab
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -10398,7 +10437,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_5b6b868d-cb03-4178-a1d2-05f19005d0b6
+    name: UM_OperatedMesh_df3cc06b-e883-4c3e-b05b-611bf4cae650
     skinnedMesh: 0
     sharedMesh: {fileID: 2268911551124914400}
     buidVersion:
@@ -10413,7 +10452,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 5b6b868d-cb03-4178-a1d2-05f19005d0b6
+  sourceMeshRendererGUID: df3cc06b-e883-4c3e-b05b-611bf4cae650
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -10530,7 +10569,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_7c523c94-a04f-4760-ba96-d7e4bedf5cf4
+    name: UM_OperatedMesh_d364f450-5d9f-4ccc-8837-a03a9e9ae43f
     skinnedMesh: 0
     sharedMesh: {fileID: 1535644037173770993}
     buidVersion:
@@ -10545,7 +10584,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 7c523c94-a04f-4760-ba96-d7e4bedf5cf4
+  sourceMeshRendererGUID: d364f450-5d9f-4ccc-8837-a03a9e9ae43f
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -10631,7 +10670,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6820654149660316536}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.5961018, w: 0.80290884}
   m_LocalPosition: {x: -0.09189999, y: 0.0041999817, z: -0.025399998}
   m_LocalScale: {x: 0.9, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10640,7 +10679,7 @@ Transform:
   - {fileID: 5019757797400864726}
   - {fileID: 3354165359943691783}
   m_Father: {fileID: 7083021550871476778}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 73.182}
 --- !u!1 &6848094236742540838
 GameObject:
   m_ObjectHideFlags: 0
@@ -10665,7 +10704,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6848094236742540838}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.5071412, w: 0.8618631}
   m_LocalPosition: {x: -0.0255, y: -0.0019, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10674,7 +10713,7 @@ Transform:
   - {fileID: 7722637325923077300}
   - {fileID: 7726952242016053805}
   m_Father: {fileID: 1616142193924832226}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60.947}
 --- !u!1 &6853247780707853471
 GameObject:
   m_ObjectHideFlags: 0
@@ -10733,7 +10772,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6899965712774388037}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.000000021815191, y: -0.49830514, z: -0.00000018462033, w: 0.86700183}
   m_LocalPosition: {x: -0.0456, y: -0, z: 0.0054}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10741,7 +10780,7 @@ Transform:
   - {fileID: 6069359153973487956}
   - {fileID: 4554611274945241094}
   m_Father: {fileID: 1934753293071451682}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -59.776, z: 0}
 --- !u!1 &7005964272164977006
 GameObject:
   m_ObjectHideFlags: 0
@@ -10797,7 +10836,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_1566c718-7d34-489b-a6c1-28dff3c9723a
+    name: UM_OperatedMesh_aeabce3f-c2a1-4d55-9b76-eb82bdd7a176
     skinnedMesh: 0
     sharedMesh: {fileID: 5497466829456313456}
     buidVersion:
@@ -10812,7 +10851,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 1566c718-7d34-489b-a6c1-28dff3c9723a
+  sourceMeshRendererGUID: aeabce3f-c2a1-4d55-9b76-eb82bdd7a176
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -10961,7 +11000,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_63789a36-7ba9-4bbc-b9e4-d2413137ad17
+    name: UM_OperatedMesh_ab0025f1-d2f6-4d49-a4d9-fc3cb1d0e85b
     skinnedMesh: 0
     sharedMesh: {fileID: 5430840337302251031}
     buidVersion:
@@ -10976,7 +11015,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 63789a36-7ba9-4bbc-b9e4-d2413137ad17
+  sourceMeshRendererGUID: ab0025f1-d2f6-4d49-a4d9-fc3cb1d0e85b
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -11047,6 +11086,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2163410635624633338}
+  - component: {fileID: 5309487304203257713}
+  - component: {fileID: 2567221027563688845}
   m_Layer: 9
   m_Name: MyMech_V1.0
   m_TagString: Untagged
@@ -11064,12 +11105,71 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1667415954728182372}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &5309487304203257713
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162708910363358381}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c087ec51d2250b44f97ead91f36fbd99, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2567221027563688845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162708910363358381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 329039bc4302a68419f0243c5c0d43bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalScaleFactor: 1.5
+  ThrusterColdColor: {r: 0.018421048, g: 0.06973683, b: 0.1, a: 1}
+  RightUpperBackThruster: {fileID: 4856941268190057639}
+  RightLowerBackThruster: {fileID: 6456365214481996770}
+  RightSideThruster: {fileID: 6764486207349524592}
+  RightJumpThruster: {fileID: 4005354616829697106}
+  LeftUpperBackThruster: {fileID: 7182391451187585405}
+  LeftLowerBackThruster: {fileID: 8980066911214309532}
+  LeftSideThruster: {fileID: 1357786431233319444}
+  LeftJumpThruster: {fileID: 7857146713734866287}
+  RightUpperBackThrusterRenderer: {fileID: 96463891672940369}
+  RightLowerBackThrusterRenderer: {fileID: 8476428444995106163}
+  RightSideThrusterRenderer: {fileID: 4377862794893549405}
+  RightJumpThrusterRenderer: {fileID: 7048452908159297381}
+  LeftUpperBackThrusterRenderer: {fileID: 656239143177122215}
+  LeftLowerBackThrusterRenderer: {fileID: 39153451025998124}
+  LeftSideThrusterRenderer: {fileID: 3189407954956538450}
+  LeftJumpThrusterRenderer: {fileID: 2440964662674900422}
+  RightUpperBackThrusterScaleFactor: 0.3
+  RightLowerBackThrusterScaleFactor: 0.3
+  RightSideThrusterScaleFactor: 0.3
+  RightJumpThrusterScaleFactor: 0.5
+  LeftUpperBackThrusterScaleFactor: 0.5
+  LeftLowerBackThrusterScaleFactor: 0.5
+  LeftSideThrusterScaleFactor: 0.3
+  LeftJumpThrusterScaleFactor: 0.5
 --- !u!1 &7210518047284478972
 GameObject:
   m_ObjectHideFlags: 0
@@ -11161,7 +11261,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_909a78b4-43d4-4a4b-8b87-38c08af1e6f5
+    name: UM_OperatedMesh_e8f17c98-0f62-4b72-8ff2-0f3f1e81def0
     skinnedMesh: 0
     sharedMesh: {fileID: 3255350649108250170}
     buidVersion:
@@ -11176,7 +11276,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 909a78b4-43d4-4a4b-8b87-38c08af1e6f5
+  sourceMeshRendererGUID: e8f17c98-0f62-4b72-8ff2-0f3f1e81def0
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -11329,7 +11429,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_8515c7fa-86fd-4b8a-8134-901230ce328e
+    name: UM_OperatedMesh_9fdc5d2c-b3f3-4e40-b0c9-b93016c44d0e
     skinnedMesh: 0
     sharedMesh: {fileID: -1181450689255616255}
     buidVersion:
@@ -11344,7 +11444,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 8515c7fa-86fd-4b8a-8134-901230ce328e
+  sourceMeshRendererGUID: 9fdc5d2c-b3f3-4e40-b0c9-b93016c44d0e
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -11493,7 +11593,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_c6696a95-9a6b-4418-a67c-a9efaa8a471c
+    name: UM_OperatedMesh_9a217e21-d3f0-4760-99aa-f467af008b61
     skinnedMesh: 0
     sharedMesh: {fileID: 5276338002575737248}
     buidVersion:
@@ -11508,7 +11608,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: c6696a95-9a6b-4418-a67c-a9efaa8a471c
+  sourceMeshRendererGUID: 9a217e21-d3f0-4760-99aa-f467af008b61
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -11594,7 +11694,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7420041108948303444}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.13052624, w: 0.9914449}
   m_LocalPosition: {x: -0.34420002, y: -0.007799983, z: 0.0014999993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11605,8 +11705,9 @@ Transform:
   - {fileID: 8525151237565915516}
   - {fileID: 7208968588932792979}
   - {fileID: 7767197592764984091}
+  - {fileID: 8152179198780226264}
   m_Father: {fileID: 1118892039111336025}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
 --- !u!1 &7437944571659157633
 GameObject:
   m_ObjectHideFlags: 0
@@ -11662,7 +11763,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_96c2388b-cbf5-44f4-ae92-56656f6b0aa0
+    name: UM_OperatedMesh_600ad551-1491-4e2b-ba04-8c2592cdbc80
     skinnedMesh: 0
     sharedMesh: {fileID: 1405218362033413262}
     buidVersion:
@@ -11677,7 +11778,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 96c2388b-cbf5-44f4-ae92-56656f6b0aa0
+  sourceMeshRendererGUID: 600ad551-1491-4e2b-ba04-8c2592cdbc80
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -11794,7 +11895,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_a2f71768-00ac-4729-be01-13bd486c3a6b
+    name: UM_OperatedMesh_643fdcbf-ad55-47b5-98c2-7f8ebff5a8cb
     skinnedMesh: 0
     sharedMesh: {fileID: -118589219672954800}
     buidVersion:
@@ -11809,7 +11910,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: a2f71768-00ac-4729-be01-13bd486c3a6b
+  sourceMeshRendererGUID: 643fdcbf-ad55-47b5-98c2-7f8ebff5a8cb
   guid: 19a25945-26d7-48c8-a7fa-cf7626e240f7
   localOptions:
     RecalculateTangents: 0
@@ -11926,7 +12027,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_ca533eed-857a-4754-8e5a-90b6c0c1ade8
+    name: UM_OperatedMesh_d2c752d4-6452-42fc-be03-272b36d8f790
     skinnedMesh: 0
     sharedMesh: {fileID: 2243166438033273086}
     buidVersion:
@@ -11941,7 +12042,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: ca533eed-857a-4754-8e5a-90b6c0c1ade8
+  sourceMeshRendererGUID: d2c752d4-6452-42fc-be03-272b36d8f790
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -12090,7 +12191,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_d84f17cf-baab-49d9-b3fb-a8db3d08f074
+    name: UM_OperatedMesh_8146aab4-ef8e-4cc0-a060-3702dacc0853
     skinnedMesh: 0
     sharedMesh: {fileID: -5279211120241045217}
     buidVersion:
@@ -12105,7 +12206,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: d84f17cf-baab-49d9-b3fb-a8db3d08f074
+  sourceMeshRendererGUID: 8146aab4-ef8e-4cc0-a060-3702dacc0853
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -12224,7 +12325,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_1a44f4cb-fec5-4033-8f7b-257367b1d99a
+    name: UM_OperatedMesh_cb833562-0f54-48f3-9389-8a30ebc98003
     skinnedMesh: 0
     sharedMesh: {fileID: 6784214530086910307}
     buidVersion:
@@ -12239,7 +12340,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 1a44f4cb-fec5-4033-8f7b-257367b1d99a
+  sourceMeshRendererGUID: cb833562-0f54-48f3-9389-8a30ebc98003
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -12358,7 +12459,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_fba35f59-2726-46e7-92ea-f58665eea5bd
+    name: UM_OperatedMesh_f1ccd7a9-a47e-4e63-a19a-f2a21f0fdd9d
     skinnedMesh: 0
     sharedMesh: {fileID: -6412163501707245842}
     buidVersion:
@@ -12373,7 +12474,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: fba35f59-2726-46e7-92ea-f58665eea5bd
+  sourceMeshRendererGUID: f1ccd7a9-a47e-4e63-a19a-f2a21f0fdd9d
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -12459,7 +12560,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7837527738973762045}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.51191926, w: 0.85903364}
   m_LocalPosition: {x: -0.0255, y: -0.0019, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12468,7 +12569,7 @@ Transform:
   - {fileID: 3946840960493758122}
   - {fileID: 5835506136973776521}
   m_Father: {fileID: 8525151237565915516}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 61.583}
 --- !u!1 &7871211936151771848
 GameObject:
   m_ObjectHideFlags: 0
@@ -12529,7 +12630,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Accent.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_1e80c8dd-68be-4f00-917f-dea02f0acfc9
+    name: UM_OperatedMesh_49a62027-305a-4108-ab79-18cb7b11b12d
     skinnedMesh: 0
     sharedMesh: {fileID: 596137653999314230}
     buidVersion:
@@ -12544,7 +12645,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 1e80c8dd-68be-4f00-917f-dea02f0acfc9
+  sourceMeshRendererGUID: 49a62027-305a-4108-ab79-18cb7b11b12d
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -12665,7 +12766,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_7b76539a-8129-4aeb-96cb-fe9565840208
+    name: UM_OperatedMesh_4ba7f0a9-8fa7-4624-ac87-d828b73dbd57
     skinnedMesh: 0
     sharedMesh: {fileID: 3790335945647681529}
     buidVersion:
@@ -12680,7 +12781,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 7b76539a-8129-4aeb-96cb-fe9565840208
+  sourceMeshRendererGUID: 4ba7f0a9-8fa7-4624-ac87-d828b73dbd57
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -12797,7 +12898,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_70cc211e-3076-475a-87d3-97db36821d16
+    name: UM_OperatedMesh_b48d2385-d36e-4713-be7b-5375912decad
     skinnedMesh: 0
     sharedMesh: {fileID: -9115458766022924789}
     buidVersion:
@@ -12812,7 +12913,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 70cc211e-3076-475a-87d3-97db36821d16
+  sourceMeshRendererGUID: b48d2385-d36e-4713-be7b-5375912decad
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -12929,7 +13030,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_06244ea1-7d24-40c6-8334-e74c9ad5f1c6
+    name: UM_OperatedMesh_f5dec1bf-891d-48f3-a494-c654538f3c8a
     skinnedMesh: 0
     sharedMesh: {fileID: 5139009866073970467}
     buidVersion:
@@ -12944,7 +13045,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 06244ea1-7d24-40c6-8334-e74c9ad5f1c6
+  sourceMeshRendererGUID: f5dec1bf-891d-48f3-a494-c654538f3c8a
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -13061,7 +13162,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_7a2fbece-7e55-4eb4-92bc-ba101f1ef1d1
+    name: UM_OperatedMesh_85205d68-f75b-498f-849b-97f74b8089e3
     skinnedMesh: 0
     sharedMesh: {fileID: -4947402188533476499}
     buidVersion:
@@ -13076,7 +13177,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 7a2fbece-7e55-4eb4-92bc-ba101f1ef1d1
+  sourceMeshRendererGUID: 85205d68-f75b-498f-849b-97f74b8089e3
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -13193,7 +13294,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_b71fd850-afc8-4e6b-b64b-8b0f1ad68db9
+    name: UM_OperatedMesh_95d6cfe8-2dce-49e6-9690-dfb6dc084577
     skinnedMesh: 0
     sharedMesh: {fileID: -7664757316240974795}
     buidVersion:
@@ -13208,7 +13309,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: b71fd850-afc8-4e6b-b64b-8b0f1ad68db9
+  sourceMeshRendererGUID: 95d6cfe8-2dce-49e6-9690-dfb6dc084577
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -13325,7 +13426,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_5abfbc81-60ac-4cd6-9ba1-995be96151df
+    name: UM_OperatedMesh_9378a342-65fc-4968-a502-00dd89a28336
     skinnedMesh: 0
     sharedMesh: {fileID: -4752880579321500602}
     buidVersion:
@@ -13340,7 +13441,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 5abfbc81-60ac-4cd6-9ba1-995be96151df
+  sourceMeshRendererGUID: 9378a342-65fc-4968-a502-00dd89a28336
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -13457,7 +13558,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_fd1d1729-2717-4936-88e7-ace1a7fd98de
+    name: UM_OperatedMesh_9ab8bded-a65b-4672-8605-6cd4d096b975
     skinnedMesh: 0
     sharedMesh: {fileID: 6831777234305530259}
     buidVersion:
@@ -13472,7 +13573,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: fd1d1729-2717-4936-88e7-ace1a7fd98de
+  sourceMeshRendererGUID: 9ab8bded-a65b-4672-8605-6cd4d096b975
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -13589,7 +13690,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_070ef041-b87d-4ce6-bec7-b1b2dafb352a
+    name: UM_OperatedMesh_7cf8f36d-e2ce-435d-a32f-08fd0f2fdd2f
     skinnedMesh: 0
     sharedMesh: {fileID: -7103137695402403319}
     buidVersion:
@@ -13604,7 +13705,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 070ef041-b87d-4ce6-bec7-b1b2dafb352a
+  sourceMeshRendererGUID: 7cf8f36d-e2ce-435d-a32f-08fd0f2fdd2f
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -13721,7 +13822,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_7a181d76-a9d1-40ce-9650-387ddb1a7e1b
+    name: UM_OperatedMesh_2df59fb7-0727-488b-90dd-d16d56576ef9
     skinnedMesh: 0
     sharedMesh: {fileID: 5844171980576579097}
     buidVersion:
@@ -13736,7 +13837,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 7a181d76-a9d1-40ce-9650-387ddb1a7e1b
+  sourceMeshRendererGUID: 2df59fb7-0727-488b-90dd-d16d56576ef9
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -13853,7 +13954,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_75bf0c42-5e1c-46f7-a114-e816c88e3a61
+    name: UM_OperatedMesh_f6eaf0ff-3785-410b-a65c-8ca4b1b9255d
     skinnedMesh: 0
     sharedMesh: {fileID: -1301905633305817243}
     buidVersion:
@@ -13868,7 +13969,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 75bf0c42-5e1c-46f7-a114-e816c88e3a61
+  sourceMeshRendererGUID: f6eaf0ff-3785-410b-a65c-8ca4b1b9255d
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -14020,7 +14121,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_be50c3b5-ad0c-46f3-badd-377ff247b9ba
+    name: UM_OperatedMesh_03ba4d33-09d0-42f6-bc95-c23d90a305a8
     skinnedMesh: 0
     sharedMesh: {fileID: -5122821921639772034}
     buidVersion:
@@ -14035,7 +14136,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: be50c3b5-ad0c-46f3-badd-377ff247b9ba
+  sourceMeshRendererGUID: 03ba4d33-09d0-42f6-bc95-c23d90a305a8
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -14154,7 +14255,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_8fa50063-b457-477d-9699-830e1acf2c7f
+    name: UM_OperatedMesh_100ef167-9c06-49b5-b548-85a0a01ecc7d
     skinnedMesh: 0
     sharedMesh: {fileID: -9099150178132031701}
     buidVersion:
@@ -14169,7 +14270,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 8fa50063-b457-477d-9699-830e1acf2c7f
+  sourceMeshRendererGUID: 100ef167-9c06-49b5-b548-85a0a01ecc7d
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -14263,6 +14364,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3821057518381982189}
+  - {fileID: 4845914147710735403}
   - {fileID: 3074340142563579273}
   m_Father: {fileID: 8049768365102251389}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14321,7 +14423,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_51f84849-9be7-4cda-9369-b2073cce3157
+    name: UM_OperatedMesh_02db7a07-baed-4e50-90bc-e8de38ace91a
     skinnedMesh: 0
     sharedMesh: {fileID: 5261459452498396747}
     buidVersion:
@@ -14336,7 +14438,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 51f84849-9be7-4cda-9369-b2073cce3157
+  sourceMeshRendererGUID: 02db7a07-baed-4e50-90bc-e8de38ace91a
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -14465,6 +14567,752 @@ Transform:
   - {fileID: 7409318652416756348}
   m_Father: {fileID: 5650400904024343542}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1822613903196070318
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3839229996003649224}
+    m_Modifications:
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_Name
+      value: ThrusterFire_RightJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -0.04590582
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0296104
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.029610414
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0012999773
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.26699996
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1919
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.16027024
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.6887042
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6887042
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.16027029
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 206.201
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+--- !u!4 &2969435311019737097 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 1822613903196070318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4005354616829697106 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 1822613903196070318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2036177019860410547
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8152179198780226264}
+    m_Modifications:
+    - target: {fileID: 3413904710536360792, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+      propertyPath: m_Name
+      value: CrystalSword
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867838754823120806, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867838754823120806, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867838754823120806, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.214
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867838754823120806, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867838754823120806, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867838754823120806, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867838754823120806, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867838754823120806, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867838754823120806, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867838754823120806, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+--- !u!4 &4831943228195555093 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6867838754823120806, guid: c0993533773f3324ca199c5cfb4856d8, type: 3}
+  m_PrefabInstance: {fileID: 2036177019860410547}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4326000934177710056
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1319376844307294814}
+    m_Modifications:
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_Name
+      value: ThrusterFire_LeftSide
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.024814755
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.02481476
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.02481476
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.28472596
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.018597722
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.9902377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.13938913
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 16.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+--- !u!4 &898396601667452495 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 4326000934177710056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1357786431233319444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 4326000934177710056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4887786805327370387
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1122524143216187891}
+    m_Modifications:
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_Name
+      value: ThrusterFire_LeftJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04590581
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0296104
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0296104
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0013000071
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.26699996
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1919
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.16027024
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.6887042
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6887042
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.16027029
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 206.201
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+--- !u!1 &7857146713734866287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 4887786805327370387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8334575409199118644 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 4887786805327370387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5580561945707994241
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6515068503880460309}
+    m_Modifications:
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_Name
+      value: ThrusterFire_BackLeftUpper
+      objectReference: {fileID: 0}
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -0.050160985
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.042876344
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.042876273
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.18072234
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.14849997
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.34361845
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0042468305
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7070941
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.00424685
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7070941
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.6879883
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+--- !u!1 &7182391451187585405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 5580561945707994241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9010743647286148390 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 5580561945707994241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5927091408837111136
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6515068503880460309}
+    m_Modifications:
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_Name
+      value: ThrusterFire_BackLeftLower
+      objectReference: {fileID: 0}
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -0.05314925
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04543059
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.045430582
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.15992196
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03250003
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.3006
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.085516915
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7019166
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.08551694
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7019166
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -13.893005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+--- !u!4 &7079647779121040583 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 5927091408837111136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8980066911214309532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 5927091408837111136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7906503611323853147
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1877901196176827807}
+    m_Modifications:
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_Name
+      value: ThrusterFire_BackRightUpper
+      objectReference: {fileID: 0}
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05016095
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.042876277
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.042876266
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17840037
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.14849997
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.34361845
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0042468305
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7070941
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.00424685
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7070941
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.6879883
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+--- !u!1 &4856941268190057639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 7906503611323853147}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6757439284605143292 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 7906503611323853147}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8304234333505549708
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5942487886020844809}
+    m_Modifications:
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_Name
+      value: ThrusterFire_RightSide
+      objectReference: {fileID: 0}
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.024814755
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.024814753
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.02481475
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.27949327
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.018597722
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.9902377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.13938913
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 16.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+--- !u!4 &4845914147710735403 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 8304234333505549708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6764486207349524592 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 8304234333505549708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8594913772354217502
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1877901196176827807}
+    m_Modifications:
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_Name
+      value: ThrusterFire_BackRightLower
+      objectReference: {fileID: 0}
+    - target: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.053149235
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.045430582
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.045430582
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1576
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0325
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.3006
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.085516915
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7019166
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.08551694
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7019166
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -13.893005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+--- !u!4 &5132397782537914297 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 8594913772354217502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6456365214481996770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3377375902696111612, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
+  m_PrefabInstance: {fileID: 8594913772354217502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &-9201043939942044356
 Mesh:
   m_ObjectHideFlags: 0

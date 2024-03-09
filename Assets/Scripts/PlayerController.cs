@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Timeline;
@@ -127,11 +129,17 @@ public class PlayerController : MonoBehaviour {
     private void ConsumeLife() {
         SetPlayerLives(CurrentPlayerLives - 1);
         if (CurrentPlayerLives == 0) {
-            GameLifecycleManager.Instance.EndGame();
+            this.StartCoroutine(DeathSequence());
         } else {
             // Heal the player back up to 50%
             Stats.SetHealthToPercentage(0.5f);
         }
+    }
+
+    IEnumerator DeathSequence() {
+        Animator.SetBool("IsDead", true);
+        yield return new WaitForSeconds(2);
+        GameLifecycleManager.Instance.EndGame();
     }
 
     private void Awake() {
@@ -157,6 +165,8 @@ public class PlayerController : MonoBehaviour {
         SetPlayerLives(MaxPlayerLives);
         Stats.Reset();
         _shieldController.DeactivateShield();
+        Animator.SetBool("IsDead", false);
+        transform.position = Vector3.zero;
     }
 
     public float GetRegularMovementSpeed() {
@@ -687,8 +697,7 @@ public class PlayerController : MonoBehaviour {
 
     // ====== Animation Event Handlers =====
     private void OnSlashAttack1Hit() {
-        // TODO: Do a hit check and apply damage.
-        Debug.Log("[PlayerController] OnSlashAttack1Hit");
+        // BossController.Instance.Stats.ApplyDamage(SlashAttack1Damage);
     }
 
     private void OnSlashAttack1SoftEnd() {

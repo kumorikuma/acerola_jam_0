@@ -835,7 +835,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1348098564201815736, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: MovementDecayTime
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3656412524257082187, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: m_Controller

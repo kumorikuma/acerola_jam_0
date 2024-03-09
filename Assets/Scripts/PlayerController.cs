@@ -293,51 +293,47 @@ public class PlayerController : MonoBehaviour {
         bool isStrafing = true;
         Vector3 desiredMoveDirection = GetDesiredMoveDirection(_isExecutingDash, isStrafing);
 
-        ReactUnityBridge.Instance.UpdateDebugString("Input", inputMoveVector.ToString());
-
         // ==== DETERMINE TARGET ROTATION =====
         float finalTurnSpeed = TurnSpeed;
-        // If we're in target lock mode, keep the player facing the enemy. We will always move to the left/right.
         if (_lockedOnTarget != null) {
+            // If we're in target lock mode, keep the player facing the enemy. We will always move to the left/right.
             Vector3 playerToTargetVector = _lockedOnTarget.position - PlayerModel.transform.position;
             playerToTargetVector.y = 0;
             playerToTargetVector = playerToTargetVector.normalized;
             // TODO: Instead of making the facing instantaneous, we could try doing a fast turn.
             targetRotation = Quaternion.LookRotation(playerToTargetVector, Vector3.up);
-        } else {
+        } else if (!_isExecutingFastTurn) {
             // If we're not doing a fast turn, then calculate the direction that the target should be facing.
-            if (!_isExecutingFastTurn) {
-                if (isMoving) {
-                    // Face the character in the direction of movement
+            if (isMoving) {
+                // Face the character in the direction of movement
+                if (!_isExecutingDash) {
                     targetRotation = Quaternion.Euler(0,
                         Mathf.Atan2(desiredMoveDirection.x, desiredMoveDirection.z) * Mathf.Rad2Deg, 0);
-
-                    // If we're strafing, then face the player towards the camera instead.
-                    if (isStrafing) {
-                        Vector3 cameraForward = Camera.main.transform.forward;
-                        cameraForward.y = 0;
-                        targetRotation = quaternion.LookRotation(cameraForward, Vector3.up);
-                    }
-
-                    // If the target rotation is too far away (180 degrees), we do a fast turn
-                    float angleDifferenceDegrees = Quaternion.Angle(PlayerModel.transform.rotation, targetRotation);
-                    if (angleDifferenceDegrees > 175) {
-                        _isExecutingFastTurn = true;
-                    }
                 }
-            } else {
-                // Otherwise we keep the target rotation the same but accelerate the turn speed.
-                finalTurnSpeed = 3 * TurnSpeed;
 
-                // If the target rotation is reached, the fast turn is done.
+                // If we're strafing, then face the player towards the camera instead.
+                if (isStrafing && !_isExecutingDash) {
+                    Vector3 cameraForward = Camera.main.transform.forward;
+                    cameraForward.y = 0;
+                    targetRotation = quaternion.LookRotation(cameraForward, Vector3.up);
+                }
+
+                // If the target rotation is too far away (180 degrees), we do a fast turn
                 float angleDifferenceDegrees = Quaternion.Angle(PlayerModel.transform.rotation, targetRotation);
-                if (angleDifferenceDegrees < 0.1f) {
-                    _isExecutingFastTurn = false;
+                if (angleDifferenceDegrees > 175) {
+                    _isExecutingFastTurn = true;
                 }
             }
-        }
+        } else {
+            // Otherwise we keep the target rotation the same but accelerate the turn speed.
+            finalTurnSpeed = 3 * TurnSpeed;
 
-        // TODO: When dashing while locked on, we strafe instead of turn?
+            // If the target rotation is reached, the fast turn is done.
+            float angleDifferenceDegrees = Quaternion.Angle(PlayerModel.transform.rotation, targetRotation);
+            if (angleDifferenceDegrees < 0.1f) {
+                _isExecutingFastTurn = false;
+            }
+        }
 
         // ==== PERFORM ROTATION =====
         if (_isExecutingDash || _lockedOnTarget != null) {
@@ -385,6 +381,9 @@ public class PlayerController : MonoBehaviour {
         _velocity.y += gravity * Time.deltaTime;
 
         // ==== UPDATE STATE =====
+        ReactUnityBridge.Instance.UpdateDebugString("Input", inputMoveVector.ToString());
+        VectorDebug.Instance.DrawDebugVector("Target Rotation", targetRotation * Vector3.forward, transform.position,
+            Color.magenta);
         ReactUnityBridge.Instance.UpdateDebugString("Movespeed", $"{moveSpeed:F2}");
         ThrusterController.Instance.HandleThrusterUpdates(moveSpeed);
         _previousInputMoveVector = inputMoveVector;
@@ -397,9 +396,12 @@ public class PlayerController : MonoBehaviour {
         Vector3 desiredMoveDirection = Vector3.zero;
         Vector3 inputMoveVectorModified = inputMoveVector;
         // If we're dashing with a locked camera, then use the previous input vector.
-        if (isDashing && isStrafing) {
-            inputMoveVectorModified = _previousInputMoveVector;
-        } else if (isDashing) {
+        // TODO: Revisit this with target locking? IsStrafing check here should be target locked
+        // if (isDashing && isStrafing) {
+        //     inputMoveVectorModified = _previousInputMoveVector;
+        // }
+
+        if (isDashing) {
             // If we're dashing without locked camera, then just use the previous direction.
             return _previousDesiredMoveDirection;
         }

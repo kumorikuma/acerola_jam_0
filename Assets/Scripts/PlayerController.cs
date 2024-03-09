@@ -409,7 +409,7 @@ public class PlayerController : MonoBehaviour {
 
         // Stop here if we don't need to any more calculations (user is not moving).
         if (inputMoveVectorModified.magnitude <= 0.0f) {
-            return desiredMoveDirection;
+            return _previousDesiredMoveDirection;
         }
 
         if (_lockedOnTarget != null) {

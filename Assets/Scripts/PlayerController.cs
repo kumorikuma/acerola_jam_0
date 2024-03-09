@@ -557,7 +557,13 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
-        Animator.SetTrigger("SlashAttack");
+        if (_attackSoftEnded) {
+            // This is following the first attack
+            Animator.SetTrigger("SlashAttack2");
+        } else {
+            Animator.SetTrigger("SlashAttack");
+        }
+
         _isMeleeAttacking = true;
         _attackSoftEnded = false;
         _rootMotionTransfer.SetApplyRootMotion(true);

@@ -344,8 +344,6 @@ public class PlayerController : MonoBehaviour {
                                  (desiredMoveDirection.magnitude * (moveSpeed * Time.deltaTime));
         }
 
-        Debug.Log("Move magnitude: " + desiredMoveDirection.magnitude);
-
         // Gravity doesn't affect us while dashing
         if (_isExecutingDash) {
             _velocity.y = 0;

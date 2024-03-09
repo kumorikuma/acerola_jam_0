@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ThrusterController : Singleton<ThrusterController> {
-    public float ScaleFactor = 1.0f;
+    public float GlobalScaleFactor = 1.0f;
+
+    public Color ThrusterColdColor = Color.gray;
+    private Color _thrusterHotColor;
 
     [NonNullField] public GameObject RightUpperBackThruster;
     [NonNullField] public GameObject RightLowerBackThruster;
@@ -15,6 +20,15 @@ public class ThrusterController : Singleton<ThrusterController> {
     [NonNullField] public GameObject LeftSideThruster;
     [NonNullField] public GameObject LeftJumpThruster;
 
+    [NonNullField] public MeshRenderer RightUpperBackThrusterRenderer;
+    [NonNullField] public MeshRenderer RightLowerBackThrusterRenderer;
+    [NonNullField] public MeshRenderer RightSideThrusterRenderer;
+    [NonNullField] public MeshRenderer RightJumpThrusterRenderer;
+    [NonNullField] public MeshRenderer LeftUpperBackThrusterRenderer;
+    [NonNullField] public MeshRenderer LeftLowerBackThrusterRenderer;
+    [NonNullField] public MeshRenderer LeftSideThrusterRenderer;
+    [NonNullField] public MeshRenderer LeftJumpThrusterRenderer;
+
     public float RightUpperBackThrusterScaleFactor = 1.5f;
     public float RightLowerBackThrusterScaleFactor = 1.5f;
     public float RightSideThrusterScaleFactor = 1.5f;
@@ -25,15 +39,12 @@ public class ThrusterController : Singleton<ThrusterController> {
     public float LeftSideThrusterScaleFactor = 1.5f;
     public float LeftJumpThrusterScaleFactor = 1.5f;
 
-    private Vector3 _rightUpperBackThrusterOriginalScale;
-    private Vector3 _rightLowerBackThrusterOriginalScale;
-    private Vector3 _rightSideThrusterOriginalScale;
-    private Vector3 _rightJumpThrusterOriginalScale;
-
-    private Vector3 _leftUpperBackThrusterOriginalScale;
-    private Vector3 _leftLowerBackThrusterOriginalScale;
-    private Vector3 _leftSideThrusterOriginalScale;
-    private Vector3 _leftJumpThrusterOriginalScale;
+    private List<GameObject> _thrusterObjects = new();
+    private List<MeshRenderer> _thrusterRenderers = new();
+    private Dictionary<int, Vector3> _originalScales = new();
+    private Dictionary<int, float> _scaleFactors = new();
+    private bool _stopAnimationTriggered = false;
+    private Material _innerThrusterMaterialInstance;
 
     // Each thruster will have an original scale.
     // Depending on the speed, we will lerp between that original scale a new one.
@@ -44,7 +55,6 @@ public class ThrusterController : Singleton<ThrusterController> {
     // Or we could just take speed / regular speed as the "scale factor". That would also take care of "stopping"
     // if we drop below regular speed.
 
-
     private float _playerMovementSpeed;
 
     // TODO: Change material color of the inner thruster if we ever implement walking.
@@ -52,15 +62,44 @@ public class ThrusterController : Singleton<ThrusterController> {
     void Start() {
         _playerMovementSpeed = PlayerManager.Instance.PlayerController.RunSpeed;
 
-        _rightUpperBackThrusterOriginalScale = RightUpperBackThruster.transform.localScale;
-        _rightUpperBackThrusterOriginalScale = RightLowerBackThruster.transform.localScale;
-        _rightSideThrusterOriginalScale = RightSideThruster.transform.localScale;
-        _rightJumpThrusterOriginalScale = RightJumpThruster.transform.localScale;
+        _thrusterObjects.Add(RightUpperBackThruster);
+        _thrusterObjects.Add(RightLowerBackThruster);
+        _thrusterObjects.Add(RightSideThruster);
+        _thrusterObjects.Add(RightJumpThruster);
+        _thrusterObjects.Add(LeftUpperBackThruster);
+        _thrusterObjects.Add(LeftLowerBackThruster);
+        _thrusterObjects.Add(LeftSideThruster);
+        _thrusterObjects.Add(LeftJumpThruster);
 
-        _leftUpperBackThrusterOriginalScale = LeftUpperBackThruster.transform.localScale;
-        _leftUpperBackThrusterOriginalScale = LeftLowerBackThruster.transform.localScale;
-        _leftSideThrusterOriginalScale = LeftSideThruster.transform.localScale;
-        _leftJumpThrusterOriginalScale = LeftJumpThruster.transform.localScale;
+        _scaleFactors[RightUpperBackThruster.GetInstanceID()] = RightUpperBackThrusterScaleFactor;
+        _scaleFactors[RightLowerBackThruster.GetInstanceID()] = RightLowerBackThrusterScaleFactor;
+        _scaleFactors[RightSideThruster.GetInstanceID()] = RightSideThrusterScaleFactor;
+        _scaleFactors[RightJumpThruster.GetInstanceID()] = RightJumpThrusterScaleFactor;
+        _scaleFactors[LeftUpperBackThruster.GetInstanceID()] = LeftUpperBackThrusterScaleFactor;
+        _scaleFactors[LeftLowerBackThruster.GetInstanceID()] = LeftLowerBackThrusterScaleFactor;
+        _scaleFactors[LeftSideThruster.GetInstanceID()] = LeftSideThrusterScaleFactor;
+        _scaleFactors[LeftJumpThruster.GetInstanceID()] = LeftJumpThrusterScaleFactor;
+
+        _thrusterRenderers.Add(RightUpperBackThrusterRenderer);
+        _thrusterRenderers.Add(RightLowerBackThrusterRenderer);
+        _thrusterRenderers.Add(RightSideThrusterRenderer);
+        _thrusterRenderers.Add(RightJumpThrusterRenderer);
+        _thrusterRenderers.Add(LeftUpperBackThrusterRenderer);
+        _thrusterRenderers.Add(LeftLowerBackThrusterRenderer);
+        _thrusterRenderers.Add(LeftSideThrusterRenderer);
+        _thrusterRenderers.Add(LeftJumpThrusterRenderer);
+
+        foreach (GameObject thrusterObject in _thrusterObjects) {
+            _originalScales[thrusterObject.GetInstanceID()] = thrusterObject.transform.localScale;
+        }
+
+        // Create an instance of the material and then assign it to every part.
+        _innerThrusterMaterialInstance = RightUpperBackThrusterRenderer.materials[1];
+        _thrusterHotColor = _innerThrusterMaterialInstance.GetColor("_EmissionColor");
+        foreach (MeshRenderer thrusterRenderer in _thrusterRenderers) {
+            thrusterRenderer.materials[1] = _innerThrusterMaterialInstance;
+            thrusterRenderer.materials[1].SetColor("_EmissionColor", ThrusterColdColor);
+        }
     }
 
     public void HandleThrusterUpdates(float moveSpeed) {
@@ -75,27 +114,46 @@ public class ThrusterController : Singleton<ThrusterController> {
 
         // TODO: Sudden changes will need to be attenuated.
 
-        SetThrusterScale(RightUpperBackThruster, _rightUpperBackThrusterOriginalScale,
-            RightUpperBackThrusterScaleFactor, scaleRatio);
-        SetThrusterScale(RightLowerBackThruster, _rightLowerBackThrusterOriginalScale,
-            RightLowerBackThrusterScaleFactor, scaleRatio);
-        SetThrusterScale(RightSideThruster, _rightSideThrusterOriginalScale, RightSideThrusterScaleFactor, scaleRatio);
-        SetThrusterScale(RightJumpThruster, _rightJumpThrusterOriginalScale, RightJumpThrusterScaleFactor, scaleRatio);
+        bool shouldUseTween = false;
+        if (scaleRatio == 0 && !_stopAnimationTriggered) {
+            _stopAnimationTriggered = true;
+            foreach (GameObject thrusterObject in _thrusterObjects) {
+                SetThrusterScale(thrusterObject, scaleRatio, true);
+            }
 
-        SetThrusterScale(LeftUpperBackThruster, _leftUpperBackThrusterOriginalScale, LeftUpperBackThrusterScaleFactor,
-            scaleRatio);
-        SetThrusterScale(LeftLowerBackThruster, _leftLowerBackThrusterOriginalScale, LeftLowerBackThrusterScaleFactor,
-            scaleRatio);
-        SetThrusterScale(LeftSideThruster, _leftSideThrusterOriginalScale, LeftSideThrusterScaleFactor, scaleRatio);
-        SetThrusterScale(LeftJumpThruster, _leftJumpThrusterOriginalScale, LeftJumpThrusterScaleFactor, scaleRatio);
+            foreach (MeshRenderer thrusterRenderer in _thrusterRenderers) {
+                thrusterRenderer.materials[1].DOColor(ThrusterColdColor, "_EmissionColor", 1.0f);
+            }
+        } else if (scaleRatio > 0) {
+            _stopAnimationTriggered = false;
+            DOTween.KillAll();
+            foreach (MeshRenderer thrusterRenderer in _thrusterRenderers) {
+                thrusterRenderer.materials[1].SetColor("_EmissionColor", _thrusterHotColor);
+            }
+
+            foreach (GameObject thrusterObject in _thrusterObjects) {
+                SetThrusterScale(thrusterObject, scaleRatio, false);
+            }
+        }
     }
 
-    public void SetThrusterScale(GameObject thrusterObject, Vector3 originalScale, float scaleFactor,
-        float scaleRatio) {
+    public void SetThrusterScale(GameObject thrusterObject, float scaleRatio, bool shouldUseTween) {
+        int id = thrusterObject.GetInstanceID();
+        Vector3 originalScale = _originalScales[id];
+        float scaleFactor = _scaleFactors[id];
+
         // Scales up/down the ratio but keeps it centered around 1.
         scaleRatio = 1 + (scaleRatio - 1) * scaleFactor;
+        float scaleX = originalScale.x * scaleRatio * GlobalScaleFactor;
+        Vector3 targetScale = new Vector3(scaleX, originalScale.y, originalScale.z);
 
-        float scaleX = originalScale.x * scaleRatio;
-        thrusterObject.transform.localScale = new Vector3(scaleX, originalScale.y, originalScale.z);
+        if (shouldUseTween) {
+            // Defer to DOTWEEN to animate this.
+            targetScale.x = 0;
+            thrusterObject.transform.DOScale(targetScale, 1.0f);
+        } else {
+            DOTween.Kill(thrusterObject.transform);
+            thrusterObject.transform.localScale = targetScale;
+        }
     }
 }

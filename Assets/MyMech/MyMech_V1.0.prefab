@@ -88,7 +88,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_38d70fd0-5763-4cd0-86ec-4a8ebe78f1f6
+    name: UM_OperatedMesh_63fdf151-18dd-4316-beaf-794ae5ff05ad
     skinnedMesh: 0
     sharedMesh: {fileID: 8503282840515981426}
     buidVersion:
@@ -103,7 +103,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 38d70fd0-5763-4cd0-86ec-4a8ebe78f1f6
+  sourceMeshRendererGUID: 63fdf151-18dd-4316-beaf-794ae5ff05ad
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -193,8 +193,8 @@ Transform:
   m_GameObject: {fileID: 289127693519476432}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.40620854, y: -1.3263, z: 0.010314789}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.006046325, y: -0.009358406, z: -0.004599979}
+  m_LocalScale: {x: -1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3821057518381982189}
@@ -220,7 +220,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_127792e0-5805-4779-acf0-dbf9f7bfc6cd
+    name: UM_OperatedMesh_a656e21e-5fd9-4e34-8c72-86428da3380d
     skinnedMesh: 0
     sharedMesh: {fileID: -7260857681886250210}
     buidVersion:
@@ -235,7 +235,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 127792e0-5805-4779-acf0-dbf9f7bfc6cd
+  sourceMeshRendererGUID: a656e21e-5fd9-4e34-8c72-86428da3380d
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
     hardAngle: 0
     packMargin: 0
   saveData: {fileID: -2293784430814223357}
-  <IsDirtySaveData>k__BackingField: 0
+  <IsDirtySaveData>k__BackingField: 1
   texturepaintdata:
   - {fileID: 0}
 --- !u!33 &6214398628856544968
@@ -352,7 +352,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_f7709ef1-3958-456c-8450-1c43b7c7af75
+    name: UM_OperatedMesh_a58a9b35-e8ce-4c9f-9c74-bcf1d85a169a
     skinnedMesh: 0
     sharedMesh: {fileID: 7154967548044210994}
     buidVersion:
@@ -367,7 +367,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: f7709ef1-3958-456c-8450-1c43b7c7af75
+  sourceMeshRendererGUID: a58a9b35-e8ce-4c9f-9c74-bcf1d85a169a
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_eeb22f3b-0216-4e9d-ae99-47754acf5223
+    name: UM_OperatedMesh_43523235-adcd-40ee-94f3-2595e6e5285f
     skinnedMesh: 0
     sharedMesh: {fileID: -4295314987380264592}
     buidVersion:
@@ -499,7 +499,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: eeb22f3b-0216-4e9d-ae99-47754acf5223
+  sourceMeshRendererGUID: 43523235-adcd-40ee-94f3-2595e6e5285f
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -616,7 +616,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_879ad75f-6ae7-48a0-bb7f-7720189232cf
+    name: UM_OperatedMesh_716e57dd-59ea-4f60-9077-c013c1fb5363
     skinnedMesh: 0
     sharedMesh: {fileID: -60672796249829177}
     buidVersion:
@@ -631,7 +631,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 879ad75f-6ae7-48a0-bb7f-7720189232cf
+  sourceMeshRendererGUID: 716e57dd-59ea-4f60-9077-c013c1fb5363
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -750,7 +750,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_b7bc5a1e-3b86-479b-a587-49b4215549d9
+    name: UM_OperatedMesh_3b2ee322-2f13-4cde-b0e0-8ecd8a07a678
     skinnedMesh: 0
     sharedMesh: {fileID: -2269909996112527858}
     buidVersion:
@@ -765,7 +765,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: b7bc5a1e-3b86-479b-a587-49b4215549d9
+  sourceMeshRendererGUID: 3b2ee322-2f13-4cde-b0e0-8ecd8a07a678
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -917,7 +917,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_0f79f693-3e7f-4da2-ada8-43e98ef1d1d3
+    name: UM_OperatedMesh_e479cb16-e01a-443f-8892-a62e946dd9cf
     skinnedMesh: 0
     sharedMesh: {fileID: -8093899378608889325}
     buidVersion:
@@ -932,7 +932,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 0f79f693-3e7f-4da2-ada8-43e98ef1d1d3
+  sourceMeshRendererGUID: e479cb16-e01a-443f-8892-a62e946dd9cf
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -1051,7 +1051,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Accent.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_45fa5946-420b-4f90-ba5e-e062a357b819
+    name: UM_OperatedMesh_7866933d-da7e-41b1-8ea6-8fdb43626201
     skinnedMesh: 0
     sharedMesh: {fileID: -276964697799014631}
     buidVersion:
@@ -1066,7 +1066,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 45fa5946-420b-4f90-ba5e-e062a357b819
+  sourceMeshRendererGUID: 7866933d-da7e-41b1-8ea6-8fdb43626201
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -1185,7 +1185,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_b535e09c-d760-4344-95c4-b5c9cc5c8879
+    name: UM_OperatedMesh_1b25222b-91e4-47e0-96a6-8b5db1408014
     skinnedMesh: 0
     sharedMesh: {fileID: 2237316687946815618}
     buidVersion:
@@ -1200,7 +1200,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: b535e09c-d760-4344-95c4-b5c9cc5c8879
+  sourceMeshRendererGUID: 1b25222b-91e4-47e0-96a6-8b5db1408014
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -1317,7 +1317,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_2bbb9dd1-6bb8-4455-ad7e-39b9079b11d3
+    name: UM_OperatedMesh_488f049d-d53c-42ac-81ef-2755396e9544
     skinnedMesh: 0
     sharedMesh: {fileID: -7316592035334897816}
     buidVersion:
@@ -1332,7 +1332,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 2bbb9dd1-6bb8-4455-ad7e-39b9079b11d3
+  sourceMeshRendererGUID: 488f049d-d53c-42ac-81ef-2755396e9544
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -1449,7 +1449,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_271ecab5-40de-4442-bd1a-049b7ea92a26
+    name: UM_OperatedMesh_3eef3c48-22fb-4ac7-96d8-2394865d4510
     skinnedMesh: 0
     sharedMesh: {fileID: 2220338075064207962}
     buidVersion:
@@ -1464,7 +1464,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 271ecab5-40de-4442-bd1a-049b7ea92a26
+  sourceMeshRendererGUID: 3eef3c48-22fb-4ac7-96d8-2394865d4510
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -1581,7 +1581,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_d45fa011-84ab-4cbb-a79e-538b567f1f0d
+    name: UM_OperatedMesh_c4eb4833-5dbb-4f83-90c0-b30218bc2b21
     skinnedMesh: 0
     sharedMesh: {fileID: -9022129344885391774}
     buidVersion:
@@ -1596,7 +1596,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: d45fa011-84ab-4cbb-a79e-538b567f1f0d
+  sourceMeshRendererGUID: c4eb4833-5dbb-4f83-90c0-b30218bc2b21
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -1749,7 +1749,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_754187e1-57fd-4b69-8f54-4cf250f3bf0a
+    name: UM_OperatedMesh_0c2c5344-0296-48ae-a46b-27af05db77a6
     skinnedMesh: 0
     sharedMesh: {fileID: -1517177878566121080}
     buidVersion:
@@ -1764,7 +1764,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 754187e1-57fd-4b69-8f54-4cf250f3bf0a
+  sourceMeshRendererGUID: 0c2c5344-0296-48ae-a46b-27af05db77a6
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -1883,7 +1883,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_797f501b-87ae-4ad5-af25-effdc37c534b
+    name: UM_OperatedMesh_80dd773f-a13c-44c4-8fbc-8f43b699fa36
     skinnedMesh: 0
     sharedMesh: {fileID: -4169681217959334884}
     buidVersion:
@@ -1898,7 +1898,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 797f501b-87ae-4ad5-af25-effdc37c534b
+  sourceMeshRendererGUID: 80dd773f-a13c-44c4-8fbc-8f43b699fa36
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -2117,7 +2117,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_f4f3ef22-564f-488d-a75e-72ef749ea260
+    name: UM_OperatedMesh_366a128f-372f-4a62-8dd4-1d05ff405d41
     skinnedMesh: 0
     sharedMesh: {fileID: 8891404476131534767}
     buidVersion:
@@ -2132,7 +2132,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: f4f3ef22-564f-488d-a75e-72ef749ea260
+  sourceMeshRendererGUID: 366a128f-372f-4a62-8dd4-1d05ff405d41
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -2317,7 +2317,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_2ece316f-abbc-49ce-8b0d-8729d888ab0f
+    name: UM_OperatedMesh_e00067f8-a3e6-488f-b8e5-c7a82bd282c3
     skinnedMesh: 0
     sharedMesh: {fileID: 4627422694038683322}
     buidVersion:
@@ -2332,7 +2332,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 2ece316f-abbc-49ce-8b0d-8729d888ab0f
+  sourceMeshRendererGUID: e00067f8-a3e6-488f-b8e5-c7a82bd282c3
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -2451,7 +2451,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_0719825a-0687-4f82-bf64-d1458db993ee
+    name: UM_OperatedMesh_b1336897-9c0e-4dbf-b6a8-dd4137bc58e6
     skinnedMesh: 0
     sharedMesh: {fileID: -720006045216272825}
     buidVersion:
@@ -2466,7 +2466,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 0719825a-0687-4f82-bf64-d1458db993ee
+  sourceMeshRendererGUID: b1336897-9c0e-4dbf-b6a8-dd4137bc58e6
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -2585,7 +2585,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Accent_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_759f1373-9009-4e4d-b7e1-6adc3420111c
+    name: UM_OperatedMesh_37ca7317-d367-4bfb-8593-373ad127fe09
     skinnedMesh: 0
     sharedMesh: {fileID: -6289316548498661692}
     buidVersion:
@@ -2600,7 +2600,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 759f1373-9009-4e4d-b7e1-6adc3420111c
+  sourceMeshRendererGUID: 37ca7317-d367-4bfb-8593-373ad127fe09
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -2719,7 +2719,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_c6d3ff0c-fcf1-4575-af7f-d053683955de
+    name: UM_OperatedMesh_bb1ce729-993e-44f8-8d01-ae59a698b391
     skinnedMesh: 0
     sharedMesh: {fileID: -7756573911543443254}
     buidVersion:
@@ -2734,7 +2734,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: c6d3ff0c-fcf1-4575-af7f-d053683955de
+  sourceMeshRendererGUID: bb1ce729-993e-44f8-8d01-ae59a698b391
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -2853,7 +2853,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_bd9d2398-b669-477e-8933-9a5d0415c4cf
+    name: UM_OperatedMesh_925f0eca-65a1-42f5-876b-aa9b7bbca9f4
     skinnedMesh: 0
     sharedMesh: {fileID: -4406922023185375270}
     buidVersion:
@@ -2868,7 +2868,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: bd9d2398-b669-477e-8933-9a5d0415c4cf
+  sourceMeshRendererGUID: 925f0eca-65a1-42f5-876b-aa9b7bbca9f4
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -3021,7 +3021,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_d6302d10-1ce0-4c3e-965a-758a17d31fbf
+    name: UM_OperatedMesh_e7ae3cc2-696c-4dd0-848f-d6a5089dfef8
     skinnedMesh: 0
     sharedMesh: {fileID: -4392286325831164629}
     buidVersion:
@@ -3036,7 +3036,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: d6302d10-1ce0-4c3e-965a-758a17d31fbf
+  sourceMeshRendererGUID: e7ae3cc2-696c-4dd0-848f-d6a5089dfef8
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -3190,7 +3190,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_aee0efd2-5baf-4e24-b2a2-2e68697df686
+    name: UM_OperatedMesh_fa15a9fc-3ebc-495a-acf6-cf8cb0dd8e45
     skinnedMesh: 0
     sharedMesh: {fileID: -1276195337224612401}
     buidVersion:
@@ -3205,7 +3205,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: aee0efd2-5baf-4e24-b2a2-2e68697df686
+  sourceMeshRendererGUID: fa15a9fc-3ebc-495a-acf6-cf8cb0dd8e45
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -3324,7 +3324,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_370e9c08-6b01-4470-87e0-2208863220b3
+    name: UM_OperatedMesh_4a6e3071-639f-4b90-9b11-b067bf09980d
     skinnedMesh: 0
     sharedMesh: {fileID: 6752961671304061325}
     buidVersion:
@@ -3339,7 +3339,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 370e9c08-6b01-4470-87e0-2208863220b3
+  sourceMeshRendererGUID: 4a6e3071-639f-4b90-9b11-b067bf09980d
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -3525,7 +3525,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_5dab0dcb-4ab6-455a-b83d-65991370f36f
+    name: UM_OperatedMesh_910cbc82-8b8e-47ca-9586-a846fb461b22
     skinnedMesh: 0
     sharedMesh: {fileID: 534425337018816396}
     buidVersion:
@@ -3540,7 +3540,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 5dab0dcb-4ab6-455a-b83d-65991370f36f
+  sourceMeshRendererGUID: 910cbc82-8b8e-47ca-9586-a846fb461b22
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -3659,7 +3659,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_fe4e3972-01d6-425b-91ff-10bdbb9a3115
+    name: UM_OperatedMesh_3580380e-4dd2-48dd-8fe2-d9f34404d5d8
     skinnedMesh: 0
     sharedMesh: {fileID: -821272840657299782}
     buidVersion:
@@ -3674,7 +3674,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: fe4e3972-01d6-425b-91ff-10bdbb9a3115
+  sourceMeshRendererGUID: 3580380e-4dd2-48dd-8fe2-d9f34404d5d8
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -3791,7 +3791,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_112371f8-eebe-4e64-8e76-8610ddc5972f
+    name: UM_OperatedMesh_fdaff5da-a46c-472e-9503-b8d730fc77ab
     skinnedMesh: 0
     sharedMesh: {fileID: -416229492404235031}
     buidVersion:
@@ -3806,7 +3806,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 112371f8-eebe-4e64-8e76-8610ddc5972f
+  sourceMeshRendererGUID: fdaff5da-a46c-472e-9503-b8d730fc77ab
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -3925,7 +3925,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_b710bd90-d966-412f-8eb3-a2feed29e1a3
+    name: UM_OperatedMesh_f5bce641-2b47-416f-9dbf-9b0dfd915496
     skinnedMesh: 0
     sharedMesh: {fileID: 8909717812196220643}
     buidVersion:
@@ -3940,7 +3940,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: b710bd90-d966-412f-8eb3-a2feed29e1a3
+  sourceMeshRendererGUID: f5bce641-2b47-416f-9dbf-9b0dfd915496
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -4059,7 +4059,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_ba395f32-d3a1-4dd5-9ce5-4ea59323fae6
+    name: UM_OperatedMesh_758b4ca2-f44d-4674-aaf4-aafc3c398fd9
     skinnedMesh: 0
     sharedMesh: {fileID: 4422184878856993008}
     buidVersion:
@@ -4074,7 +4074,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: ba395f32-d3a1-4dd5-9ce5-4ea59323fae6
+  sourceMeshRendererGUID: 758b4ca2-f44d-4674-aaf4-aafc3c398fd9
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -4227,7 +4227,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_fb40119d-d927-44f0-8623-1d8bc60e7c0c
+    name: UM_OperatedMesh_5cf69ff5-4f0e-4d50-b72e-634a90a2345d
     skinnedMesh: 0
     sharedMesh: {fileID: 6099790396754624173}
     buidVersion:
@@ -4242,7 +4242,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: fb40119d-d927-44f0-8623-1d8bc60e7c0c
+  sourceMeshRendererGUID: 5cf69ff5-4f0e-4d50-b72e-634a90a2345d
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -4363,7 +4363,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Accent_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_38994f7e-7cbb-4661-985d-65c9b3593fbc
+    name: UM_OperatedMesh_7e6cbc7b-427e-4d2c-93ae-d0e0343a2590
     skinnedMesh: 0
     sharedMesh: {fileID: 3238202913800039347}
     buidVersion:
@@ -4378,7 +4378,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 38994f7e-7cbb-4661-985d-65c9b3593fbc
+  sourceMeshRendererGUID: 7e6cbc7b-427e-4d2c-93ae-d0e0343a2590
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -4497,7 +4497,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_e01b9d1c-cf51-43f2-b10f-5318e2696482
+    name: UM_OperatedMesh_c0ebbc24-6d12-488f-959d-3d1bf104abc4
     skinnedMesh: 0
     sharedMesh: {fileID: -1463216862552675267}
     buidVersion:
@@ -4512,7 +4512,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: e01b9d1c-cf51-43f2-b10f-5318e2696482
+  sourceMeshRendererGUID: c0ebbc24-6d12-488f-959d-3d1bf104abc4
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -4629,7 +4629,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_9f370a67-6fcb-40d3-a273-570601fa830f
+    name: UM_OperatedMesh_b004a445-0a9e-44dd-8b2c-3b2d3187010b
     skinnedMesh: 0
     sharedMesh: {fileID: -6043306308253297323}
     buidVersion:
@@ -4644,7 +4644,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 9f370a67-6fcb-40d3-a273-570601fa830f
+  sourceMeshRendererGUID: b004a445-0a9e-44dd-8b2c-3b2d3187010b
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -4761,7 +4761,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_c2254c03-a5b4-4031-b197-4198062a00d8
+    name: UM_OperatedMesh_82d89397-876e-4e4d-9da6-d6204fb4ac6b
     skinnedMesh: 0
     sharedMesh: {fileID: 4747337712933161573}
     buidVersion:
@@ -4776,7 +4776,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: c2254c03-a5b4-4031-b197-4198062a00d8
+  sourceMeshRendererGUID: 82d89397-876e-4e4d-9da6-d6204fb4ac6b
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -4893,7 +4893,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_ca02884d-3109-4e38-ba91-d3374c86503a
+    name: UM_OperatedMesh_c944abe0-dde8-440b-9162-c59d331215e5
     skinnedMesh: 0
     sharedMesh: {fileID: 3743190740624842168}
     buidVersion:
@@ -4908,7 +4908,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: ca02884d-3109-4e38-ba91-d3374c86503a
+  sourceMeshRendererGUID: c944abe0-dde8-440b-9162-c59d331215e5
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -5025,7 +5025,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_3e7b6ce7-7c33-418f-bc54-a1114b761682
+    name: UM_OperatedMesh_5b2aa852-dc0d-48c7-b26f-432720c55ab5
     skinnedMesh: 0
     sharedMesh: {fileID: -8148064374040046053}
     buidVersion:
@@ -5040,7 +5040,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 3e7b6ce7-7c33-418f-bc54-a1114b761682
+  sourceMeshRendererGUID: 5b2aa852-dc0d-48c7-b26f-432720c55ab5
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -5159,7 +5159,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_fbf4afc4-b20c-416c-aac6-179b2e7e4a2f
+    name: UM_OperatedMesh_a3ad0b05-00b9-4cf7-9f2c-675938b5b145
     skinnedMesh: 0
     sharedMesh: {fileID: -2339866975753910436}
     buidVersion:
@@ -5174,7 +5174,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: fbf4afc4-b20c-416c-aac6-179b2e7e4a2f
+  sourceMeshRendererGUID: a3ad0b05-00b9-4cf7-9f2c-675938b5b145
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -5335,7 +5335,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Accent.mat
   currentMaterialIndex: 3
   renderableMesh:
-    name: UM_OperatedMesh_a2a311bd-5c63-433d-9477-81af02761427
+    name: UM_OperatedMesh_d304d5ee-fe73-4ff0-80c0-d48465e25d06
     skinnedMesh: 0
     sharedMesh: {fileID: -8200976307299891393}
     buidVersion:
@@ -5350,7 +5350,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: a2a311bd-5c63-433d-9477-81af02761427
+  sourceMeshRendererGUID: d304d5ee-fe73-4ff0-80c0-d48465e25d06
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -5506,7 +5506,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_3d3511c0-1160-44f1-8bbf-8b46a95d3904
+    name: UM_OperatedMesh_f480541d-a516-487f-88cd-360a170dfb45
     skinnedMesh: 0
     sharedMesh: {fileID: -4888220397176949110}
     buidVersion:
@@ -5521,7 +5521,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 3d3511c0-1160-44f1-8bbf-8b46a95d3904
+  sourceMeshRendererGUID: f480541d-a516-487f-88cd-360a170dfb45
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -5638,7 +5638,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_53f27b90-a935-43cd-8756-45850d218afd
+    name: UM_OperatedMesh_5d043eaa-2d3a-4ebe-9f8a-a7812295f42b
     skinnedMesh: 0
     sharedMesh: {fileID: -7915081192705427523}
     buidVersion:
@@ -5653,7 +5653,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 53f27b90-a935-43cd-8756-45850d218afd
+  sourceMeshRendererGUID: 5d043eaa-2d3a-4ebe-9f8a-a7812295f42b
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -5803,7 +5803,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_5623d266-2b67-45dd-aa56-ca4affe1a38b
+    name: UM_OperatedMesh_1dfb3c15-d81a-4d45-9adf-7488524420ae
     skinnedMesh: 0
     sharedMesh: {fileID: -5568985698148213642}
     buidVersion:
@@ -5818,7 +5818,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 5623d266-2b67-45dd-aa56-ca4affe1a38b
+  sourceMeshRendererGUID: 1dfb3c15-d81a-4d45-9adf-7488524420ae
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -6002,7 +6002,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_3070ebce-dc19-4f71-a6a6-aff0c5f6e63d
+    name: UM_OperatedMesh_046d7ad9-e3c6-4521-aaa9-dd8636087b5a
     skinnedMesh: 0
     sharedMesh: {fileID: -2411532947332965989}
     buidVersion:
@@ -6017,7 +6017,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 3070ebce-dc19-4f71-a6a6-aff0c5f6e63d
+  sourceMeshRendererGUID: 046d7ad9-e3c6-4521-aaa9-dd8636087b5a
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -6134,7 +6134,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_391366dd-e6d4-4a09-9d72-d750fc8e4fc1
+    name: UM_OperatedMesh_efd1d89c-98f3-4723-9825-4095f32b7d2c
     skinnedMesh: 0
     sharedMesh: {fileID: -8423252942963923945}
     buidVersion:
@@ -6149,7 +6149,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 391366dd-e6d4-4a09-9d72-d750fc8e4fc1
+  sourceMeshRendererGUID: efd1d89c-98f3-4723-9825-4095f32b7d2c
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -6236,7 +6236,7 @@ Transform:
   m_GameObject: {fileID: 4072588130655246837}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.21177849, y: -0.012091517, z: 0}
+  m_LocalPosition: {x: -0.324, y: -0.012091517, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6298,7 +6298,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_c2c1be19-64b7-4637-90ed-2e6675a9ba69
+    name: UM_OperatedMesh_cbe04db6-8dc9-4b27-8b11-f2e9bc12c6de
     skinnedMesh: 0
     sharedMesh: {fileID: -4984689038013880305}
     buidVersion:
@@ -6313,7 +6313,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: c2c1be19-64b7-4637-90ed-2e6675a9ba69
+  sourceMeshRendererGUID: cbe04db6-8dc9-4b27-8b11-f2e9bc12c6de
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -6430,7 +6430,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_49468926-d1b6-4b2e-a88b-fb312b5f7c10
+    name: UM_OperatedMesh_ec8d514d-7b03-4392-8663-f152ec6184d9
     skinnedMesh: 0
     sharedMesh: {fileID: 3721352198980099495}
     buidVersion:
@@ -6445,7 +6445,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 49468926-d1b6-4b2e-a88b-fb312b5f7c10
+  sourceMeshRendererGUID: ec8d514d-7b03-4392-8663-f152ec6184d9
   guid: 19a25945-26d7-48c8-a7fa-cf7626e240f7
   localOptions:
     RecalculateTangents: 0
@@ -6562,7 +6562,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_132dd66c-1a43-4b2c-bcea-edc37ffdde29
+    name: UM_OperatedMesh_d62c7337-4ec9-44ad-bc0e-68abece92631
     skinnedMesh: 0
     sharedMesh: {fileID: -5698218098866321306}
     buidVersion:
@@ -6577,7 +6577,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 132dd66c-1a43-4b2c-bcea-edc37ffdde29
+  sourceMeshRendererGUID: d62c7337-4ec9-44ad-bc0e-68abece92631
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -6729,7 +6729,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_912e754c-6f79-4562-be49-8b855c636c06
+    name: UM_OperatedMesh_69e96616-7d8f-4749-b4cf-107ff779d0e4
     skinnedMesh: 0
     sharedMesh: {fileID: -6792394596582667468}
     buidVersion:
@@ -6744,7 +6744,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 912e754c-6f79-4562-be49-8b855c636c06
+  sourceMeshRendererGUID: 69e96616-7d8f-4749-b4cf-107ff779d0e4
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -6863,7 +6863,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_fbcbd184-c0bf-421f-967b-bfcedb9bc814
+    name: UM_OperatedMesh_b436ce04-071b-409c-9076-fcc4537efc6e
     skinnedMesh: 0
     sharedMesh: {fileID: 405765615549452284}
     buidVersion:
@@ -6878,7 +6878,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: fbcbd184-c0bf-421f-967b-bfcedb9bc814
+  sourceMeshRendererGUID: b436ce04-071b-409c-9076-fcc4537efc6e
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -7098,7 +7098,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_c2b24345-c3f8-4617-9d10-207bb6b5e410
+    name: UM_OperatedMesh_0ec0c84e-4167-4f97-860b-4b9d2ab134f1
     skinnedMesh: 0
     sharedMesh: {fileID: -4612706555423423474}
     buidVersion:
@@ -7113,7 +7113,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: c2b24345-c3f8-4617-9d10-207bb6b5e410
+  sourceMeshRendererGUID: 0ec0c84e-4167-4f97-860b-4b9d2ab134f1
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -7234,7 +7234,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_02239f12-d14d-4458-aaef-d890d32e1c94
+    name: UM_OperatedMesh_6cf15980-b7d1-4c59-ad48-72266de9999f
     skinnedMesh: 0
     sharedMesh: {fileID: 8059745704083780342}
     buidVersion:
@@ -7249,7 +7249,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 02239f12-d14d-4458-aaef-d890d32e1c94
+  sourceMeshRendererGUID: 6cf15980-b7d1-4c59-ad48-72266de9999f
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -7368,7 +7368,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_2b650f63-b5b2-41d4-a00f-4ce71ddf9bb4
+    name: UM_OperatedMesh_00628263-c37a-466d-b7d9-a2f68828144b
     skinnedMesh: 0
     sharedMesh: {fileID: 2996064931164762695}
     buidVersion:
@@ -7383,7 +7383,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 2b650f63-b5b2-41d4-a00f-4ce71ddf9bb4
+  sourceMeshRendererGUID: 00628263-c37a-466d-b7d9-a2f68828144b
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -7500,7 +7500,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_381bd13b-90ad-4c23-a7c4-2dfea23bb362
+    name: UM_OperatedMesh_ff1b6d02-b1dd-43ad-9f17-02742b445894
     skinnedMesh: 0
     sharedMesh: {fileID: -1947159431444057309}
     buidVersion:
@@ -7515,7 +7515,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 381bd13b-90ad-4c23-a7c4-2dfea23bb362
+  sourceMeshRendererGUID: ff1b6d02-b1dd-43ad-9f17-02742b445894
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -7632,7 +7632,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_d395bc2a-d2fe-4081-8d9b-806257c90f93
+    name: UM_OperatedMesh_1aafee8f-a114-4da6-80d7-a543e1375e45
     skinnedMesh: 0
     sharedMesh: {fileID: 2894873504844705061}
     buidVersion:
@@ -7647,7 +7647,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: d395bc2a-d2fe-4081-8d9b-806257c90f93
+  sourceMeshRendererGUID: 1aafee8f-a114-4da6-80d7-a543e1375e45
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -7764,7 +7764,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_74d7953f-5d2b-43a0-aefd-66a6bed74a53
+    name: UM_OperatedMesh_ec4ed5b8-b83d-466e-9261-d1f965e7e4c0
     skinnedMesh: 0
     sharedMesh: {fileID: -1736771007398279174}
     buidVersion:
@@ -7779,7 +7779,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 74d7953f-5d2b-43a0-aefd-66a6bed74a53
+  sourceMeshRendererGUID: ec4ed5b8-b83d-466e-9261-d1f965e7e4c0
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -7965,7 +7965,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Accent.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_a6f58efc-03c6-4a97-82de-34a684ef7367
+    name: UM_OperatedMesh_cb136ea7-8ec8-4d22-b12b-353235c1b815
     skinnedMesh: 0
     sharedMesh: {fileID: -4717687299398690416}
     buidVersion:
@@ -7980,7 +7980,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: a6f58efc-03c6-4a97-82de-34a684ef7367
+  sourceMeshRendererGUID: cb136ea7-8ec8-4d22-b12b-353235c1b815
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -8099,7 +8099,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_d296942c-27fd-497a-9210-b31eb2fb5db6
+    name: UM_OperatedMesh_20e6fc3c-ea92-4ccd-9224-aa2bbabd97b5
     skinnedMesh: 0
     sharedMesh: {fileID: 8769222371509463482}
     buidVersion:
@@ -8114,7 +8114,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: d296942c-27fd-497a-9210-b31eb2fb5db6
+  sourceMeshRendererGUID: 20e6fc3c-ea92-4ccd-9224-aa2bbabd97b5
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -8231,7 +8231,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_344d5858-fb88-4b28-bf2b-fa90ff007e3e
+    name: UM_OperatedMesh_78c04075-d3ff-4fa9-a974-448d1da7fa64
     skinnedMesh: 0
     sharedMesh: {fileID: -5741665838162974161}
     buidVersion:
@@ -8246,7 +8246,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 344d5858-fb88-4b28-bf2b-fa90ff007e3e
+  sourceMeshRendererGUID: 78c04075-d3ff-4fa9-a974-448d1da7fa64
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -8363,7 +8363,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_3a324542-9427-4cd8-9ec8-d414bd97f700
+    name: UM_OperatedMesh_2ade421c-0211-46d6-8b37-24626e4b4309
     skinnedMesh: 0
     sharedMesh: {fileID: 8880838230678035779}
     buidVersion:
@@ -8378,7 +8378,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 3a324542-9427-4cd8-9ec8-d414bd97f700
+  sourceMeshRendererGUID: 2ade421c-0211-46d6-8b37-24626e4b4309
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -8495,7 +8495,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_10c18852-861d-4481-97fb-55f3b8d07458
+    name: UM_OperatedMesh_844fa289-c382-43d9-83f6-5215aa87d4ae
     skinnedMesh: 0
     sharedMesh: {fileID: 9011895529312573072}
     buidVersion:
@@ -8510,7 +8510,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 10c18852-861d-4481-97fb-55f3b8d07458
+  sourceMeshRendererGUID: 844fa289-c382-43d9-83f6-5215aa87d4ae
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -8627,7 +8627,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_b807c60a-615a-4a76-9578-0571dea00536
+    name: UM_OperatedMesh_a63fe318-bcc9-4cbc-8e87-da3cf25e719e
     skinnedMesh: 0
     sharedMesh: {fileID: -6422339523114800212}
     buidVersion:
@@ -8642,7 +8642,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: b807c60a-615a-4a76-9578-0571dea00536
+  sourceMeshRendererGUID: a63fe318-bcc9-4cbc-8e87-da3cf25e719e
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -8759,7 +8759,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_65a861b9-de61-4970-814f-0a16a62c1970
+    name: UM_OperatedMesh_395f0853-9238-42f4-856f-cb751654906c
     skinnedMesh: 0
     sharedMesh: {fileID: -8564231482105301428}
     buidVersion:
@@ -8774,7 +8774,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 65a861b9-de61-4970-814f-0a16a62c1970
+  sourceMeshRendererGUID: 395f0853-9238-42f4-856f-cb751654906c
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -8957,7 +8957,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_c8e1e309-cdd4-4f8c-8bb4-6de0430cb07d
+    name: UM_OperatedMesh_5fd8af31-5b19-4c27-8192-110e4ccbd57b
     skinnedMesh: 0
     sharedMesh: {fileID: -7809201395610639927}
     buidVersion:
@@ -8972,7 +8972,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: c8e1e309-cdd4-4f8c-8bb4-6de0430cb07d
+  sourceMeshRendererGUID: 5fd8af31-5b19-4c27-8192-110e4ccbd57b
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -9089,7 +9089,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_4e310f42-6cf5-4248-8a35-88b183c543c8
+    name: UM_OperatedMesh_522eae8e-0474-4afd-b7d4-80357bc07023
     skinnedMesh: 0
     sharedMesh: {fileID: -962586471309488258}
     buidVersion:
@@ -9104,7 +9104,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 4e310f42-6cf5-4248-8a35-88b183c543c8
+  sourceMeshRendererGUID: 522eae8e-0474-4afd-b7d4-80357bc07023
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -9221,7 +9221,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_8c2def2a-1574-4530-ad36-70c886be785e
+    name: UM_OperatedMesh_be77c588-1122-42b0-8cb8-686525751a8a
     skinnedMesh: 0
     sharedMesh: {fileID: -528989967364664618}
     buidVersion:
@@ -9236,7 +9236,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 8c2def2a-1574-4530-ad36-70c886be785e
+  sourceMeshRendererGUID: be77c588-1122-42b0-8cb8-686525751a8a
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -9387,7 +9387,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_dde49386-5ee8-436e-b66d-ebffea0e908d
+    name: UM_OperatedMesh_c3cd001a-ba1d-49c0-9e0d-85bc261f1082
     skinnedMesh: 0
     sharedMesh: {fileID: 28079223611592195}
     buidVersion:
@@ -9402,7 +9402,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: dde49386-5ee8-436e-b66d-ebffea0e908d
+  sourceMeshRendererGUID: c3cd001a-ba1d-49c0-9e0d-85bc261f1082
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -9519,7 +9519,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_da296bc7-cbc3-42d1-91ed-eb3fa7bb7ec6
+    name: UM_OperatedMesh_8533ab89-8471-4be4-99b1-4bc9a6e44407
     skinnedMesh: 0
     sharedMesh: {fileID: -947200911835794849}
     buidVersion:
@@ -9534,7 +9534,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: da296bc7-cbc3-42d1-91ed-eb3fa7bb7ec6
+  sourceMeshRendererGUID: 8533ab89-8471-4be4-99b1-4bc9a6e44407
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -9620,7 +9620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6085541289191065509}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.120599985, y: -0.042700052, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9628,7 +9628,7 @@ Transform:
   - {fileID: 8611627445137822620}
   - {fileID: 5650400904024343542}
   m_Father: {fileID: 5942487886020844809}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6128061749884569373
 GameObject:
   m_ObjectHideFlags: 0
@@ -9716,7 +9716,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_d536647a-6ef1-484d-960f-22847bf6da29
+    name: UM_OperatedMesh_3e7374b2-a840-440b-a071-5fdbba0b9e66
     skinnedMesh: 0
     sharedMesh: {fileID: 2117749412386239208}
     buidVersion:
@@ -9731,7 +9731,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: d536647a-6ef1-484d-960f-22847bf6da29
+  sourceMeshRendererGUID: 3e7374b2-a840-440b-a071-5fdbba0b9e66
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -9818,7 +9818,7 @@ Transform:
   m_GameObject: {fileID: 6305761673439516672}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70710677, w: 0.7071069}
-  m_LocalPosition: {x: 0.0027576238, y: -0.21177843, z: 0}
+  m_LocalPosition: {x: 0.003, y: -0.3229, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9918,7 +9918,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_5af0357c-faf0-4cb8-849e-3b094152418b
+    name: UM_OperatedMesh_13c24702-07e2-40bb-bdfb-9d1091d7d206
     skinnedMesh: 0
     sharedMesh: {fileID: 2240420434828554760}
     buidVersion:
@@ -9933,7 +9933,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 5af0357c-faf0-4cb8-849e-3b094152418b
+  sourceMeshRendererGUID: 13c24702-07e2-40bb-bdfb-9d1091d7d206
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -10132,7 +10132,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_c3ab4558-a355-4940-9b61-60cf242bf5ad
+    name: UM_OperatedMesh_39f476af-e18a-492e-b465-2586800b6d2e
     skinnedMesh: 0
     sharedMesh: {fileID: -2390606580826775371}
     buidVersion:
@@ -10147,7 +10147,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: c3ab4558-a355-4940-9b61-60cf242bf5ad
+  sourceMeshRendererGUID: 39f476af-e18a-492e-b465-2586800b6d2e
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -10266,7 +10266,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_c87e7678-9a24-4c79-988d-6530aa38b614
+    name: UM_OperatedMesh_6502ed07-fa70-45e9-b142-2e23021b8d6e
     skinnedMesh: 0
     sharedMesh: {fileID: -9201043939942044356}
     buidVersion:
@@ -10281,7 +10281,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: c87e7678-9a24-4c79-988d-6530aa38b614
+  sourceMeshRendererGUID: 6502ed07-fa70-45e9-b142-2e23021b8d6e
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -10398,7 +10398,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_463779aa-2536-4b2c-8c4c-3dae0c69ee28
+    name: UM_OperatedMesh_531c87ca-0367-4b04-ba34-8fb08b561763
     skinnedMesh: 0
     sharedMesh: {fileID: 2268911551124914400}
     buidVersion:
@@ -10413,7 +10413,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 463779aa-2536-4b2c-8c4c-3dae0c69ee28
+  sourceMeshRendererGUID: 531c87ca-0367-4b04-ba34-8fb08b561763
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -10530,7 +10530,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_24639bde-92ff-4204-91d2-d1f484454a76
+    name: UM_OperatedMesh_6ed01a5a-3df0-406e-b989-0b31b2175039
     skinnedMesh: 0
     sharedMesh: {fileID: 1535644037173770993}
     buidVersion:
@@ -10545,7 +10545,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 24639bde-92ff-4204-91d2-d1f484454a76
+  sourceMeshRendererGUID: 6ed01a5a-3df0-406e-b989-0b31b2175039
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -10769,9 +10769,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7005964272164977006}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 1.2213686, y: -0.654303, z: 0.010314789}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0027678679, y: -0.005278977, z: 0.010314789}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2833322299725346864}
@@ -10797,7 +10797,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_491d40df-1798-4aa2-963c-caac89ca31a7
+    name: UM_OperatedMesh_790b7eb8-68f8-4059-b9cd-7d58a6232828
     skinnedMesh: 0
     sharedMesh: {fileID: 5497466829456313456}
     buidVersion:
@@ -10812,7 +10812,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 491d40df-1798-4aa2-963c-caac89ca31a7
+  sourceMeshRendererGUID: 790b7eb8-68f8-4059-b9cd-7d58a6232828
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -10821,7 +10821,7 @@ MonoBehaviour:
     hardAngle: 0
     packMargin: 0
   saveData: {fileID: 3102359431598072010}
-  <IsDirtySaveData>k__BackingField: 0
+  <IsDirtySaveData>k__BackingField: 1
   texturepaintdata:
   - {fileID: 0}
 --- !u!33 &8092145103807961938
@@ -10961,7 +10961,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_8db3aea9-b7f7-4721-b46a-c1e4ee9e558c
+    name: UM_OperatedMesh_2e12e000-1c95-456c-9767-dd1242887c31
     skinnedMesh: 0
     sharedMesh: {fileID: 5430840337302251031}
     buidVersion:
@@ -10976,7 +10976,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 8db3aea9-b7f7-4721-b46a-c1e4ee9e558c
+  sourceMeshRendererGUID: 2e12e000-1c95-456c-9767-dd1242887c31
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -11161,7 +11161,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_9ffe9b2c-b005-42b0-b8e6-5acba4e4e175
+    name: UM_OperatedMesh_d09c6f9a-701c-4741-b4f1-e0d89fac1009
     skinnedMesh: 0
     sharedMesh: {fileID: 3255350649108250170}
     buidVersion:
@@ -11176,7 +11176,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 9ffe9b2c-b005-42b0-b8e6-5acba4e4e175
+  sourceMeshRendererGUID: d09c6f9a-701c-4741-b4f1-e0d89fac1009
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -11329,7 +11329,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_49f2a6c4-1dda-4ace-9464-a2b51bfe0adb
+    name: UM_OperatedMesh_2ccec17d-3e33-40a0-babb-78c8b8ce807c
     skinnedMesh: 0
     sharedMesh: {fileID: -1181450689255616255}
     buidVersion:
@@ -11344,7 +11344,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 49f2a6c4-1dda-4ace-9464-a2b51bfe0adb
+  sourceMeshRendererGUID: 2ccec17d-3e33-40a0-babb-78c8b8ce807c
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -11493,7 +11493,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_641fd1d8-f669-4a95-8bc3-f2197f80302d
+    name: UM_OperatedMesh_43b9b877-7c7f-4692-839a-95ad014fc1a6
     skinnedMesh: 0
     sharedMesh: {fileID: 5276338002575737248}
     buidVersion:
@@ -11508,7 +11508,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 641fd1d8-f669-4a95-8bc3-f2197f80302d
+  sourceMeshRendererGUID: 43b9b877-7c7f-4692-839a-95ad014fc1a6
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -11662,7 +11662,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_b217865b-fa41-4cc3-b6e7-8629bf416987
+    name: UM_OperatedMesh_d017ca06-6030-4134-b9cb-9565d1181e67
     skinnedMesh: 0
     sharedMesh: {fileID: 1405218362033413262}
     buidVersion:
@@ -11677,7 +11677,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: b217865b-fa41-4cc3-b6e7-8629bf416987
+  sourceMeshRendererGUID: d017ca06-6030-4134-b9cb-9565d1181e67
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -11794,7 +11794,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_b781c7fc-edda-49c6-ba29-8baf05f5b55f
+    name: UM_OperatedMesh_11f06ad6-4bc0-4bf9-9f34-ea9dceb6a1c2
     skinnedMesh: 0
     sharedMesh: {fileID: -118589219672954800}
     buidVersion:
@@ -11809,7 +11809,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: b781c7fc-edda-49c6-ba29-8baf05f5b55f
+  sourceMeshRendererGUID: 11f06ad6-4bc0-4bf9-9f34-ea9dceb6a1c2
   guid: 19a25945-26d7-48c8-a7fa-cf7626e240f7
   localOptions:
     RecalculateTangents: 0
@@ -11926,7 +11926,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_358c1fbf-644c-4705-8b60-468a53e057c2
+    name: UM_OperatedMesh_750e013a-3624-4cf7-8694-c79af3b6d2b5
     skinnedMesh: 0
     sharedMesh: {fileID: 2243166438033273086}
     buidVersion:
@@ -11941,7 +11941,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 358c1fbf-644c-4705-8b60-468a53e057c2
+  sourceMeshRendererGUID: 750e013a-3624-4cf7-8694-c79af3b6d2b5
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -12090,7 +12090,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_c3f0882f-9bcf-41cd-bed5-68f74fcd0672
+    name: UM_OperatedMesh_c8fcd301-313c-4b2c-b9c5-854fc40edbfb
     skinnedMesh: 0
     sharedMesh: {fileID: -5279211120241045217}
     buidVersion:
@@ -12105,7 +12105,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: c3f0882f-9bcf-41cd-bed5-68f74fcd0672
+  sourceMeshRendererGUID: c8fcd301-313c-4b2c-b9c5-854fc40edbfb
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -12224,7 +12224,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_6f477870-797b-43e3-9a4d-52b028c4cb99
+    name: UM_OperatedMesh_4444607b-7f49-4dc1-9575-c97fb9a1c2ea
     skinnedMesh: 0
     sharedMesh: {fileID: 6784214530086910307}
     buidVersion:
@@ -12239,7 +12239,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 6f477870-797b-43e3-9a4d-52b028c4cb99
+  sourceMeshRendererGUID: 4444607b-7f49-4dc1-9575-c97fb9a1c2ea
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -12358,7 +12358,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_104ddf36-37a7-4afa-a349-370b8a600627
+    name: UM_OperatedMesh_bfe443f6-e196-4e0d-87cd-23056427c605
     skinnedMesh: 0
     sharedMesh: {fileID: -6412163501707245842}
     buidVersion:
@@ -12373,7 +12373,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 104ddf36-37a7-4afa-a349-370b8a600627
+  sourceMeshRendererGUID: bfe443f6-e196-4e0d-87cd-23056427c605
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -12529,7 +12529,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Accent.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_cd7aba99-cc1c-4b43-8f4b-b0e0c665bd61
+    name: UM_OperatedMesh_71397c4e-7de5-495d-84f6-bc4e51252860
     skinnedMesh: 0
     sharedMesh: {fileID: 596137653999314230}
     buidVersion:
@@ -12544,7 +12544,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: cd7aba99-cc1c-4b43-8f4b-b0e0c665bd61
+  sourceMeshRendererGUID: 71397c4e-7de5-495d-84f6-bc4e51252860
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -12665,7 +12665,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_e9c41a37-9b23-41f9-9764-ebe580e7a1aa
+    name: UM_OperatedMesh_5cfc8eaf-c01d-4941-b59c-75b3e47a8fa9
     skinnedMesh: 0
     sharedMesh: {fileID: 3790335945647681529}
     buidVersion:
@@ -12680,7 +12680,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: e9c41a37-9b23-41f9-9764-ebe580e7a1aa
+  sourceMeshRendererGUID: 5cfc8eaf-c01d-4941-b59c-75b3e47a8fa9
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -12797,7 +12797,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_81de7647-c603-46b2-920a-3eacd4abcd5d
+    name: UM_OperatedMesh_61bc5079-d255-41cb-83c4-6f58173f0559
     skinnedMesh: 0
     sharedMesh: {fileID: -9115458766022924789}
     buidVersion:
@@ -12812,7 +12812,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 81de7647-c603-46b2-920a-3eacd4abcd5d
+  sourceMeshRendererGUID: 61bc5079-d255-41cb-83c4-6f58173f0559
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -12929,7 +12929,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_43d70740-0631-476e-be34-5ca923fa0abf
+    name: UM_OperatedMesh_17afcecf-5c28-46fc-8bd8-4caa9f93f29a
     skinnedMesh: 0
     sharedMesh: {fileID: 5139009866073970467}
     buidVersion:
@@ -12944,7 +12944,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 43d70740-0631-476e-be34-5ca923fa0abf
+  sourceMeshRendererGUID: 17afcecf-5c28-46fc-8bd8-4caa9f93f29a
   guid: 11d6417f-6fe3-4753-99b2-a424bbaa0957
   localOptions:
     RecalculateTangents: 0
@@ -13061,7 +13061,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_37c4cde0-7b02-4105-a292-39087648aec3
+    name: UM_OperatedMesh_95ddf404-ff4a-4c3c-9ef9-e961847f8818
     skinnedMesh: 0
     sharedMesh: {fileID: -4947402188533476499}
     buidVersion:
@@ -13076,7 +13076,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 37c4cde0-7b02-4105-a292-39087648aec3
+  sourceMeshRendererGUID: 95ddf404-ff4a-4c3c-9ef9-e961847f8818
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -13193,7 +13193,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_41e56bb6-2275-4b96-a21f-3c0b2ebcbdb5
+    name: UM_OperatedMesh_0c565d3a-1426-4b3e-8ed1-7074448eaa34
     skinnedMesh: 0
     sharedMesh: {fileID: -7664757316240974795}
     buidVersion:
@@ -13208,7 +13208,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 41e56bb6-2275-4b96-a21f-3c0b2ebcbdb5
+  sourceMeshRendererGUID: 0c565d3a-1426-4b3e-8ed1-7074448eaa34
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -13325,7 +13325,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_8643e5e1-0a4b-4f3e-9196-30123c199623
+    name: UM_OperatedMesh_c1f8deea-d397-4520-89aa-06c7c7efdd88
     skinnedMesh: 0
     sharedMesh: {fileID: -4752880579321500602}
     buidVersion:
@@ -13340,7 +13340,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 8643e5e1-0a4b-4f3e-9196-30123c199623
+  sourceMeshRendererGUID: c1f8deea-d397-4520-89aa-06c7c7efdd88
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -13457,7 +13457,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_47c001aa-c76b-4c85-8ff0-09e8265c0d4a
+    name: UM_OperatedMesh_4b32cab4-b3dd-4780-8912-a59176deea4a
     skinnedMesh: 0
     sharedMesh: {fileID: 6831777234305530259}
     buidVersion:
@@ -13472,7 +13472,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 47c001aa-c76b-4c85-8ff0-09e8265c0d4a
+  sourceMeshRendererGUID: 4b32cab4-b3dd-4780-8912-a59176deea4a
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -13589,7 +13589,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_561a5cc4-98f2-4209-8269-52733f1bc891
+    name: UM_OperatedMesh_3f7b8740-48c8-48ce-a459-d8c98d138332
     skinnedMesh: 0
     sharedMesh: {fileID: -7103137695402403319}
     buidVersion:
@@ -13604,7 +13604,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 561a5cc4-98f2-4209-8269-52733f1bc891
+  sourceMeshRendererGUID: 3f7b8740-48c8-48ce-a459-d8c98d138332
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -13721,7 +13721,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_URP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_0cfaf220-e656-4304-8c3f-4a4a79f66fb0
+    name: UM_OperatedMesh_dbf7c30b-b294-4f4c-944e-f5112b61b22d
     skinnedMesh: 0
     sharedMesh: {fileID: 5844171980576579097}
     buidVersion:
@@ -13736,7 +13736,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 0cfaf220-e656-4304-8c3f-4a4a79f66fb0
+  sourceMeshRendererGUID: dbf7c30b-b294-4f4c-944e-f5112b61b22d
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -13853,7 +13853,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Hand.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_bf6b3ef5-5980-4329-929a-87b8d840627f
+    name: UM_OperatedMesh_a9948b7b-648a-44b8-b602-f7effd90f8c1
     skinnedMesh: 0
     sharedMesh: {fileID: -1301905633305817243}
     buidVersion:
@@ -13868,7 +13868,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: bf6b3ef5-5980-4329-929a-87b8d840627f
+  sourceMeshRendererGUID: a9948b7b-648a-44b8-b602-f7effd90f8c1
   guid: 6e8060e2-3d37-45ed-a751-880dd7aa0e1b
   localOptions:
     RecalculateTangents: 0
@@ -14020,7 +14020,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Body.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_4f3b6162-78f5-40b8-ae09-525175724bb1
+    name: UM_OperatedMesh_8e57927a-715a-46d4-a846-1bc0243c50ed
     skinnedMesh: 0
     sharedMesh: {fileID: -5122821921639772034}
     buidVersion:
@@ -14035,7 +14035,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 4f3b6162-78f5-40b8-ae09-525175724bb1
+  sourceMeshRendererGUID: 8e57927a-715a-46d4-a846-1bc0243c50ed
   guid: d1b564c2-f698-4dba-909e-30fcd54b29a2
   localOptions:
     RecalculateTangents: 0
@@ -14154,7 +14154,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Thruster_Inner.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_9ab51c4c-d9bf-49bd-9b09-475101243817
+    name: UM_OperatedMesh_148f3413-9710-47c3-af9a-2260f007f62f
     skinnedMesh: 0
     sharedMesh: {fileID: -9099150178132031701}
     buidVersion:
@@ -14169,7 +14169,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 9ab51c4c-d9bf-49bd-9b09-475101243817
+  sourceMeshRendererGUID: 148f3413-9710-47c3-af9a-2260f007f62f
   guid: 35658871-c01a-47fa-9c95-b3aa5b186ca3
   localOptions:
     RecalculateTangents: 0
@@ -14321,7 +14321,7 @@ MonoBehaviour:
   - Assets/MyMech/Materials/Joint.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_afcc3202-f05c-4167-baee-5c9d267ed025
+    name: UM_OperatedMesh_f1ad2323-5e85-4eeb-aef7-2949bf3d2e34
     skinnedMesh: 0
     sharedMesh: {fileID: 5261459452498396747}
     buidVersion:
@@ -14336,7 +14336,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: afcc3202-f05c-4167-baee-5c9d267ed025
+  sourceMeshRendererGUID: f1ad2323-5e85-4eeb-aef7-2949bf3d2e34
   guid: e3947f63-80d6-4fe6-97ee-ed5e9316ea85
   localOptions:
     RecalculateTangents: 0
@@ -17185,8 +17185,8 @@ Mesh:
     firstVertex: 0
     vertexCount: 48
     localAABB:
-      m_Center: {x: 0.5212265, y: 1.3169417, z: -0.014914768}
-      m_Extent: {x: 0.10777545, y: 0.028882563, z: 0.02836666}
+      m_Center: {x: 0.10897184, y: -0.000000013038516, z: -9.313226e-10}
+      m_Extent: {x: 0.10777543, y: 0.028882561, z: 0.028366659}
   m_Shapes:
     vertices: []
     shapes: []
@@ -17265,7 +17265,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 1536
-    _typelessdata: dcafd33ed878a53fbaac6cba1e32b3bc8eeb7fbf4e9245bc000000000000003fdcafd33ed878a53fbaac6cba0f362cbc86f2f5be6883603f0000803f0000003fdcafd33ed878a53fbaac6cba50f07fbf2237b33c548a08350000803e0000003ffefad33e33d3a83f53655c3c50f07fbf2237b33c548a0835a030093d0000c03efefad33e33d3a83f53655c3c0f362cbc86f2f5be6883603f5555553f0000003ffefad33e33d3a83f53655c3ce252273c72f6ee3e6064623f5555553f0000003f1a47d43ec338ac3fc2ce12ba50f07fbf2237b33c548a0835a430093dfeffff3d1a47d43ec338ac3fc2ce12bae252273c72f6ee3e6064623fabaa2a3f0000003f1a47d43ec338ac3fc2ce12ba1f32b33c8deb7f3f0ca4453cabaa2a3f0000003f1548d43ef943ac3fa0f7ecbc50f07fbf2237b33c548a08350100803e000000001548d43ef943ac3fa0f7ecbc1f32b33c8deb7f3f0ca4453c0000003f0000003f1548d43ef943ac3fa0f7ecbc14362c3c86f2f53e698360bf0000003f0000003ff3fcd33e9ee9a83fd84731bd50f07fbf2237b33c548a0835ecd9ee3e0200003ef3fcd33e9ee9a83fd84731bd14362c3c86f2f53e698360bfabaaaa3e0000003ff3fcd33e9ee9a83fd84731bdb05227bc30f6eebe716462bfabaaaa3e0000003fd7b0d33e0d84a53f97c6efbc50f07fbf2237b33c548a0835ecd9ee3effffbf3ed7b0d33e0d84a53f97c6efbcb05227bc30f6eebe716462bfabaa2a3e0000003fd7b0d33e0d84a53f97c6efbc1e32b3bc8eeb7fbf4e9245bcabaa2a3e0000003f2aba203f20dfa43f74ae6cba0f362cbc86f2f5be6883603f0000803f0000803f2aba203f20dfa43f74ae6cba52f07f3ff635b3bc93b930b40000403f0000003f2aba203f20dfa43f74ae6cba1e32b3bc8eeb7fbf4e9245bc000000000000803fbadf203f7b39a83f3a655c3ce252273c72f6ee3e6064623f5555553f0000803fbadf203f7b39a83f3a655c3c0f362cbc86f2f5be6883603f5555553f0000803fbadf203f7b39a83f3a655c3c52f07f3ff635b3bc93b930b4f66c773f0000c03ec805213f0b9fab3f65d012ba1f32b33c8deb7f3f0ca4453cabaa2a3f0000803fc805213f0b9fab3f65d012bae252273c72f6ee3e6064623fabaa2a3f0000803fc805213f0b9fab3f65d012ba52f07f3ff635b3bc93b930b4f66c773ffeffff3d4606213f41aaab3fadf7ecbc14362c3c86f2f53e698360bf0000003f0000803f4606213f41aaab3fadf7ecbc1f32b33c8deb7f3f0ca4453c0000003f0000803f4606213f41aaab3fadf7ecbc52f07f3ff635b3bc93b930b40000403f00000000b5e0203fe64fa83fde4731bdb05227bc30f6eebe716462bfabaaaa3e0000803fb5e0203fe64fa83fde4731bd14362c3c86f2f53e698360bfabaaaa3e0000803fb5e0203fe64fa83fde4731bd52f07f3ff635b3bc93b930b40a93083f0200003ea7ba203f55eaa43fa4c6efbc1e32b3bc8eeb7fbf4e9245bcabaa2a3e0000803fa7ba203f55eaa43fa4c6efbcb05227bc30f6eebe716462bfabaa2a3e0000803fa7ba203f55eaa43fa4c6efbc52f07f3ff635b3bc93b930b40a93083fffffbf3e2aba203f20dfa43f74ae6cba52f07f3ff635b3bc93b930b40000403f0000003fbadf203f7b39a83f3a655c3c52f07f3ff635b3bc93b930b4f66c773f0000c03ec805213f0b9fab3f65d012ba52f07f3ff635b3bc93b930b4f66c773ffeffff3d4606213f41aaab3fadf7ecbc52f07f3ff635b3bc93b930b40000403f00000000b5e0203fe64fa83fde4731bd52f07f3ff635b3bc93b930b40a93083f0200003ea7ba203f55eaa43fa4c6efbc52f07f3ff635b3bc93b930b40a93083fffffbf3e2aba203f20dfa43f74ae6cba52f07f3ff635b3bc93b930b40000403f0000003fbadf203f7b39a83f3a655c3c52f07f3ff635b3bc93b930b4f66c773f0000c03ec805213f0b9fab3f65d012ba52f07f3ff635b3bc93b930b4f66c773ffeffff3d4606213f41aaab3fadf7ecbc52f07f3ff635b3bc93b930b40000403f00000000b5e0203fe64fa83fde4731bd52f07f3ff635b3bc93b930b40a93083f0200003ea7ba203f55eaa43fa4c6efbc52f07f3ff635b3bc93b930b40a93083fffffbf3e
+    _typelessdata: 00d19c3a262dc6bc4692653c2032b3bc8eeb7fbf419245bc000000000000003f00d19c3a262dc6bc4692653c15362cbc86f2f5be6883603f0000803f0000003f00d19c3a262dc6bc4692653c50f07fbf2137b33caff7a3350000803e0000003f00f3e73ac84c033b3261e83c50f07fbf2137b33caff7a335a030093d0000c03e00f3e73ac84c033b3261e83c15362cbc86f2f5be6883603f5555553f0000003f00f3e73ac84c033b3261e83ce252273c72f6ee3e6064623f5555553f0000003f80071a3b98cde93c26306b3c50f07fbf2137b33caff7a335a430093dfeffff3d80071a3b98cde93c26306b3ce252273c72f6ee3e6064623fabaa2a3f0000003f80071a3b98cde93c26306b3c2132b33c8deb7f3fffa3453cabaa2a3f0000003f80841a3b189bec3c2e9265bc50f07fbf2137b33caff7a3350100803e0000000080841a3b189bec3c2e9265bc2132b33c8deb7f3fffa3453c0000003f0000003f80841a3b189bec3c2e9265bc16362c3c87f2f53e698360bf0000003f0000003f00e7e93ac822303b2761e8bc50f07fbf2137b33caff7a335ecd9ee3e0200003e00e7e93ac822303b2761e8bc16362c3c87f2f53e698360bfabaaaa3e0000003f00e7e93ac822303b2761e8bcb25227bc30f6eebe716462bfabaaaa3e0000003f00cb9d3ae65fc3bc1c306bbc50f07fbf2137b33caff7a335ecd9ee3effffbf3e00cb9d3ae65fc3bc1c306bbcb25227bc30f6eebe716462bfabaa2a3e0000003f00cb9d3ae65fc3bc1c306bbc2032b3bc8eeb7fbf419245bcabaa2a3e0000003f8fc25c3e269becbc2b92653c15362cbc86f2f5be6883603f0000803f0000803f8fc25c3e269becbc2b92653c52f07f3ff635b3bc952830b40000403f0000003f8fc25c3e269becbc2b92653c2032b3bc8eeb7fbf419245bc000000000000803fcf585d3e372330bb2661e83ce252273c72f6ee3e6064623f5555553f0000803fcf585d3e372330bb2661e83c15362cbc86f2f5be6883603f5555553f0000803fcf585d3e372330bb2661e83c52f07f3ff635b3bc952830b4f66c773f0000c03e07f15d3e985fc33c0c306b3c2132b33c8deb7f3fffa3453cabaa2a3f0000803f07f15d3e985fc33c0c306b3ce252273c72f6ee3e6064623fabaa2a3f0000803f07f15d3e985fc33c0c306b3c52f07f3ff635b3bc952830b4f66c773ffeffff3dfff25d3e182dc63c489265bc16362c3c87f2f53e698360bf0000003f0000803ffff25d3e182dc63c489265bc2132b33c8deb7f3fffa3453c0000003f0000803ffff25d3e182dc63c489265bc52f07f3ff635b3bc952830b40000403f00000000bb5c5d3e374d03bb3361e8bcb25227bc30f6eebe716462bfabaaaa3e0000803fbb5c5d3e374d03bb3361e8bc16362c3c87f2f53e698360bfabaaaa3e0000803fbb5c5d3e374d03bb3361e8bc52f07f3ff635b3bc952830b40a93083f0200003e83c45c3ee6cde9bc36306bbc2032b3bc8eeb7fbf419245bcabaa2a3e0000803f83c45c3ee6cde9bc36306bbcb25227bc30f6eebe716462bfabaa2a3e0000803f83c45c3ee6cde9bc36306bbc52f07f3ff635b3bc952830b40a93083fffffbf3e8fc25c3e269becbc2b92653c52f07f3ff635b3bc952830b40000403f0000003fcf585d3e372330bb2661e83c52f07f3ff635b3bc952830b4f66c773f0000c03e07f15d3e985fc33c0c306b3c52f07f3ff635b3bc952830b4f66c773ffeffff3dfff25d3e182dc63c489265bc52f07f3ff635b3bc952830b40000403f00000000bb5c5d3e374d03bb3361e8bc52f07f3ff635b3bc952830b40a93083f0200003e83c45c3ee6cde9bc36306bbc52f07f3ff635b3bc952830b40a93083fffffbf3e8fc25c3e269becbc2b92653c52f07f3ff635b3bc952830b40000403f0000003fcf585d3e372330bb2661e83c52f07f3ff635b3bc952830b4f66c773f0000c03e07f15d3e985fc33c0c306b3c52f07f3ff635b3bc952830b4f66c773ffeffff3dfff25d3e182dc63c489265bc52f07f3ff635b3bc952830b40000403f00000000bb5c5d3e374d03bb3361e8bc52f07f3ff635b3bc952830b40a93083f0200003e83c45c3ee6cde9bc36306bbc52f07f3ff635b3bc952830b40a93083fffffbf3e
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -17319,8 +17319,8 @@ Mesh:
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
-    m_Center: {x: 0.5212265, y: 1.3169417, z: -0.014914768}
-    m_Extent: {x: 0.10777545, y: 0.028882563, z: 0.02836666}
+    m_Center: {x: 0.10897184, y: -0.000000013038516, z: -9.313226e-10}
+    m_Extent: {x: 0.10777543, y: 0.028882561, z: 0.028366659}
   m_MeshUsageFlags: 0
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 
@@ -22081,15 +22081,15 @@ MonoBehaviour:
   DataVersion: 5
   Materials:
   - {fileID: 2100000, guid: 826248fd6dc73064083b5b5fd64363c6, type: 2}
-  DataStream: 91920197949896dc0018000104070a0d000205080b0e12131415161218191a1b1c18dc0018000000000000000000000000000000000000000000000000dc001893ca3ed3afdcca3fa578d8caba6cacba93ca3ed3fafeca3fa8d333ca3c5c655393ca3ed4471aca3fac38c3caba12cec293ca3ed44815ca3fac43f9cabcecf7a093ca3ed3fcf3ca3fa8e99ecabd3147d893ca3ed3b0d7ca3fa5840dcabcefc69793ca3f20ba2aca3fa4df20caba6cae7493ca3f20dfbaca3fa8397bca3c5c653a93ca3f2105c8ca3fab9f0bcaba12d06593ca3f210646ca3fabaa41cabcecf7ad93ca3f20e0b5ca3fa84fe6cabd3147de93ca3f20baa7ca3fa4ea55cabcefc6a493ca3f20ba2aca3fa4df20caba6cae7493ca3f20dfbaca3fa8397bca3c5c653a93ca3f2105c8ca3fab9f0bcaba12d06593ca3f210646ca3fabaa41cabcecf7ad93ca3f20e0b5ca3fa84fe6cabd3147de93ca3f20baa7ca3fa4ea55cabcefc6a493ca3f20ba2aca3fa4df20caba6cae7493ca3f20dfbaca3fa8397bca3c5c653a93ca3f2105c8ca3fab9f0bcaba12d06593ca3f210646ca3fabaa41cabcecf7ad93ca3f20e0b5ca3fa84fe6cabd3147de93ca3f20baa7ca3fa4ea55cabcefc6a490900398dc001e0600010701020802030903040a04050b0506110c0d0e0f10171213141516dc001e00010706020807030908040a09050b0a000b0c0d0e0f1011121314151617dc001e161d041f1c08201b0c211a1022191423181e2425262728292a2b2c2d2e2fdc001e11000102020405050708080a0b0b0d0e0e031712131415161d18191a1b1cdc001e03100406010709040a0c070d0f0a10110d001712131415161d18191a1b1cdc001e100406000709030a0c060d0f0910110c010f131415161712191a1b1c1d18dc001e010203110506020809050b0c080e0f0b000e131415161712191a1b1c1d18dc001e00000000000000000000000000000000000000000000000000000000000099dc00300600010707010208080203090903040a0a04050b0b0500060005040302010b060708090a110c0d0e0f10171213141516dc0030000102030204050605070809080a0b0c0b0d0e0f0e100011100d0a070401110306090c0f12131415161718191a1b1c1ddc0030000000000101010102020202030303030404040405050505060606060606070707070707080808080808090909090909dc003007000108080102090902030a0a03040b0b04050c0c05060d0e131211100f1914151617181f1a1b1c1d1e252021222324dc0030ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdc0030161d041f021c0820061b0c210a1a10220e1914231218001e15110d0905011703070b0f132425262728292a2b2c2d2e2fdc0030161d041f021c0820061b0c210a1a10220e1914231218001e15110d0905011703070b0f132425262728292a2b2c2d2e2fdc00300102030005060704090a0b080d0e0f0c1112131015161714191a1b1c1d181f202122231e2526272829242b2c2d2e2f2adc003003000102070405060b08090a0f0c0d0e13101112171415161d18191a1b1c231e1f2021222924252627282f2a2b2c2d2e969a0004080c1014181e242a9affffffffffffffffffff9a000000000000000000009a000000000000000000009ac3c3c3c3c3c3c3c3c3c39a00000000000000000000949090909092dc002600010203040500060708090a0b06000102030405060708090a0b0c0d0e0f1011121314151617dc002692ca3f800000ca3f00000092ca3f555555ca3f00000092ca3f2aaaabca3f00000092ca3f000000ca3f00000092ca3eaaaaabca3f00000092ca3e2aaaabca3f00000092ca00000000ca3f00000092ca3f800000ca3f80000092ca3f555555ca3f80000092ca3f2aaaabca3f80000092ca3f000000ca3f80000092ca3eaaaaabca3f80000092ca3e2aaaabca3f80000092ca00000000ca3f80000092ca3e800000ca3f00000092ca3d0930a0ca3ec0000092ca3d0930a4ca3dfffffe92ca3e800001ca0000000092ca3eeed9ecca3e00000292ca3eeed9ecca3ebfffff92ca3f400000ca3f00000092ca3f776cf6ca3ec0000092ca3f776cf6ca3dfffffe92ca3f400000ca0000000092ca3f08930aca3e00000292ca3f08930aca3ebfffff92ca3f400000ca3f00000092ca3f776cf6ca3ec0000092ca3f776cf6ca3dfffffe92ca3f400000ca0000000092ca3f08930aca3e00000292ca3f08930aca3ebfffff92ca3f400000ca3f00000092ca3f776cf6ca3ec0000092ca3f776cf6ca3dfffffe92ca3f400000ca0000000092ca3f08930aca3e00000292ca3f08930aca3ebfffff929090d94d475549443d37393464353363372d376436392d346335622d623036622d3066386233383064363530342c506f733d322c436f6c6f723d322c55563d322c4e6f723d322c4964783d312c42573d32d94d475549443d37393464353363372d376436392d346335622d623036622d3066386233383064363530342c506f733d322c436f6c6f723d322c55563d322c4e6f723d322c4964783d312c42573d32c294909091909090ff9199ff9193c000c00000c0c0c0c0c000919193d9203832363234386664366463373330363430383362356235666436343336336336ce00200b20d9204173736574732f4d794d6563682f4d6174657269616c732f426f64792e6d61749291b3526563616c63756c61746554616e67656e747391a546616c7365
+  DataStream: 91920197949896dc0018000104070a0d000205080b0e12131415161218191a1b1c18dc0018000000000000000000000000000000000000000000000000dc001893ca3a9cd100cabcc62d26ca3c65924693ca3ae7f300ca3b034cc8ca3ce8613293ca3b1a0780ca3ce9cd98ca3c6b302693ca3b1a8480ca3cec9b18cabc65922e93ca3ae9e700ca3b3022c8cabce8612793ca3a9dcb00cabcc35fe6cabc6b301c93ca3e5cc28fcabcec9b26ca3c65922b93ca3e5d58cfcabb302337ca3ce8612693ca3e5df107ca3cc35f98ca3c6b300c93ca3e5df2ffca3cc62d18cabc65924893ca3e5d5cbbcabb034d37cabce8613393ca3e5cc483cabce9cde6cabc6b303693ca3e5cc28fcabcec9b26ca3c65922b93ca3e5d58cfcabb302337ca3ce8612693ca3e5df107ca3cc35f98ca3c6b300c93ca3e5df2ffca3cc62d18cabc65924893ca3e5d5cbbcabb034d37cabce8613393ca3e5cc483cabce9cde6cabc6b303693ca3e5cc28fcabcec9b26ca3c65922b93ca3e5d58cfcabb302337ca3ce8612693ca3e5df107ca3cc35f98ca3c6b300c93ca3e5df2ffca3cc62d18cabc65924893ca3e5d5cbbcabb034d37cabce8613393ca3e5cc483cabce9cde6cabc6b303690900398dc001e0600010701020802030903040a04050b0506110c0d0e0f10171213141516dc001e00010706020807030908040a09050b0a000b0c0d0e0f1011121314151617dc001e161d041f1c08201b0c211a1022191423181e2425262728292a2b2c2d2e2fdc001e11000102020405050708080a0b0b0d0e0e031712131415161d18191a1b1cdc001e03100406010709040a0c070d0f0a10110d001712131415161d18191a1b1cdc001e100406000709030a0c060d0f0910110c010f131415161712191a1b1c1d18dc001e010203110506020809050b0c080e0f0b000e131415161712191a1b1c1d18dc001e00000000000000000000000000000000000000000000000000000000000099dc00300600010707010208080203090903040a0a04050b0b0500060005040302010b060708090a110c0d0e0f10171213141516dc0030000102030204050605070809080a0b0c0b0d0e0f0e100011100d0a070401110306090c0f12131415161718191a1b1c1ddc0030000000000101010102020202030303030404040405050505060606060606070707070707080808080808090909090909dc003007000108080102090902030a0a03040b0b04050c0c05060d0e131211100f1914151617181f1a1b1c1d1e252021222324dc0030ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdc0030161d041f021c0820061b0c210a1a10220e1914231218001e15110d0905011703070b0f132425262728292a2b2c2d2e2fdc0030161d041f021c0820061b0c210a1a10220e1914231218001e15110d0905011703070b0f132425262728292a2b2c2d2e2fdc00300102030005060704090a0b080d0e0f0c1112131015161714191a1b1c1d181f202122231e2526272829242b2c2d2e2f2adc003003000102070405060b08090a0f0c0d0e13101112171415161d18191a1b1c231e1f2021222924252627282f2a2b2c2d2e969a0004080c1014181e242a9affffffffffffffffffff9a000000000000000000009a000000000000000000009ac3c3c3c3c3c3c3c3c3c39a00000000000000000000949090909092dc002600010203040500060708090a0b06000102030405060708090a0b0c0d0e0f1011121314151617dc002692ca3f800000ca3f00000092ca3f555555ca3f00000092ca3f2aaaabca3f00000092ca3f000000ca3f00000092ca3eaaaaabca3f00000092ca3e2aaaabca3f00000092ca00000000ca3f00000092ca3f800000ca3f80000092ca3f555555ca3f80000092ca3f2aaaabca3f80000092ca3f000000ca3f80000092ca3eaaaaabca3f80000092ca3e2aaaabca3f80000092ca00000000ca3f80000092ca3e800000ca3f00000092ca3d0930a0ca3ec0000092ca3d0930a4ca3dfffffe92ca3e800001ca0000000092ca3eeed9ecca3e00000292ca3eeed9ecca3ebfffff92ca3f400000ca3f00000092ca3f776cf6ca3ec0000092ca3f776cf6ca3dfffffe92ca3f400000ca0000000092ca3f08930aca3e00000292ca3f08930aca3ebfffff92ca3f400000ca3f00000092ca3f776cf6ca3ec0000092ca3f776cf6ca3dfffffe92ca3f400000ca0000000092ca3f08930aca3e00000292ca3f08930aca3ebfffff92ca3f400000ca3f00000092ca3f776cf6ca3ec0000092ca3f776cf6ca3dfffffe92ca3f400000ca0000000092ca3f08930aca3e00000292ca3f08930aca3ebfffff929090d94d475549443d37393464353363372d376436392d346335622d623036622d3066386233383064363530342c506f733d352c436f6c6f723d352c55563d352c4e6f723d352c4964783d342c42573d35d94d475549443d37393464353363372d376436392d346335622d623036622d3066386233383064363530342c506f733d352c436f6c6f723d352c55563d352c4e6f723d352c4964783d342c42573d35c294909091909090ff9199ff9193c000c00000c0c0c0c0c000919193d9203832363234386664366463373330363430383362356235666436343336336336ce00200b20d9204173736574732f4d794d6563682f4d6174657269616c732f426f64792e6d61749291b3526563616c63756c61746554616e67656e747391a546616c7365
   RenderableBuildVersion:
     ModifierGUID: 794d53c7-7d69-4c5b-b06b-0f8b380d6504
-    PosVersion: 2
-    ColorVersion: 2
-    UVVersion: 2
-    NormalVersion: 2
-    IndexVersion: 1
-    BoneWeightVersion: 2
+    PosVersion: 5
+    ColorVersion: 5
+    UVVersion: 5
+    NormalVersion: 5
+    IndexVersion: 4
+    BoneWeightVersion: 5
 --- !u!43 &-2269909996112527858
 Mesh:
   m_ObjectHideFlags: 0
@@ -27973,15 +27973,15 @@ MonoBehaviour:
   DataVersion: 5
   Materials:
   - {fileID: 2100000, guid: 826248fd6dc73064083b5b5fd64363c6, type: 2}
-  DataStream: 91920197949896dc0018000104070a0d000205080b0e12131415161218191a1b1c18dc0018000000000000000000000000000000000000000000000000dc001893cabec3c684ca3fa61306caba6cacc093cabecd776fca3fa864b1ca3c5c655693cabed748c1ca3faabe1dcaba12ceb093cabed76926ca3faac5ddcabcecf7a093cabecdb83bca3fa87432cabd3147d893cabec3e6eaca3fa61ac6cabcefc69793cabf07d8e2ca3f923ed2caba6cae6093cabf0cb157ca3f94907dca3c5c653a93cabf119a00ca3f96e9e9caba12d05093cabf11aa33ca3f96f1a9cabcecf7ad93cabf0cd1bdca3f949ffecabd3147de93cabf07e914ca3f924692cabcefc6a493cabf07d8e2ca3f923ed2caba6cae6093cabf0cb157ca3f94907dca3c5c653a93cabf119a00ca3f96e9e9caba12d05093cabf11aa33ca3f96f1a9cabcecf7ad93cabf0cd1bdca3f949ffecabd3147de93cabf07e914ca3f924692cabcefc6a493cabf07d8e2ca3f923ed2caba6cae6093cabf0cb157ca3f94907dca3c5c653a93cabf119a00ca3f96e9e9caba12d05093cabf11aa33ca3f96f1a9cabcecf7ad93cabf0cd1bdca3f949ffecabd3147de93cabf07e914ca3f924692cabcefc6a490900398dc001e0600010701020802030903040a04050b0506110c0d0e0f10171213141516dc001e00010706020807030908040a09050b0a000b0c0d0e0f1011121314151617dc001e161d041f1c08201b0c211a1022191423181e2425262728292a2b2c2d2e2fdc001e11000102020405050708080a0b0b0d0e0e031712131415161d18191a1b1cdc001e03100406010709040a0c070d0f0a10110d001712131415161d18191a1b1cdc001e100406000709030a0c060d0f0910110c010f131415161712191a1b1c1d18dc001e010203110506020809050b0c080e0f0b000e131415161712191a1b1c1d18dc001e00000000000000000000000000000000000000000000000000000000000099dc003000010706010208070203090803040a0904050b0a0500060b050403020100060708090a0b0c0d0e0f1011121314151617dc0030000102030204050605070809080a0b0c0b0d0e0f0e100011100d0a070401110306090c0f12131415161718191a1b1c1ddc0030000000000101010102020202030303030404040405050505060606060606070707070707080808080808090909090909dc0030000108070102090802030a0903040b0a04050c0b05060d0c131211100f0e1415161718191a1b1c1d1e1f202122232425dc0030ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdc0030161d041f021c0820061b0c210a1a10220e1914231218001e15110d0905011703070b0f132425262728292a2b2c2d2e2fdc0030161d041f021c0820061b0c210a1a10220e1914231218001e15110d0905011703070b0f132425262728292a2b2c2d2e2fdc003003000102070405060b08090a0f0c0d0e13101112171415161d18191a1b1c231e1f2021222924252627282f2a2b2c2d2edc00300102030005060704090a0b080d0e0f0c1112131015161714191a1b1c1d181f202122231e2526272829242b2c2d2e2f2a969a0004080c1014181e242a9affffffffffffffffffff9a000000000000000000009a000000000000000000009ac3c3c3c3c3c3c3c3c3c39a00000000000000000000949090909092dc002600010203040500060708090a0b06000102030405060708090a0b0c0d0e0f1011121314151617dc002692ca3f800000ca3f00000092ca3f555555ca3f00000092ca3f2aaaabca3f00000092ca3f000000ca3f00000092ca3eaaaaabca3f00000092ca3e2aaaabca3f00000092ca00000000ca3f00000092ca3f800000ca3f80000092ca3f555555ca3f80000092ca3f2aaaabca3f80000092ca3f000000ca3f80000092ca3eaaaaabca3f80000092ca3e2aaaabca3f80000092ca00000000ca3f80000092ca3e800000ca3f00000092ca3d0930a0ca3ec0000092ca3d0930a4ca3dfffffe92ca3e800001ca0000000092ca3eeed9ecca3e00000292ca3eeed9ecca3ebfffff92ca3f400000ca3f00000092ca3f776cf6ca3ec0000092ca3f776cf6ca3dfffffe92ca3f400000ca0000000092ca3f08930aca3e00000292ca3f08930aca3ebfffff92ca3f400000ca3f00000092ca3f776cf6ca3ec0000092ca3f776cf6ca3dfffffe92ca3f400000ca0000000092ca3f08930aca3e00000292ca3f08930aca3ebfffff92ca3f400000ca3f00000092ca3f776cf6ca3ec0000092ca3f776cf6ca3dfffffe92ca3f400000ca0000000092ca3f08930aca3e00000292ca3f08930aca3ebfffff929090d953475549443d34303938626666372d343332642d343261392d623732662d3063646639373133386236372c506f733d32322c436f6c6f723d32322c55563d32322c4e6f723d32322c4964783d31352c42573d3232d953475549443d34303938626666372d343332642d343261392d623732662d3063646639373133386236372c506f733d32322c436f6c6f723d32322c55563d32322c4e6f723d32322c4964783d31352c42573d3232c294909091909090ff9199ff9193c000c00000c0c0c0c0c000919193d9203832363234386664366463373330363430383362356235666436343336336336ce00200b20d9204173736574732f4d794d6563682f4d6174657269616c732f426f64792e6d61749291b3526563616c63756c61746554616e67656e747391a546616c7365
+  DataStream: 91920197949896dc0018000104070a0d000205080b0e12131415161218191a1b1c18dc0018000000000000000000000000000000000000000000000000dc001893ca3cfc2aebcabb00af11caba6cacc093ca3b9650c0cabb263f59ca3c5c655693cabcb3d009cabb4c4d24caba12ceb093cabcb69d43cabb4ccb5bcabcecf7a093ca3b7fcbbfcabb273b14cabd3147d893ca3cf95da5cabb012da4cabcefc69793ca3d114c6acabe5d8baecaba6cae6093ca3c18044bcabe5e21edca3c5c653a93cabc8d6214cabe5eba24caba12d05093cabc902f59cabe5ebc1fcabcecf7ad93ca3c0ccedacabe5e25dccabd3147de93ca3d0fe5d3cabe5d8da5cabcefc6a493ca3d114c6acabe5d8baecaba6cae6093ca3c18044bcabe5e21edca3c5c653a93cabc8d6214cabe5eba24caba12d05093cabc902f59cabe5ebc1fcabcecf7ad93ca3c0ccedacabe5e25dccabd3147de93ca3d0fe5d3cabe5d8da5cabcefc6a493ca3d114c6acabe5d8baecaba6cae6093ca3c18044bcabe5e21edca3c5c653a93cabc8d6214cabe5eba24caba12d05093cabc902f59cabe5ebc1fcabcecf7ad93ca3c0ccedacabe5e25dccabd3147de93ca3d0fe5d3cabe5d8da5cabcefc6a490900398dc001e0600010701020802030903040a04050b0506110c0d0e0f10171213141516dc001e00010706020807030908040a09050b0a000b0c0d0e0f1011121314151617dc001e161d041f1c08201b0c211a1022191423181e2425262728292a2b2c2d2e2fdc001e11000102020405050708080a0b0b0d0e0e031712131415161d18191a1b1cdc001e03100406010709040a0c070d0f0a10110d001712131415161d18191a1b1cdc001e100406000709030a0c060d0f0910110c010f131415161712191a1b1c1d18dc001e010203110506020809050b0c080e0f0b000e131415161712191a1b1c1d18dc001e00000000000000000000000000000000000000000000000000000000000099dc003000010706010208070203090803040a0904050b0a0500060b050403020100060708090a0b0c0d0e0f1011121314151617dc0030000102030204050605070809080a0b0c0b0d0e0f0e100011100d0a070401110306090c0f12131415161718191a1b1c1ddc0030000000000101010102020202030303030404040405050505060606060606070707070707080808080808090909090909dc0030000108070102090802030a0903040b0a04050c0b05060d0c131211100f0e1415161718191a1b1c1d1e1f202122232425dc0030ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdc0030161d041f021c0820061b0c210a1a10220e1914231218001e15110d0905011703070b0f132425262728292a2b2c2d2e2fdc0030161d041f021c0820061b0c210a1a10220e1914231218001e15110d0905011703070b0f132425262728292a2b2c2d2e2fdc003003000102070405060b08090a0f0c0d0e13101112171415161d18191a1b1c231e1f2021222924252627282f2a2b2c2d2edc00300102030005060704090a0b080d0e0f0c1112131015161714191a1b1c1d181f202122231e2526272829242b2c2d2e2f2a969a0004080c1014181e242a9affffffffffffffffffff9a000000000000000000009a000000000000000000009ac3c3c3c3c3c3c3c3c3c39a00000000000000000000949090909092dc002600010203040500060708090a0b06000102030405060708090a0b0c0d0e0f1011121314151617dc002692ca3f800000ca3f00000092ca3f555555ca3f00000092ca3f2aaaabca3f00000092ca3f000000ca3f00000092ca3eaaaaabca3f00000092ca3e2aaaabca3f00000092ca00000000ca3f00000092ca3f800000ca3f80000092ca3f555555ca3f80000092ca3f2aaaabca3f80000092ca3f000000ca3f80000092ca3eaaaaabca3f80000092ca3e2aaaabca3f80000092ca00000000ca3f80000092ca3e800000ca3f00000092ca3d0930a0ca3ec0000092ca3d0930a4ca3dfffffe92ca3e800001ca0000000092ca3eeed9ecca3e00000292ca3eeed9ecca3ebfffff92ca3f400000ca3f00000092ca3f776cf6ca3ec0000092ca3f776cf6ca3dfffffe92ca3f400000ca0000000092ca3f08930aca3e00000292ca3f08930aca3ebfffff92ca3f400000ca3f00000092ca3f776cf6ca3ec0000092ca3f776cf6ca3dfffffe92ca3f400000ca0000000092ca3f08930aca3e00000292ca3f08930aca3ebfffff92ca3f400000ca3f00000092ca3f776cf6ca3ec0000092ca3f776cf6ca3dfffffe92ca3f400000ca0000000092ca3f08930aca3e00000292ca3f08930aca3ebfffff929090d953475549443d34303938626666372d343332642d343261392d623732662d3063646639373133386236372c506f733d32382c436f6c6f723d32382c55563d32382c4e6f723d32382c4964783d31392c42573d3238d953475549443d34303938626666372d343332642d343261392d623732662d3063646639373133386236372c506f733d32382c436f6c6f723d32382c55563d32382c4e6f723d32382c4964783d31392c42573d3238c294909091909090ff9199ff9193c000c00000c0c0c0c0c000919193d9203832363234386664366463373330363430383362356235666436343336336336ce00200b20d9204173736574732f4d794d6563682f4d6174657269616c732f426f64792e6d61749291b3526563616c63756c61746554616e67656e747391a546616c7365
   RenderableBuildVersion:
     ModifierGUID: 4098bff7-432d-42a9-b72f-0cdf97138b67
-    PosVersion: 22
-    ColorVersion: 22
-    UVVersion: 22
-    NormalVersion: 22
-    IndexVersion: 15
-    BoneWeightVersion: 22
+    PosVersion: 28
+    ColorVersion: 28
+    UVVersion: 28
+    NormalVersion: 28
+    IndexVersion: 19
+    BoneWeightVersion: 28
 --- !u!114 &3175155446066396444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30400,8 +30400,8 @@ Mesh:
     firstVertex: 0
     vertexCount: 48
     localAABB:
-      m_Center: {x: -0.4756886, y: 1.2383528, z: -0.014914767}
-      m_Extent: {x: 0.09331468, y: 0.09581059, z: 0.028366663}
+      m_Center: {x: -0.07293685, y: -0.08225757, z: -0.014914767}
+      m_Extent: {x: 0.09331469, y: 0.09581059, z: 0.028366663}
   m_Shapes:
     vertices: []
     shapes: []
@@ -30480,7 +30480,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 1536
-    _typelessdata: 84c6c3be0613a63fc0ac6cba70b7b13e161baabe6683603f0000803f0000003f84c6c3be0613a63fc0ac6cba1f04313f99ef383f02088bb50000803e0000003f84c6c3be0613a63fc0ac6cba2eec383fce0031bfe39045bc000000000000003f6f77cdbeb164a83f56655c3c70b7b13e161baabe6683603f5555553f0000003f6f77cdbeb164a83f56655c3c42abacbe3546a53e6c64623f5555553f0000003f6f77cdbeb164a83f56655c3c1f04313f99ef383f02088bb5a030093d0000c03ec148d7be1dbeaa3fb0ce12ba42abacbe3546a53e6c64623fabaa2a3f0000003fc148d7be1dbeaa3fb0ce12ba2dec38bfcf00313f7e92453cabaa2a3f0000003fc148d7be1dbeaa3fb0ce12ba1f04313f99ef383f02088bb5a430093dfeffff3d2669d7beddc5aa3fa0f7ecbc2dec38bfcf00313f7e92453c0000003f0000003f2669d7beddc5aa3fa0f7ecbc68b7b1be0e1baa3e6a8360bf0000003f0000003f2669d7beddc5aa3fa0f7ecbc1f04313f99ef383f02088bb50100803e000000003bb8cdbe3274a83fd84731bd68b7b1be0e1baa3e6a8360bfabaaaa3e0000003f3bb8cdbe3274a83fd84731bd3eabac3e2f46a5be6e6462bfabaaaa3e0000003f3bb8cdbe3274a83fd84731bd1f04313f99ef383f02088bb5ecd9ee3e0200003eeae6c3bec61aa63f97c6efbc3eabac3e2f46a5be6e6462bfabaa2a3e0000003feae6c3bec61aa63f97c6efbc2eec383fce0031bfe39045bcabaa2a3e0000003feae6c3bec61aa63f97c6efbc1f04313f99ef383f02088bb5ecd9ee3effffbf3ee2d807bfd23e923f60ae6cba2eec383fce0031bfe39045bc000000000000803fe2d807bfd23e923f60ae6cba70b7b13e161baabe6683603f0000803f0000803fe2d807bfd23e923f60ae6cba1d0431bf9def38bf650e6e350000403f0000003f57b10cbf7d90943f3a655c3c70b7b13e161baabe6683603f5555553f0000803f57b10cbf7d90943f3a655c3c1d0431bf9def38bf650e6e35f66c773f0000c03e57b10cbf7d90943f3a655c3c42abacbe3546a53e6c64623f5555553f0000803f009a11bfe9e9963f50d012ba42abacbe3546a53e6c64623fabaa2a3f0000803f009a11bfe9e9963f50d012ba1d0431bf9def38bf650e6e35f66c773ffeffff3d009a11bfe9e9963f50d012ba2dec38bfcf00313f7e92453cabaa2a3f0000803f33aa11bfa9f1963fadf7ecbc2dec38bfcf00313f7e92453c0000003f0000803f33aa11bfa9f1963fadf7ecbc1d0431bf9def38bf650e6e350000403f0000000033aa11bfa9f1963fadf7ecbc68b7b1be0e1baa3e6a8360bf0000003f0000803fbdd10cbffe9f943fde4731bd68b7b1be0e1baa3e6a8360bfabaaaa3e0000803fbdd10cbffe9f943fde4731bd1d0431bf9def38bf650e6e350a93083f0200003ebdd10cbffe9f943fde4731bd3eabac3e2f46a5be6e6462bfabaaaa3e0000803f14e907bf9246923fa4c6efbc3eabac3e2f46a5be6e6462bfabaa2a3e0000803f14e907bf9246923fa4c6efbc1d0431bf9def38bf650e6e350a93083fffffbf3e14e907bf9246923fa4c6efbc2eec383fce0031bfe39045bcabaa2a3e0000803fe2d807bfd23e923f60ae6cba1d0431bf9def38bf650e6e350000403f0000003f57b10cbf7d90943f3a655c3c1d0431bf9def38bf650e6e35f66c773f0000c03e009a11bfe9e9963f50d012ba1d0431bf9def38bf650e6e35f66c773ffeffff3d33aa11bfa9f1963fadf7ecbc1d0431bf9def38bf650e6e350000403f00000000bdd10cbffe9f943fde4731bd1d0431bf9def38bf650e6e350a93083f0200003e14e907bf9246923fa4c6efbc1d0431bf9def38bf650e6e350a93083fffffbf3ee2d807bfd23e923f60ae6cba1d0431bf9def38bf650e6e350000403f0000003f57b10cbf7d90943f3a655c3c1d0431bf9def38bf650e6e35f66c773f0000c03e009a11bfe9e9963f50d012ba1d0431bf9def38bf650e6e35f66c773ffeffff3d33aa11bfa9f1963fadf7ecbc1d0431bf9def38bf650e6e350000403f00000000bdd10cbffe9f943fde4731bd1d0431bf9def38bf650e6e350a93083f0200003e14e907bf9246923fa4c6efbc1d0431bf9def38bf650e6e350a93083fffffbf3e
+    _typelessdata: eb2afc3c11af00bbc0ac6cba92f2f53ec8352c3c6683603f0000803f0000003feb2afc3c11af00bbc0ac6cba8534b3bc52f07f3f19198ab50000803e0000003feb2afc3c11af00bbc0ac6cba8eeb7f3fea31b33cd39045bc000000000000003fc050963b593f26bb56655c3c92f2f53ec8352c3c6683603f5555553f0000003fc050963b593f26bb56655c3c42f6eebe955227bc6c64623f5555553f0000003fc050963b593f26bb56655c3c8534b3bc52f07f3f19198ab5a030093d0000c03e09d0b3bc244d4cbbb0ce12ba42f6eebe955227bc6c64623fabaa2a3f0000003f09d0b3bc244d4cbbb0ce12ba8eeb7fbfd031b3bc6e92453cabaa2a3f0000003f09d0b3bc244d4cbbb0ce12ba8534b3bc52f07f3f19198ab5a430093dfeffff3d439db6bc5bcb4cbba0f7ecbc8eeb7fbfd031b3bc6e92453c0000003f0000003f439db6bc5bcb4cbba0f7ecbc86f2f5bec8352cbc6a8360bf0000003f0000003f439db6bc5bcb4cbba0f7ecbc8534b3bc52f07f3f19198ab50100803e00000000bfcb7f3b143b27bbd84731bd86f2f5bec8352cbc6a8360bfabaaaa3e0000003fbfcb7f3b143b27bbd84731bd3af6ee3ea052273c6e6462bfabaaaa3e0000003fbfcb7f3b143b27bbd84731bd8534b3bc52f07f3f19198ab5ecd9ee3e0200003ea55df93ca42d01bb97c6efbc3af6ee3ea052273c6e6462bfabaa2a3e0000003fa55df93ca42d01bb97c6efbc8eeb7f3fea31b33cd39045bcabaa2a3e0000003fa55df93ca42d01bb97c6efbc8534b3bc52f07f3f19198ab5ecd9ee3effffbf3e6a4c113dae8b5dbe60ae6cba8eeb7f3fea31b33cd39045bc000000000000803f6a4c113dae8b5dbe60ae6cba92f2f53ec8352c3c6683603f0000803f0000803f6a4c113dae8b5dbe60ae6cbac334b33c52f07fbf6ef27a350000403f0000003f4b04183ced215ebe3a655c3c92f2f53ec8352c3c6683603f5555553f0000803f4b04183ced215ebe3a655c3cc334b33c52f07fbf6ef27a35f66c773f0000c03e4b04183ced215ebe3a655c3c42f6eebe955227bc6c64623f5555553f0000803f14628dbc24ba5ebe50d012ba42f6eebe955227bc6c64623fabaa2a3f0000803f14628dbc24ba5ebe50d012bac334b33c52f07fbf6ef27a35f66c773ffeffff3d14628dbc24ba5ebe50d012ba8eeb7fbfd031b3bc6e92453cabaa2a3f0000803f592f90bc1fbc5ebeadf7ecbc8eeb7fbfd031b3bc6e92453c0000003f0000803f592f90bc1fbc5ebeadf7ecbcc334b33c52f07fbf6ef27a350000403f00000000592f90bc1fbc5ebeadf7ecbc86f2f5bec8352cbc6a8360bf0000003f0000803fdace0c3cdc255ebede4731bd86f2f5bec8352cbc6a8360bfabaaaa3e0000803fdace0c3cdc255ebede4731bdc334b33c52f07fbf6ef27a350a93083f0200003edace0c3cdc255ebede4731bd3af6ee3ea052273c6e6462bfabaaaa3e0000803fd3e50f3da58d5dbea4c6efbc3af6ee3ea052273c6e6462bfabaa2a3e0000803fd3e50f3da58d5dbea4c6efbcc334b33c52f07fbf6ef27a350a93083fffffbf3ed3e50f3da58d5dbea4c6efbc8eeb7f3fea31b33cd39045bcabaa2a3e0000803f6a4c113dae8b5dbe60ae6cbac334b33c52f07fbf6ef27a350000403f0000003f4b04183ced215ebe3a655c3cc334b33c52f07fbf6ef27a35f66c773f0000c03e14628dbc24ba5ebe50d012bac334b33c52f07fbf6ef27a35f66c773ffeffff3d592f90bc1fbc5ebeadf7ecbcc334b33c52f07fbf6ef27a350000403f00000000dace0c3cdc255ebede4731bdc334b33c52f07fbf6ef27a350a93083f0200003ed3e50f3da58d5dbea4c6efbcc334b33c52f07fbf6ef27a350a93083fffffbf3e6a4c113dae8b5dbe60ae6cbac334b33c52f07fbf6ef27a350000403f0000003f4b04183ced215ebe3a655c3cc334b33c52f07fbf6ef27a35f66c773f0000c03e14628dbc24ba5ebe50d012bac334b33c52f07fbf6ef27a35f66c773ffeffff3d592f90bc1fbc5ebeadf7ecbcc334b33c52f07fbf6ef27a350000403f00000000dace0c3cdc255ebede4731bdc334b33c52f07fbf6ef27a350a93083f0200003ed3e50f3da58d5dbea4c6efbcc334b33c52f07fbf6ef27a350a93083fffffbf3e
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -30534,8 +30534,8 @@ Mesh:
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
-    m_Center: {x: -0.4756886, y: 1.2383528, z: -0.014914767}
-    m_Extent: {x: 0.09331468, y: 0.09581059, z: 0.028366663}
+    m_Center: {x: 0.00659074, y: -0.10973903, z: -0.014914767}
+    m_Extent: {x: 0.028882526, y: 0.10777547, z: 0.028366663}
   m_MeshUsageFlags: 0
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 

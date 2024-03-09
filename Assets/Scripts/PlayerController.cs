@@ -111,6 +111,7 @@ public class PlayerController : MonoBehaviour {
     // Don't want to worry about Z motion in animation
     public AnimationCurve SlashAttack1DashZPositionCurve;
     private bool _isMeleeAttacking = false;
+    private bool _attackSoftEnded = false;
 
     private void SetPlayerLives(int playerLives) {
         CurrentPlayerLives = Mathf.Clamp(playerLives, 0, MaxPlayerLives);
@@ -140,8 +141,9 @@ public class PlayerController : MonoBehaviour {
     private void Start() {
         Stats.NotifyHealthChanged();
         Stats.OnHealthChanged += OnHealthChanged;
-        _animationEvents.OnSlashAttack1Ended += OnSlashAttack1Ended;
         _animationEvents.OnSlashAttack1Hit += OnSlashAttack1Hit;
+        _animationEvents.OnSlashAttack1SoftEnd += OnSlashAttack1SoftEnd;
+        _animationEvents.OnSlashAttack1End += OnSlashAttack1End;
         Reset();
     }
 
@@ -535,16 +537,26 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FirePrimaryWeapon() {
-        _primaryFireCooldownCountdown = PrimaryFireCooldown;
+        // If we're already attacking, we cannot attack again, unless the attack is almost over, in which case we can
+        // chain a second attack.
+        if (_isMeleeAttacking && !_attackSoftEnded) {
+            return;
+        }
 
         Animator.SetTrigger("SlashAttack");
         _isMeleeAttacking = true;
+        _attackSoftEnded = false;
         _rootMotionTransfer.SetApplyRootMotion(true);
 
-        // TODO: Handle combo attacks
+        // Set the cooldown when the attack completes.
     }
 
     private void FireSecondaryWeapon() {
+        // Can't fire when attacking
+        if (_isMeleeAttacking) {
+            return;
+        }
+
         _secondaryFireCooldownCountdown = SecondaryFireCooldown;
 
         Vector3 initialVelocity = PlayerModel.transform.forward * ProjectileVelocity;
@@ -608,9 +620,14 @@ public class PlayerController : MonoBehaviour {
         Debug.Log("[PlayerController] OnSlashAttack1Hit");
     }
 
-    private void OnSlashAttack1Ended() {
+    private void OnSlashAttack1SoftEnd() {
+        _attackSoftEnded = true;
+    }
+
+    private void OnSlashAttack1End() {
         _isMeleeAttacking = false;
         _rootMotionTransfer.SetApplyRootMotion(false);
-        Debug.Log("[PlayerController] OnSlashAttack1Ended");
+
+        _primaryFireCooldownCountdown = PrimaryFireCooldown;
     }
 }

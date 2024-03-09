@@ -40,8 +40,7 @@ public class PlayerController : MonoBehaviour {
     [Header("Movement")] [Tooltip("Walking controller speed")] [SerializeField]
     private float WalkSpeed = 1.0f;
 
-    [Tooltip("Normal controller speed")] [SerializeField]
-    private float RunSpeed = 3.0f;
+    [Tooltip("Normal controller speed")] public float RunSpeed = 3.0f;
 
     [Tooltip("Turning controller speed")] [SerializeField]
     private float TurnSpeed = 360.0f;
@@ -131,6 +130,10 @@ public class PlayerController : MonoBehaviour {
         SetPlayerLives(MaxPlayerLives);
         Stats.Reset();
         _shieldController.DeactivateShield();
+    }
+
+    public float GetRegularMovementSpeed() {
+        return RunSpeed * Time.deltaTime;
     }
 
     private void OnHealthChanged(object sender, float health) {
@@ -230,6 +233,12 @@ public class PlayerController : MonoBehaviour {
 
     //Character controller movement
     private void HandleMovement() {
+        if (characterController.isGrounded && _velocity.y < 0) {
+            // IsGrounded check becomes false if velocity is set to 0.
+            // See: https://forum.unity.com/threads/charactercontroller-isgrounded-unreliable-or-bad-code.373492/
+            _velocity.y = -.1f;
+        }
+
         if (inputJumpOnNextFrame && characterController.isGrounded) {
             _velocity.y = Mathf.Sqrt(JumpForce * -2f * gravity);
         }
@@ -256,6 +265,9 @@ public class PlayerController : MonoBehaviour {
         bool isWalking = isWalkKeyHeld || inputMoveVector.magnitude < 0.5f;
         float moveSpeed = isWalking ? WalkSpeed : RunSpeed;
         bool isMoving = inputMoveVector.magnitude > 0;
+        if (!isMoving) {
+            moveSpeed = 0;
+        }
 
         // Boost the move speed if we're dashing.
         if (_isExecutingDash) {
@@ -332,6 +344,8 @@ public class PlayerController : MonoBehaviour {
                                  (desiredMoveDirection.magnitude * (moveSpeed * Time.deltaTime));
         }
 
+        Debug.Log("Move magnitude: " + desiredMoveDirection.magnitude);
+
         // Gravity doesn't affect us while dashing
         if (_isExecutingDash) {
             _velocity.y = 0;
@@ -339,11 +353,13 @@ public class PlayerController : MonoBehaviour {
 
         // CharacterController.Move should only be called once, see:
         // https://forum.unity.com/threads/charactercontroller-isgrounded-unreliable-or-bad-code.373492/
-        characterController.Move(_velocity * Time.deltaTime + absoluteMoveVector);
+        Vector3 combinedMoveVector = _velocity * Time.deltaTime + absoluteMoveVector;
+        characterController.Move(combinedMoveVector);
         // Update velocity from gravity
         _velocity.y += gravity * Time.deltaTime;
 
         // ==== UPDATE STATE =====
+        ThrusterController.Instance.HandleThrusterUpdates(moveSpeed);
         _previousInputMoveVector = inputMoveVector;
         _previousDesiredMoveDirection = desiredMoveDirection;
     }

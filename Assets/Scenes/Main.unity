@@ -872,6 +872,10 @@ PrefabInstance:
       propertyPath: MovementDecayTime
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1348098564201815736, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
+      propertyPath: PrimaryFireCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2734496234122909241, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.1

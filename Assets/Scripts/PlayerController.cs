@@ -254,8 +254,10 @@ public class PlayerController : MonoBehaviour {
 
     //Character controller movement
     private void HandleMovement() {
-        // If we're attacking, don't do anything
-        if (_isMeleeAttacking) {
+        // If we're attacking, don't do anything.
+        // UNLESS. The attack is cancelable and we queue up a dash.
+        bool isDashCancel = _attackSoftEnded && inputDashOnNextFrame && _dashCooldownCountDown <= 0.0f;
+        if (_isMeleeAttacking && !isDashCancel) {
             Animator.SetBool("IsMeleeAttacking", true);
             return;
         }
@@ -270,14 +272,21 @@ public class PlayerController : MonoBehaviour {
             _velocity.y = Mathf.Sqrt(JumpForce * -2f * gravity);
         }
 
-        inputJumpOnNextFrame = false;
-
         // Start a dash (cannot dash while dashing)
         if (!_isExecutingDash && inputDashOnNextFrame && _dashCooldownCountDown <= 0.0f) {
-            inputDashOnNextFrame = false;
             _isExecutingDash = true;
             _dashDurationCountDown = DashDuration;
+
+            // If we did a dash cancel, take us out of the attack.
+            if (isDashCancel) {
+                OnSlashAttack1End();
+            }
+        } else if (isDashCancel) {
+            Debug.LogError("[PlayerController] We should've dash canceled but we didn't!");
         }
+
+        inputJumpOnNextFrame = false;
+        inputDashOnNextFrame = false;
 
         // Check to see if the dash is over
         if (_isExecutingDash && _dashDurationCountDown <= 0.0f) {
@@ -490,6 +499,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void HandleAttack() {
+        // Can't attack while dashing
+        if (_isExecutingDash) {
+            return;
+        }
+
         if (_inputBlockHeld) {
             if (!_isBlocking && _blockCooldownCountDown <= 0.0f) {
                 _isBlocking = true;
@@ -626,8 +640,8 @@ public class PlayerController : MonoBehaviour {
 
     private void OnSlashAttack1End() {
         _isMeleeAttacking = false;
+        _attackSoftEnded = false;
         _rootMotionTransfer.SetApplyRootMotion(false);
-
         _primaryFireCooldownCountdown = PrimaryFireCooldown;
     }
 }

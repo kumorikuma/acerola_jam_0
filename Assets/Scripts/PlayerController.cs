@@ -281,8 +281,9 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Boost the move speed if we're dashing.
+        float dashT = 0;
         if (_isExecutingDash) {
-            float dashT = Mathf.Clamp((DashDuration - _dashDurationCountDown) / DashDuration, 0, 1);
+            dashT = Mathf.Clamp((DashDuration - _dashDurationCountDown) / DashDuration, 0, 1);
             float dashSpeed = DashVelocityCurve.Evaluate(dashT);
             moveSpeed = dashSpeed * RunSpeed;
         }
@@ -291,11 +292,6 @@ public class PlayerController : MonoBehaviour {
         // bool isStrafing = _lockedOnTarget != null;
         bool isStrafing = true;
         Vector3 desiredMoveDirection = GetDesiredMoveDirection(_isExecutingDash, isStrafing);
-
-
-        if (moveSpeed == 0) {
-            Debug.Log("Stopped Moving!: " + inputMoveVector);
-        }
 
         ReactUnityBridge.Instance.UpdateDebugString("Input", inputMoveVector.ToString());
 
@@ -374,6 +370,7 @@ public class PlayerController : MonoBehaviour {
         Animator.SetBool("IsMovingForward", inputMoveVector.z > 0);
         Animator.SetBool("IsMovingBackward", inputMoveVector.z < 0);
         Animator.SetBool("IsDashing", _isExecutingDash);
+        Animator.SetFloat("DashBlend", 1 - dashT);
 
         // Gravity doesn't affect us while dashing
         if (_isExecutingDash) {

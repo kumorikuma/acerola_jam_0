@@ -446,6 +446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TransferTarget: {fileID: 1049410178}
+  CharacterTarget: {fileID: 1049410180}
 --- !u!114 &963194229 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5927346812717365055, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
@@ -471,6 +472,11 @@ MonoBehaviour:
 --- !u!4 &1049410178 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5113024889617206450, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
+  m_PrefabInstance: {fileID: 7368135700737001046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &1049410180 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 7356794436963407721, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
   m_PrefabInstance: {fileID: 7368135700737001046}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1857528522
@@ -868,6 +874,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1348098564201815736, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
+      propertyPath: TurnSpeed
+      value: 240
+      objectReference: {fileID: 0}
     - target: {fileID: 1348098564201815736, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: MovementDecayTime
       value: 0.2

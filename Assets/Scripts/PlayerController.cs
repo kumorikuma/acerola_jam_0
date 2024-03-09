@@ -115,6 +115,10 @@ public class PlayerController : MonoBehaviour {
     private bool _comboAttackQueuedUp = false;
     private int _comboStage = 0;
 
+    // Hacky fix for a bug where you're stuck jumping
+    public float JumpUnstuckTime = 5.0f; // If we're stuck jumping for longer than this, there's something wrong.
+    private float _jumpTimer = 0.0f;
+
     private void SetPlayerLives(int playerLives) {
         CurrentPlayerLives = Mathf.Clamp(playerLives, 0, MaxPlayerLives);
         OnPlayerLivesChanged?.Invoke(this, CurrentPlayerLives);
@@ -272,6 +276,7 @@ public class PlayerController : MonoBehaviour {
 
         if (inputJumpOnNextFrame && characterController.isGrounded) {
             _velocity.y = Mathf.Sqrt(JumpForce * -2f * gravity);
+            _jumpTimer = 0;
         }
 
         // Start a dash (cannot dash while dashing)
@@ -343,6 +348,7 @@ public class PlayerController : MonoBehaviour {
                 if (!_isExecutingDash) {
                     targetRotation = Quaternion.Euler(0,
                         Mathf.Atan2(desiredMoveDirection.x, desiredMoveDirection.z) * Mathf.Rad2Deg, 0);
+                    Debug.Log("FACE PLAYER");
                 }
 
                 // If we're strafing, then face the player towards the camera instead.
@@ -354,7 +360,7 @@ public class PlayerController : MonoBehaviour {
 
                 // If the target rotation is too far away (180 degrees), we do a fast turn
                 float angleDifferenceDegrees = Quaternion.Angle(PlayerModel.transform.rotation, targetRotation);
-                if (angleDifferenceDegrees > 175) {
+                if (angleDifferenceDegrees > 90) {
                     _isExecutingFastTurn = true;
                 }
             } else if (!_previousIsExecutingDash && _isExecutingDash) {
@@ -406,6 +412,18 @@ public class PlayerController : MonoBehaviour {
         Animator.SetBool("IsDashing", _isExecutingDash);
         Animator.SetFloat("DashBlend", 1 - dashT);
         Animator.SetBool("IsMeleeAttacking", false);
+        // Can only be jumping or falling if we're not grounded.
+        bool isJumping = !characterController.isGrounded && _velocity.y > 0;
+        bool isFalling = !characterController.isGrounded && _velocity.y < 0;
+        Animator.SetBool("IsJumping", isJumping);
+        Animator.SetBool("IsFalling", isFalling);
+        // HACK: This is to fix an issue with player getting stuck in the air.
+        if (isJumping) {
+            _jumpTimer += Time.fixedDeltaTime;
+            if (_jumpTimer > JumpUnstuckTime) {
+                Debug.Log("IM STUCK");
+            }
+        }
 
         // Gravity doesn't affect us while dashing
         if (_isExecutingDash) {
@@ -424,6 +442,8 @@ public class PlayerController : MonoBehaviour {
         VectorDebug.Instance.DrawDebugVector("Target Rotation", targetRotation * Vector3.forward, transform.position,
             Color.magenta);
         ReactUnityBridge.Instance.UpdateDebugString("Movespeed", $"{moveSpeed:F2}");
+        ReactUnityBridge.Instance.UpdateDebugString("IsGrounded", characterController.isGrounded.ToString());
+        ReactUnityBridge.Instance.UpdateDebugString("Y Velocity", $"{_velocity.y:F2}");
         ThrusterController.Instance.HandleThrusterUpdates(moveSpeed);
         _previousInputMoveVector = inputMoveVector;
         _previousDesiredMoveDirection = desiredMoveDirection;

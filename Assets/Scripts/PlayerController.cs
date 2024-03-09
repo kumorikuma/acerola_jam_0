@@ -112,6 +112,8 @@ public class PlayerController : MonoBehaviour {
     public AnimationCurve SlashAttack1DashZPositionCurve;
     private bool _isMeleeAttacking = false;
     private bool _attackSoftEnded = false;
+    private bool _comboAttackQueuedUp = false;
+    private int _comboStage = 0;
 
     private void SetPlayerLives(int playerLives) {
         CurrentPlayerLives = Mathf.Clamp(playerLives, 0, MaxPlayerLives);
@@ -279,7 +281,7 @@ public class PlayerController : MonoBehaviour {
 
             // If we did a dash cancel, take us out of the attack.
             if (isDashCancel) {
-                OnSlashAttack1End();
+                ResetMeleeAttack(false);
             }
         } else if (isDashCancel) {
             Debug.LogError("[PlayerController] We should've dash canceled but we didn't!");
@@ -551,24 +553,53 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FirePrimaryWeapon() {
-        // If we're already attacking, we cannot attack again, unless the attack is almost over, in which case we can
-        // chain a second attack.
-        if (_isMeleeAttacking && !_attackSoftEnded) {
+        // If we're already attacking, then we can queue up a follow up attack anytime before the attack is soft ended.
+        if (_isMeleeAttacking) {
+            if (_attackSoftEnded) {
+                return;
+            }
+
+            // Queue up a followup attack if we are able to.
+            if (_comboStage < 2) {
+                _comboAttackQueuedUp = true;
+            }
+
             return;
         }
 
-        if (_attackSoftEnded) {
-            // This is following the first attack
-            Animator.SetTrigger("SlashAttack2");
-        } else {
-            Animator.SetTrigger("SlashAttack");
+        PerformSlashAttack();
+    }
+
+    private void PerformSlashAttack() {
+        switch (_comboStage) {
+            case 0:
+                Animator.SetTrigger("SlashAttack");
+                _comboStage = 1;
+                break;
+            case 1:
+                Animator.SetTrigger("SlashAttack2");
+                _comboStage = 2;
+                break;
         }
 
         _isMeleeAttacking = true;
         _attackSoftEnded = false;
+        _comboAttackQueuedUp = false;
         _rootMotionTransfer.SetApplyRootMotion(true);
+    }
 
-        // Set the cooldown when the attack completes.
+    // Called when a melee attack chain is completed.
+    // Currently that's either from an animation event, or dash cancel.
+    // Has option to reset cooldown because performing a dash cancel will cause a double trigger on this.
+    private void ResetMeleeAttack(bool resetCooldown = true) {
+        _comboStage = 0;
+        _attackSoftEnded = false;
+        _rootMotionTransfer.SetApplyRootMotion(false);
+        _isMeleeAttacking = false;
+        _comboAttackQueuedUp = false;
+        if (resetCooldown) {
+            _primaryFireCooldownCountdown = PrimaryFireCooldown;
+        }
     }
 
     private void FireSecondaryWeapon() {
@@ -642,12 +673,16 @@ public class PlayerController : MonoBehaviour {
 
     private void OnSlashAttack1SoftEnd() {
         _attackSoftEnded = true;
+
+        // If there was an attack queued up, trigger it.
+        // Make sure that there is an attack to chain.
+        if (_comboAttackQueuedUp) {
+            _comboAttackQueuedUp = false;
+            PerformSlashAttack();
+        }
     }
 
     private void OnSlashAttack1End() {
-        _isMeleeAttacking = false;
-        _attackSoftEnded = false;
-        _rootMotionTransfer.SetApplyRootMotion(false);
-        _primaryFireCooldownCountdown = PrimaryFireCooldown;
+        ResetMeleeAttack();
     }
 }

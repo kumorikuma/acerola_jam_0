@@ -318,7 +318,9 @@ public class PlayerController : MonoBehaviour {
 
                     // If we're strafing, then face the player towards the camera instead.
                     if (isStrafing) {
-                        targetRotation = quaternion.LookRotation(Camera.main.transform.forward, Vector3.up);
+                        Vector3 cameraForward = Camera.main.transform.forward;
+                        cameraForward.y = 0;
+                        targetRotation = quaternion.LookRotation(cameraForward, Vector3.up);
                     }
 
                     // If the target rotation is too far away (180 degrees), we do a fast turn

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ReactUnity;
 using ReactUnity.Reactive;
 using UnityEngine;
@@ -22,6 +23,8 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
     private ReactiveValue<float> playerSecondaryFireCooldown = new();
 
     private ReactRendererBase reactRenderer;
+    private ReactiveValue<List<string>> debugStrings = new();
+    private Dictionary<string, string> _debugStrings = new();
 
     protected override void Awake() {
         base.Awake();
@@ -36,6 +39,8 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
         // Debug values
         reactRenderer.Globals["debugGameState"] = debugGameState;
         reactRenderer.Globals["debugModeEnabled"] = debugModeEnabled;
+        reactRenderer.Globals["debugStrings"] = debugStrings;
+        debugStrings.Value = new List<string>();
 
         // Hud
         reactRenderer.Globals["screenSpaceAimPosition"] = screenSpaceAimPosition;
@@ -130,5 +135,19 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
         if (Math.Abs(playerSecondaryFireCooldown.Value - value) > FP_EPSILON) {
             playerSecondaryFireCooldown.Value = value;
         }
+    }
+
+    public void UpdateDebugString(string name, string value) {
+        _debugStrings[name] = value;
+        OnDebugStringsUpdated();
+    }
+
+    private void OnDebugStringsUpdated() {
+        List<string> debugStringsList = new();
+        foreach (KeyValuePair<string, string> kv in _debugStrings) {
+            debugStringsList.Add($"{kv.Key}: {kv.Value}");
+        }
+
+        debugStrings.Value = debugStringsList;
     }
 }

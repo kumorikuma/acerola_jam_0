@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Timeline;
@@ -33,6 +34,9 @@ public class PlayerController : MonoBehaviour {
     public float DashCooldown = 0.5f;
     private float _dashDurationCountDown = 0.0f;
     private float _dashCooldownCountDown = 0.0f;
+
+    public float MovementDecayTime = 1.0f;
+    private float _movementDecayTimer = 0.0f;
 
     // Should there be a dash cooldown and also a dash duration?
     // How would we handle windup and winddown?
@@ -266,7 +270,14 @@ public class PlayerController : MonoBehaviour {
         float moveSpeed = isWalking ? WalkSpeed : RunSpeed;
         bool isMoving = inputMoveVector.magnitude > 0;
         if (!isMoving) {
-            moveSpeed = 0;
+            // Decay movement if not moving rather than stopped immediately.
+            _movementDecayTimer += Time.fixedDeltaTime;
+
+            // moveSpeed = 0;
+            float t = _movementDecayTimer / MovementDecayTime;
+            moveSpeed = Mathf.Lerp(moveSpeed, 0, t);
+        } else {
+            _movementDecayTimer = 0;
         }
 
         // Boost the move speed if we're dashing.
@@ -277,8 +288,16 @@ public class PlayerController : MonoBehaviour {
         }
 
         // ==== DETERMINE MOVEMENT DIRECTION =====
-        bool isStrafing = _lockedOnTarget != null;
+        // bool isStrafing = _lockedOnTarget != null;
+        bool isStrafing = true;
         Vector3 desiredMoveDirection = GetDesiredMoveDirection(_isExecutingDash, isStrafing);
+
+
+        if (moveSpeed == 0) {
+            Debug.Log("Stopped Moving!: " + inputMoveVector);
+        }
+
+        ReactUnityBridge.Instance.UpdateDebugString("Input", inputMoveVector.ToString());
 
         // ==== DETERMINE TARGET ROTATION =====
         float finalTurnSpeed = TurnSpeed;
@@ -296,6 +315,11 @@ public class PlayerController : MonoBehaviour {
                     // Face the character in the direction of movement
                     targetRotation = Quaternion.Euler(0,
                         Mathf.Atan2(desiredMoveDirection.x, desiredMoveDirection.z) * Mathf.Rad2Deg, 0);
+
+                    // If we're strafing, then face the player towards the camera instead.
+                    if (isStrafing) {
+                        targetRotation = quaternion.LookRotation(Camera.main.transform.forward, Vector3.up);
+                    }
 
                     // If the target rotation is too far away (180 degrees), we do a fast turn
                     float angleDifferenceDegrees = Quaternion.Angle(PlayerModel.transform.rotation, targetRotation);
@@ -316,9 +340,6 @@ public class PlayerController : MonoBehaviour {
         }
 
         // TODO: When dashing while locked on, we strafe instead of turn?
-
-        Animator.SetBool("IsRunning", isMoving);
-        // Animator.SetBool("IsDashing", _isExecutingDash);
 
         // ==== PERFORM ROTATION =====
         if (_isExecutingDash || _lockedOnTarget != null) {
@@ -344,6 +365,14 @@ public class PlayerController : MonoBehaviour {
                                  (desiredMoveDirection.magnitude * (moveSpeed * Time.deltaTime));
         }
 
+        // Update animator
+        Animator.SetBool("IsMoving", moveSpeed > 0);
+        Animator.SetBool("IsMovingRight", inputMoveVector.x > 0);
+        Animator.SetBool("IsMovingLeft", inputMoveVector.x < 0);
+        Animator.SetBool("IsMovingForward", inputMoveVector.z > 0);
+        Animator.SetBool("IsMovingBackward", inputMoveVector.z < 0);
+        // Animator.SetBool("IsDashing", _isExecutingDash);
+
         // Gravity doesn't affect us while dashing
         if (_isExecutingDash) {
             _velocity.y = 0;
@@ -357,6 +386,7 @@ public class PlayerController : MonoBehaviour {
         _velocity.y += gravity * Time.deltaTime;
 
         // ==== UPDATE STATE =====
+        ReactUnityBridge.Instance.UpdateDebugString("Movespeed", $"{moveSpeed:F2}");
         ThrusterController.Instance.HandleThrusterUpdates(moveSpeed);
         _previousInputMoveVector = inputMoveVector;
         _previousDesiredMoveDirection = desiredMoveDirection;

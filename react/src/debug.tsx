@@ -9,6 +9,15 @@ export default function Debug(): React.ReactNode {
   const gameState = useReactiveValue(globals.debugGameState);
   const gameLifecycleManager = globals.gameLifecycleManager;
   const isDebugModeEnabled = useReactiveValue(globals.debugModeEnabled);
+  const debugStrings: Array<string> = useReactiveValue(globals.debugStrings);
+
+  const debugStringElements = debugStrings.map((value, i) => {
+    return (
+      <view key={i} className={`text`}>
+        {value}
+      </view>
+    );
+  });
 
   return (
     isDebugModeEnabled && (
@@ -19,6 +28,7 @@ export default function Debug(): React.ReactNode {
             <view className="text">Debug</view>
             <view className="text">{`UI Route: ${route}`}</view>
             <view className="text">{`Game State: ${gameState}`}</view>
+            {debugStringElements}
             {gameState === "GamePaused" && (
               <Button
                 text="End Game"

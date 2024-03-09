@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UIRouter : Singleton<UIRouter> {
@@ -11,6 +12,7 @@ public class UIRouter : Singleton<UIRouter> {
     }
 
     public Route DebugRoute = Route.None;
+
 
     public event EventHandler<string> OnRouteUpdate;
 

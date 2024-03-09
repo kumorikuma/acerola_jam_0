@@ -373,7 +373,7 @@ public class PlayerController : MonoBehaviour {
         Animator.SetBool("IsMovingLeft", inputMoveVector.x < 0);
         Animator.SetBool("IsMovingForward", inputMoveVector.z > 0);
         Animator.SetBool("IsMovingBackward", inputMoveVector.z < 0);
-        // Animator.SetBool("IsDashing", _isExecutingDash);
+        Animator.SetBool("IsDashing", _isExecutingDash);
 
         // Gravity doesn't affect us while dashing
         if (_isExecutingDash) {

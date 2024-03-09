@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour {
     private Transform _previousActiveVirtualCamera;
     private Vector3 _previousInputMoveVector = Vector3.zero;
     private Vector3 _previousDesiredMoveDirection = Vector3.zero;
+    private bool _previousIsExecutingDash = false;
 
     // Stats
     [NonSerialized] public EntityStats Stats;
@@ -323,6 +324,10 @@ public class PlayerController : MonoBehaviour {
                 if (angleDifferenceDegrees > 175) {
                     _isExecutingFastTurn = true;
                 }
+            } else if (!_previousIsExecutingDash && _isExecutingDash) {
+                // Player is not moving. But they just started a dash, face the player towards the dash.
+                targetRotation = Quaternion.Euler(0,
+                    Mathf.Atan2(desiredMoveDirection.x, desiredMoveDirection.z) * Mathf.Rad2Deg, 0);
             }
         } else {
             // Otherwise we keep the target rotation the same but accelerate the turn speed.
@@ -388,6 +393,7 @@ public class PlayerController : MonoBehaviour {
         ThrusterController.Instance.HandleThrusterUpdates(moveSpeed);
         _previousInputMoveVector = inputMoveVector;
         _previousDesiredMoveDirection = desiredMoveDirection;
+        _previousIsExecutingDash = _isExecutingDash;
     }
 
     // Transforms the player's InputMoveVector to a desired move direction.
@@ -395,20 +401,17 @@ public class PlayerController : MonoBehaviour {
     private Vector3 GetDesiredMoveDirection(bool isDashing, bool isStrafing) {
         Vector3 desiredMoveDirection = Vector3.zero;
         Vector3 inputMoveVectorModified = inputMoveVector;
-        // If we're dashing with a locked camera, then use the previous input vector.
-        // TODO: Revisit this with target locking? IsStrafing check here should be target locked
-        // if (isDashing && isStrafing) {
-        //     inputMoveVectorModified = _previousInputMoveVector;
-        // }
 
-        if (isDashing) {
-            // If we're dashing without locked camera, then just use the previous direction.
+        // If we're in the middle of dashing without locked camera, then just use the previous direction.
+        // This does not execute on the first frame of the dash.
+        if (isDashing && _previousIsExecutingDash) {
             return _previousDesiredMoveDirection;
         }
 
         // Stop here if we don't need to any more calculations (user is not moving).
         if (inputMoveVectorModified.magnitude <= 0.0f) {
-            return _previousDesiredMoveDirection;
+            // If the player is not moving, default to forward.
+            inputMoveVectorModified = new Vector3(0, 0, 1);
         }
 
         if (_lockedOnTarget != null) {

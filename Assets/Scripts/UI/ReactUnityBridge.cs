@@ -138,16 +138,20 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
     }
 
     public void UpdateDebugString(string name, string value) {
+#if UNITY_EDITOR
         _debugStrings[name] = value;
         OnDebugStringsUpdated();
+#endif
     }
 
     private void OnDebugStringsUpdated() {
+#if UNITY_EDITOR
         List<string> debugStringsList = new();
         foreach (KeyValuePair<string, string> kv in _debugStrings) {
             debugStringsList.Add($"{kv.Key}: {kv.Value}");
         }
 
         debugStrings.Value = debugStringsList;
+#endif
     }
 }

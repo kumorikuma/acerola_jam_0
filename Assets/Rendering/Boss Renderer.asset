@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    OutlineColor: {r: 1.4980392, g: 0.828042, b: 0.5333333, a: 1}
+    OutlineColor: {r: 1.7207952, g: 1.007618, b: 0.6126391, a: 1}
     EnableNormalOutline: 1
     OnlyCompareToBg: 1
     CreaseAngleThresholdDeg: 180

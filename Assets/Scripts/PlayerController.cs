@@ -119,10 +119,6 @@ public class PlayerController : MonoBehaviour {
     private bool _comboAttackQueuedUp = false;
     private int _comboStage = 0;
 
-    // Hacky fix for a bug where you're stuck jumping
-    public float JumpUnstuckTime = 5.0f; // If we're stuck jumping for longer than this, there's something wrong.
-    private float _jumpTimer = 0.0f;
-
     private void SetPlayerLives(int playerLives) {
         CurrentPlayerLives = Mathf.Clamp(playerLives, 0, MaxPlayerLives);
         OnPlayerLivesChanged?.Invoke(this, CurrentPlayerLives);
@@ -185,6 +181,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnMove(Vector2 moveVector) {
+        ReactUnityBridge.Instance.UpdateDebugString("Move Vector", moveVector.ToString());
+        Debug.Log("Received new move vector: " + moveVector);
         inputMoveVector = new Vector3(moveVector.x, 0, moveVector.y);
     }
 
@@ -288,7 +286,6 @@ public class PlayerController : MonoBehaviour {
 
         if (inputJumpOnNextFrame && characterController.isGrounded) {
             _velocity.y = Mathf.Sqrt(JumpForce * -2f * gravity);
-            _jumpTimer = 0;
         }
 
         // Start a dash (cannot dash while dashing)
@@ -346,7 +343,8 @@ public class PlayerController : MonoBehaviour {
 
         // ==== DETERMINE TARGET ROTATION =====
         float finalTurnSpeed = TurnSpeed;
-        if (_lockedOnTarget != null) {
+        bool isTargetLocked = _lockedOnTarget != null;
+        if (isTargetLocked) {
             // If we're in target lock mode, keep the player facing the enemy. We will always move to the left/right.
             Vector3 playerToTargetVector = _lockedOnTarget.position - PlayerModel.transform.position;
             playerToTargetVector.y = 0;
@@ -386,13 +384,16 @@ public class PlayerController : MonoBehaviour {
 
             // If the target rotation is reached, the fast turn is done.
             float angleDifferenceDegrees = Quaternion.Angle(PlayerModel.transform.rotation, targetRotation);
-            if (angleDifferenceDegrees < 0.1f) {
+            if (angleDifferenceDegrees < 1.0f) {
                 _isExecutingFastTurn = false;
+                PlayerModel.transform.rotation = targetRotation;
             }
+
+            Debug.Log("IsExecutingFastTurn");
         }
 
         // ==== PERFORM ROTATION =====
-        if (_isExecutingDash || _lockedOnTarget != null) {
+        if (_isExecutingDash || isTargetLocked) {
             // Complete the turn immediately when:
             // - Dashing
             // - Target locked.
@@ -429,13 +430,6 @@ public class PlayerController : MonoBehaviour {
         bool isFalling = !characterController.isGrounded && _velocity.y < 0;
         Animator.SetBool("IsJumping", isJumping);
         Animator.SetBool("IsFalling", isFalling);
-        // HACK: This is to fix an issue with player getting stuck in the air.
-        if (isJumping) {
-            _jumpTimer += Time.fixedDeltaTime;
-            if (_jumpTimer > JumpUnstuckTime) {
-                Debug.Log("IM STUCK");
-            }
-        }
 
         // Gravity doesn't affect us while dashing
         if (_isExecutingDash) {
@@ -453,9 +447,20 @@ public class PlayerController : MonoBehaviour {
         ReactUnityBridge.Instance.UpdateDebugString("Input", inputMoveVector.ToString());
         VectorDebug.Instance.DrawDebugVector("Target Rotation", targetRotation * Vector3.forward, transform.position,
             Color.magenta);
+        VectorDebug.Instance.DrawDebugVector("Desired Move Direction", desiredMoveDirection, transform.position,
+            Color.green);
         ReactUnityBridge.Instance.UpdateDebugString("Movespeed", $"{moveSpeed:F2}");
         ReactUnityBridge.Instance.UpdateDebugString("IsGrounded", characterController.isGrounded.ToString());
         ReactUnityBridge.Instance.UpdateDebugString("Y Velocity", $"{_velocity.y:F2}");
+        ReactUnityBridge.Instance.UpdateDebugString("IsMoving", isMoving.ToString());
+        ReactUnityBridge.Instance.UpdateDebugString("IsJumping", isJumping.ToString());
+        ReactUnityBridge.Instance.UpdateDebugString("IsFalling", isFalling.ToString());
+        ReactUnityBridge.Instance.UpdateDebugString("IsDashing", _isExecutingDash.ToString());
+        ReactUnityBridge.Instance.UpdateDebugString("IsFastTurning", _isExecutingFastTurn.ToString());
+        ReactUnityBridge.Instance.UpdateDebugString("IsTargetLocked", isTargetLocked.ToString());
+        ReactUnityBridge.Instance.UpdateDebugString("IsMeleeAttacking", _isMeleeAttacking.ToString());
+        ReactUnityBridge.Instance.UpdateDebugString("IsDashCancel", isDashCancel.ToString());
+
         ThrusterController.Instance.HandleThrusterUpdates(moveSpeed);
         _previousInputMoveVector = inputMoveVector;
         _previousDesiredMoveDirection = desiredMoveDirection;
@@ -533,7 +538,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void HandleAttack() {
-        // Can't attack while dashing
+        // Can't attack while dashing or jumping
         if (_isExecutingDash) {
             return;
         }

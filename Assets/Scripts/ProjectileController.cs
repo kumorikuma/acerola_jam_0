@@ -34,7 +34,6 @@ public class ProjectileController : Singleton<ProjectileController> {
 
         projectileComponent.ProjectileOwner = owner;
         projectileComponent.velocity = velocity;
-        projectileComponent.ShouldBackgroundWhenHigh = false;
         _projectiles.Add(newProjectile.GetInstanceID(), projectileComponent);
         return projectileComponent;
     }
@@ -48,7 +47,6 @@ public class ProjectileController : Singleton<ProjectileController> {
         Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
         projectileComponent.ProjectileOwner = owner;
         projectileComponent.velocity = rotation * Vector3.forward * speed;
-        projectileComponent.ShouldBackgroundWhenHigh = false;
         _projectiles.Add(newProjectile.GetInstanceID(), projectileComponent);
         return projectileComponent;
     }
@@ -64,8 +62,6 @@ public class ProjectileController : Singleton<ProjectileController> {
         projectileComponent.AngularVelocity = angularVelocity;
         projectileComponent.FaceForward = false;
         projectileComponent.AngularVelocityDecay = angularVelocityDecay;
-        projectileComponent.ShouldBackgroundWhenHigh = true;
-        projectileComponent.ShouldRemoveCollider = true;
         _projectiles.Add(newProjectile.GetInstanceID(), projectileComponent);
 
         // We can spawn it without the collider if it's really far away from the player

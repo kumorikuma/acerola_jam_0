@@ -47,11 +47,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629e45d5743243241959d4775741a189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectileOwner: 1
+  ProjectileOwner: 0
   velocity: {x: 0, y: 0, z: 0}
+  Collider: {fileID: 1486517266709264040}
   TrackedTarget: {fileID: 0}
   Acceleration: 0
   TurningSpeed: 5
+  AngularVelocity: {x: 0, y: 0, z: 0}
+  AngularVelocityDecay: 0
+  FaceForward: 1
+  MaxSpeed: -1
+  AdditionalVelocityOffset: {x: 0, y: 0, z: 0}
+  TurnTowardsTarget: 0
+  TurnTowardsTargetSpeed: 5
+  ShouldBackgroundWhenHigh: 0
+  ShouldRemoveCollider: 0
 --- !u!64 &1486517266709264040
 MeshCollider:
   m_ObjectHideFlags: 0

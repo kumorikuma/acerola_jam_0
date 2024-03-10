@@ -181,7 +181,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnMove(Vector2 moveVector) {
-        ReactUnityBridge.Instance.UpdateDebugString("Move Vector", moveVector.ToString());
         inputMoveVector = new Vector3(moveVector.x, 0, moveVector.y);
     }
 
@@ -440,10 +439,10 @@ public class PlayerController : MonoBehaviour {
 
         // ==== UPDATE STATE =====
         ReactUnityBridge.Instance.UpdateDebugString("Input", inputMoveVector.ToString());
-        VectorDebug.Instance.DrawDebugVector("Target Rotation", targetRotation * Vector3.forward, transform.position,
-            Color.magenta);
-        VectorDebug.Instance.DrawDebugVector("Desired Move Direction", desiredMoveDirection, transform.position,
-            Color.green);
+        // VectorDebug.Instance.DrawDebugVector("Target Rotation", targetRotation * Vector3.forward, transform.position,
+        //     Color.magenta);
+        // VectorDebug.Instance.DrawDebugVector("Desired Move Direction", desiredMoveDirection, transform.position,
+        //     Color.green);
         ReactUnityBridge.Instance.UpdateDebugString("Movespeed", $"{moveSpeed:F2}");
         ReactUnityBridge.Instance.UpdateDebugString("IsGrounded", characterController.isGrounded.ToString());
         ReactUnityBridge.Instance.UpdateDebugString("Y Velocity", $"{_velocity.y:F2}");

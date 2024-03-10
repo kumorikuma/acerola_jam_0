@@ -2,6 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public class BulletWave {
+    public List<int> ProjectileIndices;
+
+    public BulletWave() {
+        ProjectileIndices = new();
+    }
+}
+
 // Meant to be composed together with other prefabs.
 public class BulletSpawner : MonoBehaviour {
     // If this is set, then we will point our bullet spawner towards this target.
@@ -24,7 +33,7 @@ public class BulletSpawner : MonoBehaviour {
     public int WavesToSpawn = 10;
 
     // Defines the wave pattern. If WavesToSpawn is greater than this, it will just wrap around.
-    public List<List<int>> BulletWaves = new();
+    public List<BulletWave> BulletWaves = new();
 
     // When this bullet spawners is played or stopped, these are as well.
     public List<BulletSpawner> ChildBulletSpawners = new();
@@ -38,7 +47,6 @@ public class BulletSpawner : MonoBehaviour {
 
     private void Start() {
         _animator = GetComponent<Animator>();
-        _timeBetweenWavesSeconds = TimeBetweenWavesMs / 1000.0f;
         if (ShouldAimAtPlayer) {
             _playerTarget = PlayerManager.Instance.PlayerController.EnemyAimTargetLocation;
         }
@@ -104,8 +112,10 @@ public class BulletSpawner : MonoBehaviour {
 
     private void SpawnWave() {
         int waveIndex = _wavesSpawned % BulletWaves.Count;
-        List<int> bulletWave = BulletWaves[waveIndex];
+        List<int> bulletWave = BulletWaves[waveIndex].ProjectileIndices;
         int numBullets = bulletWave.Count;
+        // Put this here so it can be changed in inspector
+        _timeBetweenWavesSeconds = TimeBetweenWavesMs / 1000.0f;
 
         for (int i = 0; i < numBullets; i++) {
             // Calculate the angle for this object
@@ -122,12 +132,13 @@ public class BulletSpawner : MonoBehaviour {
             Vector3 position = transform.position + direction * InitialPositionOffset;
 
             // Instantiate the object
-            if (i >= ProjectileTypes.Count) {
+            int bulletIndex = i % bulletWave.Count;
+            if (bulletIndex >= ProjectileTypes.Count) {
                 Debug.LogError("[BulletSpawner] Out of bounds index access! Check projectile types");
                 continue;
             }
 
-            GameObject projectilePrefab = ProjectileTypes[bulletWave[i]];
+            GameObject projectilePrefab = ProjectileTypes[bulletWave[bulletIndex]];
             Projectile projectile = ProjectileController.Instance.SpawnProjectile(ProjectileController.Owner.Enemy,
                 projectilePrefab, position,
                 rotation, direction * ProjectileSpeed);

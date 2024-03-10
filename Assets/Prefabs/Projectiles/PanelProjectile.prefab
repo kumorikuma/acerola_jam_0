@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectileOwner: 0
   velocity: {x: 0, y: 0, z: 0}
+  Collider: {fileID: 2861512452706576348}
   TrackedTarget: {fileID: 0}
   Acceleration: 0.1
   TurningSpeed: 20
@@ -57,7 +58,8 @@ MonoBehaviour:
   AdditionalVelocityOffset: {x: 0, y: 0, z: 0}
   TurnTowardsTarget: 0
   TurnTowardsTargetSpeed: 5
-  BackGrounded: 0
+  ShouldBackgroundWhenHigh: 1
+  ShouldRemoveCollider: 1
 --- !u!1001 &941060375476424676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -118,5 +120,10 @@ PrefabInstance:
 --- !u!4 &1270888328779490118 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2066109202234911906, guid: 4b70bc9cb6f43524899faa02d97dce5c, type: 3}
+  m_PrefabInstance: {fileID: 941060375476424676}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2861512452706576348 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 3078618293642815544, guid: 4b70bc9cb6f43524899faa02d97dce5c, type: 3}
   m_PrefabInstance: {fileID: 941060375476424676}
   m_PrefabAsset: {fileID: 0}

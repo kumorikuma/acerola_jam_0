@@ -15,8 +15,11 @@ with footstep system based on check the current texture of the component*/
 public class PlayerController : MonoBehaviour {
     [NonNullField] public Animator Animator;
 
+    [NonNullField] public GameObject AimIndicatorObject;
     [NonNullField] public Transform PrimaryWeaponMountPoint;
     [NonNullField] public Transform SecondaryWeaponMountPoint;
+
+    [NonNullField] public Transform PlayerAimTargetLocation;
     [NonNullField] public Transform EnemyAimTargetLocation;
 
     [NonNullField] public AttackHitbox AttackHitbox;
@@ -195,7 +198,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Find closest target to the center of the screen to lock on to.
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Targetable");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("LockonTarget");
         foreach (GameObject enemy in enemies) {
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(enemy.transform.position);
             if (IsScreenPositionOutOfBounds(screenPosition)) {
@@ -225,10 +228,13 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Update() {
+        PlayerManager.Instance.CameraController.UpdateCamera();
+        _cinemachineBrain.ManualUpdate();
+
         HandleMovement();
         HandleAttack();
         HandleStatusEffects();
-        PlayerManager.Instance.CameraController.UpdateCamera();
+        UpdateUI();
     }
 
     private void FixedUpdate() {
@@ -262,7 +268,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void LateUpdate() {
-        UpdateUI();
+        // UpdateUI();
     }
 
     //Character controller movement
@@ -350,7 +356,8 @@ public class PlayerController : MonoBehaviour {
             targetRotation = Quaternion.LookRotation(playerToTargetVector, Vector3.up);
         } else if (!_isExecutingFastTurn) {
             // If we're not doing a fast turn, then calculate the direction that the target should be facing.
-            if (isMoving) {
+            // If this is set to true, then the player will always face the camera.
+            if (true /* isMoving */) {
                 // Face the character in the direction of movement
                 if (!_isExecutingDash) {
                     targetRotation = Quaternion.Euler(0,
@@ -364,11 +371,12 @@ public class PlayerController : MonoBehaviour {
                     targetRotation = quaternion.LookRotation(cameraForward, Vector3.up);
                 }
 
-                // If the target rotation is too far away (180 degrees), we do a fast turn
-                float angleDifferenceDegrees = Quaternion.Angle(PlayerModel.transform.rotation, targetRotation);
-                if (angleDifferenceDegrees > 90) {
-                    _isExecutingFastTurn = true;
-                }
+                // If the target rotation is too far away (180 degrees), we do a fast turn.
+                // Disabling fast turn since there's a bug that can get us stuck in a fast turn.
+                // float angleDifferenceDegrees = Quaternion.Angle(PlayerModel.transform.rotation, targetRotation);
+                // if (angleDifferenceDegrees > 90) {
+                //     _isExecutingFastTurn = true;
+                // }
             } else if (!_previousIsExecutingDash && _isExecutingDash) {
                 // Player is not moving. But they just started a dash, face the player towards the dash.
                 targetRotation = Quaternion.Euler(0,
@@ -384,10 +392,15 @@ public class PlayerController : MonoBehaviour {
                 _isExecutingFastTurn = false;
                 PlayerModel.transform.rotation = targetRotation;
             }
+
+            // TODO: Before game jam ends if I can't fix it, just remove fast turning.
+
+            Debug.Log("Executing fast turn!");
         }
 
         // ==== PERFORM ROTATION =====
-        if (_isExecutingDash || isTargetLocked) {
+        if (true || _isExecutingDash || isTargetLocked) {
+            // Added true here to remove turn speed
             // Complete the turn immediately when:
             // - Dashing
             // - Target locked.
@@ -438,22 +451,22 @@ public class PlayerController : MonoBehaviour {
         _velocity.y += gravity * Time.deltaTime;
 
         // ==== UPDATE STATE =====
-        ReactUnityBridge.Instance.UpdateDebugString("Input", inputMoveVector.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("Input", inputMoveVector.ToString());
         // VectorDebug.Instance.DrawDebugVector("Target Rotation", targetRotation * Vector3.forward, transform.position,
         //     Color.magenta);
         // VectorDebug.Instance.DrawDebugVector("Desired Move Direction", desiredMoveDirection, transform.position,
         //     Color.green);
-        ReactUnityBridge.Instance.UpdateDebugString("Movespeed", $"{moveSpeed:F2}");
-        ReactUnityBridge.Instance.UpdateDebugString("IsGrounded", characterController.isGrounded.ToString());
-        ReactUnityBridge.Instance.UpdateDebugString("Y Velocity", $"{_velocity.y:F2}");
-        ReactUnityBridge.Instance.UpdateDebugString("IsMoving", isMoving.ToString());
-        ReactUnityBridge.Instance.UpdateDebugString("IsJumping", isJumping.ToString());
-        ReactUnityBridge.Instance.UpdateDebugString("IsFalling", isFalling.ToString());
-        ReactUnityBridge.Instance.UpdateDebugString("IsDashing", _isExecutingDash.ToString());
-        ReactUnityBridge.Instance.UpdateDebugString("IsFastTurning", _isExecutingFastTurn.ToString());
-        ReactUnityBridge.Instance.UpdateDebugString("IsTargetLocked", isTargetLocked.ToString());
-        ReactUnityBridge.Instance.UpdateDebugString("IsMeleeAttacking", _isMeleeAttacking.ToString());
-        ReactUnityBridge.Instance.UpdateDebugString("IsDashCancel", isDashCancel.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("Movespeed", $"{moveSpeed:F2}");
+        // ReactUnityBridge.Instance.UpdateDebugString("IsGrounded", characterController.isGrounded.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("Y Velocity", $"{_velocity.y:F2}");
+        // ReactUnityBridge.Instance.UpdateDebugString("IsMoving", isMoving.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("IsJumping", isJumping.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("IsFalling", isFalling.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("IsDashing", _isExecutingDash.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("IsFastTurning", _isExecutingFastTurn.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("IsTargetLocked", isTargetLocked.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("IsMeleeAttacking", _isMeleeAttacking.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("IsDashCancel", isDashCancel.ToString());
 
         ThrusterController.Instance.HandleThrusterUpdates(moveSpeed);
         _previousInputMoveVector = inputMoveVector;
@@ -518,7 +531,8 @@ public class PlayerController : MonoBehaviour {
             }
 
             // Apply the camera's rotation to the input move vector
-            Quaternion activeCameraRotation = activeVirtualCameraTransform.transform.rotation;
+            Quaternion activeCameraRotation = activeVirtualCameraTransform.rotation;
+            // Quaternion activeCameraRotation = Camera.main.transform.rotation;
 
             // Character should move in the direction of the camera
             desiredMoveDirection =
@@ -650,7 +664,13 @@ public class PlayerController : MonoBehaviour {
             // targetRotation = Quaternion.Euler(0,
             //     Mathf.Atan2(initialVelocity.x, initialVelocity.z) * Mathf.Rad2Deg, 0);
             // PlayerModel.transform.rotation = targetRotation;
+        } else {
+            initialVelocity = (PlayerAimTargetLocation.position - SecondaryWeaponMountPoint.position).normalized *
+                              ProjectileVelocity;
         }
+
+        // To make it feel better, we should also add the players current velocity to it.
+        initialVelocity += characterController.velocity;
 
         ProjectileController.Instance.SpawnProjectile(ProjectileController.Owner.Player,
             SecondaryWeaponMountPoint.position, Quaternion.identity,
@@ -658,31 +678,45 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void UpdateUI() {
-        Vector2Int screenSpaceAimPosition = new(Screen.width / 2, Screen.height / 2);
-        if (_lockedOnTarget != null) {
+        // React UI. There's a sliiight like 1 frame-ish delay which makes it a bit jittery. but also it just doesn't
+        // look super great unless we have locked target.
+        bool hasLockedOnTarget = _lockedOnTarget != null;
+        ReactUnityBridge.Instance.UpdateDisplayReticle(hasLockedOnTarget);
+        if (hasLockedOnTarget) {
+            Vector2Int screenSpaceAimPosition = new(Screen.width / 2, Screen.height / 2);
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(_lockedOnTarget.transform.position);
             if (IsScreenPositionOutOfBounds(screenPosition)) {
                 SetLockOnTarget(null);
             } else {
                 screenSpaceAimPosition = new(Mathf.RoundToInt(screenPosition.x), Mathf.RoundToInt(screenPosition.y));
             }
+
+            ReactUnityBridge.Instance.UpdateScreenSpaceAimPosition(screenSpaceAimPosition);
+            ReactUnityBridge.Instance.UpdatePrimaryFireCooldown(1 -
+                                                                (_primaryFireCooldownCountdown / PrimaryFireCooldown));
+            ReactUnityBridge.Instance.UpdateSecondaryFireCooldown(1 - (_secondaryFireCooldownCountdown /
+                                                                       SecondaryFireCooldown));
+        } else {
+            // Reticle should reflect where the player is actively aiming
+            // Vector3 screenPosition = Camera.main.WorldToScreenPoint(PlayerAimTargetLocation.position);
+            // screenSpaceAimPosition = new(Mathf.RoundToInt(screenPosition.x), Mathf.RoundToInt(screenPosition.y));
         }
 
-        ReactUnityBridge.Instance.UpdateScreenSpaceAimPosition(screenSpaceAimPosition);
+        // Unused.
+        // if (hasLockedOnTarget) {
+        //     EntityStats stats = _lockedOnTarget.GetComponent<EntityStats>();
+        //     ReactUnityBridge.Instance.UpdateTargetHealth(stats.GetHealthPercentage());
+        // } else {
+        //     ReactUnityBridge.Instance.UpdateTargetHealth(0);
+        // }
 
-        ReactUnityBridge.Instance.UpdatePrimaryFireCooldown(1 - (_primaryFireCooldownCountdown / PrimaryFireCooldown));
-        ReactUnityBridge.Instance.UpdateSecondaryFireCooldown(1 - (_secondaryFireCooldownCountdown /
-                                                                   SecondaryFireCooldown));
-
-        if (_lockedOnTarget != null) {
-            EntityStats stats = _lockedOnTarget.GetComponent<EntityStats>();
-            if (stats == null) {
-                Debug.LogError("[PlayerController] Locked on target does not have EntityStats component!");
-            } else {
-                ReactUnityBridge.Instance.UpdateTargetHealth(stats.GetHealthPercentage());
-            }
-        } else {
-            ReactUnityBridge.Instance.UpdateTargetHealth(0);
+        // Update aim indicator
+        bool canShoot = !_isMeleeAttacking && !_isExecutingDash;
+        AimIndicatorObject.SetActive(canShoot);
+        if (canShoot) {
+            AimIndicatorObject.transform.position = SecondaryWeaponMountPoint.transform.position;
+            Vector3 aimDirection = (PlayerAimTargetLocation.position - SecondaryWeaponMountPoint.position).normalized;
+            AimIndicatorObject.transform.rotation = Quaternion.LookRotation(aimDirection, Vector3.up);
         }
     }
 

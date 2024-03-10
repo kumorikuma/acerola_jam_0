@@ -1,16 +1,13 @@
 import { useGlobals, useReactiveValue } from "@reactunity/renderer";
 import "./index.scss";
 
-type ReticleProps = {
-  posX: number;
-  posY: number;
-};
+import { Vector2Int } from "./types/types";
 
 function lerp(a, b, alpha) {
   return a + alpha * (b - a);
 }
 
-export default function Reticle({ posX, posY }: ReticleProps): React.ReactNode {
+export default function Reticle(): React.ReactNode {
   const globals = useGlobals();
   const playerPrimaryFireCooldown = useReactiveValue(
     globals.playerPrimaryFireCooldown
@@ -24,6 +21,11 @@ export default function Reticle({ posX, posY }: ReticleProps): React.ReactNode {
     40,
     playerSecondaryFireCooldown
   );
+  const screenSpaceAimPosition: Vector2Int = useReactiveValue(
+    globals.screenSpaceAimPosition
+  );
+  const posX = screenSpaceAimPosition.x;
+  const posY = screenSpaceAimPosition.y;
 
   return (
     <view

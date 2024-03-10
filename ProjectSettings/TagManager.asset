@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Targetable
   - Destructible
+  - LockonTarget
   layers:
   - Default
   - TransparentFX

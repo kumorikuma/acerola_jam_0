@@ -12,6 +12,7 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
     private ReactiveValue<string> debugGameState = new();
     private ReactiveValue<Leaderboards.LeaderboardScores> leaderboardScores = new();
     private ReactiveValue<Vector2Int> screenSpaceAimPosition = new();
+    private ReactiveValue<bool> displayReticle = new();
 
     // Stats. All values [0, 1].
     private ReactiveValue<float> targetHealth = new();
@@ -43,6 +44,7 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
         debugStrings.Value = new List<string>();
 
         // Hud
+        reactRenderer.Globals["displayReticle"] = displayReticle;
         reactRenderer.Globals["screenSpaceAimPosition"] = screenSpaceAimPosition;
         reactRenderer.Globals["targetHealth"] = targetHealth;
         reactRenderer.Globals["playerHealth"] = playerHealth;
@@ -134,6 +136,12 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
     public void UpdateSecondaryFireCooldown(float value) {
         if (Math.Abs(playerSecondaryFireCooldown.Value - value) > FP_EPSILON) {
             playerSecondaryFireCooldown.Value = value;
+        }
+    }
+
+    public void UpdateDisplayReticle(bool shouldDisplay) {
+        if (displayReticle.Value != shouldDisplay) {
+            displayReticle.Value = shouldDisplay;
         }
     }
 

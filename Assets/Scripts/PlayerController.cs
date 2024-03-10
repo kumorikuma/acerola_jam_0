@@ -182,13 +182,11 @@ public class PlayerController : MonoBehaviour {
 
     public void OnMove(Vector2 moveVector) {
         ReactUnityBridge.Instance.UpdateDebugString("Move Vector", moveVector.ToString());
-        Debug.Log("Received new move vector: " + moveVector);
         inputMoveVector = new Vector3(moveVector.x, 0, moveVector.y);
     }
 
     public void OnJump() {
         inputJumpOnNextFrame = true;
-        Debug.Log("OnJump");
     }
 
     public void OnLockOn() {
@@ -358,7 +356,6 @@ public class PlayerController : MonoBehaviour {
                 if (!_isExecutingDash) {
                     targetRotation = Quaternion.Euler(0,
                         Mathf.Atan2(desiredMoveDirection.x, desiredMoveDirection.z) * Mathf.Rad2Deg, 0);
-                    Debug.Log("FACE PLAYER");
                 }
 
                 // If we're strafing, then face the player towards the camera instead.
@@ -388,8 +385,6 @@ public class PlayerController : MonoBehaviour {
                 _isExecutingFastTurn = false;
                 PlayerModel.transform.rotation = targetRotation;
             }
-
-            Debug.Log("IsExecutingFastTurn");
         }
 
         // ==== PERFORM ROTATION =====

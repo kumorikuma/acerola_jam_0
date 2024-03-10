@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour {
     // Can either be an enemy projectile, or a player projectile
     public ProjectileController.Owner ProjectileOwner = ProjectileController.Owner.Player;
     public Vector3 velocity = Vector3.zero;
+    public Collider Collider;
 
     // To turn it into a missile...
     // Target Seeking
@@ -33,6 +34,7 @@ public class Projectile : MonoBehaviour {
     public bool ShouldRemoveCollider = false;
 
     // Maybe there's a delay before the "boosters" turn on and it accelerates towards the target.
+
 
     private void OnTriggerEnter(Collider other) {
         if (ProjectileOwner == ProjectileController.Owner.Player && other.CompareTag("Targetable")) {

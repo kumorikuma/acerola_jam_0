@@ -19,6 +19,10 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
         get { return _currentGameState; }
     }
 
+    public bool IsGamePlaying() {
+        return _currentGameState == GameState.GameStarted;
+    }
+
     void Start() {
         // Disable Debug Mode in production
 #if !UNITY_EDITOR

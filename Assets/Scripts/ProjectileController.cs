@@ -10,6 +10,8 @@ public class ProjectileController : Singleton<ProjectileController> {
         World
     }
 
+    // TODO: For perf boost we could use object pooling.    
+
     [NonNullField] public GameObject ProjectilePrefab;
     [NonNullField] public GameObject MissilePrefab;
     [NonNullField] public GameObject PanelPrefab;
@@ -18,14 +20,27 @@ public class ProjectileController : Singleton<ProjectileController> {
     private Dictionary<int, Projectile> _projectiles = new();
     private List<Projectile> _projectilesToDestroy = new();
 
-    public Projectile SpawnProjectile(Owner owner, Vector3 origin, Quaternion rotation, Vector3 velocity) {
-        GameObject newProjectile = Instantiate(ProjectilePrefab, origin, rotation, this.transform);
+    public Projectile SpawnProjectile(Owner owner, GameObject prefab, Vector3 origin, Quaternion rotation,
+        Vector3 velocity) {
+        GameObject newProjectile = Instantiate(prefab, origin, rotation, this.transform);
         Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
+        if (projectileComponent == null) {
+            Debug.LogError(
+                $"[ProjectileController] Error spawning projectile prefab. Couldn't find Projectile Component. Name: " +
+                prefab.name);
+            Destroy(newProjectile);
+            return null;
+        }
+
         projectileComponent.ProjectileOwner = owner;
         projectileComponent.velocity = velocity;
         projectileComponent.ShouldBackgroundWhenHigh = false;
         _projectiles.Add(newProjectile.GetInstanceID(), projectileComponent);
         return projectileComponent;
+    }
+
+    public Projectile SpawnProjectile(Owner owner, Vector3 origin, Quaternion rotation, Vector3 velocity) {
+        return SpawnProjectile(owner, ProjectilePrefab, origin, rotation, velocity);
     }
 
     public Projectile SpawnMissile(Owner owner, Vector3 origin, Quaternion rotation, float speed) {
@@ -57,7 +72,7 @@ public class ProjectileController : Singleton<ProjectileController> {
         float projectileDistanceToPlayer =
             (PlayerManager.Instance.PlayerController.transform.position - origin).magnitude;
         if (projectileDistanceToPlayer > 20) {
-            BoxCollider colliderComponent = newProjectile.GetComponentInChildren<BoxCollider>();
+            Collider colliderComponent = projectileComponent.Collider;
             if (colliderComponent != null) {
                 Destroy(colliderComponent);
             }
@@ -132,7 +147,7 @@ public class ProjectileController : Singleton<ProjectileController> {
                 float projectileDistanceToPlayer =
                     (PlayerManager.Instance.PlayerController.transform.position - position).magnitude;
                 if (projectileDistanceToPlayer > 25) {
-                    BoxCollider colliderComponent = projectile.GetComponentInChildren<BoxCollider>();
+                    Collider colliderComponent = projectile.Collider;
                     if (colliderComponent != null) {
                         Destroy(colliderComponent);
                     }

@@ -8,15 +8,21 @@ public class BossController : Singleton<BossController> {
     public int CurrentBossLives = 3;
     public event EventHandler<int> OnBossLivesChanged;
 
-    public void FireMissiles() {
-        Quaternion verticalRotation = Quaternion.LookRotation(this.transform.up, -this.transform.forward);
-        Projectile missile = ProjectileController.Instance.SpawnMissile(ProjectileController.Owner.Enemy,
-            this.transform.position,
-            verticalRotation, 5.0f);
+    // public List<BulletSpawner> BulletSpawners;
+    public BulletSpawner spawner;
+    private Transform _playerTarget = null;
 
-        // TODO: Do some smarter logic with the targeting.
-        // The targeting system should aim towards the player's movement based on how fast the character is moving.
-        StartCoroutine(MissileSecondStage(missile, PlayerManager.Instance.PlayerController.PlayerModel.transform));
+    public void FireMissiles() {
+        spawner.Play();
+
+        // Quaternion verticalRotation = Quaternion.LookRotation(this.transform.up, -this.transform.forward);
+        // Projectile missile = ProjectileController.Instance.SpawnMissile(ProjectileController.Owner.Enemy,
+        //     this.transform.position,
+        //     verticalRotation, 5.0f);
+        //
+        // // TODO: Do some smarter logic with the targeting.
+        // // The targeting system should aim towards the player's movement based on how fast the character is moving.
+        // StartCoroutine(MissileSecondStage(missile, PlayerManager.Instance.PlayerController.PlayerModel.transform));
     }
 
     IEnumerator MissileSecondStage(Projectile missile, Transform trackedTarget) {
@@ -32,9 +38,19 @@ public class BossController : Singleton<BossController> {
         Stats = GetComponent<EntityStats>();
     }
 
+    private void Update() {
+        // If the game is over, don't do anything
+        if (!GameLifecycleManager.Instance.IsGamePlaying()) {
+            return;
+        }
+
+        HandleLocomotion();
+    }
+
     private void Start() {
         Stats.NotifyHealthChanged();
         Stats.OnHealthChanged += OnHealthChanged;
+        _playerTarget = PlayerManager.Instance.PlayerController.EnemyAimTargetLocation;
         Reset();
     }
 
@@ -62,5 +78,14 @@ public class BossController : Singleton<BossController> {
             // Heal the boss back up to 100%
             Stats.SetHealthToPercentage(1.0f);
         }
+    }
+
+    private void HandleLocomotion() {
+        // Aim towards player
+        Vector3 bossToTargetVector = _playerTarget.position - transform.position;
+        bossToTargetVector.y = 0;
+        bossToTargetVector = bossToTargetVector.normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(bossToTargetVector, Vector3.up);
+        transform.rotation = targetRotation;
     }
 }

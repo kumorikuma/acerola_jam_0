@@ -13,11 +13,18 @@ public class BulletWave {
 
 // Meant to be composed together with other prefabs.
 public class BulletSpawner : MonoBehaviour {
-    // If this is set, then we will point our bullet spawner towards this target.
-    // Note: This means the children will be rotated to.
-    // We can compose targeted and non targeted bullet spawners, the targeted ones just need to be children of a 
-    // non-targeteed one.
-    public bool ShouldAimAtPlayer = false;
+    public enum AnimationTypes {
+        None,
+        RotateCCW,
+        RotateCW,
+        RotateSpiral
+    }
+
+    // Which animation to use
+    public AnimationTypes AnimationType = AnimationTypes.None;
+
+    // Having this on will let us have more control over the pattern.
+    public bool OnlyUseLocalRotation = false;
 
     public List<GameObject> ProjectileTypes = new();
     public float StartAngleDegrees = 0;
@@ -42,6 +49,13 @@ public class BulletSpawner : MonoBehaviour {
     private float _timeBetweenWavesSeconds;
     private float _timeUntilNextWave = 0;
     private Transform _playerTarget = null;
+    private Quaternion _rotationAtSpawn = Quaternion.identity;
+
+    // If this is set, then we will point our bullet spawner towards this target.
+    // Note: This means the children will be rotated to.
+    // We can compose targeted and non targeted bullet spawners, the targeted ones just need to be children of a 
+    // non-targeteed one.
+    public bool ShouldAimAtPlayer = false;
 
     public event Action OnSpawningStopped;
 
@@ -80,9 +94,8 @@ public class BulletSpawner : MonoBehaviour {
 
         Reset();
         _isEnabled = true;
-        if (_animator != null) {
-            _animator.SetBool("IsEnabled", true);
-        }
+        _rotationAtSpawn = transform.rotation;
+        SetAnimation(AnimationType);
 
         foreach (BulletSpawner spawner in ChildBulletSpawners) {
             spawner.Play();
@@ -101,13 +114,19 @@ public class BulletSpawner : MonoBehaviour {
     }
 
     private void Reset() {
-        if (_animator != null) {
-            _animator.SetBool("IsEnabled", false);
-        }
+        SetAnimation(AnimationTypes.None);
 
         _timeUntilNextWave = 0;
         _isEnabled = false;
         _wavesSpawned = 0;
+    }
+
+    private void SetAnimation(AnimationTypes animationType) {
+        if (_animator == null) {
+            return;
+        }
+
+        _animator.SetInteger("AnimationType", (int)animationType);
     }
 
     private void SpawnWave() {
@@ -125,7 +144,18 @@ public class BulletSpawner : MonoBehaviour {
             }
 
             float angle = Mathf.Lerp(StartAngleDegrees, EndAngleDegrees, angleT);
-            Quaternion rotation = Quaternion.Euler(0, angle, 0) * transform.rotation;
+
+            // There can be two sources of rotation:
+            // - Local rotation of the spawner itself, that can be driven by animation.
+            // - The parent transform of the spawner changing (for instance due to be being attached to the boss and moving)
+            // For the second source: we sometimes don't want to keep using that when spawning multiple waves.
+            Quaternion localRotation = transform.localRotation;
+            Quaternion baseRotation = transform.rotation;
+            if (OnlyUseLocalRotation) {
+                baseRotation = _rotationAtSpawn;
+            }
+
+            Quaternion rotation = Quaternion.Euler(0, angle, 0) * baseRotation * transform.localRotation;
 
             // Calculate the position for this object
             Vector3 direction = rotation * Vector3.forward;

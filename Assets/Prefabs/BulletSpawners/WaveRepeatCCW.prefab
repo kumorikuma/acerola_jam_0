@@ -50,10 +50,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1950769678804693351, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: m_Name
-      value: WaveSingle 1
+      value: WaveRepeatCCW
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: WavesToSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
+      propertyPath: AnimationType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
@@ -63,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: StartAngleDegrees
       value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
+      propertyPath: OnlyUseLocalRotation
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: BulletWaves.Array.size

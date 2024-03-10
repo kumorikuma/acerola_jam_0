@@ -349,10 +349,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 143190425468906549, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3690687767280856145, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
       propertyPath: spawner
       value: 
       objectReference: {fileID: 786696649}
+    - target: {fileID: 3690687767280856145, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
+      propertyPath: TurningSpeed
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5334812076701219456, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -397,7 +405,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossMech
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2166400067411904320, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5430347551008437375, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}

@@ -3725,7 +3725,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.4166666
+  - time: 1.3333334
     functionName: SlashAttack1End
     data: 
     objectReferenceParameter: {fileID: 0}

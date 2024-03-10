@@ -16,6 +16,7 @@ Shader  "CustomURP/PostProcessOutline"
     #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
     
     #pragma shader_feature_local USE_NORMAL_OUTLINE
+    #pragma shader_feature_local ONLY_BACKGROUND
     
     TEXTURE2D(_CameraColorTexture);
     SAMPLER(sampler_CameraColorTexture);
@@ -97,13 +98,15 @@ Shader  "CustomURP/PostProcessOutline"
                 edgeResponse = 1.0f;
                 break;
             }
-            
-            float angle = acos(dot(centerNormal, neighborNormal));
-            if (angle > _CreaseAngleThreshold)
-            {
-                edgeResponse = 1.0f;
-                break;
-            }
+
+            #if !ONLY_BACKGROUND
+                float angle = acos(dot(centerNormal, neighborNormal));
+                if (angle > _CreaseAngleThreshold)
+                {
+                    edgeResponse = 1.0f;
+                    break;
+                }
+            #endif
         }
         
         // Multiply in the outline color

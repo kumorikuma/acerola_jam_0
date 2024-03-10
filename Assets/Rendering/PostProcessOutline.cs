@@ -6,10 +6,14 @@ using UnityEngine.Rendering.Universal;
 public class PostProcessOutline : ScriptableRendererFeature {
     [System.Serializable]
     public class PostProcessOutlineSettings {
-        [Tooltip("Outline Color")] public Color OutlineColor = Color.black;
+        [Tooltip("Outline Color")] [ColorUsage(true, true)]
+        public Color OutlineColor = Color.black;
 
         [Tooltip("Use the normal map in drawing the outline.")]
         public bool EnableNormalOutline = true;
+
+        [Tooltip("Only draw outline when diffed against background")]
+        public bool OnlyCompareToBg = false;
 
         [Tooltip("Crease Angle Threshold")] [Range(1, 180)]
         public float CreaseAngleThresholdDeg = 15;
@@ -64,6 +68,12 @@ public class PostProcessOutline : ScriptableRendererFeature {
                 postProcessOutlineMaterial.EnableKeyword("USE_NORMAL_OUTLINE");
             } else {
                 postProcessOutlineMaterial.DisableKeyword("USE_NORMAL_OUTLINE");
+            }
+
+            if (settings.OnlyCompareToBg) {
+                postProcessOutlineMaterial.EnableKeyword("ONLY_BACKGROUND");
+            } else {
+                postProcessOutlineMaterial.DisableKeyword("ONLY_BACKGROUND");
             }
         }
 

@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1950769678804693351, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: m_Name
-      value: WaveRepeatCCW
+      value: WaveRepeatCW
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: WavesToSpawn
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: AnimationType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: EndAngleDegrees
@@ -67,10 +67,6 @@ PrefabInstance:
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: StartAngleDegrees
       value: -45
-      objectReference: {fileID: 0}
-    - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
-      propertyPath: TimeBetweenWavesMs
-      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: OnlyUseLocalRotation

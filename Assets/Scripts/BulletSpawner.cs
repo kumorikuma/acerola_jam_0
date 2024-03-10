@@ -33,6 +33,8 @@ public class BulletSpawner : MonoBehaviour {
     public float TimeBetweenWavesMs = 200;
     public float InitialPositionOffset = 0f;
     public float ProjectileSpeed = 10.0f;
+    public Vector3 RotationOffset = Vector3.zero;
+    public float SpeedScaleFactor = 1.0f;
     private bool _isEnabled = false;
     private Animator _animator = null;
 
@@ -93,17 +95,28 @@ public class BulletSpawner : MonoBehaviour {
         }
 
         Reset();
-        _isEnabled = true;
-        _rotationAtSpawn = transform.rotation;
-        SetAnimation(AnimationType);
 
         foreach (BulletSpawner spawner in ChildBulletSpawners) {
             spawner.Play();
+        }
+
+        if (WavesToSpawn > 0) {
+            Quaternion rotationOffset = Quaternion.Euler(RotationOffset);
+            _rotationAtSpawn = transform.rotation * rotationOffset;
+            _isEnabled = true;
+            _animator.speed = SpeedScaleFactor;
+            SetAnimation(AnimationType);
         }
     }
 
     // Stops the spawner before its finished.
     public void Stop() {
+        Reset();
+
+        OnSpawningStopped?.Invoke();
+    }
+
+    public void StopAll() {
         Reset();
 
         foreach (BulletSpawner spawner in ChildBulletSpawners) {

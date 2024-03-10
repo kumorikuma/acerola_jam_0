@@ -50,27 +50,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1950769678804693351, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: m_Name
-      value: WaveRepeatCCW
+      value: SingleShotRepeatSpiral
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: WavesToSpawn
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: AnimationType
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: EndAngleDegrees
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: StartAngleDegrees
-      value: -45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: TimeBetweenWavesMs
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: OnlyUseLocalRotation
@@ -82,14 +82,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: BulletWaves.Array.data[0].ProjectileIndices.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
-      propertyPath: BulletWaves.Array.data[0].ProjectileIndices.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
+      propertyPath: BulletWaves.Array.data[0].ProjectileIndices.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: BulletWaves.Array.data[0].ProjectileIndices.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
+      propertyPath: BulletWaves.Array.data[0].ProjectileIndices.Array.data[2]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
@@ -98,6 +102,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
       propertyPath: BulletWaves.Array.data[0].ProjectileIndices.Array.data[4]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
+      propertyPath: BulletWaves.Array.data[0].ProjectileIndices.Array.data[5]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}

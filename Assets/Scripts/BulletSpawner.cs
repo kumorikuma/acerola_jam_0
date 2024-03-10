@@ -132,13 +132,13 @@ public class BulletSpawner : MonoBehaviour {
             Vector3 position = transform.position + direction * InitialPositionOffset;
 
             // Instantiate the object
-            int bulletIndex = i % bulletWave.Count;
-            if (bulletIndex >= ProjectileTypes.Count) {
+            int projectileIndex = bulletWave[i];
+            if (projectileIndex >= ProjectileTypes.Count) {
                 Debug.LogError("[BulletSpawner] Out of bounds index access! Check projectile types");
                 continue;
             }
 
-            GameObject projectilePrefab = ProjectileTypes[bulletWave[bulletIndex]];
+            GameObject projectilePrefab = ProjectileTypes[projectileIndex];
             Projectile projectile = ProjectileController.Instance.SpawnProjectile(ProjectileController.Owner.Enemy,
                 projectilePrefab, position,
                 rotation, direction * ProjectileSpeed);

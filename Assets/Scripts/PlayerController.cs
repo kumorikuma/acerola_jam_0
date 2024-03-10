@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
     [NonNullField] public Transform SecondaryWeaponMountPoint;
     [NonNullField] public Transform EnemyAimTargetLocation;
 
+    [NonNullField] public AttackHitbox AttackHitbox;
+
     public enum AimMode {
         NoTargetLock,
         TargetLock,
@@ -697,7 +699,14 @@ public class PlayerController : MonoBehaviour {
 
     // ====== Animation Event Handlers =====
     private void OnSlashAttack1Hit() {
-        // BossController.Instance.Stats.ApplyDamage(SlashAttack1Damage);
+        if (AttackHitbox.CollidedObject != null) {
+            EntityStats stats = AttackHitbox.CollidedObject.GetComponent<EntityStats>();
+            if (stats == null) {
+                Debug.LogError("[PlayerController] Attack object does not have Entity Stats!");
+            } else {
+                stats.ApplyDamage(SlashAttack1Damage);
+            }
+        }
     }
 
     private void OnSlashAttack1SoftEnd() {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2269243923883574200}
   - component: {fileID: 542837098779897221}
   - component: {fileID: 1486517266709264040}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MissileProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,6 +140,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trail
       objectReference: {fileID: 0}
+    - target: {fileID: 8843914985813437505, guid: 19436a2a7bf32f64a855a4b28eee8a09, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -217,6 +221,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9f534f84fffbcac428bc876f3a81ad75, type: 3}
       propertyPath: m_Name
       value: basic_pyramid
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9f534f84fffbcac428bc876f3a81ad75, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 9f534f84fffbcac428bc876f3a81ad75, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -37,15 +37,25 @@ public class Projectile : MonoBehaviour {
 
 
     private void OnTriggerEnter(Collider other) {
-        if (ProjectileOwner == ProjectileController.Owner.Player && other.CompareTag("Targetable")) {
-            EntityStats stats = other.GetComponent<EntityStats>();
-            if (stats == null) {
-                Debug.LogError("[Projectile] Collided object does not have stats component!");
-            } else {
-                stats.ApplyDamage(5);
-            }
+        if (ProjectileOwner == ProjectileController.Owner.Player) {
+            if (other.CompareTag("Targetable")) {
+                // We've hit the Boss    
+                EntityStats stats = other.GetComponent<EntityStats>();
+                if (stats == null) {
+                    Debug.LogError("[Projectile] Collided object does not have stats component!");
+                } else {
+                    stats.ApplyDamage(5);
+                }
 
-            ProjectileController.Instance.DestroyProjectile(this);
+                ProjectileController.Instance.DestroyProjectile(this);
+            } else if (other.CompareTag("Destructible")) {
+                // We've hit another destructible projectile
+                Projectile otherProjectile = other.GetComponent<Projectile>();
+                // Destroy both.
+                // TODO: Play VFX Here.
+                ProjectileController.Instance.DestroyProjectile(otherProjectile);
+                ProjectileController.Instance.DestroyProjectile(this);
+            }
         } else if (ProjectileOwner == ProjectileController.Owner.Enemy && other.CompareTag("Player")) {
             EntityStats stats = other.GetComponent<EntityStats>();
             if (stats == null) {

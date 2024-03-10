@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7427984793343953735}
   - component: {fileID: 6983356193643472242}
   - component: {fileID: -1911569233732919561}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Projectile_Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

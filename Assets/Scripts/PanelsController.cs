@@ -131,6 +131,10 @@ public class PanelsController : Singleton<PanelsController> {
         _isDestroyingLevel = true;
     }
 
+    public bool IsDestroyingLevel() {
+        return _isDestroyingLevel;
+    }
+
     void FixedUpdate() {
         if (!_isDestroyingLevel) {
             return;

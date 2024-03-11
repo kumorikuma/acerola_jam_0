@@ -8,10 +8,12 @@ using UnityEngine;
 public class PhaseData {
     public int BossHealth;
     public List<BulletSpawner> BulletSpawners;
+    public float CellDestructionCooldown;
 
     public PhaseData() {
         BulletSpawners = new();
         BossHealth = 100;
+        CellDestructionCooldown = 3.0f;
     }
 }
 
@@ -156,6 +158,10 @@ public class BossController : Singleton<BossController> {
             _currentPhase = MaxBossLives - CurrentBossLives;
             _currentBossPhaseData = BossPhaseData[_currentPhase];
             _bulletSpawnersBag.Clear();
+            PanelsController.Instance.CellDestructionCooldown = _currentBossPhaseData.CellDestructionCooldown;
+            if (!PanelsController.Instance.IsDestroyingLevel()) {
+                PanelsController.Instance.StartDestroyingLevel();
+            }
 
             // Heal the boss back up to 100%
             Stats.MaxHealth = _currentBossPhaseData.BossHealth;

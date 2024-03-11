@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1966234734913448019}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: VFX_Slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.144, z: 1.172}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.17642716, y: 0.17642716, z: 0.1764272}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8204994772009701213}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8204994772009701213}
   - component: {fileID: 2684544664380661235}
   - component: {fileID: 4516452247566020684}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: VFX_Slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -276,7 +276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997389837}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.0500002, z: 0}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_ConstrainProportionsScale: 0
@@ -632,6 +632,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7320706787961395322, guid: 3ceb368b0b844f545ac9b78406874c49, type: 3}
   m_PrefabInstance: {fileID: 1338363794}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1338363797 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4416480536981852976, guid: 3ceb368b0b844f545ac9b78406874c49, type: 3}
+  m_PrefabInstance: {fileID: 1338363794}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f54a65c0a54b6aba1be1b56ed7c40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1441937028
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1441937029
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -835,6 +846,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7320706787961395322, guid: de1c72a98228770429d586e6f16f0ce8, type: 3}
   m_PrefabInstance: {fileID: 1599298890}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1799421260 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
+  m_PrefabInstance: {fileID: 1049337965}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f54a65c0a54b6aba1be1b56ed7c40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1857528522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -895,6 +917,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2139791955}
   m_SourcePrefab: {fileID: 100100000, guid: 2aedd145a00fafb40ad69461bb6946c9, type: 3}
+--- !u!114 &1879139005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4416480536981852976, guid: de1c72a98228770429d586e6f16f0ce8, type: 3}
+  m_PrefabInstance: {fileID: 1599298890}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f54a65c0a54b6aba1be1b56ed7c40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2077004555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1050,6 +1083,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7320706787961395322, guid: fb59a50d857dd114bb404daea6c15dc4, type: 3}
   m_PrefabInstance: {fileID: 2111324153}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2111324156 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4416480536981852976, guid: fb59a50d857dd114bb404daea6c15dc4, type: 3}
+  m_PrefabInstance: {fileID: 2111324153}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f54a65c0a54b6aba1be1b56ed7c40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2123255195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,16 +1192,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsLocomotionEnabled: 1
-  TurningSpeed: 25
+  IsAttackingEnabled: 1
   SlowMovementSpeed: 0
   FastMovementSpeed: 20
   OptimalDistanceToPlayer: 40
   ReturnToCenterThreshold: 150
-  ReturnToCenterThreshold2: 150
-  CriticalThreshold: 10
   RetreatVectorBias: 20
-  MaxBossLives: 3
-  CurrentBossLives: 3
   spawner: {fileID: 1117099464}
   MovementSpeedScaleCurve:
     serializedVersion: 2
@@ -1183,6 +1223,20 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  InitialAttackCooldown: 1
+  AttackCooldown: 5
+  BossPhaseData:
+  - BossHealth: 100
+    BulletSpawners:
+    - {fileID: 1799421260}
+    - {fileID: 2111324156}
+  - BossHealth: 200
+    BulletSpawners:
+    - {fileID: 1117099464}
+    - {fileID: 1879139005}
+  - BossHealth: 300
+    BulletSpawners:
+    - {fileID: 1338363797}
 --- !u!4 &2123255200
 Transform:
   m_ObjectHideFlags: 0

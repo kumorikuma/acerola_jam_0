@@ -1,22 +1,32 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
+public class PhaseData {
+    public int BossHealth;
+    public List<BulletSpawner> BulletSpawners;
+
+    public PhaseData() {
+        BulletSpawners = new();
+        BossHealth = 100;
+    }
+}
 
 public class BossController : Singleton<BossController> {
     [NonSerialized] public EntityStats Stats;
 
     public bool IsLocomotionEnabled = true;
-    public float TurningSpeed = 1.0f;
+    public bool IsAttackingEnabled = true;
     public float SlowMovementSpeed = 5.0f;
     public float FastMovementSpeed = 5.0f;
     public float OptimalDistanceToPlayer = 30.0f;
     public float ReturnToCenterThreshold = 150.0f;
-    public float ReturnToCenterThreshold2 = 150.0f;
-    public float CriticalThreshold = 10.0f; // If the distance to player is less than this, rapidly exit
     public float RetreatVectorBias = 1.0f;
 
-    public int MaxBossLives = 3;
-    public int CurrentBossLives = 3;
+    private int MaxBossLives = 3;
+    private int CurrentBossLives = 3;
     public event EventHandler<int> OnBossLivesChanged;
 
     // public List<BulletSpawner> BulletSpawners;
@@ -25,9 +35,19 @@ public class BossController : Singleton<BossController> {
     private Quaternion _targetRotation = Quaternion.identity;
     private Vector3 _targetPosition = Vector3.zero;
     private Vector3 ArenaCenter = Vector3.zero;
-    private bool _isIdle = true;
 
     public AnimationCurve MovementSpeedScaleCurve;
+
+    // Attacks
+    public float InitialAttackCooldown = 10.0f;
+    public float AttackCooldown = 5.0f;
+    private float _attackCooldownCountdown = 0.0f;
+    private bool _isAttacking = false;
+
+    public List<PhaseData> BossPhaseData = new();
+    private PhaseData _currentBossPhaseData;
+    private List<BulletSpawner> _bulletSpawnersBag = new();
+    private int _currentPhase = 0;
 
     public void FireMissiles() {
         spawner.Play();
@@ -64,16 +84,35 @@ public class BossController : Singleton<BossController> {
         if (IsLocomotionEnabled) {
             HandleLocomotion();
         }
+
+        if (IsAttackingEnabled && !_isAttacking) {
+            HandleAttack();
+        }
+
+        ReactUnityBridge.Instance.UpdateDebugString("Boss IsAttacking", _isAttacking.ToString());
     }
 
     private void Start() {
         Stats.NotifyHealthChanged();
         Stats.OnHealthChanged += OnHealthChanged;
         _playerTarget = PlayerManager.Instance.PlayerController.EnemyAimTargetLocation;
+
+        if (BossPhaseData.Count == 0) {
+            Debug.LogError("[BossController] Boss Phase data is not set!");
+        }
+
+        MaxBossLives = BossPhaseData.Count;
         Reset();
     }
 
+    private void OnSpawningStopped() {
+        _isAttacking = false;
+        Debug.Log("ON SPAWNING STOPPED");
+    }
+
     public void Reset() {
+        _attackCooldownCountdown = InitialAttackCooldown;
+        _isAttacking = false;
         SetBossLives(MaxBossLives);
         Stats.Reset();
     }
@@ -86,19 +125,82 @@ public class BossController : Singleton<BossController> {
 
     private void SetBossLives(int bossLives) {
         CurrentBossLives = Mathf.Clamp(bossLives, 0, MaxBossLives);
+        _currentPhase = MaxBossLives - CurrentBossLives;
+        _currentBossPhaseData = BossPhaseData[_currentPhase];
+        _bulletSpawnersBag.Clear();
+
+        if (CurrentBossLives == 0) {
+            // Player wins!
+            GameLifecycleManager.Instance.EndGame();
+        } else {
+            // Heal the boss back up to 100%
+            Stats.MaxHealth = _currentBossPhaseData.BossHealth;
+            Stats.SetHealthToPercentage(1.0f);
+        }
+
+        // TODO: Have some kind of animation for this
+        // TODO: Boss moveset should change.
+        // TODO: There should be some visual indication of things changing?
+        // TODO: The rate of planetary decay should increase.
+        // Phase 1: 0
+        // Phase 2: Half Rate
+        // Phase 3: Increased Rate?
+        // Phase 4?
+
         OnBossLivesChanged?.Invoke(this, CurrentBossLives);
     }
 
     private void ConsumeBossLife() {
         SetBossLives(CurrentBossLives - 1);
-        if (CurrentBossLives == 0) {
-            GameLifecycleManager.Instance.EndGame();
+    }
+
+    private void HandleAttack() {
+        // Basically every once in a while (lets say every COOLDOWN seconds), we will pick a random attack.
+        // An attack can be by itself, or it can be changed together with a series of attacks.
+        // While the boss is attacking, it cannot move.
+        // You could say this is Choreographed.
+        if (_attackCooldownCountdown <= 0.0f) {
+            // Execute an attack.
+            _attackCooldownCountdown = AttackCooldown;
+            _isAttacking = true;
+            PerformRandomAttack();
         } else {
-            // Heal the boss back up to 100%
-            Stats.SetHealthToPercentage(1.0f);
+            _attackCooldownCountdown -= Time.deltaTime;
         }
     }
 
+    private void PerformRandomAttack() {
+        // What is an attack? Perhaps we should be using a timeline for this?
+        // Maybe not for now. Right now they are just a bunch of BulletSpawners. And each attack is we do 
+        // BulletSpawner.Play(). 
+        // When BulletSpawner stops, then the attack has ended.
+        // TODO: Sometimes we will need to forcibly stop the bullet spawners. AKA cancel and stop the attack.
+        // For each phase, we will have a list of bullet spawners. We will pick from them randomly "bag" style.
+        // As in, add them to a list and randomly pick from the list. If we run out, we restock the bag.
+        if (_bulletSpawnersBag.Count == 0) {
+            // Reload the bag
+            foreach (BulletSpawner spawner in _currentBossPhaseData.BulletSpawners) {
+                _bulletSpawnersBag.Add(spawner);
+            }
+        }
+
+        // Pick a random spawner
+        int spawnerIdx = UnityEngine.Random.Range(0, _bulletSpawnersBag.Count);
+        BulletSpawner selectedSpawner = _bulletSpawnersBag[spawnerIdx];
+
+        // Unsubcribe first just in case we've already subscribed (duplicate reference).
+        selectedSpawner.OnSpawningStopped -= OnSpawningStopped;
+        selectedSpawner.OnSpawningStopped += OnSpawningStopped;
+        Debug.Log("Subscribing to spawner: " + spawner.name);
+
+        // Remove it so it's not picked again
+        _bulletSpawnersBag.RemoveAt(spawnerIdx);
+        selectedSpawner.Play();
+    }
+
+
+    // TODO: Could try improving this by making the behavior always where the boss tries to the center of the arena
+    // between it and you. But alas no time!.
     private void HandleLocomotion() {
         Vector3 bossToTargetVector = _playerTarget.position - transform.position;
         bossToTargetVector.y = 0;
@@ -131,14 +233,13 @@ public class BossController : Singleton<BossController> {
 
         // ===== Compute Target Position =====
 
-        // TODO: WHAT IF BOSS IS ALSO ON
         float playerDistanceToCenter = (ArenaCenter - _playerTarget.position).magnitude;
         bool bossIsCloserToCenterThanPlayer = distanceToCenter < playerDistanceToCenter;
 
-        ReactUnityBridge.Instance.UpdateDebugString("IsGreaterThanOptimalDistance",
-            (distanceToPlayer > OptimalDistanceToPlayer).ToString());
-        VectorDebug.Instance.DrawDebugVector("bossToCenterVector", bossToCenterVector, transform.position,
-            Color.magenta);
+        // ReactUnityBridge.Instance.UpdateDebugString("IsGreaterThanOptimalDistance",
+        //     (distanceToPlayer > OptimalDistanceToPlayer).ToString());
+        // VectorDebug.Instance.DrawDebugVector("bossToCenterVector", bossToCenterVector, transform.position,
+        //     Color.magenta);
         int behaviorTreeCase = -1;
         // if (distanceToPlayer < CriticalThreshold) {
         // Case 0: Boss is critically close to player. Get out
@@ -230,8 +331,8 @@ public class BossController : Singleton<BossController> {
 
                 // Based on the idea that if the boss is right next to the player, it would want to take the retreatVector.
                 // And if it was far away, it'd take the sideways tangential vector, we will LERP between them.
-                ReactUnityBridge.Instance.UpdateDebugString("Distance Ratio",
-                    distanceT.ToString());
+                // ReactUnityBridge.Instance.UpdateDebugString("Distance Ratio",
+                //     distanceT.ToString());
                 // We can bias towards the retreat vector by making it larger.
                 Vector3 targetVector = Vector3.Slerp(retreatVector * RetreatVectorBias, tangentialVector, distanceT);
                 behaviorTreeCase = 4;
@@ -263,10 +364,10 @@ public class BossController : Singleton<BossController> {
             absoluteMovementVector, transform.position,
             Color.red);
 
-        ReactUnityBridge.Instance.UpdateDebugString("Boss Movement Speed",
-            movementSpeed.ToString());
-        ReactUnityBridge.Instance.UpdateDebugString("Behavior Tree Case",
-            behaviorTreeCase.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("Boss Movement Speed",
+        //     movementSpeed.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("Behavior Tree Case",
+        //     behaviorTreeCase.ToString());
 
         // ===== Apply Rotation =====
         // Rotate towards player gradually

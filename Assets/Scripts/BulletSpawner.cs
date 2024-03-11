@@ -81,6 +81,7 @@ public class BulletSpawner : MonoBehaviour {
             _wavesSpawned += 1;
             _timeUntilNextWave = _timeBetweenWavesSeconds;
             if (_wavesSpawned >= WavesToSpawn) {
+                Debug.Log("SPAWNER STOPPED " + this.name);
                 Stop();
             }
         } else {

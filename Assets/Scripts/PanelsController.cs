@@ -150,10 +150,8 @@ public class PanelsController : Singleton<PanelsController> {
         // Maybe we divide up into sectors (4).
         // Within each sector, we have a list of all the indices in there.
         // We will pick a random index from the list everytime.
-        Debug.Log($"Sectors: {_sectors.Count}");
         for (int sector = 0; sector < _sectors.Count; sector++) {
             List<int> cellList = _sectors[sector];
-            Debug.Log($"Sector {sector} Cell Count: {cellList.Count}");
             if (cellList.Count == 0) {
                 continue;
             }

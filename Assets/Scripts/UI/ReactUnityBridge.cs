@@ -52,7 +52,7 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
         reactRenderer.Globals["maxPlayerLives"] = PlayerManager.Instance.PlayerController.MaxPlayerLives;
         reactRenderer.Globals["bossHealth"] = bossHealth;
         reactRenderer.Globals["bossLives"] = bossLives;
-        reactRenderer.Globals["maxBossLives"] = BossController.Instance.MaxBossLives;
+        reactRenderer.Globals["maxBossLives"] = BossController.Instance.BossPhaseData.Count;
         reactRenderer.Globals["playerPrimaryFireCooldown"] = playerPrimaryFireCooldown;
         reactRenderer.Globals["playerSecondaryFireCooldown"] = playerSecondaryFireCooldown;
 

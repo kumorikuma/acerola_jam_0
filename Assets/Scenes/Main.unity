@@ -349,6 +349,10 @@ PrefabInstance:
       propertyPath: ShouldAimAtPlayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
+      propertyPath: TimeBetweenWavesMs
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -784,6 +788,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5334812076701219456, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
   m_PrefabInstance: {fileID: 1074487850}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1546679589 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8842440311879476181, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
+  m_PrefabInstance: {fileID: 1074487850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1599298890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1029,6 +1038,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 997389838}
     m_Modifications:
+    - target: {fileID: 4416480536981852976, guid: fb59a50d857dd114bb404daea6c15dc4, type: 3}
+      propertyPath: BulletWaves.Array.data[0].ProjectileIndices.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416480536981852976, guid: fb59a50d857dd114bb404daea6c15dc4, type: 3}
+      propertyPath: BulletWaves.Array.data[0].ProjectileIndices.Array.data[8]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416480536981852976, guid: fb59a50d857dd114bb404daea6c15dc4, type: 3}
+      propertyPath: BulletWaves.Array.data[0].ProjectileIndices.Array.data[9]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416480536981852976, guid: fb59a50d857dd114bb404daea6c15dc4, type: 3}
+      propertyPath: BulletWaves.Array.data[0].ProjectileIndices.Array.data[10]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416480536981852976, guid: fb59a50d857dd114bb404daea6c15dc4, type: 3}
+      propertyPath: BulletWaves.Array.data[0].ProjectileIndices.Array.data[11]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7320706787961395322, guid: fb59a50d857dd114bb404daea6c15dc4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1107,7 +1136,7 @@ GameObject:
   - component: {fileID: 2123255198}
   - component: {fileID: 2123255197}
   - component: {fileID: 2123255196}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Boss
   m_TagString: Targetable
   m_Icon: {fileID: 0}
@@ -1191,8 +1220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4706dece5640e8baa1440580b230f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsLocomotionEnabled: 1
-  IsAttackingEnabled: 1
+  Animator: {fileID: 1546679589}
+  IsLocomotionEnabled: 0
+  IsAttackingEnabled: 0
   SlowMovementSpeed: 0
   FastMovementSpeed: 20
   OptimalDistanceToPlayer: 40
@@ -1223,20 +1253,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  InitialAttackCooldown: 1
+  InitialAttackCooldown: 5
   AttackCooldown: 5
   BossPhaseData:
+  - BossHealth: 200
+    BulletSpawners:
+    - {fileID: 1338363797}
+    - {fileID: 1338363797}
   - BossHealth: 100
     BulletSpawners:
     - {fileID: 1799421260}
     - {fileID: 2111324156}
-  - BossHealth: 200
+  - BossHealth: 100
     BulletSpawners:
     - {fileID: 1117099464}
     - {fileID: 1879139005}
-  - BossHealth: 300
-    BulletSpawners:
-    - {fileID: 1338363797}
 --- !u!4 &2123255200
 Transform:
   m_ObjectHideFlags: 0

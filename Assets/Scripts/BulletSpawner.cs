@@ -81,7 +81,6 @@ public class BulletSpawner : MonoBehaviour {
             _wavesSpawned += 1;
             _timeUntilNextWave = _timeBetweenWavesSeconds;
             if (_wavesSpawned >= WavesToSpawn) {
-                Debug.Log("SPAWNER STOPPED " + this.name);
                 Stop();
             }
         } else {
@@ -107,6 +106,11 @@ public class BulletSpawner : MonoBehaviour {
             _isEnabled = true;
             _animator.speed = SpeedScaleFactor;
             SetAnimation(AnimationType);
+        } else {
+            // Listen for child spawner to stop
+            if (ChildBulletSpawners.Count > 0) {
+                ChildBulletSpawners[0].OnSpawningStopped += Stop;
+            }
         }
     }
 

@@ -16,6 +16,7 @@ public class PhaseData {
 
 public class BossController : Singleton<BossController> {
     [NonSerialized] public EntityStats Stats;
+    [NonNullField] public Animator Animator;
 
     public bool IsLocomotionEnabled = true;
     public bool IsAttackingEnabled = true;
@@ -107,7 +108,6 @@ public class BossController : Singleton<BossController> {
 
     private void OnSpawningStopped() {
         _isAttacking = false;
-        Debug.Log("ON SPAWNING STOPPED");
     }
 
     public void Reset() {
@@ -125,14 +125,14 @@ public class BossController : Singleton<BossController> {
 
     private void SetBossLives(int bossLives) {
         CurrentBossLives = Mathf.Clamp(bossLives, 0, MaxBossLives);
-        _currentPhase = MaxBossLives - CurrentBossLives;
-        _currentBossPhaseData = BossPhaseData[_currentPhase];
-        _bulletSpawnersBag.Clear();
-
         if (CurrentBossLives == 0) {
             // Player wins!
             GameLifecycleManager.Instance.EndGame();
         } else {
+            _currentPhase = MaxBossLives - CurrentBossLives;
+            _currentBossPhaseData = BossPhaseData[_currentPhase];
+            _bulletSpawnersBag.Clear();
+
             // Heal the boss back up to 100%
             Stats.MaxHealth = _currentBossPhaseData.BossHealth;
             Stats.SetHealthToPercentage(1.0f);
@@ -191,7 +191,6 @@ public class BossController : Singleton<BossController> {
         // Unsubcribe first just in case we've already subscribed (duplicate reference).
         selectedSpawner.OnSpawningStopped -= OnSpawningStopped;
         selectedSpawner.OnSpawningStopped += OnSpawningStopped;
-        Debug.Log("Subscribing to spawner: " + spawner.name);
 
         // Remove it so it's not picked again
         _bulletSpawnersBag.RemoveAt(spawnerIdx);
@@ -373,6 +372,14 @@ public class BossController : Singleton<BossController> {
         // Rotate towards player gradually
         // transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, TurningSpeed * Time.fixedDeltaTime);
         transform.rotation = _targetRotation;
+
+        // ===== Animations =====
+        Vector3 relativeMovementVector = transform.rotation * absoluteMovementVector;
+        Animator.SetBool("IsMoving", absoluteMovementVector.magnitude > 0);
+        Animator.SetBool("IsMovingRight", relativeMovementVector.x > 0);
+        Animator.SetBool("IsMovingLeft", relativeMovementVector.x < 0);
+        Animator.SetBool("IsMovingForward", relativeMovementVector.z > 0);
+        Animator.SetBool("IsMovingBackward", relativeMovementVector.z < 0);
     }
 
     private int PointSideOfLine(Vector2 A, Vector2 B, Vector2 P) {

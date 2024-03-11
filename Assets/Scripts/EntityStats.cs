@@ -12,6 +12,7 @@ public class EntityStats : MonoBehaviour {
     public int CurrentHealth = 100;
 
     public event EventHandler<float> OnHealthChanged;
+    public event EventHandler<float> OnDamageTaken;
 
     public float GetHealthPercentage() {
         return Mathf.Clamp(CurrentHealth / (float)MaxHealth, 0, 1);
@@ -24,6 +25,7 @@ public class EntityStats : MonoBehaviour {
     public void ApplyDamage(int damageAmount) {
         CurrentHealth = Mathf.Clamp(CurrentHealth - damageAmount, 0, MaxHealth);
         OnHealthChanged?.Invoke(this, GetHealthPercentage());
+        OnDamageTaken?.Invoke(this, damageAmount);
     }
 
     public void ApplyHealing(int healingAmount) {

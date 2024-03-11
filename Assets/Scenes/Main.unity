@@ -927,6 +927,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7320706787961395322, guid: de1c72a98228770429d586e6f16f0ce8, type: 3}
   m_PrefabInstance: {fileID: 1599298890}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1674130990 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2097591315963791159, guid: 2aedd145a00fafb40ad69461bb6946c9, type: 3}
+  m_PrefabInstance: {fileID: 1857528522}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1799421260 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6102309339157437304, guid: 3cee1c84721bc6b4fb209867e8da2729, type: 3}
@@ -1306,6 +1311,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 1546679589}
+  PostProcessOutlineRenderFeature: {fileID: -8281663822787612724, guid: 9ebcd76b23c5bd14c9c7688e40a39939, type: 2}
+  BlackHoleRenderer: {fileID: 1674130990}
   IsLocomotionEnabled: 0
   IsAttackingEnabled: 0
   SlowMovementSpeed: 0

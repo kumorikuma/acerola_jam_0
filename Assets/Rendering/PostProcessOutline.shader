@@ -4,6 +4,8 @@ Shader  "CustomURP/PostProcessOutline"
     Properties
     {
         _OutlineColor("Outline Color", Color) = (0.0, 0.0, 0.0, 1.0)
+        _OutlineBlendColor("Outline Blend Color", Color) = (0.0, 0.0, 0.0, 1.0)
+        _BlendTime("Blend Time", Range(0, 1)) = 0
         _CreaseAngleThreshold("Crease Angle Threshold", Range(0, 3.14)) = 0.1
         _DepthThreshold("Depth Threshold", Range(0, 100)) = 10
     }
@@ -25,8 +27,10 @@ Shader  "CustomURP/PostProcessOutline"
     uniform float4 _CameraNormalsTexture_TexelSize;
     
     float3 _OutlineColor;
+    float3 _OutlineBlendColor;
     float _CreaseAngleThreshold;
     float _DepthThreshold;
+    float _BlendTime;
 
     void SampleSceneNormals(float2 uv, out float3 samples[9])
     {
@@ -110,7 +114,8 @@ Shader  "CustomURP/PostProcessOutline"
         }
         
         // Multiply in the outline color
-        float3 outlineColor = float3(edgeResponse, edgeResponse, edgeResponse) * _OutlineColor;
+        float3 inputOutlineColor = lerp(_OutlineColor, _OutlineBlendColor, _BlendTime);
+        float3 outlineColor = float3(edgeResponse, edgeResponse, edgeResponse) * inputOutlineColor;
 
         // Debugging
         // float3 normalsColor = SAMPLE_TEXTURE2D(_CameraNormalsTexture, sampler_CameraNormalsTexture, uv);

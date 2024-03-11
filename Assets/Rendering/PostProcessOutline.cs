@@ -9,6 +9,9 @@ public class PostProcessOutline : ScriptableRendererFeature {
         [Tooltip("Outline Color")] [ColorUsage(true, true)]
         public Color OutlineColor = Color.black;
 
+        [Tooltip("Outline Blend Color")] [ColorUsage(true, true)]
+        public Color OutlineBlendColor = Color.black;
+
         [Tooltip("Use the normal map in drawing the outline.")]
         public bool EnableNormalOutline = true;
 
@@ -39,6 +42,10 @@ public class PostProcessOutline : ScriptableRendererFeature {
         renderer.EnqueuePass(postProcessOutlinePass);
     }
 
+    public Material GetPostProcessMaterial() {
+        return postProcessOutlinePass.postProcessOutlineMaterial;
+    }
+
     public class PostProcessOutlinePass : ScriptableRenderPass {
         private ShaderTagId[] shaderTagsList = {
             new ShaderTagId("SRPDefaultUnlit"), new ShaderTagId("UniversalForward"),
@@ -46,7 +53,7 @@ public class PostProcessOutline : ScriptableRendererFeature {
         };
 
         private RTHandle rtCustomColor, rtTempColor;
-        private Material postProcessOutlineMaterial;
+        public Material postProcessOutlineMaterial;
 
         public PostProcessOutlinePass(PostProcessOutlineSettings settings) {
             Shader shader = Shader.Find(settings.ShaderName);
@@ -59,6 +66,8 @@ public class PostProcessOutline : ScriptableRendererFeature {
 
             postProcessOutlineMaterial = new Material(Shader.Find(settings.ShaderName));
             postProcessOutlineMaterial.SetColor("_OutlineColor", settings.OutlineColor);
+            postProcessOutlineMaterial.SetColor("_OutlineBlendColor", settings.OutlineBlendColor);
+            postProcessOutlineMaterial.SetFloat("_BlendTime", 0);
             postProcessOutlineMaterial.SetFloat("_DepthThreshold",
                 settings.DepthThreshold);
             postProcessOutlineMaterial.SetFloat("_CreaseAngleThreshold",

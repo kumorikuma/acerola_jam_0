@@ -50,10 +50,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BlendTime: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
+    - _BlendColor: {r: 0.7490196, g: 0.102345176, b: 0.08235292, a: 1}
     - _Color: {r: 0, g: 0, b: 0, a: 0}
     - _RimColor: {r: 7.654902, g: 6.807843, b: 5.050981, a: 0}
-    - _RimHighlightColor: {r: 1, g: 0.58198005, b: 0.19339621, a: 0}
+    - _RimHighlightColor: {r: 1.1353015, g: 0.6607228, b: 0.219563, a: 1}
   m_BuildTextureStacks: []

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 [Serializable]
@@ -17,6 +18,10 @@ public class PhaseData {
 public class BossController : Singleton<BossController> {
     [NonSerialized] public EntityStats Stats;
     [NonNullField] public Animator Animator;
+
+    [NonNullField] public PostProcessOutline PostProcessOutlineRenderFeature;
+    [NonNullField] public MeshRenderer BlackHoleRenderer;
+    private Material _blackHoleMaterialInstance;
 
     public bool IsLocomotionEnabled = true;
     public bool IsAttackingEnabled = true;
@@ -96,6 +101,7 @@ public class BossController : Singleton<BossController> {
     private void Start() {
         Stats.NotifyHealthChanged();
         Stats.OnHealthChanged += OnHealthChanged;
+        Stats.OnDamageTaken += OnDamageTaken;
         _playerTarget = PlayerManager.Instance.PlayerController.EnemyAimTargetLocation;
 
         if (BossPhaseData.Count == 0) {
@@ -104,6 +110,24 @@ public class BossController : Singleton<BossController> {
 
         MaxBossLives = BossPhaseData.Count;
         Reset();
+
+        _blackHoleMaterialInstance = BlackHoleRenderer.material;
+    }
+
+    private void OnDamageTaken(object sender, float damageTaken) {
+        PlayHitEffect();
+    }
+
+    public void PlayHitEffect() {
+        // .SetEase(Ease.InOutQuad)
+        _blackHoleMaterialInstance.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
+            _blackHoleMaterialInstance.DOFloat(0, "_BlendTime", 0.25f);
+        });
+
+        Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
+        postProcessOutlineMaterial.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
+            postProcessOutlineMaterial.DOFloat(0, "_BlendTime", 0.25f);
+        });
     }
 
     private void OnSpawningStopped() {

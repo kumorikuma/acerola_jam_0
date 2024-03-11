@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using DG.Tweening;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -63,6 +64,8 @@ public class PlayerController : MonoBehaviour {
     private float gravity = -9.81f;
 
     [NonNullField] public GameObject PlayerModel;
+    [NonNullField] public MeshRenderer CrystalSwordModel;
+    private Material _crystalSwordMaterialInstance;
 
     //Private movement variables
     private Vector3 inputMoveVector;
@@ -149,6 +152,7 @@ public class PlayerController : MonoBehaviour {
         _shieldController = GetComponentInChildren<ShieldController>();
         _animationEvents = GetComponentInChildren<AnimationEvents>();
         _rootMotionTransfer = GetComponentInChildren<RootMotionTransfer>();
+        _crystalSwordMaterialInstance = CrystalSwordModel.material;
         Stats = GetComponent<EntityStats>();
         _velocity.y = -2f;
     }
@@ -159,6 +163,8 @@ public class PlayerController : MonoBehaviour {
         _animationEvents.OnSlashAttack1Hit += OnSlashAttack1Hit;
         _animationEvents.OnSlashAttack1SoftEnd += OnSlashAttack1SoftEnd;
         _animationEvents.OnSlashAttack1End += OnSlashAttack1End;
+        _animationEvents.OnSwordGlowStart += OnSwordGlowStart;
+        _animationEvents.OnSwordGlowEnd += OnSwordGlowEnd;
         Reset();
     }
 
@@ -755,5 +761,13 @@ public class PlayerController : MonoBehaviour {
 
     private void OnSlashAttack1End() {
         ResetMeleeAttack();
+    }
+
+    private void OnSwordGlowStart(object sender, float durationSeconds) {
+        _crystalSwordMaterialInstance.DOFloat(1, "_BlendTime", durationSeconds);
+    }
+
+    private void OnSwordGlowEnd(object sender, float durationSeconds) {
+        _crystalSwordMaterialInstance.DOFloat(0, "_BlendTime", durationSeconds);
     }
 }

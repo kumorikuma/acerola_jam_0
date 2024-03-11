@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &563196305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 959729086684586903, guid: 5590fbb2d38b5d74d9f4db71334fd616, type: 3}
+  m_PrefabInstance: {fileID: 8827029471467098708}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +1017,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f54a65c0a54b6aba1be1b56ed7c40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1996500599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 572146921963857060, guid: 7b3cf705ace61ec4d8ef78bdc9e3c82f, type: 3}
+  m_PrefabInstance: {fileID: 5162688414413233346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2077004555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1712,6 +1722,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6721733447216215113, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
+      propertyPath: SlashAttack1VFX
+      value: 
+      objectReference: {fileID: 1996500599}
+    - target: {fileID: 6721733447216215113, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
+      propertyPath: SlashAttack2VFX
+      value: 
+      objectReference: {fileID: 563196305}
     - target: {fileID: 9139852384496604132, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: m_Radius
       value: 0.55

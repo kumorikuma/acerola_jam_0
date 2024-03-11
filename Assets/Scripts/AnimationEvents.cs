@@ -1,7 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class AnimationEvents : MonoBehaviour {
+    [NonNullField] public GameObject SlashAttack1VFX;
+    [NonNullField] public GameObject SlashAttack2VFX;
+
     public event EventHandler<float> OnSwordGlowStart;
     public event EventHandler<float> OnSwordGlowEnd;
 
@@ -28,5 +32,15 @@ public class AnimationEvents : MonoBehaviour {
 
     public void SlashAttack1Hit() {
         OnSlashAttack1Hit?.Invoke();
+    }
+
+    public void PlaySlashAttack1VFX() {
+        SlashAttack1VFX.SetActive(true);
+        SlashAttack1VFX.GetComponentInChildren<VisualEffect>().Play();
+    }
+
+    public void PlaySlashAttack2VFX() {
+        SlashAttack2VFX.SetActive(true);
+        SlashAttack2VFX.GetComponentInChildren<VisualEffect>().Play();
     }
 }

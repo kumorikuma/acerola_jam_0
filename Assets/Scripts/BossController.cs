@@ -7,11 +7,13 @@ public class BossController : Singleton<BossController> {
 
     public bool IsLocomotionEnabled = true;
     public float TurningSpeed = 1.0f;
-    public float MovementSpeed = 5.0f;
+    public float SlowMovementSpeed = 5.0f;
+    public float FastMovementSpeed = 5.0f;
     public float OptimalDistanceToPlayer = 30.0f;
-
-    public float OptimalDistanceTolerance = 1.0f;
+    public float ReturnToCenterThreshold = 150.0f;
+    public float ReturnToCenterThreshold2 = 150.0f;
     public float CriticalThreshold = 10.0f; // If the distance to player is less than this, rapidly exit
+    public float RetreatVectorBias = 1.0f;
 
     public int MaxBossLives = 3;
     public int CurrentBossLives = 3;
@@ -23,6 +25,9 @@ public class BossController : Singleton<BossController> {
     private Quaternion _targetRotation = Quaternion.identity;
     private Vector3 _targetPosition = Vector3.zero;
     private Vector3 ArenaCenter = Vector3.zero;
+    private bool _isIdle = true;
+
+    public AnimationCurve MovementSpeedScaleCurve;
 
     public void FireMissiles() {
         spawner.Play();
@@ -100,6 +105,9 @@ public class BossController : Singleton<BossController> {
         Vector3 bossToCenterVector = ArenaCenter - transform.position;
         Vector2 playerTargetPosXZ = new Vector2(_playerTarget.position.x, _playerTarget.position.z);
         float distanceToPlayer = bossToTargetVector.magnitude;
+        float distanceToCenter = bossToCenterVector.magnitude;
+
+        float movementSpeed = 0;
 
         // Whether the player is on the closer or far side of the arena
         Vector2 bossToCenterOrthogonalVector = new Vector2(bossToCenterVector.z, -bossToCenterVector.x);
@@ -111,12 +119,21 @@ public class BossController : Singleton<BossController> {
             new Vector3(bossToCenterOrthogonalVector.x, 0, bossToCenterOrthogonalVector.y), ArenaCenter,
             Color.magenta);
 
+        // Compute the shortest vector from the Player to bossToCenterVector.
+        Vector2 playerToBossToCenterLineVector = PointToLineVector(Vector2.zero,
+            new Vector2(transform.position.x, transform.position.z),
+            playerTargetPosXZ);
+
         // Aim towards player
         Vector3 lookVector = bossToTargetVector;
         lookVector = lookVector.normalized;
         _targetRotation = Quaternion.LookRotation(lookVector, Vector3.up);
 
         // ===== Compute Target Position =====
+
+        // TODO: WHAT IF BOSS IS ALSO ON
+        float playerDistanceToCenter = (ArenaCenter - _playerTarget.position).magnitude;
+        bool bossIsCloserToCenterThanPlayer = distanceToCenter < playerDistanceToCenter;
 
         ReactUnityBridge.Instance.UpdateDebugString("IsGreaterThanOptimalDistance",
             (distanceToPlayer > OptimalDistanceToPlayer).ToString());
@@ -127,33 +144,44 @@ public class BossController : Singleton<BossController> {
         // Case 0: Boss is critically close to player. Get out
         // }
         if (distanceToPlayer > OptimalDistanceToPlayer) {
-            // Case 1: Boss is far from the player
-            // Two more cases depending on if the player is on the boss' side of the center or not.
-            if (closeFarSideOfCenter > 0) {
-                // Case 1.A: Player is on the other side of the arena.
-                // We'll just move towards the center.
-                _targetPosition = ArenaCenter;
-                behaviorTreeCase = 0;
+            if (distanceToCenter < ReturnToCenterThreshold) {
+                // Case 0: Boss is far from the player but doesn't feel like it needs to return to the center.
+
+                // Idle
+                _targetPosition = transform.position;
+                behaviorTreeCase = 5;
             } else {
-                // Compute the shortest vector from the Player to bossToCenterVector.
-                Vector2 playerToBossToCenterLineVector = PointToLineVector(Vector2.zero,
-                    new Vector2(transform.position.x, transform.position.z),
-                    playerTargetPosXZ);
-                // Two more cases depending on the length
-                if (playerToBossToCenterLineVector.magnitude > OptimalDistanceToPlayer) {
-                    // Case 1.B: which is same as case A. Player is too far for this to matter.
+                // Case 1: Boss is far from the player
+                // Two more cases depending on if the player is on the boss' side of the center or not.
+                if (closeFarSideOfCenter > 0) {
+                    // Case 1.A: Player is on the other side of the arena.
+                    // We'll just move towards the center.
                     _targetPosition = ArenaCenter;
-                    behaviorTreeCase = 1;
+                    behaviorTreeCase = 0;
                 } else {
-                    // Case 1.C: We need to navigate away from the player as well as make progress towards the center.
-                    playerToBossToCenterLineVector = playerToBossToCenterLineVector.normalized;
-                    Vector3 playerToBossToCenterLineVec3 = new Vector3(playerToBossToCenterLineVector.x, 0,
-                        playerToBossToCenterLineVector.y);
-                    _targetPosition = playerToBossToCenterLineVec3 * OptimalDistanceToPlayer;
-                    behaviorTreeCase = 2;
+                    // Two more cases depending on the length
+                    if (playerToBossToCenterLineVector.magnitude > OptimalDistanceToPlayer) {
+                        // Case 1.B: which is same as case A. Player is too far for this to matter.
+                        _targetPosition = ArenaCenter;
+                        behaviorTreeCase = 1;
+                    } else {
+                        // Case 1.C: We need to navigate away from the player as well as make progress towards the center.
+                        playerToBossToCenterLineVector = playerToBossToCenterLineVector.normalized;
+                        Vector3 playerToBossToCenterLineVec3 = new Vector3(playerToBossToCenterLineVector.x, 0,
+                            playerToBossToCenterLineVector.y);
+                        _targetPosition = playerToBossToCenterLineVec3 * OptimalDistanceToPlayer;
+                        behaviorTreeCase = 2;
+                    }
                 }
+
+                // Adjust the speed based on the distance to the center.
+                // If distance is larger, we want to be faster.
+                // Curve is defined as 0 = largest, 1 = smallest.
+                float t = 1 - distanceToCenter / 300;
+                float adjustedT = MovementSpeedScaleCurve.Evaluate(t);
+                movementSpeed = Mathf.Lerp(SlowMovementSpeed, FastMovementSpeed, adjustedT);
             }
-        } else if (distanceToPlayer > OptimalDistanceTolerance) {
+        } else {
             // Case 2: Two more cases depending on if the player is on the boss' side of the center or not.
             // We will need to back up to get away from the player, but also be mindful of trying to go to the center.
             // The theory here is that there are two possible vectors we can take.
@@ -165,9 +193,14 @@ public class BossController : Singleton<BossController> {
                 retreatVector, transform.position,
                 Color.green);
 
-            if (closeFarSideOfCenter > 0) {
+            float distanceT = Mathf.Clamp(distanceToPlayer / OptimalDistanceToPlayer, 0, 1);
+
+            if (closeFarSideOfCenter > 0 || bossIsCloserToCenterThanPlayer) {
                 // Case 2.A: Player is on the other side of the arena.
                 // We'll just move backwards away from the player. The center is between us and the player.
+                // HACK: bossIsCloserToCenterThanPlayer check is a hack to get around a bug.
+                // There is some case where this is true when it shouldn't be and the boss is closer to the center
+                // than the player is. If that's the case, also do this.
                 _targetPosition = transform.position + retreatVector;
                 behaviorTreeCase = 3;
             } else {
@@ -179,6 +212,7 @@ public class BossController : Singleton<BossController> {
                     playerTargetPosXZ);
                 ReactUnityBridge.Instance.UpdateDebugString("sideOfCenter",
                     sideOfCenter.ToString());
+
 
                 // This vector would take us on a better path towards reaching the center.
                 Vector3 tangentialVector = Vector3.zero;
@@ -196,10 +230,10 @@ public class BossController : Singleton<BossController> {
 
                 // Based on the idea that if the boss is right next to the player, it would want to take the retreatVector.
                 // And if it was far away, it'd take the sideways tangential vector, we will LERP between them.
-                float t = Mathf.Clamp(distanceToPlayer / OptimalDistanceToPlayer, 0, 1);
                 ReactUnityBridge.Instance.UpdateDebugString("Distance Ratio",
-                    t.ToString());
-                Vector3 targetVector = Vector3.Slerp(retreatVector, tangentialVector, t);
+                    distanceT.ToString());
+                // We can bias towards the retreat vector by making it larger.
+                Vector3 targetVector = Vector3.Slerp(retreatVector * RetreatVectorBias, tangentialVector, distanceT);
                 behaviorTreeCase = 4;
 
                 _targetPosition = transform.position + targetVector;
@@ -207,13 +241,19 @@ public class BossController : Singleton<BossController> {
                     _targetPosition, transform.position,
                     Color.red);
             }
+
+            // Adjust the speed based on the distance to the player.
+            // If distance is smaller, we want to be faster.
+            // Curve is defined as 0 = largest, 1 = smallest.
+            float adjustedT = MovementSpeedScaleCurve.Evaluate(distanceT);
+            movementSpeed = Mathf.Lerp(SlowMovementSpeed, FastMovementSpeed, adjustedT);
         }
 
         // ===== Apply Movement =====
         //  TODO: If distance is too far, then dash?
         // Move towards target position
         Vector3 movementVector = _targetPosition - transform.position;
-        Vector3 absoluteMovementVector = movementVector.normalized * (MovementSpeed * Time.deltaTime);
+        Vector3 absoluteMovementVector = movementVector.normalized * (movementSpeed * Time.deltaTime);
         transform.position += absoluteMovementVector;
         if ((_targetPosition - transform.position).magnitude < 0.1f) {
             _targetPosition = absoluteMovementVector;
@@ -223,6 +263,8 @@ public class BossController : Singleton<BossController> {
             absoluteMovementVector, transform.position,
             Color.red);
 
+        ReactUnityBridge.Instance.UpdateDebugString("Boss Movement Speed",
+            movementSpeed.ToString());
         ReactUnityBridge.Instance.UpdateDebugString("Behavior Tree Case",
             behaviorTreeCase.ToString());
 

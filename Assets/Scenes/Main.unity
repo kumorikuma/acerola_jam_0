@@ -1149,12 +1149,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsLocomotionEnabled: 1
   TurningSpeed: 25
-  MovementSpeed: 12
+  SlowMovementSpeed: 0
+  FastMovementSpeed: 20
   OptimalDistanceToPlayer: 40
-  OptimalDistanceTolerance: 1
+  ReturnToCenterThreshold: 150
+  ReturnToCenterThreshold2: 150
+  CriticalThreshold: 10
+  RetreatVectorBias: 20
   MaxBossLives: 3
   CurrentBossLives: 3
   spawner: {fileID: 1117099464}
+  MovementSpeedScaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2.6677208
+      outSlope: -2.6677208
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03483993
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &2123255200
 Transform:
   m_ObjectHideFlags: 0

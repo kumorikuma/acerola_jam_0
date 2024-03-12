@@ -122,7 +122,9 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
     }
 
     public void PauseGame() {
-        SwitchGameState(GameState.GamePaused);
+        if (_currentGameState == GameState.GameStarted) {
+            SwitchGameState(GameState.GamePaused);
+        }
     }
 
     public void UnpauseGame() {

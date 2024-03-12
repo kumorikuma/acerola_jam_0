@@ -170,10 +170,16 @@ public class BossController : Singleton<BossController> {
 
     public void PlayHitEffect() {
         float hitAnimationTime = 0.25f;
-        _blackHoleMaterialTweener = _blackHoleMaterialInstance.DOFloat(1, "_BlendTime", hitAnimationTime);
+        _blackHoleMaterialTweener = _blackHoleMaterialInstance.DOFloat(1, "_BlendTime", hitAnimationTime).OnComplete(
+            () => {
+                _blackHoleMaterialInstance.DOFloat(0, "_BlendTime", hitAnimationTime);
+            });
         Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
-        _postProcessMaterialTweener = postProcessOutlineMaterial.DOFloat(1, "_BlendTime", hitAnimationTime);
-        StartCoroutine(StartEndHitAnimation(hitAnimationTime));
+        _postProcessMaterialTweener = postProcessOutlineMaterial.DOFloat(1, "_BlendTime", hitAnimationTime).OnComplete(
+            () => {
+                postProcessOutlineMaterial.DOFloat(0, "_BlendTime", hitAnimationTime);
+            });
+        // StartCoroutine(StartEndHitAnimation(hitAnimationTime));
     }
 
     public void PlayIndestructibleHitEffect() {

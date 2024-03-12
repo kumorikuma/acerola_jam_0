@@ -41,6 +41,7 @@ public class ThrusterController : Singleton<ThrusterController> {
 
     private List<GameObject> _thrusterObjects = new();
     private List<MeshRenderer> _thrusterRenderers = new();
+    private List<Tweener> _thrusterTweeners = new();
     private Dictionary<int, Vector3> _originalScales = new();
     private Dictionary<int, float> _scaleFactors = new();
     private bool _stopAnimationTriggered = false;
@@ -122,11 +123,15 @@ public class ThrusterController : Singleton<ThrusterController> {
             }
 
             foreach (MeshRenderer thrusterRenderer in _thrusterRenderers) {
-                thrusterRenderer.materials[1].DOColor(ThrusterColdColor, "_EmissionColor", 1.0f);
+                Tweener tweener = thrusterRenderer.materials[1].DOColor(ThrusterColdColor, "_EmissionColor", 1.0f);
+                _thrusterTweeners.Add(tweener);
             }
         } else if (scaleRatio > 0) {
             _stopAnimationTriggered = false;
-            DOTween.KillAll();
+            foreach (Tweener tweener in _thrusterTweeners) {
+                tweener.Kill();
+            }
+
             foreach (MeshRenderer thrusterRenderer in _thrusterRenderers) {
                 thrusterRenderer.materials[1].SetColor("_EmissionColor", _thrusterHotColor);
             }

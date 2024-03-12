@@ -138,6 +138,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3494428405961974183, guid: 75a81f61f3d4e534c98ab96ac2bfa79c, type: 3}
   m_PrefabInstance: {fileID: 7906503610251246679}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &478092593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 572146921963857060, guid: 7b3cf705ace61ec4d8ef78bdc9e3c82f, type: 3}
+  m_PrefabInstance: {fileID: 1914661709}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &563196305 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 959729086684586903, guid: 5590fbb2d38b5d74d9f4db71334fd616, type: 3}
@@ -2234,6 +2239,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4060604380523567556, guid: 7b3cf705ace61ec4d8ef78bdc9e3c82f, type: 3}
   m_PrefabInstance: {fileID: 1914661709}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1922299539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 959729086684586903, guid: 5590fbb2d38b5d74d9f4db71334fd616, type: 3}
+  m_PrefabInstance: {fileID: 796065179}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1994434969
 GameObject:
@@ -11342,6 +11352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2163410634549888758}
   - component: {fileID: 5309487305275740797}
+  - component: {fileID: 7162708909288382882}
   m_Layer: 9
   m_Name: DummyMecha
   m_TagString: Untagged
@@ -11349,6 +11360,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7162708909288382882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162708909288382881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376829c6adc14465850c38ef080567d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SlashAttack1VFX: {fileID: 478092593}
+  SlashAttack2VFX: {fileID: 1922299539}
 --- !u!23 &7174726028583097650
 MeshRenderer:
   m_ObjectHideFlags: 0

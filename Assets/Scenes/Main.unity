@@ -3103,6 +3103,7 @@ MonoBehaviour:
   OptimalDistanceToPlayer: 40
   ReturnToCenterThreshold: 150
   RetreatVectorBias: 20
+  StaggerDamageThreshold: 50
   MaxShieldHealth: 10
   ShieldRecoveryTime: 1
   PlayerProjectileDamageToBossWhileStaggered: 5

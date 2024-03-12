@@ -170,6 +170,8 @@ public class BossController : Singleton<BossController> {
 
         // If our shield is at 0, when we've taken over a cetain amount of damage. Instantly get up.
         if (_shieldHealth == 0) {
+            _damageTakenWhileStaggered += Mathf.RoundToInt(damageTaken);
+
             if (_damageTakenWhileStaggered >= StaggerDamageThreshold) {
                 if (_restoreShieldCoroutine != null) {
                     StopCoroutine(_restoreShieldCoroutine);
@@ -177,8 +179,6 @@ public class BossController : Singleton<BossController> {
                 }
 
                 RestoreShield();
-            } else {
-                _damageTakenWhileStaggered += Mathf.RoundToInt(damageTaken);
             }
         }
     }

@@ -46,7 +46,7 @@ Material:
     - _DissolveT: 0
     - _Float: 0
     - _FresnelPower: 5.12
-    - _MaxVertexOffset: 0.2
+    - _MaxVertexOffset: 0.1
     - _OffsetT: 0
     - _QueueControl: 0
     - _QueueOffset: 0

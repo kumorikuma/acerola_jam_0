@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using UnityEngine;
 
 [Serializable]
@@ -24,6 +26,9 @@ public class BossController : Singleton<BossController> {
     [NonNullField] public PostProcessOutline PostProcessOutlineRenderFeature;
     [NonNullField] public MeshRenderer BlackHoleRenderer;
     private Material _blackHoleMaterialInstance;
+    [NonNullField] public MeshRenderer ShieldRenderer;
+    private Material _shieldMaterialInstance;
+    [NonNullField] public Animator ShieldAnimator;
 
     public bool IsLocomotionEnabled = true;
     public bool IsAttackingEnabled = true;
@@ -114,22 +119,34 @@ public class BossController : Singleton<BossController> {
         Reset();
 
         _blackHoleMaterialInstance = BlackHoleRenderer.material;
+        _shieldMaterialInstance = ShieldRenderer.material;
     }
 
     private void OnDamageTaken(object sender, float damageTaken) {
         PlayHitEffect();
     }
 
-    public void PlayHitEffect() {
-        // .SetEase(Ease.InOutQuad)
-        _blackHoleMaterialInstance.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
-            _blackHoleMaterialInstance.DOFloat(0, "_BlendTime", 0.25f);
-        });
+    private TweenerCore<Single, Single, FloatOptions> _shieldMaterialTween = null;
 
-        Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
-        postProcessOutlineMaterial.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
-            postProcessOutlineMaterial.DOFloat(0, "_BlendTime", 0.25f);
-        });
+    public void PlayHitEffect() {
+        ShieldAnimator.SetTrigger("Hit");
+        // .SetEase(Ease.InOutQuad)
+        // _blackHoleMaterialInstance.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
+        //     _blackHoleMaterialInstance.DOFloat(0, "_BlendTime", 0.25f);
+        // });
+        //
+        // Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
+        // postProcessOutlineMaterial.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
+        //     postProcessOutlineMaterial.DOFloat(0, "_BlendTime", 0.25f);
+        // });
+
+        // _shieldMaterialTween = _shieldMaterialInstance.DOFloat(1000, "_AdditionalOffset", 0.5f).OnComplete(() => {
+        //     Debug.Log("ON COMPLETE");
+        //     _shieldMaterialInstance.SetFloat("_AdditionalOffset", 1);
+        //     // _shieldMaterialInstance.DOFloat(0, "_BlendTime", 0.25f);
+        // });
+
+        // _shieldMaterialTween.Kill();
     }
 
     private void OnSpawningStopped() {

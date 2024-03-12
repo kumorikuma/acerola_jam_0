@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameLifecycleManager : Singleton<GameLifecycleManager> {
     public enum GameState {
@@ -8,6 +9,9 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
         GamePaused,
         GameOver,
     }
+
+    [NonNullField] public GameObject GameplayContainer;
+    [NonNullField] public GameObject MainMenuContainer;
 
     public bool Debug_IsDebugModeEnabled = false;
     public GameState Debug_StartingGameState = GameState.GameStarted;
@@ -36,13 +40,27 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
         SwitchGameState(_currentGameState);
     }
 
+    private void Update() {
+        if (_currentGameState != GameState.MainMenu) {
+            return;
+        }
+
+        if (Keyboard.current.anyKey.wasReleasedThisFrame) {
+            SwitchGameState(GameState.GameStarted);
+        }
+    }
+
     private void SwitchGameState(GameState gameState) {
         switch (gameState) {
             case GameState.MainMenu:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.MainMenu);
+                GameplayContainer.SetActive(false);
+                MainMenuContainer.SetActive(true);
                 break;
             case GameState.GameStarted:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.Hud);
+                GameplayContainer.SetActive(true);
+                MainMenuContainer.SetActive(false);
                 // Unpause the game
                 Time.timeScale = 1;
                 PlayerManager.Instance.SwitchActionMaps("gameplay");
@@ -52,6 +70,7 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 BossController.Instance.Reset();
                 PanelsController.Instance.Reset();
                 ProjectileController.Instance.Reset();
+                ReactUnityBridge.Instance.InitializeGameStuff();
                 break;
             case GameState.GamePaused:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.PauseMenu);

@@ -45,8 +45,8 @@ export default function Hud(): React.ReactNode {
   const bossHealth: number = useReactiveValue(globals.bossHealth);
   const bossLives: number = useReactiveValue(globals.bossLives);
 
-  const maxPlayerLives = globals.maxPlayerLives;
-  const maxBossLives = globals.maxBossLives;
+  const maxPlayerLives: number = useReactiveValue(globals.maxPlayerLives);
+  const maxBossLives: number = useReactiveValue(globals.maxBossLives);
 
   const playerHealthPercent = lerp(0, 100, playerHealth);
   const bossHealthPercent = lerp(100, 0, bossHealth);

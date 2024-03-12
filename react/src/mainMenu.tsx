@@ -10,13 +10,13 @@ export default function MainMenu(): React.ReactNode {
   return (
     <view className="main-menu">
       <view className="content">
-        <view className="title">Game Template</view>
+        {/* <view className="title">DASSD</view>
         <Button
           text="Start Game"
           onClick={() => {
             gameLifecycleManager.StartGame();
           }}
-        />
+        /> */}
       </view>
     </view>
   );

@@ -110,11 +110,14 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _EnableIntersection: 0
     - _EnableStarsMaterial: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _IntersectionDepth: 0.5
+    - _IntersectionPower: 1
     - _Metallic: 0
     - _NoiseScale: 20
     - _OcclusionStrength: 1
@@ -140,6 +143,7 @@ Material:
     - _Color: {r: 0.7924528, g: 0.5220757, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _InnerColor: {r: 0.60411644, g: 0.28773582, b: 1, a: 1}
+    - _IntersectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 7.654902, g: 6.807843, b: 5.050981, a: 0}
     - _RimHighlightColor: {r: 0.7490196, g: 0.6666667, b: 0.4980392, a: 0}
     - _ScrollSpeed: {r: 0.005, g: 0, b: 0, a: 0}

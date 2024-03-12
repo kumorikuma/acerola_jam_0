@@ -1,8 +1,13 @@
 /* ===== Fonts ===== */
 
 @font-face {
-  font-family: "Rubik Bubbles";
-  src: resource("Fonts/RubikBubbles");
+  font-family: "Frankfurter";
+  src: url(resource:FrankfurterStdRegularSDF);
+}
+
+@font-face {
+  font-family: "NotoSansLight";
+  src: url(resource:NotoSansLight)
 }
 
 /* ===== Mixins ===== */
@@ -153,6 +158,11 @@ $hp-color: white;
     text-align: center;
     color: white;
     font-size: 64px;
+    font-family: "Frankfurter";
+  }
+
+  .button {
+    font-family: "Frankfurter";
   }
 }
 

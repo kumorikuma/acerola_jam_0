@@ -18,14 +18,18 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
     private ReactiveValue<float> targetHealth = new();
     private ReactiveValue<float> playerHealth = new();
     private ReactiveValue<int> playerLives = new();
+    private ReactiveValue<int> maxPlayerLives = new();
     private ReactiveValue<float> bossHealth = new();
     private ReactiveValue<int> bossLives = new();
+    private ReactiveValue<int> maxBossLives = new();
     private ReactiveValue<float> playerPrimaryFireCooldown = new();
     private ReactiveValue<float> playerSecondaryFireCooldown = new();
 
     private ReactRendererBase reactRenderer;
     private ReactiveValue<List<string>> debugStrings = new();
     private Dictionary<string, string> _debugStrings = new();
+
+    private bool _isGameStuffInitialized = false;
 
     protected override void Awake() {
         base.Awake();
@@ -49,10 +53,10 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
         reactRenderer.Globals["targetHealth"] = targetHealth;
         reactRenderer.Globals["playerHealth"] = playerHealth;
         reactRenderer.Globals["playerLives"] = playerLives;
-        reactRenderer.Globals["maxPlayerLives"] = PlayerManager.Instance.PlayerController.MaxPlayerLives;
+        reactRenderer.Globals["maxPlayerLives"] = maxPlayerLives;
         reactRenderer.Globals["bossHealth"] = bossHealth;
         reactRenderer.Globals["bossLives"] = bossLives;
-        reactRenderer.Globals["maxBossLives"] = BossController.Instance.BossPhaseData.Count;
+        reactRenderer.Globals["maxBossLives"] = maxBossLives;
         reactRenderer.Globals["playerPrimaryFireCooldown"] = playerPrimaryFireCooldown;
         reactRenderer.Globals["playerSecondaryFireCooldown"] = playerSecondaryFireCooldown;
 
@@ -69,11 +73,6 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
             Leaderboards.Instance.OnLeaderboardScoresUpdated += LeaderboardsOnOnLeaderboardScoresUpdated;
             // To enable leaderboards, need to connect to a Unity Project and add the Leaderboards singleton to the game.
         }
-
-        PlayerManager.Instance.PlayerController.Stats.OnHealthChanged += OnPlayerHealthUpdated;
-        PlayerManager.Instance.PlayerController.OnPlayerLivesChanged += OnPlayerLivesUpdated;
-        BossController.Instance.Stats.OnHealthChanged += OnBossHealthUpdated;
-        BossController.Instance.OnBossLivesChanged += OnBossLivesUpdated;
 
         // Game System References   
         reactRenderer.Globals["gameLifecycleManager"] = GameLifecycleManager.Instance;
@@ -113,6 +112,22 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
         if (bossLives.Value != value) {
             bossLives.Value = value;
         }
+    }
+
+    public void InitializeGameStuff() {
+        if (_isGameStuffInitialized) {
+            return;
+        }
+
+        _isGameStuffInitialized = true;
+
+        maxPlayerLives.Value = PlayerManager.Instance.PlayerController.MaxPlayerLives;
+        maxBossLives.Value = BossController.Instance.BossPhaseData.Count;
+
+        PlayerManager.Instance.PlayerController.Stats.OnHealthChanged += OnPlayerHealthUpdated;
+        PlayerManager.Instance.PlayerController.OnPlayerLivesChanged += OnPlayerLivesUpdated;
+        BossController.Instance.Stats.OnHealthChanged += OnBossHealthUpdated;
+        BossController.Instance.OnBossLivesChanged += OnBossLivesUpdated;
     }
 
     public void UpdateTargetHealth(float value) {

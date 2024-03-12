@@ -222,7 +222,7 @@ public class BossController : Singleton<BossController> {
         Animator.SetBool("IsDead", false);
 
         // Restore State. Boss is immune while this is happening.
-        _isIndestructible = true;
+        SetImmunity(true);
         StartCoroutine(RestoreActionsAfterDelay(ShieldRecoveryTime));
         _attackCooldownCountdown = InitialAttackCooldown;
     }
@@ -231,7 +231,12 @@ public class BossController : Singleton<BossController> {
         yield return new WaitForSeconds(delaySeconds);
         IsAttackingEnabled = true;
         IsLocomotionEnabled = true;
-        _isIndestructible = false;
+        SetImmunity(false);
+    }
+
+    private void SetImmunity(bool isImmune) {
+        // TODO: Maybe shield should be a special color here?
+        _isIndestructible = isImmune;
     }
 
     private void OnSpawningStopped() {
@@ -385,6 +390,9 @@ public class BossController : Singleton<BossController> {
                 // Idle
                 _targetPosition = transform.position;
                 behaviorTreeCase = 5;
+
+                // Move randomly left/right around the player.
+                // We have some 
             } else {
                 // Case 1: Boss is far from the player
                 // Two more cases depending on if the player is on the boss' side of the center or not.

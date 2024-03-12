@@ -199,7 +199,8 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras: []
+  m_Cameras:
+  - {fileID: 1316195676}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -274,7 +275,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1535
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -900,7 +901,7 @@ GameObject:
   - component: {fileID: 1316195676}
   - component: {fileID: 1316195675}
   m_Layer: 7
-  m_Name: Player Camera
+  m_Name: Menu Player Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -914,8 +915,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316195673}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0925414, y: 0.0000000042831383, z: -3.9807552e-10, w: 0.9957089}
-  m_LocalPosition: {x: 0, y: 1, z: -26.46}
+  m_LocalRotation: {x: 0.0000004395842, y: -0.000000014901159, z: 0.0000000046566124, w: 1}
+  m_LocalPosition: {x: 0.00000045875487, y: 0.000000009670076, z: 0.00000012970793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -999,7 +1000,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 300
-  field of view: 60.000004
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

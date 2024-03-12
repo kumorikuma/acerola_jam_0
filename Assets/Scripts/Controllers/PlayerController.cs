@@ -685,7 +685,10 @@ public class PlayerController : MonoBehaviour {
         }
 
         // To make it feel better, we should also add the players current velocity to it.
-        initialVelocity += characterController.velocity;
+        // This throws off the aim if we're using target locking though.
+        if (_lockedOnTarget == null) {
+            initialVelocity += characterController.velocity;
+        }
 
         ProjectileController.Instance.SpawnProjectile(ProjectileController.Owner.Player,
             SecondaryWeaponMountPoint.position, Quaternion.identity,

@@ -75,12 +75,15 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 Time.timeScale = 1;
                 PlayerManager.Instance.SwitchActionMaps("gameplay");
                 ToggleCursor(false);
-                // Reset game
-                PlayerManager.Instance.PlayerController.Reset();
-                BossController.Instance.Reset();
-                PanelsController.Instance.Reset();
-                ProjectileController.Instance.Reset();
-                ReactUnityBridge.Instance.InitializeGameStuff();
+                // Reset game if we weren't paused before
+                if (_currentGameState != GameState.GamePaused) {
+                    PlayerManager.Instance.PlayerController.Reset();
+                    BossController.Instance.Reset();
+                    PanelsController.Instance.Reset();
+                    ProjectileController.Instance.Reset();
+                    ReactUnityBridge.Instance.InitializeGameStuff();
+                }
+
                 break;
             case GameState.GamePaused:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.PauseMenu);

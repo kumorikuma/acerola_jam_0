@@ -38,6 +38,7 @@ public class BossController : Singleton<BossController> {
     public bool IsAttackingEnabled = true;
     public float SlowMovementSpeed = 5.0f;
     public float FastMovementSpeed = 5.0f;
+    public float IdleMaxMovementSpeed = 5.0f;
     public float OptimalDistanceToPlayer = 30.0f;
     public float ReturnToCenterThreshold = 150.0f;
     public float RetreatVectorBias = 1.0f;
@@ -60,6 +61,8 @@ public class BossController : Singleton<BossController> {
     private Vector3 _originalPosition;
     private Quaternion _originalRotation;
 
+    public AnimationCurve IdleMovementCurve;
+    public float IdleMovementCurveSampleSpeed = 0.1f;
     public AnimationCurve MovementSpeedScaleCurve;
 
     // Attacks
@@ -75,6 +78,7 @@ public class BossController : Singleton<BossController> {
     private BulletSpawner _currentBulletSpawner = null;
     private int _shieldHealth;
     private bool _isIndestructible = false;
+    private float _idleTime = 0;
 
     public void FireMissiles() {
         RestoreShield();
@@ -109,6 +113,8 @@ public class BossController : Singleton<BossController> {
         _shieldMaterialInstance = ShieldRenderer.material;
         _originalPosition = transform.position;
         _originalRotation = transform.rotation;
+        IdleMovementCurve.postWrapMode = WrapMode.Loop;
+        IdleMovementCurve.preWrapMode = WrapMode.Loop;
     }
 
     public void Reset() {
@@ -399,14 +405,28 @@ public class BossController : Singleton<BossController> {
         if (distanceToPlayer > OptimalDistanceToPlayer) {
             if (distanceToCenter < ReturnToCenterThreshold) {
                 // Case 0: Boss is far from the player but doesn't feel like it needs to return to the center.
+                // It will move to the left/right according to a curve.
 
                 // Idle
-                _targetPosition = transform.position;
                 behaviorTreeCase = 5;
 
                 // Move randomly left/right around the player.
-                // We have some 
+                float velocityCurveValue = IdleMovementCurve.Evaluate(_idleTime * IdleMovementCurveSampleSpeed);
+                Vector3 velocity = Vector3.zero;
+                if (velocityCurveValue < 0) {
+                    velocity = transform.rotation * Vector3.left;
+                } else {
+                    velocity = transform.rotation * Vector3.right;
+                }
+
+                _targetPosition = transform.position + velocity;
+                movementSpeed = Mathf.Abs(velocityCurveValue) * IdleMaxMovementSpeed;
+
+                // Increment the time we've spent idle.
+                _idleTime += Time.deltaTime;
             } else {
+                _idleTime = 0;
+
                 // Case 1: Boss is far from the player
                 // Two more cases depending on if the player is on the boss' side of the center or not.
                 if (closeFarSideOfCenter > 0) {
@@ -438,6 +458,8 @@ public class BossController : Singleton<BossController> {
                 movementSpeed = Mathf.Lerp(SlowMovementSpeed, FastMovementSpeed, adjustedT);
             }
         } else {
+            _idleTime = 0;
+
             // Case 2: Two more cases depending on if the player is on the boss' side of the center or not.
             // We will need to back up to get away from the player, but also be mindful of trying to go to the center.
             // The theory here is that there are two possible vectors we can take.
@@ -519,10 +541,12 @@ public class BossController : Singleton<BossController> {
             absoluteMovementVector, transform.position,
             Color.red);
 
-        // ReactUnityBridge.Instance.UpdateDebugString("Boss Movement Speed",
-        //     movementSpeed.ToString());
-        // ReactUnityBridge.Instance.UpdateDebugString("Behavior Tree Case",
-        //     behaviorTreeCase.ToString());
+        ReactUnityBridge.Instance.UpdateDebugString("Boss Movement Speed",
+            movementSpeed.ToString());
+        ReactUnityBridge.Instance.UpdateDebugString("Behavior Tree Case",
+            behaviorTreeCase.ToString());
+        ReactUnityBridge.Instance.UpdateDebugString("IdleTime",
+            _idleTime.ToString());
 
         // ===== Apply Rotation =====
         // Rotate towards player gradually

@@ -3089,6 +3089,7 @@ MonoBehaviour:
   IsAttackingEnabled: 0
   SlowMovementSpeed: 0
   FastMovementSpeed: 20
+  IdleMaxMovementSpeed: 20
   OptimalDistanceToPlayer: 40
   ReturnToCenterThreshold: 150
   RetreatVectorBias: 20
@@ -3097,6 +3098,85 @@ MonoBehaviour:
   PlayerProjectileDamageToBossWhileStaggered: 5
   PlayerSwordDamageToBoss: 25
   spawner: {fileID: 1117099464}
+  IdleMovementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 4
+      outSlope: 4
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.25
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.30279207
+      value: 0.7433512
+      inSlope: -1.1035246
+      outSlope: -1.1035246
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.06980503
+    - serializedVersion: 3
+      time: 0.41905436
+      value: 0.44775993
+      inSlope: 19.86448
+      outSlope: 19.86448
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.033803906
+    - serializedVersion: 3
+      time: 0.4915763
+      value: 0.047950625
+      inSlope: -12.67717
+      outSlope: -12.67717
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: -1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.87427944
+      value: 0.37696522
+      inSlope: 5.274898
+      outSlope: 5.274898
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2.9984374
+      outSlope: -2.9984374
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  IdleMovementCurveSampleSpeed: 0.1
   MovementSpeedScaleCurve:
     serializedVersion: 2
     m_Curve:

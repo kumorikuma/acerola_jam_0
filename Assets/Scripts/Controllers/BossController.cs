@@ -11,11 +11,13 @@ public class PhaseData {
     public int BossHealth;
     public List<BulletSpawner> BulletSpawners;
     public float CellDestructionCooldown;
+    public float BossStaggerTime;
 
     public PhaseData() {
         BulletSpawners = new();
         BossHealth = 100;
         CellDestructionCooldown = 3.0f;
+        BossStaggerTime = 5.0f;
     }
 }
 
@@ -24,8 +26,10 @@ public class BossController : Singleton<BossController> {
     [NonNullField] public Animator Animator;
 
     [NonNullField] public PostProcessOutline PostProcessOutlineRenderFeature;
+    private Tweener _postProcessMaterialTweener;
     [NonNullField] public MeshRenderer BlackHoleRenderer;
     private Material _blackHoleMaterialInstance;
+    private Tweener _blackHoleMaterialTweener;
     [NonNullField] public MeshRenderer ShieldRenderer;
     private Material _shieldMaterialInstance;
     [NonNullField] public Animator ShieldAnimator;
@@ -38,8 +42,9 @@ public class BossController : Singleton<BossController> {
     public float ReturnToCenterThreshold = 150.0f;
     public float RetreatVectorBias = 1.0f;
     public int MaxShieldHealth = 10;
-    public float ShieldDowntime = 5.0f;
     public float ShieldRecoveryTime = 1.0f;
+    public int PlayerProjectileDamageToBossWhileStaggered = 5;
+    public int PlayerSwordDamageToBoss = 25;
 
     private int _shieldHealth;
     private int MaxBossLives = 3;
@@ -66,6 +71,7 @@ public class BossController : Singleton<BossController> {
     private List<BulletSpawner> _bulletSpawnersBag = new();
     private int _currentPhase = 0;
     private BulletSpawner _currentBulletSpawner = null;
+    private bool _isIndestructible = false;
 
     public void FireMissiles() {
         RestoreShield();
@@ -122,10 +128,10 @@ public class BossController : Singleton<BossController> {
         }
 
         MaxBossLives = BossPhaseData.Count;
-        Reset();
-
         _blackHoleMaterialInstance = BlackHoleRenderer.material;
         _shieldMaterialInstance = ShieldRenderer.material;
+
+        Reset();
     }
 
     private void OnDamageTaken(object sender, float damageTaken) {
@@ -135,27 +141,57 @@ public class BossController : Singleton<BossController> {
     private TweenerCore<Single, Single, FloatOptions> _shieldMaterialTween = null;
 
     public void PlayHitEffect() {
-        // .SetEase(Ease.InOutQuad)
-        _blackHoleMaterialInstance.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
-            _blackHoleMaterialInstance.DOFloat(0, "_BlendTime", 0.25f);
-        });
-
+        float hitAnimationTime = 0.25f;
+        _blackHoleMaterialTweener = _blackHoleMaterialInstance.DOFloat(1, "_BlendTime", hitAnimationTime);
         Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
-        postProcessOutlineMaterial.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
-            postProcessOutlineMaterial.DOFloat(0, "_BlendTime", 0.25f);
-        });
+        _postProcessMaterialTweener = postProcessOutlineMaterial.DOFloat(1, "_BlendTime", hitAnimationTime);
+        StartCoroutine(StartEndHitAnimation(hitAnimationTime));
+    }
+
+    public void PlayIndestructibleHitEffect() {
+        // TODO: Play some special animation?
+    }
+
+    // On complete doesn't work sometimes, so this is workaround.
+    private IEnumerator StartEndHitAnimation(float delaySeconds) {
+        yield return new WaitForSeconds(delaySeconds);
+        _blackHoleMaterialTweener.Kill();
+        _postProcessMaterialTweener.Kill();
+
+        _blackHoleMaterialInstance.DOFloat(0, "_BlendTime", delaySeconds);
+        Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
+        postProcessOutlineMaterial.DOFloat(0, "_BlendTime", delaySeconds);
+    }
+
+    public void ApplySwordDamage() {
+        if (_isIndestructible) {
+            PlayIndestructibleHitEffect();
+            return;
+        }
+
+        Stats.ApplyDamage(PlayerSwordDamageToBoss);
     }
 
     public void ApplyShieldDamage() {
-        _shieldHealth -= 1;
+        if (_isIndestructible) {
+            PlayIndestructibleHitEffect();
+            return;
+        }
 
-        ShieldAnimator.SetTrigger("Hit");
-        // Multiply by 2 to accentuate the color and transition faster.
-        float shieldT = (1 - _shieldHealth / (float)MaxShieldHealth) * 2;
-        _shieldMaterialInstance.SetFloat("_BlendTime", shieldT);
+        if (_shieldHealth == 0) {
+            // If the shield was already broken, then apply some damage.
+            Stats.ApplyDamage(PlayerProjectileDamageToBossWhileStaggered);
+        } else {
+            _shieldHealth -= 1;
 
-        if (_shieldHealth <= 0) {
-            BreakShield();
+            ShieldAnimator.SetTrigger("Hit");
+            // Multiply by 2 to accentuate the color and transition faster.
+            float shieldT = (1 - _shieldHealth / (float)MaxShieldHealth) * 2;
+            _shieldMaterialInstance.SetFloat("_BlendTime", shieldT);
+
+            if (_shieldHealth <= 0) {
+                BreakShield();
+            }
         }
     }
 
@@ -170,9 +206,8 @@ public class BossController : Singleton<BossController> {
             _currentBulletSpawner.StopAll();
         }
 
-
         // Shield will restore after this time.
-        StartCoroutine(RestoreShieldAfterDelay(ShieldDowntime));
+        StartCoroutine(RestoreShieldAfterDelay(_currentBossPhaseData.BossStaggerTime));
     }
 
     private IEnumerator RestoreShieldAfterDelay(float delaySeconds) {
@@ -186,7 +221,8 @@ public class BossController : Singleton<BossController> {
         ShieldAnimator.SetBool("IsBroken", false);
         Animator.SetBool("IsDead", false);
 
-        // Restore State
+        // Restore State. Boss is immune while this is happening.
+        _isIndestructible = true;
         StartCoroutine(RestoreActionsAfterDelay(ShieldRecoveryTime));
         _attackCooldownCountdown = InitialAttackCooldown;
     }
@@ -195,6 +231,7 @@ public class BossController : Singleton<BossController> {
         yield return new WaitForSeconds(delaySeconds);
         IsAttackingEnabled = true;
         IsLocomotionEnabled = true;
+        _isIndestructible = false;
     }
 
     private void OnSpawningStopped() {
@@ -208,6 +245,7 @@ public class BossController : Singleton<BossController> {
         _shieldHealth = MaxShieldHealth;
         SetBossLives(MaxBossLives);
         Stats.Reset();
+        RestoreShield();
     }
 
     private void OnHealthChanged(object sender, float health) {

@@ -1502,6 +1502,10 @@ MonoBehaviour:
   OptimalDistanceToPlayer: 40
   ReturnToCenterThreshold: 150
   RetreatVectorBias: 20
+  MaxShieldHealth: 10
+  ShieldDowntime: 5
+  ShieldRecoveryTime: 1
+  PlayerProjectileDamageToBossWhileStaggered: 5
   spawner: {fileID: 1117099464}
   MovementSpeedScaleCurve:
     serializedVersion: 2
@@ -1859,6 +1863,10 @@ PrefabInstance:
       propertyPath: CrystalSwordModel
       value: 
       objectReference: {fileID: 948247900}
+    - target: {fileID: 1348098564201815736, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
+      propertyPath: SlashAttack1Damage
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3930608787337011749, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.535453

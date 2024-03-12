@@ -18,7 +18,15 @@ public class ProjectileController : Singleton<ProjectileController> {
     public float WorldMaxBoundary = 1000.0f;
 
     private Dictionary<int, Projectile> _projectiles = new();
-    private List<Projectile> _projectilesToDestroy = new();
+
+    public void Reset() {
+        foreach (var kv in _projectiles) {
+            Projectile projectile = kv.Value;
+            UnityEngine.Object.Destroy(projectile.gameObject);
+        }
+
+        _projectiles.Clear();
+    }
 
     public Projectile SpawnProjectile(Owner owner, GameObject prefab, Vector3 origin, Quaternion rotation,
         Vector3 velocity) {
@@ -80,7 +88,7 @@ public class ProjectileController : Singleton<ProjectileController> {
     }
 
     private void FixedUpdate() {
-        _projectilesToDestroy.Clear();
+        List<Projectile> projectilesToDestroy = new();
 
         // Update all positions of projectiles
         foreach (var kv in _projectiles) {
@@ -155,11 +163,11 @@ public class ProjectileController : Singleton<ProjectileController> {
             // Destroy the projectile if it's out of bounds.
             if (position.x < -WorldMaxBoundary || position.x > WorldMaxBoundary || position.z < -WorldMaxBoundary ||
                 position.z > WorldMaxBoundary) {
-                _projectilesToDestroy.Add(projectile);
+                projectilesToDestroy.Add(projectile);
             }
         }
 
-        foreach (Projectile projectile in _projectilesToDestroy) {
+        foreach (Projectile projectile in projectilesToDestroy) {
             DestroyProjectile(projectile);
         }
     }

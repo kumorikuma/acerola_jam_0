@@ -115,9 +115,6 @@ public class PlayerController : MonoBehaviour {
     public int PlanetTickDamage = 20;
     private float _planetDamageCooldownCountdown = 0.0f;
 
-    // Melee Attacks
-    public int SlashAttack1Damage = 20;
-
     // Don't want to worry about Z motion in animation
     public AnimationCurve SlashAttack1DashZPositionCurve;
     private bool _isMeleeAttacking = false;
@@ -739,11 +736,9 @@ public class PlayerController : MonoBehaviour {
     // ====== Animation Event Handlers =====
     private void OnSlashAttack1Hit() {
         if (AttackHitbox.CollidedObject != null) {
-            EntityStats stats = AttackHitbox.CollidedObject.GetComponent<EntityStats>();
-            if (stats == null) {
-                Debug.LogError("[PlayerController] Attack object does not have Entity Stats!");
-            } else {
-                stats.ApplyDamage(SlashAttack1Damage);
+            BossController bossController = AttackHitbox.CollidedObject.GetComponent<BossController>();
+            if (bossController != null) {
+                bossController.ApplySwordDamage();
             }
         }
     }

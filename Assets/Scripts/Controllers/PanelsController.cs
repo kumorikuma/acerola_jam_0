@@ -9,36 +9,19 @@ using Random = UnityEngine.Random;
 public class PanelsController : Singleton<PanelsController> {
     [NonNullField] public Terrain ColliderTerrain;
     [NonNullField] public Terrain LowerColliderTerrain;
-
     [NonNullField] public Transform BlackHoleObject;
     [NonNullField] public GameObject DummyProjectilesContainer;
     [NonNullField] public GameObject DummyPanelPrefab;
 
     public float TerrainSize = 640.0f;
     public float PanelSize = 5.0f;
-    public int PanelsPerCell = 2;
-
-    // Size of all the panels one side combined.
-    private int _panelsPerSide;
-    private int _cellsPerSide;
-    private Vector3 _worldSpaceToPanelSpaceOffset;
-    private Vector3 _panelSizeOffset;
-    private float _panelsContainerSize;
-    private float _cellSize;
-    private int _cellSizeTexels;
-    private bool[,] _holePunchData;
 
     // A Cell is composed of N=2 panels.
-    private bool[,] _panelProjectileSpawned;
-    private GameObject[,] _dummyPanelObjects;
+    public int PanelsPerCell = 2;
 
     // Panel Destruction Settings
     public float CellDestructionCooldown = 3.0f;
-    public int CellsDestroyed = 5;
     public int SectorsPerSide = 4;
-    private bool _isDestroyingLevel = false;
-    private List<List<int>> _sectors = new();
-    private float _CellDestructionCooldownCountdown = 0.0f;
 
     // Panel Projectile Settings
     public float PanelInitialSpeed = 1.0f;
@@ -52,9 +35,27 @@ public class PanelsController : Singleton<PanelsController> {
     public float PanelTurningSpeedRandomOffsetFactor = 1.0f;
     public float PanelTurnTowardsTargetSpeed = 1.0f;
 
+    // Size of all the panels one side combined.
+    private int _panelsPerSide;
+    private int _cellsPerSide;
+    private Vector3 _worldSpaceToPanelSpaceOffset;
+    private Vector3 _panelSizeOffset;
+    private float _panelsContainerSize;
+    private float _cellSize;
+    private int _cellSizeTexels;
+    private bool[,] _holePunchData;
+
+    // State
+    private bool[,] _panelProjectileSpawned;
+    private GameObject[,] _dummyPanelObjects;
+    private List<List<int>> _sectors = new();
+    private bool _isDestroyingLevel = false;
+    private float _CellDestructionCooldownCountdown = 0.0f;
+
     protected override void Awake() {
         base.Awake();
 
+        // Constants
         _panelsPerSide = Mathf.RoundToInt(TerrainSize / PanelSize);
         _cellSize = PanelSize * PanelsPerCell;
         _cellsPerSide = Mathf.RoundToInt(TerrainSize / _cellSize);
@@ -64,15 +65,6 @@ public class PanelsController : Singleton<PanelsController> {
         // Debug.Log($"[PanelsController] _panelsContainerSize: " + _panelsContainerSize);
         // Debug.Log($"[PanelsController] _worldSpaceToPanelSpaceOffset: " + _worldSpaceToPanelSpaceOffset);
         _panelSizeOffset = new Vector3(PanelSize / 2.0f, -0.5f, PanelSize / 2.0f);
-        _panelProjectileSpawned = new bool[_panelsPerSide, _panelsPerSide];
-        _dummyPanelObjects = new GameObject[_panelsPerSide, _panelsPerSide];
-        for (int row = 0; row < _panelsPerSide; row++) {
-            for (int col = 0; col < _panelsPerSide; col++) {
-                _panelProjectileSpawned[row, col] = false;
-                _dummyPanelObjects[row, col] = null;
-            }
-        }
-
         // Measure how many terrain texels are in this size.
         Vector3 pos1 = Vector3.zero;
         Vector3 pos2 = new Vector3(_cellSize, 0, 0);
@@ -80,10 +72,28 @@ public class PanelsController : Singleton<PanelsController> {
         int pos2Col = ConvertToAlphamapCoordinates(pos2).x;
         _cellSizeTexels = pos2Col - pos1Col;
 
+        // Compute this once since it never changes.
         _holePunchData = new bool[_cellSizeTexels, _cellSizeTexels];
         for (int row = 0; row < _cellSizeTexels; row++) {
             for (int col = 0; col < _cellSizeTexels; col++) {
                 _holePunchData[row, col] = false;
+            }
+        }
+
+        Reset();
+    }
+
+    public void Reset() {
+        _isDestroyingLevel = false;
+        _CellDestructionCooldownCountdown = 0.0f;
+
+        // Reset the spawned states
+        _panelProjectileSpawned = new bool[_panelsPerSide, _panelsPerSide];
+        _dummyPanelObjects = new GameObject[_panelsPerSide, _panelsPerSide];
+        for (int row = 0; row < _panelsPerSide; row++) {
+            for (int col = 0; col < _panelsPerSide; col++) {
+                _panelProjectileSpawned[row, col] = false;
+                _dummyPanelObjects[row, col] = null;
             }
         }
 
@@ -97,6 +107,7 @@ public class PanelsController : Singleton<PanelsController> {
         LowerColliderTerrain.GetComponent<TerrainCollider>().terrainData = LowerColliderTerrain.terrainData;
 
         // Iterate through all the indices and all them to the appropriate sector.
+        _sectors.Clear();
         for (int sector = 0; sector < SectorsPerSide * SectorsPerSide; sector++) {
             _sectors.Add(new List<int>());
         }

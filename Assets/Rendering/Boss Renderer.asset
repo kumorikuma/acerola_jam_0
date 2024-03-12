@@ -15,7 +15,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     OutlineColor: {r: 1.8443028, g: 1.0799382, b: 0.6566103, a: 1}
-    OutlineBlendColor: {r: 0, g: 0, b: 0, a: 1}
+    OutlineBlendColor: {r: 2.1185474, g: 0, b: 0, a: 1}
     EnableNormalOutline: 1
     OnlyCompareToBg: 1
     CreaseAngleThresholdDeg: 180

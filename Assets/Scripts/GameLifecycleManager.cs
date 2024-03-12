@@ -50,6 +50,8 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 // Reset game
                 PlayerManager.Instance.PlayerController.Reset();
                 BossController.Instance.Reset();
+                PanelsController.Instance.Reset();
+                ProjectileController.Instance.Reset();
                 break;
             case GameState.GamePaused:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.PauseMenu);

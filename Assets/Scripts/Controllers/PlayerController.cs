@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour {
 
     private CinemachineBrain _cinemachineBrain;
     private Transform _previousActiveVirtualCamera;
-    private Vector3 _previousInputMoveVector = Vector3.zero;
     private Vector3 _previousDesiredMoveDirection = Vector3.zero;
     private bool _previousIsExecutingDash = false;
 
@@ -166,11 +165,25 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void Reset() {
+        _isMeleeAttacking = false;
+        _attackSoftEnded = false;
+        _comboAttackQueuedUp = false;
+        _comboStage = 0;
+        _planetDamageCooldownCountdown = 0;
+        _previousIsExecutingDash = false;
+        inputJumpOnNextFrame = false;
+        inputDashOnNextFrame = false;
+        inputPrimaryFireOnNextFrame = false;
+        inputSecondaryFireHeld = false;
+        _isExecutingFastTurn = false;
+        _isExecutingDash = false;
+
         SetPlayerLives(MaxPlayerLives);
         Stats.Reset();
         _shieldController.DeactivateShield();
         Animator.SetBool("IsDead", false);
         transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
     }
 
     public float GetRegularMovementSpeed() {
@@ -472,7 +485,6 @@ public class PlayerController : MonoBehaviour {
         // ReactUnityBridge.Instance.UpdateDebugString("IsDashCancel", isDashCancel.ToString());
 
         ThrusterController.Instance.HandleThrusterUpdates(moveSpeed);
-        _previousInputMoveVector = inputMoveVector;
         _previousDesiredMoveDirection = desiredMoveDirection;
         _previousIsExecutingDash = _isExecutingDash;
     }

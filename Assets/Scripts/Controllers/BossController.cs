@@ -58,6 +58,7 @@ public class BossController : Singleton<BossController> {
     private Vector3 _targetPosition = Vector3.zero;
     private Vector3 ArenaCenter = Vector3.zero;
     private Vector3 _originalPosition;
+    private Quaternion _originalRotation;
 
     public AnimationCurve MovementSpeedScaleCurve;
 
@@ -107,10 +108,12 @@ public class BossController : Singleton<BossController> {
         _blackHoleMaterialInstance = BlackHoleRenderer.material;
         _shieldMaterialInstance = ShieldRenderer.material;
         _originalPosition = transform.position;
+        _originalRotation = transform.rotation;
     }
 
     public void Reset() {
         transform.position = _originalPosition;
+        transform.rotation = _originalRotation;
         _attackCooldownCountdown = InitialAttackCooldown;
         _isAttacking = false;
         _shieldHealth = MaxShieldHealth;

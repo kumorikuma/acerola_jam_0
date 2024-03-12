@@ -56,15 +56,8 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.MainMenu);
                 GameplayContainer.SetActive(false);
                 MainMenuContainer.SetActive(true);
-                // Reset Game
-                if (PlayerManager.Instance) {
-                    PlayerManager.Instance.PlayerController.Reset();
-                }
-
-                if (BossController.Instance) {
-                    BossController.Instance.Reset();
-                }
-
+                Time.timeScale = 1;
+                // Despawn any projectiles and reset the terrain.
                 if (PanelsController.Instance) {
                     PanelsController.Instance.Reset();
                 }

@@ -134,6 +134,8 @@ public class BossController : Singleton<BossController> {
             _currentBulletSpawner.StopAll();
             _currentBulletSpawner = null;
         }
+
+        SetImmunity(false);
     }
 
     private void Update() {

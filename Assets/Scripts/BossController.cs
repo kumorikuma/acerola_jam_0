@@ -37,7 +37,9 @@ public class BossController : Singleton<BossController> {
     public float OptimalDistanceToPlayer = 30.0f;
     public float ReturnToCenterThreshold = 150.0f;
     public float RetreatVectorBias = 1.0f;
+    public int MaxShieldHealth = 10;
 
+    private int _shieldHealth;
     private int MaxBossLives = 3;
     private int CurrentBossLives = 3;
     public event EventHandler<int> OnBossLivesChanged;
@@ -63,7 +65,8 @@ public class BossController : Singleton<BossController> {
     private int _currentPhase = 0;
 
     public void FireMissiles() {
-        spawner.Play();
+        RestoreShield();
+        // spawner.Play();
 
         // Quaternion verticalRotation = Quaternion.LookRotation(this.transform.up, -this.transform.forward);
         // Projectile missile = ProjectileController.Instance.SpawnMissile(ProjectileController.Owner.Enemy,
@@ -129,6 +132,7 @@ public class BossController : Singleton<BossController> {
     private TweenerCore<Single, Single, FloatOptions> _shieldMaterialTween = null;
 
     public void PlayHitEffect() {
+        _shieldHealth -= 1;
         ShieldAnimator.SetTrigger("Hit");
         // .SetEase(Ease.InOutQuad)
         // _blackHoleMaterialInstance.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
@@ -146,7 +150,21 @@ public class BossController : Singleton<BossController> {
         //     // _shieldMaterialInstance.DOFloat(0, "_BlendTime", 0.25f);
         // });
 
+        float shieldT = 1 - _shieldHealth / (float)MaxShieldHealth;
+        _shieldMaterialInstance.SetFloat("_BlendTime", shieldT);
+        if (_shieldHealth <= 0) {
+            ShieldAnimator.SetBool("IsBroken", true);
+            Animator.SetBool("IsDead", true);
+        }
+
         // _shieldMaterialTween.Kill();
+    }
+
+    private void RestoreShield() {
+        _shieldHealth = MaxShieldHealth;
+        _shieldMaterialInstance.SetFloat("_BlendTime", 0);
+        ShieldAnimator.SetBool("IsBroken", false);
+        Animator.SetBool("IsDead", false);
     }
 
     private void OnSpawningStopped() {
@@ -156,6 +174,7 @@ public class BossController : Singleton<BossController> {
     public void Reset() {
         _attackCooldownCountdown = InitialAttackCooldown;
         _isAttacking = false;
+        _shieldHealth = MaxShieldHealth;
         SetBossLives(MaxBossLives);
         Stats.Reset();
     }

@@ -43,6 +43,7 @@ Material:
     m_Floats:
     - _AdditionalOffset: 0
     - _Animate: 1
+    - _BlendTime: 0
     - _DissolveT: 0
     - _Float: 0
     - _FresnelPower: 5.12
@@ -60,6 +61,7 @@ Material:
     m_Colors:
     - _BackColor: {r: 0.3962264, g: 0.16828513, b: 0.013082955, a: 1}
     - _FresnelColor: {r: 4.0000005, g: 1.8676695, b: 0.67015696, a: 1}
+    - _FrontBlendColor: {r: 15.999998, g: 0, b: 0, a: 1}
     - _FrontColor: {r: 4.944779, g: 3.4509802, b: 11.984314, a: 1}
     - _SphereCenter: {r: 0, g: 0, b: 0, a: 0}
     - _VertexOffset: {r: 0.1, g: 0.1, b: 0.1, a: 0}

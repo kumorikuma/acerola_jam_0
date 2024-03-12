@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.VFX;
 
 public class AnimationEvents : MonoBehaviour {
-    [NonNullField] public GameObject SlashAttack1VFX;
-    [NonNullField] public GameObject SlashAttack2VFX;
+    public GameObject SlashAttack1VFX;
+    public GameObject SlashAttack2VFX;
+    public Animator DummyMechaAnimator;
 
     public event EventHandler<float> OnSwordGlowStart;
     public event EventHandler<float> OnSwordGlowEnd;
@@ -42,5 +43,17 @@ public class AnimationEvents : MonoBehaviour {
     public void PlaySlashAttack2VFX() {
         SlashAttack2VFX.SetActive(true);
         SlashAttack2VFX.GetComponentInChildren<VisualEffect>().Play();
+    }
+
+    public void DummyMechaJumpPose() {
+        DummyMechaAnimator.SetTrigger("JumpPose");
+    }
+
+    public void DummyMechaIdlePose() {
+        DummyMechaAnimator.SetTrigger("IdlePose");
+    }
+
+    public void EndIntroSequence() {
+        GameLifecycleManager.Instance.OnIntroSequenceEnd();
     }
 }

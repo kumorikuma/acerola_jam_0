@@ -30,6 +30,11 @@ public class CameraController : MonoBehaviour {
         PlayerManager.Instance.PlayerController.OnLockedOnTargetChanged += OnLockedOnTargetChanged;
     }
 
+    public void Reset() {
+        _lockedOnTarget = null;
+        Pivot.transform.rotation = Quaternion.identity;
+    }
+
     private void OnLockedOnTargetChanged(object sender, Transform lockedOnTarget) {
         _lockedOnTarget = lockedOnTarget;
         if (lockedOnTarget == null) {

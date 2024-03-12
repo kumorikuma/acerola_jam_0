@@ -177,6 +177,7 @@ public class PlayerController : MonoBehaviour {
         inputSecondaryFireHeld = false;
         _isExecutingFastTurn = false;
         _isExecutingDash = false;
+        SetLockOnTarget(null);
 
         SetPlayerLives(MaxPlayerLives);
         Stats.Reset();

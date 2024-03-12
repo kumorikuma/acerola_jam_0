@@ -15,12 +15,13 @@ MonoBehaviour:
   m_Active: 1
   settings:
     OutlineColor: {r: 0.589, g: 0.67805004, b: 1, a: 1}
+    OutlineBlendColor: {r: 0, g: 0, b: 0, a: 1}
     EnableNormalOutline: 1
     OnlyCompareToBg: 0
     CreaseAngleThresholdDeg: 45
     DepthThreshold: 0
     ShaderName: CustomURP/PostProcessOutline
-    renderPassEvent: 1000
+    renderPassEvent: 450
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

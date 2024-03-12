@@ -5,13 +5,17 @@ using UnityEngine.InputSystem;
 public class GameLifecycleManager : Singleton<GameLifecycleManager> {
     public enum GameState {
         MainMenu,
+        GameIntroSequence,
         GameStarted,
         GamePaused,
+        GameOutroSequenceWin,
+        GameOutroSequenceLose,
         GameOver,
     }
 
     [NonNullField] public GameObject GameplayContainer;
     [NonNullField] public GameObject MainMenuContainer;
+    [NonNullField] public Animator SequenceAnimator;
 
     public bool Debug_IsDebugModeEnabled = false;
     public GameState Debug_StartingGameState = GameState.GameStarted;
@@ -45,15 +49,23 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
             return;
         }
 
+        // The "Press Any Key to Start" in the main menu.
         if (Keyboard.current.anyKey.wasReleasedThisFrame) {
-            SwitchGameState(GameState.GameStarted);
+            StartGame();
         }
+    }
+
+    public void OnIntroSequenceEnd() {
+        // Show the boss.
+        BossController.Instance.gameObject.SetActive(true);
+        SwitchGameState(GameState.GameStarted);
     }
 
     private void SwitchGameState(GameState gameState) {
         switch (gameState) {
             case GameState.MainMenu:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.MainMenu);
+                PlayerManager.Instance.SwitchActionMaps("menu");
                 GameplayContainer.SetActive(false);
                 MainMenuContainer.SetActive(true);
                 Time.timeScale = 1;
@@ -67,23 +79,32 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 }
 
                 break;
-            case GameState.GameStarted:
-                UIRouter.Instance.SwitchRoutes(UIRouter.Route.Hud);
+            case GameState.GameIntroSequence:
+                UIRouter.Instance.SwitchRoutes(UIRouter.Route.None);
+                ToggleCursor(false);
+                // Hide the main menu and show the rest of the game
                 GameplayContainer.SetActive(true);
                 MainMenuContainer.SetActive(false);
+                // Reset the game
+                ReactUnityBridge.Instance.InitializeGameStuff(); // UI Comes first
+                PlayerManager.Instance.PlayerController.Reset();
+                PlayerManager.Instance.CameraController.Reset();
+                BossController.Instance.Reset();
+                PanelsController.Instance.Reset();
+                ProjectileController.Instance.Reset();
+                // Hide the boss
+                BossController.Instance.gameObject.SetActive(false);
+                // Play the animation.
+                SequenceAnimator.SetTrigger("PlayIntro");
+                break;
+            case GameState.GameStarted:
+                UIRouter.Instance.SwitchRoutes(UIRouter.Route.Hud);
+                // GameplayContainer.SetActive(true);
+                // MainMenuContainer.SetActive(false);
                 // Unpause the game
                 Time.timeScale = 1;
                 PlayerManager.Instance.SwitchActionMaps("gameplay");
                 ToggleCursor(false);
-                // Reset game if we weren't paused before
-                if (_currentGameState != GameState.GamePaused) {
-                    PlayerManager.Instance.PlayerController.Reset();
-                    BossController.Instance.Reset();
-                    PanelsController.Instance.Reset();
-                    ProjectileController.Instance.Reset();
-                    ReactUnityBridge.Instance.InitializeGameStuff();
-                }
-
                 break;
             case GameState.GamePaused:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.PauseMenu);
@@ -114,7 +135,7 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
     }
 
     public void StartGame() {
-        SwitchGameState(GameState.GameStarted);
+        SwitchGameState(GameState.GameIntroSequence);
     }
 
     public void EndGame() {

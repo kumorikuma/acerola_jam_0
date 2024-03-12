@@ -40,12 +40,8 @@ public class Projectile : MonoBehaviour {
         if (ProjectileOwner == ProjectileController.Owner.Player) {
             if (other.CompareTag("Targetable")) {
                 // We've hit the Boss    
-                EntityStats stats = other.GetComponent<EntityStats>();
-                if (stats == null) {
-                    Debug.LogError("[Projectile] Collided object does not have stats component!");
-                } else {
-                    stats.ApplyDamage(5);
-                }
+                BossController bossController = other.GetComponent<BossController>();
+                bossController.ApplyShieldDamage();
 
                 ProjectileController.Instance.DestroyProjectile(this);
             } else if (other.CompareTag("Destructible")) {

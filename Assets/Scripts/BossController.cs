@@ -38,6 +38,8 @@ public class BossController : Singleton<BossController> {
     public float ReturnToCenterThreshold = 150.0f;
     public float RetreatVectorBias = 1.0f;
     public int MaxShieldHealth = 10;
+    public float ShieldDowntime = 5.0f;
+    public float ShieldRecoveryTime = 1.0f;
 
     private int _shieldHealth;
     private int MaxBossLives = 3;
@@ -63,6 +65,7 @@ public class BossController : Singleton<BossController> {
     private PhaseData _currentBossPhaseData;
     private List<BulletSpawner> _bulletSpawnersBag = new();
     private int _currentPhase = 0;
+    private BulletSpawner _currentBulletSpawner = null;
 
     public void FireMissiles() {
         RestoreShield();
@@ -132,32 +135,49 @@ public class BossController : Singleton<BossController> {
     private TweenerCore<Single, Single, FloatOptions> _shieldMaterialTween = null;
 
     public void PlayHitEffect() {
-        _shieldHealth -= 1;
-        ShieldAnimator.SetTrigger("Hit");
         // .SetEase(Ease.InOutQuad)
-        // _blackHoleMaterialInstance.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
-        //     _blackHoleMaterialInstance.DOFloat(0, "_BlendTime", 0.25f);
-        // });
-        //
-        // Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
-        // postProcessOutlineMaterial.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
-        //     postProcessOutlineMaterial.DOFloat(0, "_BlendTime", 0.25f);
-        // });
+        _blackHoleMaterialInstance.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
+            _blackHoleMaterialInstance.DOFloat(0, "_BlendTime", 0.25f);
+        });
 
-        // _shieldMaterialTween = _shieldMaterialInstance.DOFloat(1000, "_AdditionalOffset", 0.5f).OnComplete(() => {
-        //     Debug.Log("ON COMPLETE");
-        //     _shieldMaterialInstance.SetFloat("_AdditionalOffset", 1);
-        //     // _shieldMaterialInstance.DOFloat(0, "_BlendTime", 0.25f);
-        // });
+        Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
+        postProcessOutlineMaterial.DOFloat(1, "_BlendTime", 0.25f).OnComplete(() => {
+            postProcessOutlineMaterial.DOFloat(0, "_BlendTime", 0.25f);
+        });
+    }
 
-        float shieldT = 1 - _shieldHealth / (float)MaxShieldHealth;
+    public void ApplyShieldDamage() {
+        _shieldHealth -= 1;
+
+        ShieldAnimator.SetTrigger("Hit");
+        // Multiply by 2 to accentuate the color and transition faster.
+        float shieldT = (1 - _shieldHealth / (float)MaxShieldHealth) * 2;
         _shieldMaterialInstance.SetFloat("_BlendTime", shieldT);
+
         if (_shieldHealth <= 0) {
-            ShieldAnimator.SetBool("IsBroken", true);
-            Animator.SetBool("IsDead", true);
+            BreakShield();
+        }
+    }
+
+    private void BreakShield() {
+        ShieldAnimator.SetBool("IsBroken", true);
+        Animator.SetBool("IsDead", true);
+
+        // Disable boss from doing anything
+        IsLocomotionEnabled = false;
+        IsAttackingEnabled = false;
+        if (_currentBulletSpawner != null) {
+            _currentBulletSpawner.StopAll();
         }
 
-        // _shieldMaterialTween.Kill();
+
+        // Shield will restore after this time.
+        StartCoroutine(RestoreShieldAfterDelay(ShieldDowntime));
+    }
+
+    private IEnumerator RestoreShieldAfterDelay(float delaySeconds) {
+        yield return new WaitForSeconds(delaySeconds);
+        RestoreShield();
     }
 
     private void RestoreShield() {
@@ -165,10 +185,21 @@ public class BossController : Singleton<BossController> {
         _shieldMaterialInstance.SetFloat("_BlendTime", 0);
         ShieldAnimator.SetBool("IsBroken", false);
         Animator.SetBool("IsDead", false);
+
+        // Restore State
+        StartCoroutine(RestoreActionsAfterDelay(ShieldRecoveryTime));
+        _attackCooldownCountdown = InitialAttackCooldown;
+    }
+
+    private IEnumerator RestoreActionsAfterDelay(float delaySeconds) {
+        yield return new WaitForSeconds(delaySeconds);
+        IsAttackingEnabled = true;
+        IsLocomotionEnabled = true;
     }
 
     private void OnSpawningStopped() {
         _isAttacking = false;
+        _currentBulletSpawner = null;
     }
 
     public void Reset() {
@@ -252,15 +283,15 @@ public class BossController : Singleton<BossController> {
 
         // Pick a random spawner
         int spawnerIdx = UnityEngine.Random.Range(0, _bulletSpawnersBag.Count);
-        BulletSpawner selectedSpawner = _bulletSpawnersBag[spawnerIdx];
+        _currentBulletSpawner = _bulletSpawnersBag[spawnerIdx];
 
         // Unsubcribe first just in case we've already subscribed (duplicate reference).
-        selectedSpawner.OnSpawningStopped -= OnSpawningStopped;
-        selectedSpawner.OnSpawningStopped += OnSpawningStopped;
+        _currentBulletSpawner.OnSpawningStopped -= OnSpawningStopped;
+        _currentBulletSpawner.OnSpawningStopped += OnSpawningStopped;
 
         // Remove it so it's not picked again
         _bulletSpawnersBag.RemoveAt(spawnerIdx);
-        selectedSpawner.Play();
+        _currentBulletSpawner.Play();
     }
 
 

@@ -807,18 +807,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 2123255200}
     m_Modifications:
     - target: {fileID: 5334812076701219456, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5334812076701219456, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5334812076701219456, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5334812076701219456, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -861,18 +849,6 @@ PrefabInstance:
     - target: {fileID: 5716271191950035636, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
       propertyPath: m_Name
       value: BossMech
-      objectReference: {fileID: 0}
-    - target: {fileID: 5716271191950035636, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 5893274065392831934, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7012160382078027152, guid: 687ab7fb35b97704f813b39a0bcd40f1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

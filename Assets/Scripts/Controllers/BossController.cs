@@ -26,13 +26,15 @@ public class BossController : Singleton<BossController> {
     [NonNullField] public Animator Animator;
 
     [NonNullField] public PostProcessOutline PostProcessOutlineRenderFeature;
-    private Tweener _postProcessMaterialTweener;
     [NonNullField] public MeshRenderer BlackHoleRenderer;
     private Material _blackHoleMaterialInstance;
-    private Tweener _blackHoleMaterialTweener;
     [NonNullField] public MeshRenderer ShieldRenderer;
     private Material _shieldMaterialInstance;
     [NonNullField] public Animator ShieldAnimator;
+    [NonNullField] public MeshRenderer BossMechRenderer;
+    private Material _bossMechMaterialInstance;
+
+    public List<GameObject> ThrusterObjects;
 
     public bool IsLocomotionEnabled = true;
     public bool IsAttackingEnabled = true;
@@ -47,7 +49,6 @@ public class BossController : Singleton<BossController> {
     public float ShieldRecoveryTime = 1.0f;
     public int PlayerProjectileDamageToBossWhileStaggered = 5;
     public int PlayerSwordDamageToBoss = 25;
-
 
     private int MaxBossLives = 3;
     private int CurrentBossLives = 3;
@@ -120,6 +121,7 @@ public class BossController : Singleton<BossController> {
 
         _blackHoleMaterialInstance = BlackHoleRenderer.material;
         _shieldMaterialInstance = ShieldRenderer.material;
+        _bossMechMaterialInstance = BossMechRenderer.sharedMaterial;
         _originalPosition = transform.position;
         _originalRotation = transform.rotation;
         IdleMovementCurve.postWrapMode = WrapMode.Loop;
@@ -130,6 +132,8 @@ public class BossController : Singleton<BossController> {
     public void Reset() {
         ShieldAnimator.SetBool("IsBroken", false);
         Animator.SetBool("IsDead", false);
+        _bossMechMaterialInstance.SetFloat("_DissolveTime", 0);
+        ToggleThrusters(true);
 
         transform.position = _originalPosition;
         transform.rotation = _originalRotation;
@@ -184,6 +188,12 @@ public class BossController : Singleton<BossController> {
         Reset();
     }
 
+    private void ToggleThrusters(bool isEnabled) {
+        foreach (GameObject thrusterObject in ThrusterObjects) {
+            thrusterObject.SetActive(isEnabled);
+        }
+    }
+
     private void OnDamageTaken(object sender, float damageTaken) {
         PlayHitEffect();
 
@@ -206,14 +216,25 @@ public class BossController : Singleton<BossController> {
 
     public void PlayHitEffect() {
         float hitAnimationTime = 0.25f;
-        _blackHoleMaterialTweener = _blackHoleMaterialInstance.DOFloat(1, "_BlendTime", hitAnimationTime).OnComplete(
+        _blackHoleMaterialInstance.DOFloat(1, "_BlendTime", hitAnimationTime).OnComplete(
             () => {
                 _blackHoleMaterialInstance.DOFloat(0, "_BlendTime", hitAnimationTime);
             });
         Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
-        _postProcessMaterialTweener = postProcessOutlineMaterial.DOFloat(1, "_BlendTime", hitAnimationTime).OnComplete(
+        postProcessOutlineMaterial.DOFloat(1, "_BlendTime", hitAnimationTime).OnComplete(
             () => {
                 postProcessOutlineMaterial.DOFloat(0, "_BlendTime", hitAnimationTime);
+            });
+    }
+
+    public void PlayDissolveAnimation(float durationSec) {
+        // Disable the thrusters.
+        ToggleThrusters(false);
+
+        // Fade away the boss.
+        _bossMechMaterialInstance.DOFloat(1, "_DissolveTime", durationSec).OnComplete(
+            () => {
+                // Make it inactive? I guess it doesn't matter.
             });
     }
 
@@ -317,7 +338,7 @@ public class BossController : Singleton<BossController> {
         CurrentBossLives = Mathf.Clamp(bossLives, 0, MaxBossLives);
         if (CurrentBossLives == 0) {
             // Player wins!
-            GameLifecycleManager.Instance.EndGame();
+            GameLifecycleManager.Instance.WinGame();
         } else {
             _currentPhase = MaxBossLives - CurrentBossLives;
             _currentBossPhaseData = BossPhaseData[_currentPhase];

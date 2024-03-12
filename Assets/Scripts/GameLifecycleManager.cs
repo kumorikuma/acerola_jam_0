@@ -140,7 +140,15 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
         SwitchGameState(GameState.GameIntroSequence);
     }
 
-    public void EndGame() {
+    public void WinGame() {
+        SequenceAnimator.SetTrigger("PlayWinSequence");
+    }
+
+    public void LoseGame() {
+        SequenceAnimator.SetTrigger("PlayLoseSequence");
+    }
+
+    public void GameOver() {
         SwitchGameState(GameState.GameOver);
     }
 

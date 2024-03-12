@@ -108,14 +108,19 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _DissolveScale: 30
+    - _DissolveThickness: 0.02
+    - _DissolveTime: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnableIntersection: 0
     - _EnableStarsMaterial: 0
     - _EnvironmentReflections: 1
+    - _Float: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Height: 1
     - _IntersectionDepth: 0.5
     - _IntersectionPower: 1
     - _Metallic: 0
@@ -136,11 +141,13 @@ Material:
     - _VoronoiPower: 5
     - _VoronoiSpeed: 3
     - _WorkflowMode: 1
+    - _YThreshold: 12
     - _ZWrite: 1
     m_Colors:
     - _AccentColor: {r: 0.022339799, g: 0, b: 0.177, a: 0}
     - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 0.7924528, g: 0.5220757, b: 0, a: 1}
+    - _DissolveColor: {r: 5.9921575, g: 2.92329, b: 0.36744377, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _InnerColor: {r: 0.60411644, g: 0.28773582, b: 1, a: 1}
     - _IntersectionColor: {r: 1, g: 1, b: 1, a: 1}

@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour {
 
     public void DeathSequence() {
         Animator.SetBool("IsDead", true);
-        GameLifecycleManager.Instance.EndGame();
+        GameLifecycleManager.Instance.LoseGame();
     }
 
     private void Awake() {

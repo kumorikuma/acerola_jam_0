@@ -56,4 +56,12 @@ public class AnimationEvents : MonoBehaviour {
     public void EndIntroSequence() {
         GameLifecycleManager.Instance.OnIntroSequenceEnd();
     }
+
+    public void DissolveBoss(float durationSeconds) {
+        BossController.Instance.PlayDissolveAnimation(durationSeconds);
+    }
+
+    public void EndWinOutroSequence() {
+        GameLifecycleManager.Instance.GameOver();
+    }
 }

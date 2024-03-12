@@ -51,6 +51,8 @@ public class Projectile : MonoBehaviour {
                 // TODO: Play VFX Here.
                 ProjectileController.Instance.DestroyProjectile(otherProjectile);
                 ProjectileController.Instance.DestroyProjectile(this);
+            } else if (other.CompareTag("InDestructible")) {
+                ProjectileController.Instance.DestroyProjectile(this);
             }
         } else if (ProjectileOwner == ProjectileController.Owner.Enemy && other.CompareTag("Player")) {
             EntityStats stats = other.GetComponent<EntityStats>();

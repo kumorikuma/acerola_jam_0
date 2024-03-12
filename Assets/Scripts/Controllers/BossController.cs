@@ -42,6 +42,7 @@ public class BossController : Singleton<BossController> {
     public float OptimalDistanceToPlayer = 30.0f;
     public float ReturnToCenterThreshold = 150.0f;
     public float RetreatVectorBias = 1.0f;
+    public int StaggerDamageThreshold = 50;
     public int MaxShieldHealth = 10;
     public float ShieldRecoveryTime = 1.0f;
     public int PlayerProjectileDamageToBossWhileStaggered = 5;
@@ -79,6 +80,8 @@ public class BossController : Singleton<BossController> {
     private int _shieldHealth;
     private bool _isIndestructible = false;
     private float _idleTime = 0;
+    private int _damageTakenWhileStaggered = 0;
+    private Coroutine _restoreShieldCoroutine = null;
 
     public void FireMissiles() {
         RestoreShield();
@@ -164,6 +167,20 @@ public class BossController : Singleton<BossController> {
 
     private void OnDamageTaken(object sender, float damageTaken) {
         PlayHitEffect();
+
+        // If our shield is at 0, when we've taken over a cetain amount of damage. Instantly get up.
+        if (_shieldHealth == 0) {
+            if (_damageTakenWhileStaggered >= StaggerDamageThreshold) {
+                if (_restoreShieldCoroutine != null) {
+                    StopCoroutine(_restoreShieldCoroutine);
+                    _restoreShieldCoroutine = null;
+                }
+
+                RestoreShield();
+            } else {
+                _damageTakenWhileStaggered += Mathf.RoundToInt(damageTaken);
+            }
+        }
     }
 
     private TweenerCore<Single, Single, FloatOptions> _shieldMaterialTween = null;
@@ -179,22 +196,10 @@ public class BossController : Singleton<BossController> {
             () => {
                 postProcessOutlineMaterial.DOFloat(0, "_BlendTime", hitAnimationTime);
             });
-        // StartCoroutine(StartEndHitAnimation(hitAnimationTime));
     }
 
     public void PlayIndestructibleHitEffect() {
         // TODO: Play some special animation?
-    }
-
-    // On complete doesn't work sometimes, so this is workaround.
-    private IEnumerator StartEndHitAnimation(float delaySeconds) {
-        yield return new WaitForSeconds(delaySeconds);
-        _blackHoleMaterialTweener.Kill();
-        _postProcessMaterialTweener.Kill();
-
-        _blackHoleMaterialInstance.DOFloat(0, "_BlendTime", delaySeconds);
-        Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
-        postProcessOutlineMaterial.DOFloat(0, "_BlendTime", delaySeconds);
     }
 
     public void ApplySwordDamage() {
@@ -240,8 +245,9 @@ public class BossController : Singleton<BossController> {
             _currentBulletSpawner.StopAll();
         }
 
-        // Shield will restore after this time.
-        StartCoroutine(RestoreShieldAfterDelay(_currentBossPhaseData.BossStaggerTime));
+        // Shield will restore after some time, or when the damage threshold is exceeded.
+        _damageTakenWhileStaggered = 0;
+        _restoreShieldCoroutine = StartCoroutine(RestoreShieldAfterDelay(_currentBossPhaseData.BossStaggerTime));
     }
 
     private IEnumerator RestoreShieldAfterDelay(float delaySeconds) {

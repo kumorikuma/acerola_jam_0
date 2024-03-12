@@ -46,7 +46,7 @@ public class BossController : Singleton<BossController> {
     public int PlayerProjectileDamageToBossWhileStaggered = 5;
     public int PlayerSwordDamageToBoss = 25;
 
-    private int _shieldHealth;
+
     private int MaxBossLives = 3;
     private int CurrentBossLives = 3;
     public event EventHandler<int> OnBossLivesChanged;
@@ -57,6 +57,7 @@ public class BossController : Singleton<BossController> {
     private Quaternion _targetRotation = Quaternion.identity;
     private Vector3 _targetPosition = Vector3.zero;
     private Vector3 ArenaCenter = Vector3.zero;
+    private Vector3 _originalPosition;
 
     public AnimationCurve MovementSpeedScaleCurve;
 
@@ -71,6 +72,7 @@ public class BossController : Singleton<BossController> {
     private List<BulletSpawner> _bulletSpawnersBag = new();
     private int _currentPhase = 0;
     private BulletSpawner _currentBulletSpawner = null;
+    private int _shieldHealth;
     private bool _isIndestructible = false;
 
     public void FireMissiles() {
@@ -104,6 +106,22 @@ public class BossController : Singleton<BossController> {
 
         _blackHoleMaterialInstance = BlackHoleRenderer.material;
         _shieldMaterialInstance = ShieldRenderer.material;
+        _originalPosition = transform.position;
+    }
+
+    public void Reset() {
+        transform.position = _originalPosition;
+        _attackCooldownCountdown = InitialAttackCooldown;
+        _isAttacking = false;
+        _shieldHealth = MaxShieldHealth;
+        _isIndestructible = false;
+        SetBossLives(MaxBossLives);
+        Stats.Reset();
+        RestoreShield();
+        if (_currentBulletSpawner != null) {
+            _currentBulletSpawner.StopAll();
+            _currentBulletSpawner = null;
+        }
     }
 
     private void Update() {
@@ -243,15 +261,6 @@ public class BossController : Singleton<BossController> {
     private void OnSpawningStopped() {
         _isAttacking = false;
         _currentBulletSpawner = null;
-    }
-
-    public void Reset() {
-        _attackCooldownCountdown = InitialAttackCooldown;
-        _isAttacking = false;
-        _shieldHealth = MaxShieldHealth;
-        SetBossLives(MaxBossLives);
-        Stats.Reset();
-        RestoreShield();
     }
 
     private void OnHealthChanged(object sender, float health) {

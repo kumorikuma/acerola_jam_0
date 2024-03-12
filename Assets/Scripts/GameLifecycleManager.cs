@@ -56,6 +56,23 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.MainMenu);
                 GameplayContainer.SetActive(false);
                 MainMenuContainer.SetActive(true);
+                // Reset Game
+                if (PlayerManager.Instance) {
+                    PlayerManager.Instance.PlayerController.Reset();
+                }
+
+                if (BossController.Instance) {
+                    BossController.Instance.Reset();
+                }
+
+                if (PanelsController.Instance) {
+                    PanelsController.Instance.Reset();
+                }
+
+                if (ProjectileController.Instance) {
+                    ProjectileController.Instance.Reset();
+                }
+
                 break;
             case GameState.GameStarted:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.Hud);

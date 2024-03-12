@@ -89,6 +89,7 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 ReactUnityBridge.Instance.InitializeGameStuff(); // UI Comes first
                 PlayerManager.Instance.PlayerController.Reset();
                 PlayerManager.Instance.CameraController.Reset();
+                PlayerManager.Instance.CameraController.SetEnabled(false);
                 BossController.Instance.Reset();
                 PanelsController.Instance.Reset();
                 ProjectileController.Instance.Reset();
@@ -104,6 +105,7 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 // Unpause the game
                 Time.timeScale = 1;
                 PlayerManager.Instance.SwitchActionMaps("gameplay");
+                PlayerManager.Instance.CameraController.SetEnabled(true);
                 ToggleCursor(false);
                 break;
             case GameState.GamePaused:

@@ -21,6 +21,11 @@ public class CameraController : MonoBehaviour {
     // [NonNullField] public CinemachineTargetGroup TargetGroup;
 
     private Transform _lockedOnTarget = null;
+    private bool _isEnabled = false;
+
+    public void SetEnabled(bool isEnabled) {
+        _isEnabled = isEnabled;
+    }
 
     public void OnLook(Vector2 lookVector) {
         inputLookDirection = lookVector * LookSpeed;
@@ -31,6 +36,7 @@ public class CameraController : MonoBehaviour {
     }
 
     public void Reset() {
+        _isEnabled = false;
         _lockedOnTarget = null;
         Pivot.transform.rotation = Quaternion.identity;
     }
@@ -82,6 +88,10 @@ public class CameraController : MonoBehaviour {
     }
 
     public void UpdateCamera() {
+        if (!_isEnabled) {
+            return;
+        }
+
         if (_lockedOnTarget == null) {
             // Let the user control the camera
 

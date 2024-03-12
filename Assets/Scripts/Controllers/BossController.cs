@@ -84,7 +84,12 @@ public class BossController : Singleton<BossController> {
     private int _damageTakenWhileStaggered = 0;
     private Coroutine _restoreShieldCoroutine = null;
 
+    private bool foo = true;
+
     public void FireMissiles() {
+        PlayerManager.Instance.PlayerController.Animator.SetBool("IsDead", foo);
+        foo = !foo;
+
         // RestoreShield();
         // spawner.Play();
 
@@ -119,9 +124,13 @@ public class BossController : Singleton<BossController> {
         _originalRotation = transform.rotation;
         IdleMovementCurve.postWrapMode = WrapMode.Loop;
         IdleMovementCurve.preWrapMode = WrapMode.Loop;
+        Animator.keepAnimatorStateOnDisable = true;
     }
 
     public void Reset() {
+        ShieldAnimator.SetBool("IsBroken", false);
+        Animator.SetBool("IsDead", false);
+
         transform.position = _originalPosition;
         transform.rotation = _originalRotation;
         _attackCooldownCountdown = InitialAttackCooldown;
@@ -188,7 +197,7 @@ public class BossController : Singleton<BossController> {
                     _restoreShieldCoroutine = null;
                 }
 
-                RestoreShield(ShieldRecoveryTime);
+                StartCoroutine(RestoreShieldAfterDelay(ShieldRecoveryTime));
             }
         }
     }

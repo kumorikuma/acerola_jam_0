@@ -3611,7 +3611,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   InitialAttackCooldown: 3
-  AttackCooldown: 3
+  AttackCooldown: 4
   BossPhaseData:
   - BossHealth: 150
     BulletSpawners:

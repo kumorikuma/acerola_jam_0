@@ -129,16 +129,15 @@ public class PlayerController : MonoBehaviour {
     private void ConsumeLife() {
         SetPlayerLives(CurrentPlayerLives - 1);
         if (CurrentPlayerLives == 0) {
-            this.StartCoroutine(DeathSequence());
+            DeathSequence();
         } else {
             // Heal the player back up to 50%
             Stats.SetHealthToPercentage(0.5f);
         }
     }
 
-    IEnumerator DeathSequence() {
+    public void DeathSequence() {
         Animator.SetBool("IsDead", true);
-        yield return new WaitForSeconds(2);
         GameLifecycleManager.Instance.EndGame();
     }
 
@@ -151,6 +150,7 @@ public class PlayerController : MonoBehaviour {
         _crystalSwordMaterialInstance = CrystalSwordModel.material;
         Stats = GetComponent<EntityStats>();
         _velocity.y = -2f;
+        Animator.keepAnimatorStateOnDisable = true;
     }
 
     private void Start() {
@@ -205,6 +205,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnJump() {
+        // Cannot jump while doing any of those things.
+        if (_isBlocking || _isExecutingDash || _isMeleeAttacking || !characterController.isGrounded) {
+            return;
+        }
+
         inputJumpOnNextFrame = true;
     }
 
@@ -306,6 +311,7 @@ public class PlayerController : MonoBehaviour {
 
         if (inputJumpOnNextFrame && characterController.isGrounded) {
             _velocity.y = Mathf.Sqrt(JumpForce * -2f * gravity);
+            inputJumpOnNextFrame = false;
         }
 
         // Start a dash (cannot dash while dashing)
@@ -321,7 +327,6 @@ public class PlayerController : MonoBehaviour {
             Debug.LogError("[PlayerController] We should've dash canceled but we didn't!");
         }
 
-        inputJumpOnNextFrame = false;
         inputDashOnNextFrame = false;
 
         // Check to see if the dash is over

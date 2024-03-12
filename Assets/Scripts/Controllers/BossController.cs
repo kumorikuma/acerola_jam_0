@@ -80,11 +80,12 @@ public class BossController : Singleton<BossController> {
     private int _shieldHealth;
     private bool _isIndestructible = false;
     private float _idleTime = 0;
+    private float _restoreActionsCountdown = 0.0f;
     private int _damageTakenWhileStaggered = 0;
     private Coroutine _restoreShieldCoroutine = null;
 
     public void FireMissiles() {
-        RestoreShield();
+        // RestoreShield();
         // spawner.Play();
 
         // Quaternion verticalRotation = Quaternion.LookRotation(this.transform.up, -this.transform.forward);
@@ -129,19 +130,26 @@ public class BossController : Singleton<BossController> {
         _isIndestructible = false;
         SetBossLives(MaxBossLives);
         Stats.Reset();
-        RestoreShield();
+        RestoreShield(ShieldRecoveryTime);
+        IsAttackingEnabled = true;
+        IsLocomotionEnabled = true;
         if (_currentBulletSpawner != null) {
             _currentBulletSpawner.StopAll();
             _currentBulletSpawner = null;
         }
-
-        SetImmunity(false);
     }
 
     private void Update() {
         // If the game is over, don't do anything
         if (!GameLifecycleManager.Instance.IsGamePlaying()) {
             return;
+        }
+
+        // If we're immune, this loses the immunity after a period of time.
+        if (_restoreActionsCountdown <= 0.0f && _isIndestructible) {
+            RestoreActions();
+        } else {
+            _restoreActionsCountdown -= Time.deltaTime;
         }
 
         if (IsLocomotionEnabled) {
@@ -180,7 +188,7 @@ public class BossController : Singleton<BossController> {
                     _restoreShieldCoroutine = null;
                 }
 
-                RestoreShield();
+                RestoreShield(ShieldRecoveryTime);
             }
         }
     }
@@ -254,10 +262,10 @@ public class BossController : Singleton<BossController> {
 
     private IEnumerator RestoreShieldAfterDelay(float delaySeconds) {
         yield return new WaitForSeconds(delaySeconds);
-        RestoreShield();
+        RestoreShield(ShieldRecoveryTime);
     }
 
-    private void RestoreShield() {
+    private void RestoreShield(float immunityTime) {
         _shieldHealth = MaxShieldHealth;
         _shieldMaterialInstance.SetFloat("_BlendTime", 0);
         ShieldAnimator.SetBool("IsBroken", false);
@@ -265,12 +273,15 @@ public class BossController : Singleton<BossController> {
 
         // Restore State. Boss is immune while this is happening.
         SetImmunity(true);
-        StartCoroutine(RestoreActionsAfterDelay(ShieldRecoveryTime));
+        RestoreActionsAfterDelay(immunityTime);
         _attackCooldownCountdown = InitialAttackCooldown;
     }
 
-    private IEnumerator RestoreActionsAfterDelay(float delaySeconds) {
-        yield return new WaitForSeconds(delaySeconds);
+    private void RestoreActionsAfterDelay(float immunityTime) {
+        _restoreActionsCountdown = immunityTime;
+    }
+
+    private void RestoreActions() {
         IsAttackingEnabled = true;
         IsLocomotionEnabled = true;
         SetImmunity(false);

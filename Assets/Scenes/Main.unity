@@ -12039,6 +12039,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2129484653372277915, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3241699822124558690, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: m_Cameras.Array.size
       value: 5

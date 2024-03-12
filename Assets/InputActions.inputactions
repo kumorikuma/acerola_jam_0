@@ -313,17 +313,6 @@
                 },
                 {
                     "name": "",
-                    "id": "02ae576b-7bee-48c1-8ae0-17382bcc9750",
-                    "path": "<Keyboard>/leftCtrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Block",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "cd51d4e6-6f82-46f9-8239-acc084878897",
                     "path": "<Keyboard>/f2",
                     "interactions": "",

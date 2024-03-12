@@ -98,6 +98,12 @@ public class BossController : Singleton<BossController> {
     protected override void Awake() {
         base.Awake();
         Stats = GetComponent<EntityStats>();
+        Stats.NotifyHealthChanged();
+        Stats.OnHealthChanged += OnHealthChanged;
+        Stats.OnDamageTaken += OnDamageTaken;
+
+        _blackHoleMaterialInstance = BlackHoleRenderer.material;
+        _shieldMaterialInstance = ShieldRenderer.material;
     }
 
     private void Update() {
@@ -118,9 +124,6 @@ public class BossController : Singleton<BossController> {
     }
 
     private void Start() {
-        Stats.NotifyHealthChanged();
-        Stats.OnHealthChanged += OnHealthChanged;
-        Stats.OnDamageTaken += OnDamageTaken;
         _playerTarget = PlayerManager.Instance.PlayerController.EnemyAimTargetLocation;
 
         if (BossPhaseData.Count == 0) {
@@ -128,8 +131,6 @@ public class BossController : Singleton<BossController> {
         }
 
         MaxBossLives = BossPhaseData.Count;
-        _blackHoleMaterialInstance = BlackHoleRenderer.material;
-        _shieldMaterialInstance = ShieldRenderer.material;
 
         Reset();
     }

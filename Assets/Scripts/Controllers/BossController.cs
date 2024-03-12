@@ -277,6 +277,7 @@ public class BossController : Singleton<BossController> {
     private void SetImmunity(bool isImmune) {
         // TODO: Maybe shield should be a special color here?
         _isIndestructible = isImmune;
+        ShieldAnimator.SetBool("IsImmune", _isIndestructible);
     }
 
     private void OnSpawningStopped() {

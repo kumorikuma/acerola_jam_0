@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,6 +20,7 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
     [NonNullField] public Animator SequenceAnimator;
     [NonNullField] public MeshRenderer MenuFaderRenderer;
     [NonNullField] public MeshRenderer GameFaderRenderer;
+    [NonNullField] public GameObject BlackHoleObject;
     private Material _menuFaderMaterialInstance;
     private Material _gameFaderMaterialInstance;
 
@@ -68,6 +70,8 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
         // Show the boss.
         BossController.Instance.gameObject.SetActive(true);
         SwitchGameState(GameState.GameStarted);
+        // Start playing music
+        SoundController.Instance.PlayGameMusic1(true);
     }
 
     private void SwitchGameState(GameState gameState) {
@@ -91,10 +95,11 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 }
 
                 PlayerManager.Instance.PlayerController.SetProcessedEnabled(false);
-
+                SoundController.Instance.PlayMenuMusic(true);
                 break;
             case GameState.Controls:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.Controls);
+                SoundController.Instance.PlayMenuMusic(false);
                 // Hide the main menu and show the rest of the game
                 GameplayContainer.SetActive(true);
                 MainMenuContainer.SetActive(false);
@@ -106,10 +111,13 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 BossController.Instance.Reset();
                 PanelsController.Instance.Reset();
                 ProjectileController.Instance.Reset();
+                BlackHoleObject.SetActive(false);
                 // Hide the boss
                 BossController.Instance.gameObject.SetActive(false);
                 break;
             case GameState.GameIntroSequence:
+                SoundController.Instance.PlayWarningSound(true);
+                StartCoroutine(StopWarningSoundAfter(2.0f));
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.None);
                 ToggleCursor(false);
                 // Play the animation.
@@ -117,16 +125,17 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 break;
             case GameState.GameStarted:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.Hud);
-                // GameplayContainer.SetActive(true);
-                // MainMenuContainer.SetActive(false);
+                // The actual music playing will not be controlled here because we don't want to unpause into a different track.
                 // Unpause the game
                 Time.timeScale = 1;
                 PlayerManager.Instance.SwitchActionMaps("gameplay");
                 PlayerManager.Instance.CameraController.SetEnabled(true);
+                SoundController.Instance.PauseAllTracks(false);
                 ToggleCursor(false);
                 break;
             case GameState.GamePaused:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.PauseMenu);
+                SoundController.Instance.PauseAllTracks(true);
                 // Pause the Game
                 Time.timeScale = 0;
                 PlayerManager.Instance.SwitchActionMaps("menu");
@@ -134,11 +143,14 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 break;
             case GameState.GameOver:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.GameOver);
+                SoundController.Instance.StopAllTracks();
+                SoundController.Instance.PlayMenuMusic(true);
                 PlayerManager.Instance.SwitchActionMaps("none");
                 ToggleCursor(true);
                 break;
             case GameState.GameOverLose:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.GameOverLose);
+                SoundController.Instance.StopAllTracks();
                 PlayerManager.Instance.SwitchActionMaps("none");
                 ToggleCursor(true);
                 break;
@@ -146,6 +158,11 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
 
         _currentGameState = gameState;
         OnGameStateUpdated?.Invoke(this, _currentGameState);
+    }
+
+    private IEnumerator StopWarningSoundAfter(float delaySec) {
+        yield return new WaitForSeconds(delaySec);
+        SoundController.Instance.PlayWarningSound(false);
     }
 
     private void ToggleCursor(bool enableCursor) {
@@ -166,6 +183,7 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
 
     public void StartGame() {
         UIRouter.Instance.SwitchRoutes(UIRouter.Route.None);
+        BlackHoleObject.SetActive(true);
         _gameFaderMaterialInstance.DOFloat(0, "_AnimationTime", 1.0f).OnComplete(() => {
             SwitchGameState(GameState.GameIntroSequence);
         });

@@ -120,6 +120,7 @@ public class PlayerController : MonoBehaviour {
     private bool _attackSoftEnded = false;
     private bool _comboAttackQueuedUp = false;
     private int _comboStage = 0;
+    private bool _isProcessingEnabled = false;
 
     private void SetPlayerLives(int playerLives) {
         CurrentPlayerLives = Mathf.Clamp(playerLives, 0, MaxPlayerLives);
@@ -177,11 +178,13 @@ public class PlayerController : MonoBehaviour {
         inputSecondaryFireHeld = false;
         _isExecutingFastTurn = false;
         _isExecutingDash = false;
+        SetProcessedEnabled(false);
         SetLockOnTarget(null);
 
         SetPlayerLives(MaxPlayerLives);
         Stats.Reset();
         _shieldController.DeactivateShield();
+        Animator.SetBool("VictoryPose", false);
         Animator.SetBool("IsDead", false);
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
@@ -252,6 +255,10 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         PlayerManager.Instance.CameraController.UpdateCamera();
         _cinemachineBrain.ManualUpdate();
+
+        if (!_isProcessingEnabled) {
+            return;
+        }
 
         HandleMovement();
         HandleAttack();
@@ -785,5 +792,14 @@ public class PlayerController : MonoBehaviour {
 
     private void OnSwordGlowEnd(object sender, float durationSeconds) {
         _crystalSwordMaterialInstance.DOFloat(0, "_BlendTime", durationSeconds);
+    }
+
+    public void SetProcessedEnabled(bool isEnabled) {
+        _isProcessingEnabled = isEnabled;
+        AimIndicatorObject.SetActive(isEnabled);
+    }
+
+    public void VictoryPose() {
+        Animator.SetBool("VictoryPose", true);
     }
 }

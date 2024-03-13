@@ -55,6 +55,7 @@ public class AnimationEvents : MonoBehaviour {
 
     public void EndIntroSequence() {
         GameLifecycleManager.Instance.OnIntroSequenceEnd();
+        PlayerManager.Instance.PlayerController.SetProcessedEnabled(true);
     }
 
     public void DissolveBoss(float durationSeconds) {
@@ -67,7 +68,12 @@ public class AnimationEvents : MonoBehaviour {
     }
 
     public void SwitchToFrontCamera() {
+        PlayerManager.Instance.PlayerController.SetProcessedEnabled(false);
         PlayerManager.Instance.CameraController.EnableFrontCamera(true);
+    }
+
+    public void VictoryPose() {
+        PlayerManager.Instance.PlayerController.VictoryPose();
     }
 
     public void EndWinOutroSequence() {

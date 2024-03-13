@@ -89,8 +89,9 @@ public class BossController : Singleton<BossController> {
     private bool foo = true;
 
     public void FireMissiles() {
-        PlayerManager.Instance.PlayerController.Animator.SetBool("IsDead", foo);
-        foo = !foo;
+        SetBossLives(0);
+        // PlayerManager.Instance.PlayerController.Animator.SetBool("IsDead", foo);
+        // foo = !foo;
 
         // RestoreShield();
         // spawner.Play();

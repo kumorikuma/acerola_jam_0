@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51fdf28887b3a94ebec2c18d2e4b642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Debug_IsDebugModeEnabled: 1
+  GameplayContainer: {fileID: 0}
+  MainMenuContainer: {fileID: 0}
+  SequenceAnimator: {fileID: 0}
+  Debug_IsDebugModeEnabled: 0
   Debug_StartingGameState: 1
 --- !u!1 &945213746703076474
 GameObject:

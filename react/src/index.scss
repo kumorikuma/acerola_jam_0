@@ -325,9 +325,41 @@ $hp-color: white;
 
 .pause-menu {
   height: 100%;
+  @include flex-layout(column);
+  justify-content: center;
+  align-items: center;
 
   .text {
+    margin-top: 42px;
+    font-size: 42px;
+  }
+
+  .title {
+    margin-bottom: 128px;
+    // text-align: center;
+    color: white;
+    font-size: 92px;
+  }
+
+  .subtext {
+    color: white;
     font-size: 36px;
+    margin-bottom: 64px;
+  }
+
+  .highlighted {
+    color: #f6ceef;
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .controls-container {
+    @include flex-layout(column);
+    justify-content: center;
+    align-items: center;
+    padding: 48px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 42px;
   }
 
   .container {
@@ -339,6 +371,17 @@ $hp-color: white;
     .button {
       font-size: 32px;
     }
+  }
+
+  .row-container {
+    @include flex-layout(row);
+  }
+
+  .mainMenuButton {
+    margin-top: 12px;
+    font-size: 48px;
+    // background-color: rgba(255, 255, 255, 0.05);
+    color: #c3dfee;
   }
 
   // Workaround for lack of "gap" support
@@ -395,23 +438,6 @@ $hp-color: white;
     margin-bottom: 24px;
   }
 
-  .score {
-    font-size: 40px;
-    text-align: center;
-    justify-content: center;
-    margin-top: 20px;
-  }
-
-  .latest {
-    margin-top: -64px;
-    font-size: 64px;
-  }
-  
-  .ranking {
-    margin-bottom: 64px;
-    font-size: 64px;
-  }
-
   .mainMenuButton {
     margin-top: 12px;
     font-size: 48px;
@@ -457,5 +483,50 @@ $hp-color: white;
     margin-top: 12px;
     font-size: 48px;
     width: 420px;
+  }
+}
+
+.controls {
+  @include flex-layout(column);
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 128px;
+  padding-top: 128px;
+  padding-right: 128px;
+
+  .container {
+    @include flex-layout(row);
+  }
+
+  .right-column {
+    align-items: flex-end;
+  }
+
+  .title {
+    margin-top: -128px;
+    margin-bottom: 128px;
+    // text-align: center;
+    color: white;
+    font-size: 92px;
+  }
+
+  .subtext {
+    color: white;
+    font-size: 36px;
+    margin-bottom: 64px;
+  }
+
+  .highlighted {
+    color: #f6ceef;
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .mainMenuButton {
+    margin-top: 12px;
+    font-size: 48px;
+    // background-color: rgba(255, 255, 255, 0.05);
+    color: #c3dfee;
   }
 }

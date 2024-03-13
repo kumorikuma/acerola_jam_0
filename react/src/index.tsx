@@ -11,6 +11,7 @@ import Hud from "./hud";
 import GameOver from "./gameOver";
 import Debug from "./debug";
 import GameOverLose from "./gameOverLose";
+import Controls from "./controls";
 
 export default function App() {
   const globals = useGlobals();
@@ -27,6 +28,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<view />} />
         <Route path="/mainMenu" element={<MainMenu />} />
+        <Route path="/controls" element={<Controls />} />
         <Route path="/pauseMenu" element={<PauseMenu />} />
         <Route path="/hud" element={<Hud />} />
         <Route path="/gameOver" element={<GameOver />} />

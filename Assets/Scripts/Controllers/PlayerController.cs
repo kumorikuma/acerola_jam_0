@@ -131,8 +131,6 @@ public class PlayerController : MonoBehaviour {
 
         if (CurrentPlayerLives == 0) {
             DeathSequence();
-        } else {
-            Stats.SetHealthToPercentage(1.0f);
         }
 
         OnPlayerLivesChanged?.Invoke(this, CurrentPlayerLives);
@@ -227,7 +225,6 @@ public class PlayerController : MonoBehaviour {
 
     private void OnDamageTaken(object sender, float damageTaken) {
         _totalDamageTaken += damageTaken;
-        ReactUnityBridge.Instance.UpdateDebugString("PlayerHealth", Stats.CurrentHealth.ToString());
 
         if (damageTaken > 0) {
             PlayHitEffect();
@@ -328,7 +325,6 @@ public class PlayerController : MonoBehaviour {
 
     private void Update() {
         // HACK: This is pretty bad to put here, but whatever lol
-        ReactUnityBridge.Instance.UpdateDebugString("IsPLayerHealing", _isHealing.ToString());
         float healingPhaseLength = GameLifecycleManager.Instance.HealingPhaseLength;
         if (_isHealing && _healingTimer < healingPhaseLength) {
             float healingT = _healingTimer / GameLifecycleManager.Instance.HealingPhaseLength;

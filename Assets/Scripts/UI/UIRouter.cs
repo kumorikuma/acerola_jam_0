@@ -6,6 +6,7 @@ public class UIRouter : Singleton<UIRouter> {
     public enum Route {
         None,
         MainMenu,
+        Controls,
         PauseMenu,
         Hud,
         GameOver,
@@ -35,6 +36,9 @@ public class UIRouter : Singleton<UIRouter> {
                 break;
             case Route.MainMenu:
                 routePath = "/mainMenu";
+                break;
+            case Route.Controls:
+                routePath = "/controls";
                 break;
             case Route.PauseMenu:
                 routePath = "/pauseMenu";

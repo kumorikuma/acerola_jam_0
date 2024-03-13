@@ -1,10 +1,12 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameLifecycleManager : Singleton<GameLifecycleManager> {
     public enum GameState {
         MainMenu,
+        Controls,
         GameIntroSequence,
         GameStarted,
         GamePaused,
@@ -15,6 +17,10 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
     [NonNullField] public GameObject GameplayContainer;
     [NonNullField] public GameObject MainMenuContainer;
     [NonNullField] public Animator SequenceAnimator;
+    [NonNullField] public MeshRenderer MenuFaderRenderer;
+    [NonNullField] public MeshRenderer GameFaderRenderer;
+    private Material _menuFaderMaterialInstance;
+    private Material _gameFaderMaterialInstance;
 
     public bool Debug_IsDebugModeEnabled = false;
     public GameState Debug_StartingGameState = GameState.GameStarted;
@@ -41,6 +47,9 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
             _currentGameState = Debug_StartingGameState;
         }
 
+        _menuFaderMaterialInstance = MenuFaderRenderer.material;
+        _gameFaderMaterialInstance = GameFaderRenderer.material;
+
         SwitchGameState(_currentGameState);
     }
 
@@ -51,7 +60,7 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
 
         // The "Press Any Key to Start" in the main menu.
         if (Keyboard.current.anyKey.wasReleasedThisFrame) {
-            StartGame();
+            ViewControls();
         }
     }
 
@@ -64,8 +73,11 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
     private void SwitchGameState(GameState gameState) {
         switch (gameState) {
             case GameState.MainMenu:
+                _menuFaderMaterialInstance.SetFloat("_AnimationTime", 0);
+                _gameFaderMaterialInstance.SetFloat("_AnimationTime", 1);
+
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.MainMenu);
-                PlayerManager.Instance.SwitchActionMaps("menu");
+                PlayerManager.Instance.SwitchActionMaps("none");
                 GameplayContainer.SetActive(false);
                 MainMenuContainer.SetActive(true);
                 Time.timeScale = 1;
@@ -81,9 +93,8 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 PlayerManager.Instance.PlayerController.SetProcessedEnabled(false);
 
                 break;
-            case GameState.GameIntroSequence:
-                UIRouter.Instance.SwitchRoutes(UIRouter.Route.None);
-                ToggleCursor(false);
+            case GameState.Controls:
+                UIRouter.Instance.SwitchRoutes(UIRouter.Route.Controls);
                 // Hide the main menu and show the rest of the game
                 GameplayContainer.SetActive(true);
                 MainMenuContainer.SetActive(false);
@@ -97,6 +108,10 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 ProjectileController.Instance.Reset();
                 // Hide the boss
                 BossController.Instance.gameObject.SetActive(false);
+                break;
+            case GameState.GameIntroSequence:
+                UIRouter.Instance.SwitchRoutes(UIRouter.Route.None);
+                ToggleCursor(false);
                 // Play the animation.
                 SequenceAnimator.SetTrigger("PlayIntro");
                 break;
@@ -119,12 +134,12 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 break;
             case GameState.GameOver:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.GameOver);
-                PlayerManager.Instance.SwitchActionMaps("menu");
+                PlayerManager.Instance.SwitchActionMaps("none");
                 ToggleCursor(true);
                 break;
             case GameState.GameOverLose:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.GameOverLose);
-                PlayerManager.Instance.SwitchActionMaps("menu");
+                PlayerManager.Instance.SwitchActionMaps("none");
                 ToggleCursor(true);
                 break;
         }
@@ -143,8 +158,17 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
         }
     }
 
+    public void ViewControls() {
+        _menuFaderMaterialInstance.DOFloat(1, "_AnimationTime", 1.0f).OnComplete(() => {
+            SwitchGameState(GameState.Controls);
+        });
+    }
+
     public void StartGame() {
-        SwitchGameState(GameState.GameIntroSequence);
+        UIRouter.Instance.SwitchRoutes(UIRouter.Route.None);
+        _gameFaderMaterialInstance.DOFloat(0, "_AnimationTime", 1.0f).OnComplete(() => {
+            SwitchGameState(GameState.GameIntroSequence);
+        });
     }
 
     public void WinGame() {
@@ -162,7 +186,9 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
     }
 
     public void PauseGame() {
+        Debug.Log("Pause Game?!");
         if (_currentGameState == GameState.GameStarted) {
+            Debug.Log("Pause Game?!???");
             SwitchGameState(GameState.GamePaused);
         }
     }

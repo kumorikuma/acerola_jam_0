@@ -180,8 +180,12 @@ public class BossController : Singleton<BossController> {
             _shieldHealth = MaxShieldHealth;
             _shieldMaterialInstance.SetFloat("_BlendTime", 0);
             ShieldAnimator.SetBool("IsBroken", false);
+            ShieldAnimator.SetBool("IsHealing", true);
             Animator.SetBool("IsDead", false);
+            Animator.SetBool("IsHealing", true);
         } else {
+            ShieldAnimator.SetBool("IsHealing", false);
+            Animator.SetBool("IsHealing", false);
             // Healing has stopped, we can do stuff again
             StartDoingStuff();
             SetImmunity(false);
@@ -192,7 +196,6 @@ public class BossController : Singleton<BossController> {
 
     private void Update() {
         // HACK: This is pretty bad to put here, but whatever lol
-        ReactUnityBridge.Instance.UpdateDebugString("IsBossHealing", _isHealing.ToString());
         float healingPhaseLength = GameLifecycleManager.Instance.HealingPhaseLength;
         if (_isHealing && _healingTimer < healingPhaseLength) {
             float healingT = _healingTimer / GameLifecycleManager.Instance.HealingPhaseLength;
@@ -202,6 +205,13 @@ public class BossController : Singleton<BossController> {
         } else if (_isHealing && _healingTimer >= healingPhaseLength) {
             SetHealingPhase(false);
             Stats.SetHealthToPercentage(1);
+        } else if (_isHealing) {
+            // We still want the boss to look at the player
+            Vector3 bossToTargetVector = _playerTarget.position - transform.position;
+            bossToTargetVector.y = 0;
+            Vector3 lookVector = bossToTargetVector;
+            lookVector = lookVector.normalized;
+            _targetRotation = Quaternion.LookRotation(lookVector, Vector3.up);
         }
 
         // If the game is over, don't do anything
@@ -223,8 +233,6 @@ public class BossController : Singleton<BossController> {
         if (IsAttackingEnabled && !_isAttacking) {
             HandleAttack();
         }
-
-        ReactUnityBridge.Instance.UpdateDebugString("Boss IsAttacking", _isAttacking.ToString());
     }
 
     private void Start() {
@@ -508,8 +516,8 @@ public class BossController : Singleton<BossController> {
         Vector2 bossToCenterOrthogonalVector = new Vector2(bossToCenterVector.z, -bossToCenterVector.x);
         int closeFarSideOfCenter = PointSideOfLine(Vector2.zero, bossToCenterOrthogonalVector,
             new Vector2(_playerTarget.position.x, _playerTarget.position.z));
-        ReactUnityBridge.Instance.UpdateDebugString("closeFarSideOfCenter",
-            closeFarSideOfCenter.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("closeFarSideOfCenter",
+        //     closeFarSideOfCenter.ToString());
         VectorDebug.Instance.DrawDebugVector("BossToCenterOrthogonalVector",
             new Vector3(bossToCenterOrthogonalVector.x, 0, bossToCenterOrthogonalVector.y), ArenaCenter,
             Color.magenta);
@@ -623,8 +631,8 @@ public class BossController : Singleton<BossController> {
                 Vector2 bossToCenterVector2 = new Vector2(bossToCenterVector.x, bossToCenterVector.z);
                 int sideOfCenter = PointSideOfLine(Vector2.zero, bossToCenterVector2,
                     playerTargetPosXZ);
-                ReactUnityBridge.Instance.UpdateDebugString("sideOfCenter",
-                    sideOfCenter.ToString());
+                // ReactUnityBridge.Instance.UpdateDebugString("sideOfCenter",
+                //     sideOfCenter.ToString());
 
 
                 // This vector would take us on a better path towards reaching the center.
@@ -676,12 +684,12 @@ public class BossController : Singleton<BossController> {
             absoluteMovementVector, transform.position,
             Color.red);
 
-        ReactUnityBridge.Instance.UpdateDebugString("Boss Movement Speed",
-            movementSpeed.ToString());
-        ReactUnityBridge.Instance.UpdateDebugString("Behavior Tree Case",
-            behaviorTreeCase.ToString());
-        ReactUnityBridge.Instance.UpdateDebugString("IdleTime",
-            _idleTime.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("Boss Movement Speed",
+        //     movementSpeed.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("Behavior Tree Case",
+        //     behaviorTreeCase.ToString());
+        // ReactUnityBridge.Instance.UpdateDebugString("IdleTime",
+        //     _idleTime.ToString());
 
         // ===== Apply Rotation =====
         // Rotate towards player gradually

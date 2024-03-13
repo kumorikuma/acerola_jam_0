@@ -9,7 +9,7 @@ public class AttackHitbox : MonoBehaviour {
 
     // Start is called before the first frame update
     void OnTriggerEnter(Collider other) {
-        ReactUnityBridge.Instance.UpdateDebugString("MeleeHitBox Target Detected", "true");
+        // ReactUnityBridge.Instance.UpdateDebugString("MeleeHitBox Target Detected", "true");
         if (ProjectileOwner == ProjectileController.Owner.Player && other.CompareTag("Targetable")) {
             CollidedObject = other.gameObject;
         } else if (ProjectileOwner == ProjectileController.Owner.Enemy && other.CompareTag("Player")) {
@@ -19,7 +19,7 @@ public class AttackHitbox : MonoBehaviour {
 
     // Update is called once per frame
     private void OnTriggerExit(Collider other) {
-        ReactUnityBridge.Instance.UpdateDebugString("MeleeHitBox Target Detected", "false");
+        // ReactUnityBridge.Instance.UpdateDebugString("MeleeHitBox Target Detected", "false");
         CollidedObject = null;
     }
 }

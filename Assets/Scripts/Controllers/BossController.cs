@@ -448,7 +448,7 @@ public class BossController : Singleton<BossController> {
             // Play different tracks depending on the phase
             if (_currentPhase == 2) {
                 SoundController.Instance.PlayGameMusic1(false);
-                SoundController.Instance.PlayGameMusic2(true);
+                SoundController.Instance.PlayGameMusic2(true, true);
             }
         }
 

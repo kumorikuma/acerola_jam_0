@@ -80,10 +80,12 @@ public class SoundController : Singleton<SoundController> {
     private void SetPlayAudioSource(AudioSource source, bool shouldPlay, bool shouldFadeIn = false) {
         if (shouldPlay) {
             if (!source.isPlaying) {
-                source.volume = Volume;
                 if (shouldFadeIn) {
-                    StartCoroutine(StartFade(source, 1.0f, 1));
+                    source.volume = 0;
+                    StartCoroutine(StartFade(source, 1.0f, Volume));
+                    source.Play();
                 } else {
+                    source.volume = Volume;
                     source.Play();
                 }
             }
@@ -93,13 +95,17 @@ public class SoundController : Singleton<SoundController> {
     }
 
     public static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume) {
+        bool isFadeOut = targetVolume < audioSource.volume;
+
         float currentTime = 0;
         float start = audioSource.volume;
         while (currentTime < duration) {
             currentTime += Time.deltaTime;
             audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
-            if (audioSource.volume <= targetVolume) {
-                audioSource.Stop();
+            if (isFadeOut) {
+                if (audioSource.volume <= targetVolume) {
+                    audioSource.Stop();
+                }
             }
 
             yield return null;

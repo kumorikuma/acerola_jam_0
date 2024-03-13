@@ -44,6 +44,11 @@ export default function PauseMenu(): React.ReactNode {
           <view className="highlighted">{" [SHIFT]"}</view>
           <view className="subtext"> to dash.</view>
         </view>
+        {/* <view className="bodytext">
+          {
+            "Help: Use ranged attacks to lower the boss' shield, \nbefore going in for melee attacks.\nThe fight lasts several phases. \nWhen your health goes to 0, the current phase starts over."
+          }
+        </view> */}
         <Button
           className="mainMenuButton"
           text="[ Continue ]"

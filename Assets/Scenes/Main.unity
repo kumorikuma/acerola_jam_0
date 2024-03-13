@@ -611,7 +611,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -722,6 +722,7 @@ MonoBehaviour:
   WarningSound: {fileID: 749445242}
   GameMusic1: {fileID: 749445238}
   GameMusic2: {fileID: 749445237}
+  Volume: 0.25
 --- !u!82 &749445241
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4334,6 +4335,10 @@ PrefabInstance:
       propertyPath: FaderRenderer
       value: 
       objectReference: {fileID: 1185825260}
+    - target: {fileID: 6008671616441834924, guid: b5065c6254e03c44e82d39507f5d9dee, type: 3}
+      propertyPath: BlackHoleObject
+      value: 
+      objectReference: {fileID: 846991326}
     - target: {fileID: 6008671616441834924, guid: b5065c6254e03c44e82d39507f5d9dee, type: 3}
       propertyPath: SequenceAnimator
       value: 

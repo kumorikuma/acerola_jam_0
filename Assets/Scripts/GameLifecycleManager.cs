@@ -183,9 +183,9 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
 
     public void StartGame() {
         UIRouter.Instance.SwitchRoutes(UIRouter.Route.None);
-        BlackHoleObject.SetActive(true);
         _gameFaderMaterialInstance.DOFloat(0, "_AnimationTime", 1.0f).OnComplete(() => {
             SwitchGameState(GameState.GameIntroSequence);
+            BlackHoleObject.SetActive(true);
         });
     }
 

@@ -142,6 +142,10 @@ public class PanelsController : Singleton<PanelsController> {
         _isDestroyingLevel = true;
     }
 
+    public void StopDestroyingLevel() {
+        _isDestroyingLevel = false;
+    }
+
     public bool IsDestroyingLevel() {
         return _isDestroyingLevel;
     }
@@ -272,11 +276,13 @@ public class PanelsController : Singleton<PanelsController> {
     IEnumerator PanelProjectileSecondStage(Projectile panel, Transform trackedTarget) {
         yield return new WaitForSeconds(2.0f);
 
-        panel.TrackedTarget = trackedTarget;
-        panel.Acceleration = PanelAcceleration + Random.value * PanelAccelerationRandomOffsetFactor;
-        panel.TurningSpeed = PanelTurningSpeed + Random.value * PanelTurningSpeedRandomOffsetFactor;
-        panel.TurnTowardsTarget = true;
-        panel.TurnTowardsTargetSpeed = PanelTurnTowardsTargetSpeed;
+        if (_isDestroyingLevel) {
+            panel.TrackedTarget = trackedTarget;
+            panel.Acceleration = PanelAcceleration + Random.value * PanelAccelerationRandomOffsetFactor;
+            panel.TurningSpeed = PanelTurningSpeed + Random.value * PanelTurningSpeedRandomOffsetFactor;
+            panel.TurnTowardsTarget = true;
+            panel.TurnTowardsTargetSpeed = PanelTurnTowardsTargetSpeed;
+        }
     }
 
     private void SpawnDummyPanelAt(int panelCol, int panelRow) {

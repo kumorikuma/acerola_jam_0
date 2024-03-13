@@ -18,6 +18,8 @@ public class CameraController : MonoBehaviour {
     [NonNullField] public CinemachineVirtualCamera MainCamera;
     [NonNullField] public CinemachineVirtualCamera LeftShoulderCamera;
     [NonNullField] public CinemachineVirtualCamera RightShoulderCamera;
+
+    [NonNullField] public CinemachineVirtualCamera FrontCamera;
     // [NonNullField] public CinemachineTargetGroup TargetGroup;
 
     private Transform _lockedOnTarget = null;
@@ -31,6 +33,14 @@ public class CameraController : MonoBehaviour {
         inputLookDirection = lookVector * LookSpeed;
     }
 
+    public void EnableFrontCamera(bool isEnabled) {
+        if (isEnabled) {
+            FrontCamera.Priority = _boostedCameraPriority;
+        } else {
+            FrontCamera.Priority = _defaultCameraPriority;
+        }
+    }
+
     private void Start() {
         PlayerManager.Instance.PlayerController.OnLockedOnTargetChanged += OnLockedOnTargetChanged;
     }
@@ -38,6 +48,7 @@ public class CameraController : MonoBehaviour {
     public void Reset() {
         _isEnabled = false;
         _lockedOnTarget = null;
+        EnableFrontCamera(false);
         Pivot.transform.rotation = Quaternion.identity;
     }
 

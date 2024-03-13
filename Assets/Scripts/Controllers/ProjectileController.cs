@@ -176,4 +176,15 @@ public class ProjectileController : Singleton<ProjectileController> {
         _projectiles.Remove(projectile.gameObject.GetInstanceID());
         UnityEngine.Object.Destroy(projectile.gameObject);
     }
+
+    public void DropAllPanels() {
+        foreach (var kv in _projectiles) {
+            Projectile projectile = kv.Value;
+
+            projectile.velocity = Vector3.down * 0.25f;
+            projectile.Acceleration = 9.81f;
+            projectile.AngularVelocity = Vector3.zero;
+            projectile.TrackedTarget = null;
+        }
+    }
 }

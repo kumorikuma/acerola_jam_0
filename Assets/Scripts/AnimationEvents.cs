@@ -61,6 +61,15 @@ public class AnimationEvents : MonoBehaviour {
         BossController.Instance.PlayDissolveAnimation(durationSeconds);
     }
 
+    public void DropPanels() {
+        ProjectileController.Instance.DropAllPanels();
+        PanelsController.Instance.StopDestroyingLevel();
+    }
+
+    public void SwitchToFrontCamera() {
+        PlayerManager.Instance.CameraController.EnableFrontCamera(true);
+    }
+
     public void EndWinOutroSequence() {
         GameLifecycleManager.Instance.GameOver();
     }

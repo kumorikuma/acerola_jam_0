@@ -84,6 +84,7 @@ public class BossController : Singleton<BossController> {
     private float _restoreActionsCountdown = 0.0f;
     private int _damageTakenWhileStaggered = 0;
     private Coroutine _restoreShieldCoroutine = null;
+    private bool _isDeadDead = false;
 
     private bool foo = true;
 
@@ -131,6 +132,7 @@ public class BossController : Singleton<BossController> {
 
     public void Reset() {
         ShieldAnimator.SetBool("IsBroken", false);
+        ShieldAnimator.SetBool("IsImmune", false);
         Animator.SetBool("IsDead", false);
         _bossMechMaterialInstance.SetFloat("_DissolveTime", 0);
         ToggleThrusters(true);
@@ -141,6 +143,7 @@ public class BossController : Singleton<BossController> {
         _isAttacking = false;
         _shieldHealth = MaxShieldHealth;
         _isIndestructible = false;
+        _isDeadDead = false;
         SetBossLives(MaxBossLives);
         Stats.Reset();
         RestoreShield(ShieldRecoveryTime);
@@ -154,7 +157,7 @@ public class BossController : Singleton<BossController> {
 
     private void Update() {
         // If the game is over, don't do anything
-        if (!GameLifecycleManager.Instance.IsGamePlaying()) {
+        if (!GameLifecycleManager.Instance.IsGamePlaying() || _isDeadDead) {
             return;
         }
 
@@ -236,6 +239,13 @@ public class BossController : Singleton<BossController> {
             () => {
                 // Make it inactive? I guess it doesn't matter.
             });
+
+        // TODO: Fade the outline as well
+        // Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
+        // postProcessOutlineMaterial.DOFloat(1, "_BlendTime", hitAnimationTime).OnComplete(
+        //     () => {
+        //         postProcessOutlineMaterial.DOFloat(0, "_BlendTime", hitAnimationTime);
+        //     });
     }
 
     public void PlayIndestructibleHitEffect() {
@@ -292,7 +302,10 @@ public class BossController : Singleton<BossController> {
 
     private IEnumerator RestoreShieldAfterDelay(float delaySeconds) {
         yield return new WaitForSeconds(delaySeconds);
-        RestoreShield(ShieldRecoveryTime);
+
+        if (!_isDeadDead) {
+            RestoreShield(ShieldRecoveryTime);
+        }
     }
 
     private void RestoreShield(float immunityTime) {
@@ -321,6 +334,7 @@ public class BossController : Singleton<BossController> {
         // TODO: Maybe shield should be a special color here?
         _isIndestructible = isImmune;
         ShieldAnimator.SetBool("IsImmune", _isIndestructible);
+        Debug.Log("SET IMMUNITY FUNCTION: " + isImmune);
     }
 
     private void OnSpawningStopped() {
@@ -337,7 +351,25 @@ public class BossController : Singleton<BossController> {
     private void SetBossLives(int bossLives) {
         CurrentBossLives = Mathf.Clamp(bossLives, 0, MaxBossLives);
         if (CurrentBossLives == 0) {
+            if (_restoreShieldCoroutine != null) {
+                StopCoroutine(_restoreShieldCoroutine);
+                _restoreShieldCoroutine = null;
+            }
+
+            if (_currentBulletSpawner != null) {
+                _currentBulletSpawner.StopAll();
+            }
+
             // Player wins!
+            Animator.SetBool("IsDead", true);
+            ShieldAnimator.SetBool("IsBroken", true);
+            ShieldAnimator.SetBool("IsImmune", false);
+            Debug.Log("PLAYER WINS");
+            IsLocomotionEnabled = false;
+            IsAttackingEnabled = false;
+            _isIndestructible = true;
+            _isDeadDead = true;
+
             GameLifecycleManager.Instance.WinGame();
         } else {
             _currentPhase = MaxBossLives - CurrentBossLives;
@@ -354,13 +386,7 @@ public class BossController : Singleton<BossController> {
         }
 
         // TODO: Have some kind of animation for this
-        // TODO: Boss moveset should change.
         // TODO: There should be some visual indication of things changing?
-        // TODO: The rate of planetary decay should increase.
-        // Phase 1: 0
-        // Phase 2: Half Rate
-        // Phase 3: Increased Rate?
-        // Phase 4?
 
         OnBossLivesChanged?.Invoke(this, CurrentBossLives);
     }

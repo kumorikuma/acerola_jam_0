@@ -51,6 +51,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AdditionalVertexOffset: 1
+    - _Alpha: 1
     - _BlendTime: 0
     - _QueueControl: 0
     - _QueueOffset: 0

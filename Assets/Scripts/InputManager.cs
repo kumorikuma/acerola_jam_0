@@ -55,7 +55,8 @@ public class InputManager : MonoBehaviour {
 
     void OnDebugAction1() {
 #if UNITY_EDITOR
-        BossController.Instance.FireMissiles();
+        // BossController.Instance.FireMissiles();
+        ProjectileController.Instance.DropAllPanels();
 #endif
     }
 

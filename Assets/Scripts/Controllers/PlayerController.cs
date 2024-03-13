@@ -121,25 +121,33 @@ public class PlayerController : MonoBehaviour {
     private bool _comboAttackQueuedUp = false;
     private int _comboStage = 0;
     private bool _isProcessingEnabled = false;
+    private float _totalDamageTaken = 0;
 
-    private void SetPlayerLives(int playerLives) {
+    public void SetPlayerLives(int playerLives) {
         CurrentPlayerLives = Mathf.Clamp(playerLives, 0, MaxPlayerLives);
+
+        if (CurrentPlayerLives == 0) {
+            DeathSequence();
+        } else {
+            Stats.SetHealthToPercentage(1.0f);
+        }
+
         OnPlayerLivesChanged?.Invoke(this, CurrentPlayerLives);
     }
 
     private void ConsumeLife() {
         SetPlayerLives(CurrentPlayerLives - 1);
-        if (CurrentPlayerLives == 0) {
-            DeathSequence();
-        } else {
-            // Heal the player back up to 50%
-            Stats.SetHealthToPercentage(0.5f);
-        }
     }
 
     public void DeathSequence() {
         Animator.SetBool("IsDead", true);
+        SetProcessedEnabled(false);
         GameLifecycleManager.Instance.LoseGame();
+
+        // Player keels over.
+        // Their mech disintegrates.
+        // The planet destruction accelerates.
+        // Game over screen.
     }
 
     private void Awake() {
@@ -156,6 +164,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Start() {
         Stats.NotifyHealthChanged();
+        Stats.OnDamageTaken += OnDamageTaken;
         Stats.OnHealthChanged += OnHealthChanged;
         _animationEvents.OnSlashAttack1Hit += OnSlashAttack1Hit;
         _animationEvents.OnSlashAttack1SoftEnd += OnSlashAttack1SoftEnd;
@@ -178,6 +187,7 @@ public class PlayerController : MonoBehaviour {
         inputSecondaryFireHeld = false;
         _isExecutingFastTurn = false;
         _isExecutingDash = false;
+        _totalDamageTaken = 0;
         SetProcessedEnabled(false);
         SetLockOnTarget(null);
 
@@ -192,6 +202,14 @@ public class PlayerController : MonoBehaviour {
 
     public float GetRegularMovementSpeed() {
         return RunSpeed * Time.deltaTime;
+    }
+
+    public int GetDamageTaken() {
+        return Mathf.RoundToInt(_totalDamageTaken);
+    }
+
+    private void OnDamageTaken(object sender, float damageTaken) {
+        _totalDamageTaken += damageTaken;
     }
 
     private void OnHealthChanged(object sender, float health) {

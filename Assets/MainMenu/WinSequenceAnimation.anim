@@ -654,11 +654,18 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 2.0333333
+  - time: 1.5
     functionName: DissolveBoss
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 3
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.5
+    functionName: PointCameraTowardsBlackHole
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 8.6

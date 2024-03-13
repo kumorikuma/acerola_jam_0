@@ -78,6 +78,8 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                     ProjectileController.Instance.Reset();
                 }
 
+                PlayerManager.Instance.PlayerController.SetProcessedEnabled(false);
+
                 break;
             case GameState.GameIntroSequence:
                 UIRouter.Instance.SwitchRoutes(UIRouter.Route.None);
@@ -141,10 +143,12 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
     }
 
     public void WinGame() {
+        BossController.Instance.StopDoingStuff();
         SequenceAnimator.SetTrigger("PlayWinSequence");
     }
 
     public void LoseGame() {
+        BossController.Instance.StopDoingStuff();
         SequenceAnimator.SetTrigger("PlayLoseSequence");
     }
 

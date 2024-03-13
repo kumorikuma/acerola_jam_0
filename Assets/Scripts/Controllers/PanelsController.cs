@@ -43,6 +43,8 @@ public class PanelsController : Singleton<PanelsController> {
     private float _panelsContainerSize;
     private float _cellSize;
     private int _cellSizeTexels;
+    private int _totalNumberOfCells;
+    private int _cellsDestroyed = 0;
     private bool[,] _holePunchData;
 
     // State
@@ -52,6 +54,10 @@ public class PanelsController : Singleton<PanelsController> {
     private bool _isDestroyingLevel = false;
     private float _CellDestructionCooldownCountdown = 0.0f;
 
+    public float GetPercentageDestroyed() {
+        return _cellsDestroyed / (float)_totalNumberOfCells;
+    }
+
     protected override void Awake() {
         base.Awake();
 
@@ -59,6 +65,7 @@ public class PanelsController : Singleton<PanelsController> {
         _panelsPerSide = Mathf.RoundToInt(TerrainSize / PanelSize);
         _cellSize = PanelSize * PanelsPerCell;
         _cellsPerSide = Mathf.RoundToInt(TerrainSize / _cellSize);
+        _totalNumberOfCells = _cellsPerSide * _cellsPerSide;
         _panelsContainerSize = _panelsPerSide * PanelSize;
         _worldSpaceToPanelSpaceOffset = new Vector3(_panelsContainerSize / 2.0f, 0, _panelsContainerSize / 2.0f);
         // Debug.Log($"[PanelsController] PanelsPerSide: " + _panelsPerSide);
@@ -86,6 +93,7 @@ public class PanelsController : Singleton<PanelsController> {
     public void Reset() {
         _isDestroyingLevel = false;
         _CellDestructionCooldownCountdown = 0.0f;
+        _cellsDestroyed = 0;
 
         // Reset the spawned states
         _panelProjectileSpawned = new bool[_panelsPerSide, _panelsPerSide];
@@ -195,6 +203,8 @@ public class PanelsController : Singleton<PanelsController> {
             Debug.LogError($"[PanelsController] Destroy Cell out of bounds: {cellCol}, {cellRow}");
             return;
         }
+
+        _cellsDestroyed += 1;
 
         // Firstly, punch a hole in the terrain.
         // Coordinates are in panel space, need to convert back to world space.

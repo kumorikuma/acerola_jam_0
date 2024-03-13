@@ -67,6 +67,10 @@ public class AnimationEvents : MonoBehaviour {
         PanelsController.Instance.StopDestroyingLevel();
     }
 
+    public void PointCameraTowardsBlackHole() {
+        PlayerManager.Instance.CameraController.PointCameraTowardsBlackHole();
+    }
+
     public void SwitchToFrontCamera() {
         PlayerManager.Instance.PlayerController.SetProcessedEnabled(false);
         PlayerManager.Instance.CameraController.EnableFrontCamera(true);
@@ -77,6 +81,8 @@ public class AnimationEvents : MonoBehaviour {
     }
 
     public void EndWinOutroSequence() {
+        ReactUnityBridge.Instance.UpdateStats(PanelsController.Instance.GetPercentageDestroyed(),
+            PlayerManager.Instance.PlayerController.GetDamageTaken());
         GameLifecycleManager.Instance.GameOver();
     }
 }

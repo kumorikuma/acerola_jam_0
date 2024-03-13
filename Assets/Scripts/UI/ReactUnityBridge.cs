@@ -25,6 +25,9 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
     private ReactiveValue<float> playerPrimaryFireCooldown = new();
     private ReactiveValue<float> playerSecondaryFireCooldown = new();
 
+    private ReactiveValue<float> percentageDestroyed = new();
+    private ReactiveValue<int> damageTaken = new();
+
     private ReactRendererBase reactRenderer;
     private ReactiveValue<List<string>> debugStrings = new();
     private Dictionary<string, string> _debugStrings = new();
@@ -59,6 +62,10 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
         reactRenderer.Globals["maxBossLives"] = maxBossLives;
         reactRenderer.Globals["playerPrimaryFireCooldown"] = playerPrimaryFireCooldown;
         reactRenderer.Globals["playerSecondaryFireCooldown"] = playerSecondaryFireCooldown;
+
+        // Stats
+        reactRenderer.Globals["percentageDestroyed"] = percentageDestroyed;
+        reactRenderer.Globals["damageTaken"] = damageTaken;
 
         // Enable Debug Mode when in Unity Editor
         debugModeEnabled.Value = false;
@@ -176,5 +183,10 @@ public class ReactUnityBridge : Singleton<ReactUnityBridge> {
 
         debugStrings.Value = debugStringsList;
 #endif
+    }
+
+    public void UpdateStats(float percentageOfPlanetDestroyed, int playerDamageTaken) {
+        this.damageTaken.Value = playerDamageTaken;
+        this.percentageDestroyed.Value = percentageOfPlanetDestroyed;
     }
 }

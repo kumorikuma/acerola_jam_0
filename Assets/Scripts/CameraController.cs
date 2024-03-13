@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using DG.Tweening;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
@@ -20,6 +22,8 @@ public class CameraController : MonoBehaviour {
     [NonNullField] public CinemachineVirtualCamera RightShoulderCamera;
 
     [NonNullField] public CinemachineVirtualCamera FrontCamera;
+
+    [NonNullField] public GameObject BlackHoleObject;
     // [NonNullField] public CinemachineTargetGroup TargetGroup;
 
     private Transform _lockedOnTarget = null;
@@ -133,5 +137,14 @@ public class CameraController : MonoBehaviour {
             // When the player is rotated, the camera needs to be rotated too.
             Pivot.transform.rotation = PlayerManager.Instance.PlayerController.PlayerModel.transform.rotation;
         }
+    }
+
+    public void PointCameraTowardsBlackHole() {
+        Vector3 playerToBlackHole = BlackHoleObject.transform.position -
+                                    PlayerManager.Instance.PlayerController.PlayerModel.transform.position;
+        playerToBlackHole.y = 0;
+        playerToBlackHole = playerToBlackHole.normalized;
+
+        Pivot.transform.DORotateQuaternion(Quaternion.LookRotation(playerToBlackHole, Vector3.up), 0.5f);
     }
 }

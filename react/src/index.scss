@@ -5,11 +5,6 @@
   src: url(resource:FrankfurterStdRegularSDF);
 }
 
-@font-face {
-  font-family: "NotoSansLight";
-  src: url(resource:NotoSansLight)
-}
-
 /* ===== Mixins ===== */
 
 @mixin flex-layout($direction) {
@@ -32,7 +27,7 @@ $hp-color: white;
 /* ===== Common ===== */
 
 * {
-  font-family: sans-serif;
+  font-family: "Frankfurter";
 }
 
 .padding-md {
@@ -368,17 +363,36 @@ $hp-color: white;
 }
 
 .gameover {
-  @include flex-layout(column);
-  justify-content: center;
-  align-items: center;
+  @include flex-layout(row);
+  // justify-content: center;
+  // align-items: center;
   height: 100%;
+  padding-left: 128px;
+  padding-top: 128px;
+  padding-right: 128px;
+
+  .right-column {
+    align-items: flex-end;
+  }
 
   .title {
-    margin-top: -128px;
-    margin-bottom: 128px;
-    text-align: center;
+    // margin-top: -128px;
+    margin-bottom: 24px;
+    // text-align: center;
     color: white;
-    font-size: 82px;
+    font-size: 92px;
+  }
+
+  .subtext {
+    color: white;
+    font-size: 42px;
+    margin-bottom: 64px;
+  }
+
+  .body-text {
+    color: white;
+    font-size: 32px;
+    margin-bottom: 24px;
   }
 
   .score {
@@ -399,10 +413,8 @@ $hp-color: white;
   }
 
   .mainMenuButton {
-    margin-top: 64px;
-    margin-bottom: -64px;
+    margin-top: 12px;
     font-size: 48px;
-    width: 340px;
-    align-self: center;
+    width: 420px;
   }
 }

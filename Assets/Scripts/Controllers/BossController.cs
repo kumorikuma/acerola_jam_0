@@ -84,7 +84,7 @@ public class BossController : Singleton<BossController> {
     private float _restoreActionsCountdown = 0.0f;
     private int _damageTakenWhileStaggered = 0;
     private Coroutine _restoreShieldCoroutine = null;
-    private bool _isDeadDead = false;
+    private bool _isProcessingEnabled = false;
 
     private bool foo = true;
 
@@ -144,7 +144,7 @@ public class BossController : Singleton<BossController> {
         _isAttacking = false;
         _shieldHealth = MaxShieldHealth;
         _isIndestructible = false;
-        _isDeadDead = false;
+        _isProcessingEnabled = true;
         SetBossLives(MaxBossLives);
         Stats.Reset();
         RestoreShield(ShieldRecoveryTime);
@@ -158,7 +158,7 @@ public class BossController : Singleton<BossController> {
 
     private void Update() {
         // If the game is over, don't do anything
-        if (!GameLifecycleManager.Instance.IsGamePlaying() || _isDeadDead) {
+        if (!GameLifecycleManager.Instance.IsGamePlaying() || !_isProcessingEnabled) {
             return;
         }
 
@@ -304,7 +304,7 @@ public class BossController : Singleton<BossController> {
     private IEnumerator RestoreShieldAfterDelay(float delaySeconds) {
         yield return new WaitForSeconds(delaySeconds);
 
-        if (!_isDeadDead) {
+        if (_isProcessingEnabled) {
             RestoreShield(ShieldRecoveryTime);
         }
     }
@@ -349,28 +349,31 @@ public class BossController : Singleton<BossController> {
         }
     }
 
+    public void StopDoingStuff() {
+        if (_restoreShieldCoroutine != null) {
+            StopCoroutine(_restoreShieldCoroutine);
+            _restoreShieldCoroutine = null;
+        }
+
+        if (_currentBulletSpawner != null) {
+            _currentBulletSpawner.StopAll();
+        }
+
+        IsLocomotionEnabled = false;
+        IsAttackingEnabled = false;
+        _isIndestructible = true;
+        _isProcessingEnabled = false;
+    }
+
     private void SetBossLives(int bossLives) {
         CurrentBossLives = Mathf.Clamp(bossLives, 0, MaxBossLives);
         if (CurrentBossLives == 0) {
-            if (_restoreShieldCoroutine != null) {
-                StopCoroutine(_restoreShieldCoroutine);
-                _restoreShieldCoroutine = null;
-            }
-
-            if (_currentBulletSpawner != null) {
-                _currentBulletSpawner.StopAll();
-            }
-
-            // Player wins!
+            // Mark the boss as dead.
             Animator.SetBool("IsDead", true);
             ShieldAnimator.SetBool("IsBroken", true);
             ShieldAnimator.SetBool("IsImmune", false);
-            Debug.Log("PLAYER WINS");
-            IsLocomotionEnabled = false;
-            IsAttackingEnabled = false;
-            _isIndestructible = true;
-            _isDeadDead = true;
 
+            // Player Wins!
             GameLifecycleManager.Instance.WinGame();
         } else {
             _currentPhase = MaxBossLives - CurrentBossLives;

@@ -62,8 +62,9 @@ public class InputManager : MonoBehaviour {
 
     void OnDebugAction2() {
 #if UNITY_EDITOR
-        Vector3 pos = PlayerManager.Instance.PlayerController.transform.position;
-        PanelsController.Instance.DestroyCellAt(pos);
+        // Vector3 pos = PlayerManager.Instance.PlayerController.transform.position;
+        // PanelsController.Instance.DestroyCellAt(pos);
+        PlayerManager.Instance.PlayerController.SetPlayerLives(0);
 #endif
     }
 

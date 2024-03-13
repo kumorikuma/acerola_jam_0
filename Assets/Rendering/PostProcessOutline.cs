@@ -12,6 +12,9 @@ public class PostProcessOutline : ScriptableRendererFeature {
         [Tooltip("Outline Blend Color")] [ColorUsage(true, true)]
         public Color OutlineBlendColor = Color.black;
 
+        [Tooltip("Outline Second Blend Color")] [ColorUsage(true, true)]
+        public Color OutlineBlendColor2 = Color.black;
+
         [Tooltip("Use the normal map in drawing the outline.")]
         public bool EnableNormalOutline = true;
 
@@ -67,7 +70,9 @@ public class PostProcessOutline : ScriptableRendererFeature {
             postProcessOutlineMaterial = new Material(Shader.Find(settings.ShaderName));
             postProcessOutlineMaterial.SetColor("_OutlineColor", settings.OutlineColor);
             postProcessOutlineMaterial.SetColor("_OutlineBlendColor", settings.OutlineBlendColor);
+            postProcessOutlineMaterial.SetColor("_OutlineBlendColor2", settings.OutlineBlendColor2);
             postProcessOutlineMaterial.SetFloat("_BlendTime", 0);
+            postProcessOutlineMaterial.SetFloat("_BlendTime2", 0);
             postProcessOutlineMaterial.SetFloat("_DepthThreshold",
                 settings.DepthThreshold);
             postProcessOutlineMaterial.SetFloat("_CreaseAngleThreshold",

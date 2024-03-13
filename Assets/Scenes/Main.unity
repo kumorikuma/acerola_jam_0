@@ -3674,6 +3674,10 @@ PrefabInstance:
       propertyPath: MainMenuContainer
       value: 
       objectReference: {fileID: 1866336104}
+    - target: {fileID: 6008671616441834924, guid: b5065c6254e03c44e82d39507f5d9dee, type: 3}
+      propertyPath: HealingPhaseLength
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

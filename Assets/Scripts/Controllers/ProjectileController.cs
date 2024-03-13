@@ -75,7 +75,7 @@ public class ProjectileController : Singleton<ProjectileController> {
         // We can spawn it without the collider if it's really far away from the player
         float projectileDistanceToPlayer =
             (PlayerManager.Instance.PlayerController.transform.position - origin).magnitude;
-        if (projectileDistanceToPlayer > 20) {
+        if (projectileDistanceToPlayer > 0) {
             Collider colliderComponent = projectileComponent.Collider;
             if (colliderComponent != null) {
                 Destroy(colliderComponent);
@@ -150,7 +150,7 @@ public class ProjectileController : Singleton<ProjectileController> {
             if (projectile.ShouldRemoveCollider) {
                 float projectileDistanceToPlayer =
                     (PlayerManager.Instance.PlayerController.transform.position - position).magnitude;
-                if (projectileDistanceToPlayer > 25) {
+                if (projectileDistanceToPlayer > 15) {
                     Collider colliderComponent = projectile.Collider;
                     if (colliderComponent != null) {
                         Destroy(colliderComponent);

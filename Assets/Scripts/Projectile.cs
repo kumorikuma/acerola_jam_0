@@ -55,13 +55,7 @@ public class Projectile : MonoBehaviour {
                 ProjectileController.Instance.DestroyProjectile(this);
             }
         } else if (ProjectileOwner == ProjectileController.Owner.Enemy && other.CompareTag("Player")) {
-            EntityStats stats = other.GetComponent<EntityStats>();
-            if (stats == null) {
-                Debug.LogError("[Projectile] Collided object does not have stats component!");
-            } else {
-                stats.ApplyDamage(10);
-            }
-
+            PlayerManager.Instance.PlayerController.ApplyDamage();
             ProjectileController.Instance.DestroyProjectile(this);
         }
     }

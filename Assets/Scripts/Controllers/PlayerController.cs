@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour {
 
     public float MovementDecayTime = 1.0f;
     private float _movementDecayTimer = 0.0f;
+    public int BossProjectileDamage = 10;
 
     // Should there be a dash cooldown and also a dash duration?
     // How would we handle windup and winddown?
@@ -123,6 +124,7 @@ public class PlayerController : MonoBehaviour {
     private int _comboStage = 0;
     private bool _isProcessingEnabled = false;
     private float _totalDamageTaken = 0;
+    private bool _isImmuneToDamage = false;
 
     public void SetPlayerLives(int playerLives) {
         CurrentPlayerLives = Mathf.Clamp(playerLives, 0, MaxPlayerLives);
@@ -138,12 +140,17 @@ public class PlayerController : MonoBehaviour {
 
     private void ConsumeLife() {
         SetPlayerLives(CurrentPlayerLives - 1);
-        // Begin healing phase for self and boss.
-        SetHealingPhase(true);
-        BossController.Instance.SetHealingPhase(true);
+        if (CurrentPlayerLives > 0) {
+            // Begin healing phase for self and boss.
+            SetHealingPhase(true);
+            BossController.Instance.SetHealingPhase(true);
+        }
     }
 
     public void DeathSequence() {
+        // Prevent further damage.
+        _isImmuneToDamage = true;
+
         // Player keels over.
         Animator.SetBool("IsDead", true);
         // TODO: Their mech disintegrates. This is hard because it's not just one material :/
@@ -193,6 +200,7 @@ public class PlayerController : MonoBehaviour {
         _isExecutingDash = false;
         _isHealing = false;
         _totalDamageTaken = 0;
+        _isImmuneToDamage = false;
         SetProcessedEnabled(false);
         SetLockOnTarget(null);
 
@@ -202,7 +210,11 @@ public class PlayerController : MonoBehaviour {
         Animator.SetBool("VictoryPose", false);
         Animator.SetBool("IsDead", false);
         transform.position = Vector3.zero;
-        transform.rotation = Quaternion.identity;
+        PlayerModel.transform.rotation = Quaternion.identity;
+
+        Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
+        postProcessOutlineMaterial.SetFloat("_BlendTime", 0);
+        postProcessOutlineMaterial.SetFloat("_BlendTime2", 0);
     }
 
     public float GetRegularMovementSpeed() {
@@ -224,6 +236,14 @@ public class PlayerController : MonoBehaviour {
                 ConsumeLife();
             }
         }
+    }
+
+    public void ApplyDamage() {
+        if (_isImmuneToDamage) {
+            return;
+        }
+
+        Stats.ApplyDamage(BossProjectileDamage);
     }
 
     public void PlayHitEffect() {
@@ -294,8 +314,15 @@ public class PlayerController : MonoBehaviour {
             // SetProcessedEnabled(false);
             _baseHealthPercent = Stats.GetHealthPercentage();
             _healingTimer = 0.0f;
+            _isImmuneToDamage = true;
+            // Animate
+            Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
+            postProcessOutlineMaterial.DOFloat(1, "_BlendTime2", 1.0f)
+                .SetLoops(4, LoopType.Yoyo) // Loop the animation 4 times: 0->1, 1->0, 0->1, 1->0
+                .SetEase(Ease.InOutSine); // Use a linear ease to keep the transition smooth and consistent
         } else {
             // SetProcessedEnabled(true);
+            _isImmuneToDamage = false;
         }
     }
 
@@ -308,13 +335,15 @@ public class PlayerController : MonoBehaviour {
             float missingHealthPercentage = Mathf.Lerp(0, 1 - _baseHealthPercent, healingT);
             Stats.SetHealthToPercentage(_baseHealthPercent + missingHealthPercentage);
             _healingTimer += Time.deltaTime;
-        } else {
+        } else if (_isHealing && _healingTimer >= healingPhaseLength) {
             SetHealingPhase(false);
             Stats.SetHealthToPercentage(1);
         }
 
-        PlayerManager.Instance.CameraController.UpdateCamera();
-        _cinemachineBrain.ManualUpdate();
+        if (!_isHealing) {
+            PlayerManager.Instance.CameraController.UpdateCamera();
+            _cinemachineBrain.ManualUpdate();
+        }
 
         if (_isProcessingEnabled) {
             HandleMovement();
@@ -685,7 +714,9 @@ public class PlayerController : MonoBehaviour {
         // TODO: We will need to not do this when in transitioning to the second stage.
         if (transform.position.y <= PlanetDamagePositionThreshold && _planetDamageCooldownCountdown <= 0.0f) {
             _planetDamageCooldownCountdown = PlanetDamageCooldown;
-            Stats.ApplyDamage(PlanetTickDamage);
+            if (!_isImmuneToDamage) {
+                Stats.ApplyDamage(PlanetTickDamage);
+            }
         }
     }
 

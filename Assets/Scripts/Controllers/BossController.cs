@@ -132,7 +132,11 @@ public class BossController : Singleton<BossController> {
         ShieldAnimator.SetBool("IsImmune", false);
         Animator.SetBool("IsDead", false);
         _bossMechMaterialInstance.SetFloat("_DissolveTime", 0);
+        Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
+        postProcessOutlineMaterial.SetFloat("_BlendTime", 0);
+        postProcessOutlineMaterial.SetFloat("_BlendTime2", 0);
         ToggleThrusters(true);
+
 
         transform.position = _originalPosition;
         transform.rotation = _originalRotation;
@@ -162,13 +166,27 @@ public class BossController : Singleton<BossController> {
             StopDoingStuff();
             _baseHealthPercent = Stats.GetHealthPercentage();
             _healingTimer = 0.0f;
+
             // We'll heal over time in the update loop.
             SetImmunity(true);
             ShieldAnimator.SetBool("IsBroken", false);
+            // Animate
+            Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
+            postProcessOutlineMaterial.DOFloat(1, "_BlendTime2", 1.0f)
+                .SetLoops(4, LoopType.Yoyo) // Loop the animation 4 times: 0->1, 1->0, 0->1, 1->0
+                .SetEase(Ease.InOutSine); // Use a linear ease to keep the transition smooth and consistent
+
+            // Restore Shield
+            _shieldHealth = MaxShieldHealth;
+            _shieldMaterialInstance.SetFloat("_BlendTime", 0);
+            ShieldAnimator.SetBool("IsBroken", false);
+            Animator.SetBool("IsDead", false);
         } else {
             // Healing has stopped, we can do stuff again
             StartDoingStuff();
             SetImmunity(false);
+
+            _attackCooldownCountdown = InitialAttackCooldown;
         }
     }
 
@@ -181,7 +199,7 @@ public class BossController : Singleton<BossController> {
             float missingHealthPercentage = Mathf.Lerp(0, 1 - _baseHealthPercent, healingT);
             Stats.SetHealthToPercentage(_baseHealthPercent + missingHealthPercentage);
             _healingTimer += Time.deltaTime;
-        } else {
+        } else if (_isHealing && _healingTimer >= healingPhaseLength) {
             SetHealingPhase(false);
             Stats.SetHealthToPercentage(1);
         }
@@ -417,21 +435,18 @@ public class BossController : Singleton<BossController> {
                 PanelsController.Instance.StartDestroyingLevel();
             }
 
-            // Heal the boss back up to 100%
             Stats.MaxHealth = _currentBossPhaseData.BossHealth;
-            Stats.SetHealthToPercentage(1.0f);
         }
-
-        // TODO: Have some kind of animation for this
-        // TODO: There should be some visual indication of things changing?
 
         OnBossLivesChanged?.Invoke(this, CurrentBossLives);
     }
 
     private void ConsumeBossLife() {
         SetBossLives(CurrentBossLives - 1);
-        // Begin healing phase for self. Player can still move around.
-        SetHealingPhase(true);
+        if (CurrentBossLives > 0) {
+            // Begin healing phase for self. Player can still move around.
+            SetHealingPhase(true);
+        }
     }
 
     private void HandleAttack() {
@@ -476,7 +491,6 @@ public class BossController : Singleton<BossController> {
         _bulletSpawnersBag.RemoveAt(spawnerIdx);
         _currentBulletSpawner.Play();
     }
-
 
     // TODO: Could try improving this by making the behavior always where the boss tries to the center of the arena
     // between it and you. But alas no time!.

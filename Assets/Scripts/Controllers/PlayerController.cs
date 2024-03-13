@@ -16,6 +16,7 @@ with footstep system based on check the current texture of the component*/
 public class PlayerController : MonoBehaviour {
     [NonNullField] public Animator Animator;
 
+    [NonNullField] public PostProcessOutline PostProcessOutlineRenderFeature;
     [NonNullField] public GameObject AimIndicatorObject;
     [NonNullField] public Transform PrimaryWeaponMountPoint;
     [NonNullField] public Transform SecondaryWeaponMountPoint;
@@ -210,6 +211,19 @@ public class PlayerController : MonoBehaviour {
 
     private void OnDamageTaken(object sender, float damageTaken) {
         _totalDamageTaken += damageTaken;
+
+        if (damageTaken > 0) {
+            PlayHitEffect();
+        }
+    }
+
+    public void PlayHitEffect() {
+        float hitAnimationTime = 0.25f;
+        Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
+        postProcessOutlineMaterial.DOFloat(1, "_BlendTime", hitAnimationTime).OnComplete(
+            () => {
+                postProcessOutlineMaterial.DOFloat(0, "_BlendTime", hitAnimationTime);
+            });
     }
 
     private void OnHealthChanged(object sender, float health) {

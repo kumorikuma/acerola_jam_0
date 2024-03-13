@@ -11419,6 +11419,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1262059587}
     m_Modifications:
+    - target: {fileID: 1348098564201815736, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
+      propertyPath: PostProcessOutlineRenderFeature
+      value: 
+      objectReference: {fileID: -8281663822787612724, guid: ad20d523cee746c4e82aeb430c0fe02a, type: 2}
     - target: {fileID: 4267602099373056639, guid: c9c4118a7fb6a504fb14b3dde65849b9, type: 3}
       propertyPath: m_Name
       value: Player

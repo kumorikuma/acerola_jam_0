@@ -9,6 +9,7 @@ public class UIRouter : Singleton<UIRouter> {
         PauseMenu,
         Hud,
         GameOver,
+        GameOverLose,
     }
 
     public Route DebugRoute = Route.None;
@@ -43,6 +44,9 @@ public class UIRouter : Singleton<UIRouter> {
                 break;
             case Route.GameOver:
                 routePath = "/gameOver";
+                break;
+            case Route.GameOverLose:
+                routePath = "/gameOverLose";
                 break;
         }
 

@@ -86,12 +86,9 @@ public class BossController : Singleton<BossController> {
     private Coroutine _restoreShieldCoroutine = null;
     private bool _isProcessingEnabled = false;
 
-    private bool foo = true;
 
     public void FireMissiles() {
         SetBossLives(0);
-        // PlayerManager.Instance.PlayerController.Animator.SetBool("IsDead", foo);
-        // foo = !foo;
 
         // RestoreShield();
         // spawner.Play();
@@ -118,7 +115,6 @@ public class BossController : Singleton<BossController> {
         base.Awake();
         Stats = GetComponent<EntityStats>();
         Stats.NotifyHealthChanged();
-        Stats.OnHealthChanged += OnHealthChanged;
         Stats.OnDamageTaken += OnDamageTaken;
 
         _blackHoleMaterialInstance = BlackHoleRenderer.material;
@@ -156,7 +152,40 @@ public class BossController : Singleton<BossController> {
         }
     }
 
+    private float _baseHealthPercent = 0;
+    private bool _isHealing = false;
+    private float _healingTimer = 0.0f;
+
+    public void SetHealingPhase(bool isHealing) {
+        _isHealing = isHealing;
+        if (isHealing) {
+            StopDoingStuff();
+            _baseHealthPercent = Stats.GetHealthPercentage();
+            _healingTimer = 0.0f;
+            // We'll heal over time in the update loop.
+            SetImmunity(true);
+            ShieldAnimator.SetBool("IsBroken", false);
+        } else {
+            // Healing has stopped, we can do stuff again
+            StartDoingStuff();
+            SetImmunity(false);
+        }
+    }
+
     private void Update() {
+        // HACK: This is pretty bad to put here, but whatever lol
+        ReactUnityBridge.Instance.UpdateDebugString("IsBossHealing", _isHealing.ToString());
+        float healingPhaseLength = GameLifecycleManager.Instance.HealingPhaseLength;
+        if (_isHealing && _healingTimer < healingPhaseLength) {
+            float healingT = _healingTimer / GameLifecycleManager.Instance.HealingPhaseLength;
+            float missingHealthPercentage = Mathf.Lerp(0, 1 - _baseHealthPercent, healingT);
+            Stats.SetHealthToPercentage(_baseHealthPercent + missingHealthPercentage);
+            _healingTimer += Time.deltaTime;
+        } else {
+            SetHealingPhase(false);
+            Stats.SetHealthToPercentage(1);
+        }
+
         // If the game is over, don't do anything
         if (!GameLifecycleManager.Instance.IsGamePlaying() || !_isProcessingEnabled) {
             return;
@@ -213,6 +242,10 @@ public class BossController : Singleton<BossController> {
 
                 StartCoroutine(RestoreShieldAfterDelay(ShieldRecoveryTime));
             }
+        }
+
+        if (Stats.CurrentHealth <= 0) {
+            ConsumeBossLife();
         }
     }
 
@@ -335,18 +368,11 @@ public class BossController : Singleton<BossController> {
         // TODO: Maybe shield should be a special color here?
         _isIndestructible = isImmune;
         ShieldAnimator.SetBool("IsImmune", _isIndestructible);
-        Debug.Log("SET IMMUNITY FUNCTION: " + isImmune);
     }
 
     private void OnSpawningStopped() {
         _isAttacking = false;
         _currentBulletSpawner = null;
-    }
-
-    private void OnHealthChanged(object sender, float health) {
-        if (health <= 0.0f) {
-            ConsumeBossLife();
-        }
     }
 
     public void StopDoingStuff() {
@@ -363,6 +389,13 @@ public class BossController : Singleton<BossController> {
         IsAttackingEnabled = false;
         _isIndestructible = true;
         _isProcessingEnabled = false;
+    }
+
+    public void StartDoingStuff() {
+        IsLocomotionEnabled = true;
+        IsAttackingEnabled = true;
+        _isIndestructible = false;
+        _isProcessingEnabled = true;
     }
 
     private void SetBossLives(int bossLives) {
@@ -397,6 +430,8 @@ public class BossController : Singleton<BossController> {
 
     private void ConsumeBossLife() {
         SetBossLives(CurrentBossLives - 1);
+        // Begin healing phase for self. Player can still move around.
+        SetHealingPhase(true);
     }
 
     private void HandleAttack() {

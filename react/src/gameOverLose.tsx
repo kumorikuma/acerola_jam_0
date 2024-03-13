@@ -3,19 +3,15 @@ import { useReactiveValue, useGlobals } from "@reactunity/renderer";
 import Button from "./button";
 import "./index.scss";
 
-export default function GameOver(): React.ReactNode {
+export default function GameOverLose(): React.ReactNode {
   const globals = useGlobals();
   const gameLifecycleManager = globals.gameLifecycleManager;
-  const percentageDestroyed: number = useReactiveValue(
-    globals.percentageDestroyed
-  );
-  const damageTaken: number = useReactiveValue(globals.damageTaken);
 
   return (
-    <view className="gameoverLose">
+    <view className="gameover">
       <view className="left-column">
-        <view className="title">Planet saved!</view>
-        <view className="subtext">{"Thanks for playing <3"}</view>
+        <view className="title">{"Planet Consumed :("}</view>
+        <view className="subtext">{"Try Again?"}</view>
         <Button
           className="mainMenuButton"
           text="[ Play Again ]"
@@ -32,12 +28,7 @@ export default function GameOver(): React.ReactNode {
         />
       </view>
       <view className="spacer" />
-      <view className="right-column">
-        <view className="body-text">{`${Math.round(
-          percentageDestroyed * 100
-        )}% of planet destroyed`}</view>
-        <view className="body-text">{`${damageTaken} damage taken`}</view>
-      </view>
+      <view className="right-column"></view>
     </view>
   );
 }

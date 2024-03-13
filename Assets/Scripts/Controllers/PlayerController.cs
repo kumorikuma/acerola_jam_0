@@ -138,17 +138,21 @@ public class PlayerController : MonoBehaviour {
 
     private void ConsumeLife() {
         SetPlayerLives(CurrentPlayerLives - 1);
+        // Begin healing phase for self and boss.
+        SetHealingPhase(true);
+        BossController.Instance.SetHealingPhase(true);
     }
 
     public void DeathSequence() {
-        Animator.SetBool("IsDead", true);
-        SetProcessedEnabled(false);
-        GameLifecycleManager.Instance.LoseGame();
-
         // Player keels over.
-        // Their mech disintegrates.
+        Animator.SetBool("IsDead", true);
+        // TODO: Their mech disintegrates. This is hard because it's not just one material :/
+        SetProcessedEnabled(false);
         // The planet destruction accelerates.
+        PanelsController.Instance.CellDestructionCooldown = 0.5f;
+        PlayerManager.Instance.CameraController.PointCameraTowardsBlackHole();
         // Game over screen.
+        GameLifecycleManager.Instance.LoseGame();
     }
 
     private void Awake() {
@@ -166,7 +170,6 @@ public class PlayerController : MonoBehaviour {
     private void Start() {
         Stats.NotifyHealthChanged();
         Stats.OnDamageTaken += OnDamageTaken;
-        Stats.OnHealthChanged += OnHealthChanged;
         _animationEvents.OnSlashAttack1Hit += OnSlashAttack1Hit;
         _animationEvents.OnSlashAttack1SoftEnd += OnSlashAttack1SoftEnd;
         _animationEvents.OnSlashAttack1End += OnSlashAttack1End;
@@ -188,6 +191,7 @@ public class PlayerController : MonoBehaviour {
         inputSecondaryFireHeld = false;
         _isExecutingFastTurn = false;
         _isExecutingDash = false;
+        _isHealing = false;
         _totalDamageTaken = 0;
         SetProcessedEnabled(false);
         SetLockOnTarget(null);
@@ -211,9 +215,14 @@ public class PlayerController : MonoBehaviour {
 
     private void OnDamageTaken(object sender, float damageTaken) {
         _totalDamageTaken += damageTaken;
+        ReactUnityBridge.Instance.UpdateDebugString("PlayerHealth", Stats.CurrentHealth.ToString());
 
         if (damageTaken > 0) {
             PlayHitEffect();
+
+            if (Stats.CurrentHealth <= 0) {
+                ConsumeLife();
+            }
         }
     }
 
@@ -226,22 +235,13 @@ public class PlayerController : MonoBehaviour {
             });
     }
 
-    private void OnHealthChanged(object sender, float health) {
-        // If the health reaches 0, we've died.
-        // If we have more lives, we can continue. (restore health to 50%)
-        // Otherwise, we end the game.
-        if (health <= 0.0f) {
-            ConsumeLife();
-        }
-    }
-
     public void OnMove(Vector2 moveVector) {
         inputMoveVector = new Vector3(moveVector.x, 0, moveVector.y);
     }
 
     public void OnJump() {
         // Cannot jump while doing any of those things.
-        if (_isBlocking || _isExecutingDash || _isMeleeAttacking || !characterController.isGrounded) {
+        if (_isBlocking || _isExecutingDash || _isMeleeAttacking || !characterController.isGrounded || _isHealing) {
             return;
         }
 
@@ -284,17 +284,44 @@ public class PlayerController : MonoBehaviour {
         inputSecondaryFireHeld = value;
     }
 
+    private float _baseHealthPercent = 0;
+    private bool _isHealing = false;
+    private float _healingTimer = 0.0f;
+
+    public void SetHealingPhase(bool isHealing) {
+        _isHealing = isHealing;
+        if (isHealing) {
+            // SetProcessedEnabled(false);
+            _baseHealthPercent = Stats.GetHealthPercentage();
+            _healingTimer = 0.0f;
+        } else {
+            // SetProcessedEnabled(true);
+        }
+    }
+
     private void Update() {
+        // HACK: This is pretty bad to put here, but whatever lol
+        ReactUnityBridge.Instance.UpdateDebugString("IsPLayerHealing", _isHealing.ToString());
+        float healingPhaseLength = GameLifecycleManager.Instance.HealingPhaseLength;
+        if (_isHealing && _healingTimer < healingPhaseLength) {
+            float healingT = _healingTimer / GameLifecycleManager.Instance.HealingPhaseLength;
+            float missingHealthPercentage = Mathf.Lerp(0, 1 - _baseHealthPercent, healingT);
+            Stats.SetHealthToPercentage(_baseHealthPercent + missingHealthPercentage);
+            _healingTimer += Time.deltaTime;
+        } else {
+            SetHealingPhase(false);
+            Stats.SetHealthToPercentage(1);
+        }
+
         PlayerManager.Instance.CameraController.UpdateCamera();
         _cinemachineBrain.ManualUpdate();
 
-        if (!_isProcessingEnabled) {
-            return;
+        if (_isProcessingEnabled) {
+            HandleMovement();
+            HandleAttack();
+            HandleStatusEffects();
         }
 
-        HandleMovement();
-        HandleAttack();
-        HandleStatusEffects();
         UpdateUI();
     }
 
@@ -376,6 +403,11 @@ public class PlayerController : MonoBehaviour {
         }
 
         // ==== COMPUTE MOVEMENT SPEED MODIFIER =====
+        // Cannot move while healing
+        if (_isHealing) {
+            inputMoveVector = Vector3.zero;
+        }
+
         // Using KBM controls, there's a specific button to walk.
         // Otherwise, use the amount that user is pushing stick.
         bool isWalking = isWalkKeyHeld || inputMoveVector.magnitude < 0.5f;
@@ -606,8 +638,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void HandleAttack() {
-        // Can't attack while dashing or jumping
-        if (_isExecutingDash) {
+        // Can't attack while dashing or healing.
+        if (_isExecutingDash || _isHealing) {
             return;
         }
 
@@ -774,7 +806,7 @@ public class PlayerController : MonoBehaviour {
         // }
 
         // Update aim indicator
-        bool canShoot = !_isMeleeAttacking && !_isExecutingDash;
+        bool canShoot = !_isMeleeAttacking && !_isExecutingDash && !_isHealing;
         AimIndicatorObject.SetActive(canShoot);
         if (canShoot) {
             AimIndicatorObject.transform.position = SecondaryWeaponMountPoint.transform.position;

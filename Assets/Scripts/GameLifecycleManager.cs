@@ -8,9 +8,8 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
         GameIntroSequence,
         GameStarted,
         GamePaused,
-        GameOutroSequenceWin,
-        GameOutroSequenceLose,
         GameOver,
+        GameOverLose,
     }
 
     [NonNullField] public GameObject GameplayContainer;
@@ -19,6 +18,7 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
 
     public bool Debug_IsDebugModeEnabled = false;
     public GameState Debug_StartingGameState = GameState.GameStarted;
+    public float HealingPhaseLength = 3.0f;
 
     public event EventHandler<GameState> OnGameStateUpdated;
     private GameState _currentGameState = GameState.MainMenu;
@@ -122,6 +122,11 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
                 PlayerManager.Instance.SwitchActionMaps("menu");
                 ToggleCursor(true);
                 break;
+            case GameState.GameOverLose:
+                UIRouter.Instance.SwitchRoutes(UIRouter.Route.GameOverLose);
+                PlayerManager.Instance.SwitchActionMaps("menu");
+                ToggleCursor(true);
+                break;
         }
 
         _currentGameState = gameState;
@@ -149,7 +154,7 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
 
     public void LoseGame() {
         BossController.Instance.StopDoingStuff();
-        SequenceAnimator.SetTrigger("PlayLoseSequence");
+        SwitchGameState(GameState.GameOverLose);
     }
 
     public void GameOver() {

@@ -418,3 +418,44 @@ $hp-color: white;
     width: 420px;
   }
 }
+
+.gameoverLose {
+  @include flex-layout(row);
+  // justify-content: center;
+  // align-items: center;
+  height: 100%;
+  padding-left: 128px;
+  padding-top: 128px;
+  padding-right: 128px;
+  background-color: rgba(0, 0, 0, 0.1);
+
+  .right-column {
+    align-items: flex-end;
+  }
+
+  .title {
+    // margin-top: -128px;
+    margin-bottom: 24px;
+    // text-align: center;
+    color: white;
+    font-size: 92px;
+  }
+
+  .subtext {
+    color: white;
+    font-size: 42px;
+    margin-bottom: 64px;
+  }
+
+  .body-text {
+    color: white;
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+
+  .mainMenuButton {
+    margin-top: 12px;
+    font-size: 48px;
+    width: 420px;
+  }
+}

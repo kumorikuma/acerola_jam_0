@@ -3244,9 +3244,9 @@ MonoBehaviour:
   ReturnToCenterThreshold: 150
   RetreatVectorBias: 20
   StaggerDamageThreshold: 50
-  MaxShieldHealth: 1
+  MaxShieldHealth: 20
   ShieldRecoveryTime: 1
-  PlayerProjectileDamageToBossWhileStaggered: 50
+  PlayerProjectileDamageToBossWhileStaggered: 3
   PlayerSwordDamageToBoss: 25
   spawner: {fileID: 1117099464}
   IdleMovementCurve:

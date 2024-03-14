@@ -33,11 +33,5 @@ Repo: https://github.com/ReactUnity/core
 ### Fonts
 
 - Can input some text and see different fonts render them: https://fonts.google.com/?preview.text=Handler&preview.text_type=custom
-- Vaporwave Text Generator: https://lingojam.com/VaporwaveTextGenerator 
 - Show unicode characters in text: https://qaz.wtf/u/show.cgi?show=Handler&type=string 
 - Unicode Characters for Japanese: https://stackoverflow.com/questions/19899554/unicode-range-for-japanese 
-
-# References
-
-https://www.pinterest.com/pin/783626403888415262/ 
-

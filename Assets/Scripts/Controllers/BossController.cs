@@ -94,15 +94,7 @@ public class BossController : Singleton<BossController> {
     private Coroutine _restoreShieldCoroutine = null;
     private bool _isProcessingEnabled = false;
 
-
     public void FireMissiles() {
-        // LaserBeamAttack1.StartAttack();
-
-        // SetBossLives(0);
-
-        // RestoreShield();
-        // spawner.Play();
-
         // Quaternion verticalRotation = Quaternion.LookRotation(this.transform.up, -this.transform.forward);
         // Projectile missile = ProjectileController.Instance.SpawnMissile(ProjectileController.Owner.Enemy,
         //     this.transform.position,

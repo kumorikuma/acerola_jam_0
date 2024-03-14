@@ -21,9 +21,9 @@ export default function GameOverLose(): React.ReactNode {
         />
         <Button
           className="mainMenuButton"
-          text="[ Quit ]"
+          text="[ Give Up ]"
           onClick={() => {
-            gameLifecycleManager.ReturnToMainMenu();
+            gameLifecycleManager.QuitGame();
           }}
         />
       </view>

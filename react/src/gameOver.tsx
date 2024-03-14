@@ -27,7 +27,7 @@ export default function GameOver(): React.ReactNode {
           className="mainMenuButton"
           text="[ Quit ]"
           onClick={() => {
-            gameLifecycleManager.ReturnToMainMenu();
+            gameLifecycleManager.QuitGame();
           }}
         />
       </view>

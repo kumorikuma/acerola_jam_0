@@ -44,6 +44,16 @@ export default function PauseMenu(): React.ReactNode {
           <view className="highlighted">{" [SHIFT]"}</view>
           <view className="subtext"> to dash.</view>
         </view>
+        <view className="row-container">
+          <view className="subtext">TIP: Take down the enemy's shield to</view>
+          <view className="highlighted">{" stagger"}</view>
+          <view className="subtext"> it first before meleeing it.</view>
+        </view>
+        <view className="row-container">
+          <view className="subtext">TIP: You can </view>
+          <view className="highlighted">{" dash cancel"}</view>
+          <view className="subtext"> melee attacks.</view>
+        </view>
         {/* <view className="bodytext">
           {
             "Help: Use ranged attacks to lower the boss' shield, \nbefore going in for melee attacks.\nThe fight lasts several phases. \nWhen your health goes to 0, the current phase starts over."

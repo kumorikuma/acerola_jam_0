@@ -258,7 +258,10 @@ public class PlayerController : MonoBehaviour {
 
     public void OnJump() {
         // Cannot jump while doing any of those things.
-        if (_isBlocking || _isExecutingDash || _isMeleeAttacking || !characterController.isGrounded || _isHealing) {
+        bool isBelowGroundLevel =
+            transform.position.y <= 0.1f; // Adding this as a hack because sometimes Jump is sticky.
+        bool isJumping = !isBelowGroundLevel;
+        if (_isBlocking || _isExecutingDash || _isMeleeAttacking || isJumping || _isHealing) {
             return;
         }
 
@@ -400,7 +403,7 @@ public class PlayerController : MonoBehaviour {
             _velocity.y = -.1f;
         }
 
-        if (inputJumpOnNextFrame && characterController.isGrounded) {
+        if (inputJumpOnNextFrame) {
             _velocity.y = Mathf.Sqrt(JumpForce * -2f * gravity);
             inputJumpOnNextFrame = false;
         }

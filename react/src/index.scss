@@ -162,13 +162,13 @@ $hp-color: white;
 }
 
 .player-healthbar {
-  width: 400px;
+  width: 600px;
   height: 20px;
   background: linear-gradient(90deg, white 80%, $hp-color-faint 80%, $hp-color-faint 100%);
 }
 
 .boss-healthbar {
-  width: 400px;
+  width: 600px;
   height: 20px;
   background: linear-gradient(90deg, white 80%, $hp-color-faint 80%, $hp-color-faint 100%);
 }
@@ -177,7 +177,7 @@ $hp-color: white;
   margin-top: 8px;
 
   .segments-container {
-    width: 100px;
+    width: 200px;
     height: 20px;
 
     .segments {

@@ -483,6 +483,7 @@ public class BossController : Singleton<BossController> {
         if (CurrentBossLives > 0) {
             // Begin healing phase for self. Player can still move around.
             SetHealingPhase(true);
+            PlayerManager.Instance.PlayerController.SetHealingPhase(true);
         }
     }
 

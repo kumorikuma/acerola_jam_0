@@ -221,9 +221,7 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
     }
 
     public void PauseGame() {
-        Debug.Log("Pause Game?!");
         if (_currentGameState == GameState.GameStarted) {
-            Debug.Log("Pause Game?!???");
             SwitchGameState(GameState.GamePaused);
         }
     }

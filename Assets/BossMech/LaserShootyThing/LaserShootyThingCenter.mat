@@ -111,7 +111,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DissolveScale: 30
     - _DissolveThickness: 0.05
-    - _DissolveTime: 1
+    - _DissolveTime: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnableIntersection: 0

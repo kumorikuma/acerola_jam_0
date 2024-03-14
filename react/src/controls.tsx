@@ -30,7 +30,9 @@ export default function Controls(): React.ReactNode {
         <view className="subtext"> to dash.</view>
       </view>
       <view className="container">
-        <view className="subtext">Click the button below to start.</view>
+        <view className="subtext">TIP: Take down the enemy's shield to</view>
+        <view className="highlighted">{" stagger"}</view>
+        <view className="subtext"> it.</view>
       </view>
       <Button
         className="mainMenuButton"

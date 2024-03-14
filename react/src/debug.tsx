@@ -24,7 +24,7 @@ export default function Debug(): React.ReactNode {
       <view className="debug-ui">
         <view className="spacer" />
         <view className="footer">
-          <view className="flex-column">
+          {/* <view className="flex-column">
             <view className="text">Debug</view>
             <view className="text">{`UI Route: ${route}`}</view>
             <view className="text">{`Game State: ${gameState}`}</view>
@@ -37,7 +37,7 @@ export default function Debug(): React.ReactNode {
                 }}
               />
             )}
-          </view>
+          </view> */}
         </view>
       </view>
     )

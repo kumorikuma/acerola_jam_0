@@ -47,6 +47,23 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
 
         if (Debug_IsDebugModeEnabled) {
             _currentGameState = Debug_StartingGameState;
+            if (_currentGameState == GameState.GameStarted) {
+                SoundController.Instance.PlayMenuMusic(false);
+                // Hide the main menu and show the rest of the game
+                GameplayContainer.SetActive(true);
+                MainMenuContainer.SetActive(false);
+                // Reset the game
+                ReactUnityBridge.Instance.InitializeGameStuff(); // UI Comes first
+                PlayerManager.Instance.PlayerController.Reset();
+                PlayerManager.Instance.CameraController.Reset();
+                PlayerManager.Instance.CameraController.SetEnabled(false);
+                BossController.Instance.Reset();
+                PanelsController.Instance.Reset();
+                ProjectileController.Instance.Reset();
+                BlackHoleObject.SetActive(false);
+                // Hide the boss
+                BossController.Instance.gameObject.SetActive(false);
+            }
         }
 
         _menuFaderMaterialInstance = MenuFaderRenderer.material;
@@ -217,5 +234,9 @@ public class GameLifecycleManager : Singleton<GameLifecycleManager> {
 
     public void ReturnToMainMenu() {
         SwitchGameState(GameState.MainMenu);
+    }
+
+    public void QuitGame() {
+        Application.Quit();
     }
 }

@@ -5,6 +5,7 @@ using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class PhaseData {
@@ -25,6 +26,9 @@ public class BossController : Singleton<BossController> {
     [NonSerialized] public EntityStats Stats;
     [NonNullField] public Animator Animator;
 
+    [NonNullField] public LaserBeamAttack LaserBeamAttack1;
+    [NonNullField] public LaserBeamAttack LaserBeamAttack2;
+
     [NonNullField] public PostProcessOutline PostProcessOutlineRenderFeature;
     [NonNullField] public MeshRenderer BlackHoleRenderer;
     private Material _blackHoleMaterialInstance;
@@ -33,6 +37,10 @@ public class BossController : Singleton<BossController> {
     [NonNullField] public Animator ShieldAnimator;
     [NonNullField] public MeshRenderer BossMechRenderer;
     private Material _bossMechMaterialInstance;
+    [NonNullField] public MeshRenderer LaserShootyThingRenderer;
+    [NonNullField] public MeshRenderer LaserShootyThingCenterRenderer;
+    private Material _laserShootyThingSharedMaterial;
+    private Material _laserShootyThingCenterSharedMaterial;
 
     public List<GameObject> ThrusterObjects;
 
@@ -88,7 +96,9 @@ public class BossController : Singleton<BossController> {
 
 
     public void FireMissiles() {
-        SetBossLives(0);
+        // LaserBeamAttack1.StartAttack();
+
+        // SetBossLives(0);
 
         // RestoreShield();
         // spawner.Play();
@@ -120,6 +130,8 @@ public class BossController : Singleton<BossController> {
         _blackHoleMaterialInstance = BlackHoleRenderer.material;
         _shieldMaterialInstance = ShieldRenderer.material;
         _bossMechMaterialInstance = BossMechRenderer.sharedMaterial;
+        _laserShootyThingSharedMaterial = LaserShootyThingRenderer.sharedMaterial;
+        _laserShootyThingCenterSharedMaterial = LaserShootyThingCenterRenderer.sharedMaterial;
         _originalPosition = transform.position;
         _originalRotation = transform.rotation;
         IdleMovementCurve.postWrapMode = WrapMode.Loop;
@@ -136,7 +148,8 @@ public class BossController : Singleton<BossController> {
         postProcessOutlineMaterial.SetFloat("_BlendTime", 0);
         postProcessOutlineMaterial.SetFloat("_BlendTime2", 0);
         ToggleThrusters(true);
-
+        _laserShootyThingSharedMaterial.SetFloat("_DissolveTime", 1f);
+        _laserShootyThingCenterSharedMaterial.SetFloat("_DissolveTime", 1f);
 
         transform.position = _originalPosition;
         transform.rotation = _originalRotation;
@@ -154,6 +167,9 @@ public class BossController : Singleton<BossController> {
             _currentBulletSpawner.StopAll();
             _currentBulletSpawner = null;
         }
+
+        LaserBeamAttack1.StopAttack();
+        LaserBeamAttack2.StopAttack();
     }
 
     private float _baseHealthPercent = 0;
@@ -300,6 +316,9 @@ public class BossController : Singleton<BossController> {
                 // Make it inactive? I guess it doesn't matter.
             });
 
+        _laserShootyThingSharedMaterial.DOFloat(1.0f, "_DissolveTime", durationSec);
+        _laserShootyThingCenterSharedMaterial.DOFloat(1.0f, "_DissolveTime", durationSec);
+
         // TODO: Fade the outline as well
         // Material postProcessOutlineMaterial = PostProcessOutlineRenderFeature.GetPostProcessMaterial();
         // postProcessOutlineMaterial.DOFloat(1, "_BlendTime", hitAnimationTime).OnComplete(
@@ -354,6 +373,9 @@ public class BossController : Singleton<BossController> {
         if (_currentBulletSpawner != null) {
             _currentBulletSpawner.StopAll();
         }
+
+        LaserBeamAttack1.StopAttack();
+        LaserBeamAttack2.StopAttack();
 
         // Shield will restore after some time, or when the damage threshold is exceeded.
         _damageTakenWhileStaggered = 0;
@@ -411,6 +433,9 @@ public class BossController : Singleton<BossController> {
             _currentBulletSpawner.StopAll();
         }
 
+        LaserBeamAttack1.StopAttack();
+        LaserBeamAttack2.StopAttack();
+
         IsLocomotionEnabled = false;
         IsAttackingEnabled = false;
         _isIndestructible = true;
@@ -449,6 +474,12 @@ public class BossController : Singleton<BossController> {
             if (_currentPhase == 2) {
                 SoundController.Instance.PlayGameMusic1(false);
                 SoundController.Instance.PlayGameMusic2(true, true);
+            }
+
+            // Spawn in the LaserSHootyThingy
+            if (_currentPhase == 1) {
+                _laserShootyThingSharedMaterial.DOFloat(0, "_DissolveTime", 3.0f);
+                _laserShootyThingCenterSharedMaterial.DOFloat(0, "_DissolveTime", 3.0f);
             }
         }
 
@@ -504,6 +535,16 @@ public class BossController : Singleton<BossController> {
         // Remove it so it's not picked again
         _bulletSpawnersBag.RemoveAt(spawnerIdx);
         _currentBulletSpawner.Play();
+
+        // If we're not in phase 1. Then coin flip whether or not to do a laser attack.
+        if (_currentPhase > 0) {
+            float randomValue = Random.value;
+            if (randomValue < 0.333f) {
+                LaserBeamAttack1.StartAttack();
+            } else if (randomValue < 0.666f) {
+                LaserBeamAttack2.StartAttack();
+            }
+        }
     }
 
     // TODO: Could try improving this by making the behavior always where the boss tries to the center of the arena
